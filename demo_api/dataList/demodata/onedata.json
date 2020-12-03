@@ -1,0 +1,35 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "demowf": {
+            "id": "1000333181",
+            "createTime": "2020-03-23 09:51:46",
+            "createBy": "admin",
+            "updateTime": "2020-03-23 09:52:05",
+            "updateBy": "admin",
+            "deleteFlag": 0,
+            "rightNo": 4,
+            "updateTimeStamp": "20200323095205223",
+            "exclusiveKey": "DemoWf:TQWF20030011",
+            "identiferNum": "TQWF20030011",
+            "version": 0,
+            "workflowFlag": "1",
+            "workflowProcessInstId": "2501",
+            "lastFlag": "0",
+            "email": "sfdsf@qq.com",
+            "quotationType": "0",
+            "quotationName": "我的项目0323",
+            "accountName": "我的客户",
+            "quotationCommitDate": "2020-03-22T16:00:00.000+0000",
+            "remark": "d's'f",
+            "assignedOrg": null,
+            "createByName": "系统管理员",
+            "updateByName": "系统管理员",
+            "ownExclusiveKey": "DemoWf:TQWF20030011"
+        }
+    }
+}

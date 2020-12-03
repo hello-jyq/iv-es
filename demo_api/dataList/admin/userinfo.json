@@ -1,0 +1,107 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "userOrgs": [
+            {
+                "user_id": "admin",
+                "org_id": "1000",
+                "position_code": "1",
+                "is_main": 1,
+                "org_name": "iVision"
+            }
+        ],
+        "userRoles": [
+            {
+                "role_name": "基础数据科目全访问角色",
+                "user_id": "admin",
+                "role_id": "ROLE_OPC_ITEM_RNUDWF_ALL_111"
+            },
+            {
+                "role_name": "报价全访问用户角色",
+                "user_id": "admin",
+                "role_id": "ROLE_OPC_QUO_RNUDWF_ALL_111"
+            },
+            {
+                "role_name": "系统管理角色",
+                "user_id": "admin",
+                "role_id": "ROLE_OPC_SYS_FULL_AUTH"
+            },
+            {
+                "role_name": "系统功能照会角色",
+                "user_id": "admin",
+                "role_id": "ROLE_OPC_SYS_TOOL_AUTH"
+            }
+        ],
+        "user": {
+            "id": "admin",
+            "createTime": "2018-01-15 03:36:44",
+            "createBy": "admin",
+            "updateTime": "2020-03-09 12:11:33",
+            "updateBy": "admin",
+            "deleteFlag": 0,
+            "rightNo": 4,
+            "userName": "admin",
+            "userType": "0",
+            "password": "$2a$10$EeryuIe7vAVbN9lRTLhV3uj1TgUwYZKh1C7fUnnTNFIN/KUv/rF4m",
+            "openId": null,
+            "unionId": null,
+            "nickName": "系统管理员",
+            "corpUserId": "peng.zhang",
+            "corpUserName": null,
+            "departIds": null,
+            "position": "4",
+            "mobile": null,
+            "sex": "男",
+            "sexCode": "0",
+            "email": "",
+            "language": "zh_CN",
+            "country": null,
+            "province": null,
+            "city": null,
+            "headImgUrl": null,
+            "status": 1,
+            "isEnabled": 1,
+            "isExpired": 0,
+            "isLocked": 0,
+            "isSubscribed": 0,
+            "isLeader": 0,
+            "subscribeTime": "1970-01-17T00:04:55.000+0000",
+            "remark": null,
+            "groupId": null,
+            "authMode": "local",
+            "ldapUserId": "",
+            "userRoles": [
+                {
+                    "userId": "admin",
+                    "roleId": "ROLE_OPC_ITEM_RNUDWF_ALL_111"
+                },
+                {
+                    "userId": "admin",
+                    "roleId": "ROLE_OPC_QUOF_RU_ALL_011"
+                },
+                {
+                    "userId": "admin",
+                    "roleId": "ROLE_OPC_QUO_RNUDWF_ALL_111"
+                },
+                {
+                    "userId": "admin",
+                    "roleId": "ROLE_OPC_SYS_FULL_AUTH"
+                },
+                {
+                    "userId": "admin",
+                    "roleId": "ROLE_OPC_SYS_TOOL_AUTH"
+                }
+            ],
+            "errCount": 0,
+            "invalidDate": null,
+            "lockTime": null,
+            "unlockTime": null,
+            "passwordBak1": null,
+            "passwordBak2": null
+        }
+    }
+}

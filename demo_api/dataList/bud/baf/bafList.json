@@ -1,0 +1,93 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "searchResult": {
+            "pageNo": 1,
+            "pageSize": 10,
+            "offset": -1,
+            "totalRecord": 3,
+            "totalPage": 1,
+            "results": [
+                {
+                    "id": "4",
+                    "createTime": "2020-04-07 00:00:00",
+                    "createBy": "1000361899",
+                    "updateTime": "2020-04-07 00:00:00",
+                    "updateBy": "1000361899",
+                    "deleteFlag": null,
+                    "rightNo": 4,
+                    "updateTimeStamp": null,
+                    "exclusiveKey": "",
+                    "identiferNum": "TPL20030001",
+                    "bafNum": "BAF0001",
+                    "workflowFlag": null,
+                    "workflowProcessInstId": null,
+                    "step": 0,
+                    "year": "2021",
+                    "name": "2021工资预算",
+                    "remark": "test数据",
+                    "status": null,
+                    "editFlag": "1",
+                    "tplStatus": "正式"
+                },
+                {
+                    "id": "3",
+                    "createTime": "2020-04-07 00:00:00",
+                    "createBy": "1000361899",
+                    "updateTime": "2020-04-07 00:00:00",
+                    "updateBy": "1000361899",
+                    "deleteFlag": null,
+                    "rightNo": 4,
+                    "updateTimeStamp": null,
+                    "exclusiveKey": null,
+                    "identiferNum": "TPL20030002",
+                    "bafNum": "BAF0002",
+                    "workflowFlag": null,
+                    "workflowProcessInstId": null,
+                    "step": 0,
+                    "year": "2020",
+                    "name": "2020工资预算",
+                    "remark": "test数据",
+                    "status": null,
+                    "editFlag": "1",
+                    "tplStatus": "正式"
+                },
+                {
+                    "id": "5",
+                    "createTime": "2020-04-07 00:00:00",
+                    "createBy": "1000361899",
+                    "updateTime": "2020-04-07 00:00:00",
+                    "updateBy": "1000361899",
+                    "deleteFlag": null,
+                    "rightNo": 4,
+                    "updateTimeStamp": null,
+                    "exclusiveKey": null,
+                    "identiferNum": "TPL20030003",
+                    "bafNum": "BAF0003",
+                    "workflowFlag": null,
+                    "workflowProcessInstId": null,
+                    "step": 0,
+                    "year": "2019",
+                    "name": "2019工资预算",
+                    "remark": "test数据",
+                    "status": null,
+                    "editFlag": "1",
+                    "tplStatus": "正式"
+                }
+            ],
+            "params": {
+                "year": "",
+                "name": "",
+                "tplPublistStatus": "02",
+                "tplAuditStatus": "03",
+                "userId": "admin",
+                "roleProfix": "BDM"
+            },
+            "paging": true
+        }
+    }
+}

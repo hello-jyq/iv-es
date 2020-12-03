@@ -1,0 +1,31 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "result": {
+            "id": "1000362303",
+            "createTime": "2019-12-31 17:30:52",
+            "createBy": "admin",
+            "updateTime": "2019-12-31 17:33:32",
+            "updateBy": "admin",
+            "deleteFlag": null,
+            "rightNo": 4,
+            "updateTimeStamp": "20200511184739012",
+            "exclusiveKey": "Template:1000362303",
+            "identiferNum": "TPL20050003",
+            "workflowFlag": null,
+            "workflowProcessInstId": null,
+            "step": 0,
+            "year": "2020",
+            "name": "2020年度期初経費予算",
+            "remark": "2020年度期初経費予算备注",
+            "status": "01",
+            "submitter": "admin",
+            "lastUpdateBy": "admin",
+            "ownExclusiveKey": "Template:1000362303"
+        }
+    }
+}

@@ -1,0 +1,600 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "result": [
+            {
+                "id": "1000",
+                "code": "orgcode",
+                "text": "iVision",
+                "type": "org",
+                "state": "closed",
+                "parentId": "",
+                "parentName": null,
+                "children": [
+                    {
+                        "id": "1100",
+                        "code": "",
+                        "text": "営業統括",
+                        "type": "org",
+                        "state": "closed",
+                        "parentId": "1000",
+                        "parentName": null,
+                        "children": [
+                            {
+                                "id": "1110",
+                                "code": "",
+                                "text": "営業推進部",
+                                "type": "org",
+                                "state": "closed",
+                                "parentId": "1100",
+                                "parentName": null,
+                                "children": [
+                                    {
+                                        "id": "1111",
+                                        "code": "",
+                                        "text": "営業第1",
+                                        "type": "org",
+                                        "state": "closed",
+                                        "parentId": "1110",
+                                        "parentName": null,
+                                        "children": [
+                                            {
+                                                "id": "houludan",
+                                                "code": "none",
+                                                "text": "侯san",
+                                                "type": "user",
+                                                "state": "closed",
+                                                "parentId": "1111",
+                                                "parentName": null,
+                                                "children": null
+                                            },
+                                            {
+                                                "id": "qiuxinlu",
+                                                "code": "none",
+                                                "text": "裘san",
+                                                "type": "user",
+                                                "state": "closed",
+                                                "parentId": "1111",
+                                                "parentName": null,
+                                                "children": null
+                                            },
+                                            {
+                                                "id": "tsushimaID-2",
+                                                "code": "none",
+                                                "text": "津島san",
+                                                "type": "user",
+                                                "state": "closed",
+                                                "parentId": "1111",
+                                                "parentName": null,
+                                                "children": null
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "1112",
+                                        "code": "",
+                                        "text": "営業第2",
+                                        "type": "org",
+                                        "state": "closed",
+                                        "parentId": "1110",
+                                        "parentName": null,
+                                        "children": [
+                                            {
+                                                "id": "shaoliqun",
+                                                "code": "none",
+                                                "text": "邵san",
+                                                "type": "user",
+                                                "state": "closed",
+                                                "parentId": "1112",
+                                                "parentName": null,
+                                                "children": null
+                                            },
+                                            {
+                                                "id": "wangkerui",
+                                                "code": "none",
+                                                "text": "王san",
+                                                "type": "user",
+                                                "state": "closed",
+                                                "parentId": "1112",
+                                                "parentName": null,
+                                                "children": null
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "1113",
+                                        "code": "",
+                                        "text": "営業第3",
+                                        "type": "org",
+                                        "state": "closed",
+                                        "parentId": "1110",
+                                        "parentName": null,
+                                        "children": [
+                                            {
+                                                "id": "7552b611-495c-4778-80e8-384171a7d0a9",
+                                                "code": "none",
+                                                "text": "王san",
+                                                "type": "user",
+                                                "state": "closed",
+                                                "parentId": "1113",
+                                                "parentName": null,
+                                                "children": null
+                                            },
+                                            {
+                                                "id": "chenfeng",
+                                                "code": "none",
+                                                "text": "陈san",
+                                                "type": "user",
+                                                "state": "closed",
+                                                "parentId": "1113",
+                                                "parentName": null,
+                                                "children": null
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "1114",
+                                        "code": "",
+                                        "text": "営業第4",
+                                        "type": "org",
+                                        "state": "closed",
+                                        "parentId": "1110",
+                                        "parentName": null,
+                                        "children": [
+                                            {
+                                                "id": "chenglisha",
+                                                "code": "none",
+                                                "text": "成san",
+                                                "type": "user",
+                                                "state": "closed",
+                                                "parentId": "1114",
+                                                "parentName": null,
+                                                "children": null
+                                            },
+                                            {
+                                                "id": "wangtao",
+                                                "code": "none",
+                                                "text": "王san",
+                                                "type": "user",
+                                                "state": "closed",
+                                                "parentId": "1114",
+                                                "parentName": null,
+                                                "children": null
+                                            }
+                                        ]
+                                    },
+                                   
+                                  
+                                    {
+                                        "id": "liuchunhua",
+                                        "code": "none",
+                                        "text": "刘san",
+                                        "type": "user",
+                                        "state": "closed",
+                                        "parentId": "1110",
+                                        "parentName": null,
+                                        "children": null
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "1120",
+                                "code": "",
+                                "text": "営業企画部",
+                                "type": "org",
+                                "state": "closed",
+                                "parentId": "1100",
+                                "parentName": null,
+                                "children": [
+                                  
+                                    {
+                                        "id": "sunlixia",
+                                        "code": "none",
+                                        "text": "孙san",
+                                        "type": "user",
+                                        "state": "closed",
+                                        "parentId": "1120",
+                                        "parentName": null,
+                                        "children": null
+                                    },
+                                    {
+                                        "id": "xuyanting",
+                                        "code": "none",
+                                        "text": "徐san",
+                                        "type": "user",
+                                        "state": "closed",
+                                        "parentId": "1120",
+                                        "parentName": null,
+                                        "children": null
+                                    },
+                                    {
+                                        "id": "yuanweiwei",
+                                        "code": "none",
+                                        "text": "袁san",
+                                        "type": "user",
+                                        "state": "closed",
+                                        "parentId": "1120",
+                                        "parentName": null,
+                                        "children": null
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "1130",
+                                "code": "",
+                                "text": "IT企画支援部",
+                                "type": "org",
+                                "state": "closed",
+                                "parentId": "1100",
+                                "parentName": null,
+                                "children": [
+                                    {
+                                        "id": "1131",
+                                        "code": "",
+                                        "text": "Unit1",
+                                        "type": "org",
+                                        "state": "closed",
+                                        "parentId": "1130",
+                                        "parentName": null,
+                                        "children": [
+                        
+                                            {
+                                                "id": "shuhuajunID",
+                                                "code": "none",
+                                                "text": "舒san",
+                                                "type": "user",
+                                                "state": "closed",
+                                                "parentId": "1131",
+                                                "parentName": null,
+                                                "children": null
+                                            },
+                                            {
+                                                "id": "sunliID",
+                                                "code": "none",
+                                                "text": "孙san",
+                                                "type": "user",
+                                                "state": "closed",
+                                                "parentId": "1131",
+                                                "parentName": null,
+                                                "children": null
+                                            },
+                                            {
+                                                "id": "xuwei",
+                                                "code": "none",
+                                                "text": "许san",
+                                                "type": "user",
+                                                "state": "closed",
+                                                "parentId": "1131",
+                                                "parentName": null,
+                                                "children": null
+                                            },
+                                            {
+                                                "id": "zhangdianwenID-1",
+                                                "code": "none",
+                                                "text": "张san",
+                                                "type": "user",
+                                                "state": "closed",
+                                                "parentId": "1131",
+                                                "parentName": null,
+                                                "children": null
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "luzinan",
+                                        "code": "none",
+                                        "text": "陆san",
+                                        "type": "user",
+                                        "state": "closed",
+                                        "parentId": "1130",
+                                        "parentName": null,
+                                        "children": null
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "hoshi",
+                                "code": "none",
+                                "text": "星san",
+                                "type": "user",
+                                "state": "closed",
+                                "parentId": "1100",
+                                "parentName": null,
+                                "children": null
+                            },
+                            {
+                                "id": "liuchunhuaID-3",
+                                "code": "none",
+                                "text": "刘san",
+                                "type": "user",
+                                "state": "closed",
+                                "parentId": "1100",
+                                "parentName": null,
+                                "children": null
+                            }
+                        ]
+                    },
+               
+
+                    {
+                        "id": "1500",
+                        "code": "",
+                        "text": "BS統括",
+                        "type": "org",
+                        "state": "closed",
+                        "parentId": "1000",
+                        "parentName": null,
+                        "children": [
+                            {
+                                "id": "1510",
+                                "code": "",
+                                "text": "産業ｼｽﾃﾑ部",
+                                "type": "org",
+                                "state": "closed",
+                                "parentId": "1500",
+                                "parentName": null,
+                                "children": [
+                                    {
+                                        "id": "1511",
+                                        "code": "",
+                                        "text": "Solution Unit",
+                                        "type": "org",
+                                        "state": "closed",
+                                        "parentId": "1510",
+                                        "parentName": null,
+                                        "children": [
+                                            {
+                                                "id": "0ecaa139-ff2d-4ba8-97c3-130d60666334",
+                                                "code": "none",
+                                                "text": "曹san",
+                                                "type": "user",
+                                                "state": "closed",
+                                                "parentId": "1511",
+                                                "parentName": null,
+                                                "children": null
+                                            },
+                                            {
+                                                "id": "dengfengjinID",
+                                                "code": "none",
+                                                "text": "邓san",
+                                                "type": "user",
+                                                "state": "closed",
+                                                "parentId": "1511",
+                                                "parentName": null,
+                                                "children": null
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "1512",
+                                        "code": "",
+                                        "text": "保守Unit",
+                                        "type": "org",
+                                        "state": "closed",
+                                        "parentId": "1510",
+                                        "parentName": null,
+                                        "children": [
+                                            {
+                                                "id": "feikaidaID",
+                                                "code": "none",
+                                                "text": "费san",
+                                                "type": "user",
+                                                "state": "closed",
+                                                "parentId": "1512",
+                                                "parentName": null,
+                                                "children": null
+                                            },
+                                            {
+                                                "id": "liuyunID",
+                                                "code": "none",
+                                                "text": "刘san",
+                                                "type": "user",
+                                                "state": "closed",
+                                                "parentId": "1512",
+                                                "parentName": null,
+                                                "children": null
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "komiyamaID-2",
+                                        "code": "none",
+                                        "text": "込山佳裕",
+                                        "type": "user",
+                                        "state": "closed",
+                                        "parentId": "1510",
+                                        "parentName": null,
+                                        "children": null
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "1520",
+                                "code": "",
+                                "text": "ERPｿﾘｭｰｼｮﾝ部",
+                                "type": "org",
+                                "state": "closed",
+                                "parentId": "1500",
+                                "parentName": null,
+                                "children": [
+                                    {
+                                        "id": "1521",
+                                        "code": "",
+                                        "text": "ERP第1Unit",
+                                        "type": "org",
+                                        "state": "closed",
+                                        "parentId": "1520",
+                                        "parentName": null,
+                                        "children": [
+                                            {
+                                                "id": "gaojunID",
+                                                "code": "none",
+                                                "text": "高san",
+                                                "type": "user",
+                                                "state": "closed",
+                                                "parentId": "1521",
+                                                "parentName": null,
+                                                "children": null
+                                            }
+                                           
+                                        ]
+                                    },
+                                    {
+                                        "id": "chenhaoID-2",
+                                        "code": "none",
+                                        "text": "陈san",
+                                        "type": "user",
+                                        "state": "closed",
+                                        "parentId": "1520",
+                                        "parentName": null,
+                                        "children": null
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "1530",
+                                "code": "",
+                                "text": "金融ｼｽﾃﾑ部",
+                                "type": "org",
+                                "state": "closed",
+                                "parentId": "1500",
+                                "parentName": null,
+                                "children": [
+                                    {
+                                        "id": "1531",
+                                        "code": "",
+                                        "text": "金融第1Unit",
+                                        "type": "org",
+                                        "state": "closed",
+                                        "parentId": "1530",
+                                        "parentName": null,
+                                        "children": [
+                                            {
+                                                "id": "chenhongID",
+                                                "code": "none",
+                                                "text": "陈san",
+                                                "type": "user",
+                                                "state": "closed",
+                                                "parentId": "1531",
+                                                "parentName": null,
+                                                "children": null
+                                            },
+                                            {
+                                                "id": "dinglikaiID",
+                                                "code": "none",
+                                                "text": "丁san",
+                                                "type": "user",
+                                                "state": "closed",
+                                                "parentId": "1531",
+                                                "parentName": null,
+                                                "children": null
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "1532",
+                                        "code": "",
+                                        "text": "金融第2Unit",
+                                        "type": "org",
+                                        "state": "closed",
+                                        "parentId": "1530",
+                                        "parentName": null,
+                                        "children": [
+                                            {
+                                                "id": "caoguangguangID",
+                                                "code": "none",
+                                                "text": "曹san",
+                                                "type": "user",
+                                                "state": "closed",
+                                                "parentId": "1532",
+                                                "parentName": null,
+                                                "children": null
+                                            },
+                                            {
+                                                "id": "hukaiID",
+                                                "code": "none",
+                                                "text": "胡san",
+                                                "type": "user",
+                                                "state": "closed",
+                                                "parentId": "1532",
+                                                "parentName": null,
+                                                "children": null
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "wuyitao",
+                                        "code": "none",
+                                        "text": "吴益涛",
+                                        "type": "user",
+                                        "state": "closed",
+                                        "parentId": "1530",
+                                        "parentName": null,
+                                        "children": null
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "1540",
+                                "code": "",
+                                "text": "HV-SCM部",
+                                "type": "org",
+                                "state": "closed",
+                                "parentId": "1500",
+                                "parentName": null,
+                                "children": [
+                                    {
+                                        "id": "fengjuemingID",
+                                        "code": "none",
+                                        "text": "冯san",
+                                        "type": "user",
+                                        "state": "closed",
+                                        "parentId": "1540",
+                                        "parentName": null,
+                                        "children": null
+                                    },
+                                    {
+                                        "id": "guojiaID",
+                                        "code": "none",
+                                        "text": "郭san",
+                                        "type": "user",
+                                        "state": "closed",
+                                        "parentId": "1540",
+                                        "parentName": null,
+                                        "children": null
+                                    }
+                                ]
+                            },
+
+                            {
+                                "id": "komiyama",
+                                "code": "none",
+                                "text": "陈san",
+                                "type": "user",
+                                "state": "closed",
+                                "parentId": "1500",
+                                "parentName": null,
+                                "children": null
+                            }
+                        ]
+                    },
+                  
+                    {
+                        "id": "admin",
+                        "code": "none",
+                        "text": "系统管理员",
+                        "type": "user",
+                        "state": "closed",
+                        "parentId": "1000",
+                        "parentName": null,
+                        "children": null
+                    }
+                ]
+            }
+        ]
+    }
+}

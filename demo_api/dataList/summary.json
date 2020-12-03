@@ -1,0 +1,3172 @@
+{
+  "summaryList": [
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 0
+        },
+        {
+          "title": "2019年2月",
+          "value": 0
+        },
+        {
+          "title": "2019年3月",
+          "value": 0
+        },
+        {
+          "title": "2019年4月",
+          "value": 0
+        },
+        {
+          "title": "2019年5月",
+          "value": 0
+        },
+        {
+          "title": "2019年6月",
+          "value": 0
+        },
+        {
+          "title": "2019年7月",
+          "value": 0
+        },
+        {
+          "title": "2019年8月",
+          "value": 0
+        },
+        {
+          "title": "2019年9月",
+          "value": 0
+        },
+        {
+          "title": "2019年10月",
+          "value": 0
+        },
+        {
+          "title": "2019年11月",
+          "value": 0
+        },
+        {
+          "title": "2019年12月",
+          "value": 0
+        }
+      ],
+      "year": 2019,
+      "category": "招聘预算",
+      "department": "CSR法务课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "101",
+      "subjectName": "201",
+      "budgetNumber": "10001",
+      "state": "审核通过",
+      "applicationNumber": "21002",
+      "attribute": "可控",
+      "range": "经常性业务",
+      "relevance": "相关性",
+      "analyticalSubjects": "科目一"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2022,
+      "category": "一般经费预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2021,
+      "category": "采购预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 0
+        },
+        {
+          "title": "2019年2月",
+          "value": 0
+        },
+        {
+          "title": "2019年3月",
+          "value": 0
+        },
+        {
+          "title": "2019年4月",
+          "value": 0
+        },
+        {
+          "title": "2019年5月",
+          "value": 0
+        },
+        {
+          "title": "2019年6月",
+          "value": 0
+        },
+        {
+          "title": "2019年7月",
+          "value": 0
+        },
+        {
+          "title": "2019年8月",
+          "value": 0
+        },
+        {
+          "title": "2019年9月",
+          "value": 0
+        },
+        {
+          "title": "2019年10月",
+          "value": 0
+        },
+        {
+          "title": "2019年11月",
+          "value": 0
+        },
+        {
+          "title": "2019年12月",
+          "value": 0
+        }
+      ],
+      "year": 2019,
+      "category": "一般经费预算",
+      "department": "CSR法务课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "101",
+      "subjectName": "201",
+      "budgetNumber": "10001",
+      "state": "审核通过",
+      "applicationNumber": "21002",
+      "attribute": "可控",
+      "range": "经常性业务",
+      "relevance": "相关性",
+      "analyticalSubjects": "科目一"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2020,
+      "category": "招聘预算",
+      "department": "IT部",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2019,
+      "category": "采购预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2022,
+      "category": "一般经费预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2021,
+      "category": "采购预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 0
+        },
+        {
+          "title": "2019年2月",
+          "value": 0
+        },
+        {
+          "title": "2019年3月",
+          "value": 0
+        },
+        {
+          "title": "2019年4月",
+          "value": 0
+        },
+        {
+          "title": "2019年5月",
+          "value": 0
+        },
+        {
+          "title": "2019年6月",
+          "value": 0
+        },
+        {
+          "title": "2019年7月",
+          "value": 0
+        },
+        {
+          "title": "2019年8月",
+          "value": 0
+        },
+        {
+          "title": "2019年9月",
+          "value": 0
+        },
+        {
+          "title": "2019年10月",
+          "value": 0
+        },
+        {
+          "title": "2019年11月",
+          "value": 0
+        },
+        {
+          "title": "2019年12月",
+          "value": 0
+        }
+      ],
+      "year": 2019,
+      "category": "采购预算",
+      "department": "CSR法务课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "101",
+      "subjectName": "201",
+      "budgetNumber": "10001",
+      "state": "审核通过",
+      "applicationNumber": "21002",
+      "attribute": "可控",
+      "range": "经常性业务",
+      "relevance": "相关性",
+      "analyticalSubjects": "科目一"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2022,
+      "category": "一般经费预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2021,
+      "category": "采购预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2019,
+      "category": "一般经费预算",
+      "department": "CSR法务课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "101",
+      "subjectName": "201",
+      "budgetNumber": "10001",
+      "state": "审核通过",
+      "applicationNumber": "21002",
+      "attribute": "可控",
+      "range": "经常性业务",
+      "relevance": "相关性",
+      "analyticalSubjects": "科目一"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2022,
+      "category": "一般经费预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2021,
+      "category": "采购预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2019,
+      "category": "采购预算",
+      "department": "CSR法务课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "101",
+      "subjectName": "201",
+      "budgetNumber": "10001",
+      "state": "审核通过",
+      "applicationNumber": "21002",
+      "attribute": "可控",
+      "range": "经常性业务",
+      "relevance": "相关性",
+      "analyticalSubjects": "科目一"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2020,
+      "category": "一般经费预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2021,
+      "category": "一般经费预算",
+      "department": "IT部",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核通过",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2020,
+      "category": "一般经费预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2019,
+      "category": "招聘预算",
+      "department": "IT部",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2021,
+      "category": "招聘预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核通过",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2022,
+      "category": "一般经费预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2021,
+      "category": "采购预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2019,
+      "category": "一般经费预算",
+      "department": "CSR法务课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "101",
+      "subjectName": "201",
+      "budgetNumber": "10001",
+      "state": "审核通过",
+      "applicationNumber": "21002",
+      "attribute": "可控",
+      "range": "经常性业务",
+      "relevance": "相关性",
+      "analyticalSubjects": "科目一"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2020,
+      "category": "招聘预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核通过",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2019,
+      "category": "采购预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2020,
+      "category": "招聘预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2021,
+      "category": "一般经费预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2021,
+      "category": "招聘预算",
+      "department": "IT部",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2020,
+      "category": "招聘预算",
+      "department": "IT部",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核通过",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2019,
+      "category": "一般经费预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2021,
+      "category": "招聘预算",
+      "department": "IT部",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2021,
+      "category": "采购预算",
+      "department": "IT部",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2022,
+      "category": "一般经费预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2021,
+      "category": "一般经费预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2019,
+      "category": "采购预算",
+      "department": "CSR法务课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "101",
+      "subjectName": "201",
+      "budgetNumber": "10001",
+      "state": "审核通过",
+      "applicationNumber": "21002",
+      "attribute": "可控",
+      "range": "经常性业务",
+      "relevance": "相关性",
+      "analyticalSubjects": "科目一"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2020,
+      "category": "一般经费预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2019,
+      "category": "招聘预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2020,
+      "category": "一般经费预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2021,
+      "category": "招聘预算",
+      "department": "IT部",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2020,
+      "category": "一般经费预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2019,
+      "category": "采购预算",
+      "department": "IT部",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核通过",
+      "applicationNumber": "12002",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2021,
+      "category": "一般经费预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2022,
+      "category": "一般经费预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2021,
+      "category": "一般经费预算",
+      "department": "人事课",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2019,
+      "category": "一般经费预算",
+      "department": "财务部",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "101",
+      "subjectName": "201",
+      "budgetNumber": "10001",
+      "state": "审核通过",
+      "applicationNumber": "21002",
+      "attribute": "可控",
+      "range": "经常性业务",
+      "relevance": "相关性",
+      "analyticalSubjects": "科目一"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2020,
+      "category": "一般经费预算",
+      "department": "财务部",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2019,
+      "category": "一般经费预算",
+      "department": "财务部",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    },
+    {
+      "valueList": [
+        {
+          "title": "2019年1月",
+          "value": 332
+        },
+        {
+          "title": "2019年2月",
+          "value": 234
+        },
+        {
+          "title": "2019年3月",
+          "value": 332
+        },
+        {
+          "title": "2019年4月",
+          "value": 234
+        },
+        {
+          "title": "2019年5月",
+          "value": 332
+        },
+        {
+          "title": "2019年6月",
+          "value": 234
+        },
+        {
+          "title": "2019年7月",
+          "value": 332
+        },
+        {
+          "title": "2019年8月",
+          "value": 234
+        },
+        {
+          "title": "2019年9月",
+          "value": 332
+        },
+        {
+          "title": "2019年10月",
+          "value": 234
+        },
+        {
+          "title": "2019年11月",
+          "value": 332
+        },
+        {
+          "title": "2019年12月",
+          "value": 234
+        }
+      ],
+      "year": 2020,
+      "category": "采购预算",
+      "department": "财务部",
+      "itemNumber": "10010",
+      "entryName": "项目名称",
+      "subjectNumber": "科目编号",
+      "subjectName": "科目名称",
+      "budgetNumber": "预算编号",
+      "state": "审核中",
+      "applicationNumber": "申请编号",
+      "attribute": "属性",
+      "range": "范围",
+      "relevance": "相关性",
+      "analyticalSubjects": "分析科目"
+    }
+  ]
+}

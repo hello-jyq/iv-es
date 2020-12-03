@@ -1,0 +1,19 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "backToList": [
+            {
+                "id": "quotation-new-apply",
+                "name": "报价申请"
+            },
+            {
+                "id": "quotation-new-approve-1",
+                "name": "部长审批"
+            }
+        ]
+    }
+}

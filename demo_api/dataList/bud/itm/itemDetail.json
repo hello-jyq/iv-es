@@ -1,0 +1,31 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "itemSelectResult": {
+            "id": "5",
+            "createTime": "2020-05-27 10:16:55",
+            "createBy": "admin",
+            "updateTime": "2020-05-27 11:40:53",
+            "updateBy": "admin",
+            "deleteFlag": 0,
+            "rightNo": 4,
+            "updateTimeStamp": "20200527112651204",
+            "exclusiveKey": "Item:5",
+            "identiferNum": "ITM20200005",
+            "itemNum": "ITEM005",
+            "itemName": "内法定福利費－四金、管理費（原価）",
+            "itemType": "02",
+            "remark": "内法定福利費－四金、管理費（原価）",
+            "status": "01",
+            "parentItemName": "法定福利費－四金､管理費",
+            "parentItemId": "4",
+            "submitter": "系统管理员",
+            "lastUpdateBy": "系统管理员",
+            "ownExclusiveKey": "Item:5"
+        }
+    }
+}

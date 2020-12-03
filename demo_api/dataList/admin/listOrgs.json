@@ -1,0 +1,101 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "searchResult": {
+            "pageNo": 1,
+            "pageSize": 10,
+            "offset": -1,
+            "totalRecord": 55,
+            "totalPage": 6,
+            "results": [
+                {
+                    "deleteFlag": 0,
+                    "orgType": "2",
+                    "orgName": "iVision",
+                    "orgCode": "orgcode",
+                    "orgLevel": 1,
+                    "id": "1000",
+                    "parentId": ""
+                },
+                {
+                    "deleteFlag": 0,
+                    "orgName": "営業統括",
+                    "orgCode": "",
+                    "orgLevel": 2,
+                    "id": "1100",
+                    "parentId": "1000"
+                },
+                {
+                    "deleteFlag": 0,
+                    "orgName": "営業推進部",
+                    "orgCode": "",
+                    "orgLevel": 3,
+                    "id": "1110",
+                    "parentId": "1100"
+                },
+                {
+                    "deleteFlag": 0,
+                    "orgName": "営業第1",
+                    "orgCode": "",
+                    "orgLevel": 4,
+                    "id": "1111",
+                    "parentId": "1110"
+                },
+                {
+                    "deleteFlag": 0,
+                    "orgName": "営業第2",
+                    "orgCode": "",
+                    "orgLevel": 4,
+                    "id": "1112",
+                    "parentId": "1110"
+                },
+                {
+                    "deleteFlag": 0,
+                    "orgName": "営業第3",
+                    "orgCode": "",
+                    "orgLevel": 4,
+                    "id": "1113",
+                    "parentId": "1110"
+                },
+                {
+                    "deleteFlag": 0,
+                    "orgName": "営業第4",
+                    "orgCode": "",
+                    "orgLevel": 4,
+                    "id": "1114",
+                    "parentId": "1110"
+                },
+                {
+                    "deleteFlag": 0,
+                    "orgName": "営業第5",
+                    "orgCode": "",
+                    "orgLevel": 4,
+                    "id": "1115",
+                    "parentId": "1110"
+                },
+                {
+                    "deleteFlag": 0,
+                    "orgName": "営業第6",
+                    "orgCode": "",
+                    "orgLevel": 4,
+                    "id": "1116",
+                    "parentId": "1110"
+                },
+                {
+                    "deleteFlag": 0,
+                    "orgName": "営業第7",
+                    "orgCode": "",
+                    "orgLevel": 4,
+                    "id": "1117",
+                    "parentId": "1110"
+                }
+            ],
+            "params": {},
+            "paging": false
+        }
+    }
+}

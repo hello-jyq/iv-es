@@ -1,0 +1,19 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "itemGroups": [
+            {
+                "id": "1",
+                "itemName": "従業員給与"
+            },
+            {
+                "id": "4",
+                "itemName": "法定福利費－四金､管理費"
+            }
+        ]
+    }
+}

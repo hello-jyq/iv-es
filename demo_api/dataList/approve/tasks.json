@@ -1,0 +1,54 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "searchResult": [
+            {
+                "funcName": "bdm",
+                "identiferNum": "TPL20060017",
+                "currentTaskPeriod": "3小时",
+                "processStartTime": "2020-06-24 10:32:23",
+                "currentTaskName": "总经理确认",
+                "formKey": "/bdm/approve",
+                "processId": "82501",
+                "businessKey": "1000442935",
+                "categoryKey": "new",
+                "id": "95017",
+                "wfStatus": "approve",
+                "identiferName": "2020年预算模板"
+            },
+            {
+                "funcName": "bdm",
+                "identiferNum": "TPL20060016",
+                "currentTaskPeriod": "1天23小时",
+                "processStartTime": "2020-06-24 10:32:23",
+                "currentTaskName": "副总经理确认",
+                "formKey": "/bdm/approve",
+                "processId": "82501",
+                "businessKey": "1000442935",
+                "categoryKey": "new",
+                "id": "95017",
+                "wfStatus": "approve",
+                "identiferName": "2020年期中预算模板"
+            },
+            {
+                "funcName": "bdm",
+                "identiferNum": "TPL20060015",
+                "currentTaskPeriod": "7天23小时",
+                "processStartTime": "2020-06-24 10:32:23",
+                "currentTaskName": "预算提交",
+                "formKey": "/bdm/apply",
+                "processId": "82501",
+                "businessKey": "1000442935",
+                "categoryKey": "new",
+                "id": "95017",
+                "wfStatus": "approve",
+                "identiferName": "2020年期末预算模板"
+            }
+        ],
+        "totalRecord": 3
+    }
+}

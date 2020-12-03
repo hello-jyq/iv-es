@@ -1,0 +1,31 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "result": [
+            {
+                "validYear": "2021",
+                "activeFlag": 0,
+                "isAssociateTemplate": "1"
+            },
+            {
+                "validYear": "2021",
+                "activeFlag": 1,
+                "isAssociateTemplate": "1"
+            },
+            {
+                "validYear": "2020",
+                "activeFlag": 0,
+                "isAssociateTemplate": "0"
+            },
+            {
+                "validYear": "2019",
+                "activeFlag": 2,
+                "isAssociateTemplate": "1"
+            }
+        ]
+    }
+}

@@ -1,0 +1,101 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "ada": {
+            "id": "1000333181",
+            "applyName": "情報機器購入申請書",
+            "applyNo": "BY007",
+            "applyTime": "2020-04-01 16:00:00",
+            "applyOrg": "金融系统部",
+            "applyUser": "李四",
+            "scheduleDate": "2020-04-23",
+            "user": "李四",
+            "status": "暂存",
+            "applyDetailHelp": "部门相关费用",
+            "applyDetails": [
+                {
+                    "itemName": "部门预算",
+                    "amount": "3,500.00",
+                    "sortNo": "1"
+                },
+                {
+                    "itemName": "部门禀议通过",
+                    "amount": "2,700.00",
+                    "sortNo": "2"
+                },
+                {
+                    "itemName": "部门实绩",
+                    "amount": "2,200.00",
+                    "sortNo": "3"
+                },
+                {
+                    "itemName": "部门禀议结余",
+                    "amount": "500.00",
+                    "sortNo": "4"
+                },
+                {
+                    "itemName": "部门禀议中",
+                    "amount": "600.00",
+                    "sortNo": "0"
+                }
+            ],
+            "applyReson": "禀议缘由：和客户开会，关系建立。",
+            "remark": "2020年4月，和客户在世纪大道吃饭。",
+            "attachmentList": [
+                {
+                    "uid": "133232323232",
+                    "name": "办公用品费.xlsx"
+                },
+                {
+                    "uid": "233232323232",
+                    "name": "通信费.doc"
+                }
+            ],
+            "itemList": [
+                {
+                    "startPoint": "上海",
+                    "endPoint": "广州",
+                    "startDate": "2020-04-23",
+                    "endDate": "2020-04-28",
+                    "days" : "5",
+                    "departure" : "MU5555",
+                    "amount":"1500.00"
+                },
+                {
+                    "startPoint": "上海",
+                    "endPoint": "广州",
+                    "startDate": "2020-04-27",
+                    "endDate": "2020-04-20",
+                    "days" : "2",
+                    "departure" : "MU5555",
+                    "amount":"1200.00"
+                },
+                {
+                    "startPoint": "西安",
+                    "endPoint": "上海",
+                    "startDate": "2020-04-27",
+                    "endDate": "2020-04-20",
+                    "days" : "2",
+                    "departure" : "MU5555",
+                    "amount":"1200.00"
+                }
+            ],
+            "assetsDiv": "固定资产",
+            "deviceSpecification": "27寸显示器",
+            "buyDiv": "通过ITS部门",
+            "warranty": "1年",
+            "warrantyPeriod": "1年",
+            "payment" : "银行转账",
+            "payDate" : "2020-04-27",
+            "applyAmount": "3,050.00",
+            "createTime": "2020-03-23 09:51:46",
+            "createBy": "张无忌",
+            "updateTime": "2020-03-23 09:52:05",
+            "updateBy": "周志荣"
+        }
+    }
+}

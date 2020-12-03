@@ -1,0 +1,28 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "result": {
+            "id": "5001",
+            "businessKey": "1000341136",
+            "processDefinitionId": "QuotationNew:1:12",
+            "processDefinitionName": "报价申请",
+            "processDefinitionKey": "QuotationNew",
+            "processDefinitionVersion": 1,
+            "deploymentId": "9",
+            "startTime": "2020-04-01 18:32:03",
+            "endTime": null,
+            "startUserId": null,
+            "startUserName": null,
+            "startUserNickName": null,
+            "durationInMillis": null,
+            "tenantId": "",
+            "name": "TQWF20040001-我的申请",
+            "description": null,
+            "currentTaskName": null
+        }
+    }
+}

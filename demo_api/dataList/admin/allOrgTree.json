@@ -1,0 +1,693 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "orgs": [
+            {
+                "id": "1000",
+                "parentId": "",
+                "name": "iVision",
+                "readDiv": "0",
+                "confirmDiv": "0",
+                "lockDiv": "0",
+                "enableLock": "0",
+                "lockUser": "",
+                "lockTime": "",
+                "children": [
+                    {
+                        "id": "1100",
+                        "parentId": "1000",
+                        "name": "営業統括",
+                        "readDiv": "0",
+                        "confirmDiv": "0",
+                        "lockDiv": "0",
+                        "enableLock": "0",
+                        "lockUser": "",
+                        "lockTime": "",
+                        "children": [
+                            {
+                                "id": "1110",
+                                "parentId": "1100",
+                                "name": "営業推進部",
+                                "readDiv": "1",
+                                "confirmDiv": "0",
+                                "lockDiv": "0",
+                                "enableLock": "1",
+                                "lockUser": "",
+                                "lockTime": "",
+                                "children": [
+                                    {
+                                        "id": "1111",
+                                        "parentId": "1110",
+                                        "name": "営業大萨达撒烧大蒜大奥术大师大所多啊大大大是啊大大大第1",
+                                        "children": null,
+                                        "readDiv": "1",
+                                        "confirmDiv": "1",
+                                        "lockDiv": "2",
+                                        "enableLock": "0",
+                                        "lockUser": "BS统括",
+                                        "lockTime": "2020年4月5日 13:00:03"
+                                    },
+                                    {
+                                        "id": "1112",
+                                        "parentId": "1110",
+                                        "name": "営業第2",
+                                        "children": null,
+                                        "readDiv": "1",
+                                        "confirmDiv": "1",
+                                        "lockDiv": "2",
+                                        "enableLock": "0",
+                                        "lockUser": "BS统括",
+                                        "lockTime": "2020年4月5日 13:00:03"
+                                    },
+                                    {
+                                        "id": "1113",
+                                        "parentId": "1110",
+                                        "name": "営業第3",
+                                        "children": null,
+                                        "readDiv": "1",
+                                        "confirmDiv": "1",
+                                        "lockDiv": "1",
+                                        "enableLock": "0",
+                                        "lockUser": "",
+                                        "lockTime": ""
+                                    },
+                                    {
+                                        "id": "1114",
+                                        "parentId": "1110",
+                                        "name": "営業第4",
+                                        "children": null,
+                                        "readDiv": "1",
+                                        "confirmDiv": "2",
+                                        "lockDiv": "0",
+                                        "enableLock": "1",
+                                        "lockUser": "",
+                                        "lockTime": "",
+                                        "editDiv": "1"
+                                    },
+                                    {
+                                        "id": "1115",
+                                        "parentId": "1110",
+                                        "name": "営業第5",
+                                        "children": null,
+                                        "readDiv": "1",
+                                        "confirmDiv": "2",
+                                        "lockDiv": "0",
+                                        "enableLock": "0",
+                                        "lockUser": "",
+                                        "lockTime": ""
+                                    },
+                                    {
+                                        "id": "1116",
+                                        "parentId": "1110",
+                                        "name": "営業第6",
+                                        "children": null,
+                                        "readDiv": "1",
+                                        "confirmDiv": "1",
+                                        "lockDiv": "2",
+                                        "enableLock": "0",
+                                        "lockUser": "金融部长",
+                                        "lockTime": "2020年4月5日 13:00:03"
+                                    },
+                                    {
+                                        "id": "1117",
+                                        "parentId": "1110",
+                                        "name": "営業第7",
+                                        "children": null,
+                                        "readDiv": "1",
+                                        "confirmDiv": "0",
+                                        "lockDiv": "0",
+                                        "enableLock": "1",
+                                        "lockUser": "",
+                                        "lockTime": ""
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "1120",
+                                "parentId": "1100",
+                                "name": "営業企画部",
+                                "children": null,
+                                "readDiv": "0",
+                                "confirmDiv": "0",
+                                "lockDiv": "0",
+                                "enableLock": "0",
+                                "lockUser": "",
+                                "lockTime": ""
+                            },
+                            {
+                                "id": "1130",
+                                "parentId": "1100",
+                                "name": "IT企画支援部",
+                                "readDiv": "0",
+                                "confirmDiv": "0",
+                                "lockDiv": "0",
+                                "enableLock": "0",
+                                "lockUser": "",
+                                "lockTime": "",
+                                "children": [
+                                    {
+                                        "id": "1131",
+                                        "parentId": "1130",
+                                        "name": "Unit1",
+                                        "children": null,
+                                        "readDiv": "0",
+                                        "confirmDiv": "0",
+                                        "lockDiv": "0",
+                                        "enableLock": "0",
+                                        "lockUser": "",
+                                        "lockTime": ""
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "1200",
+                        "parentId": "1000",
+                        "name": "ITS統括",
+                        "readDiv": "0",
+                        "confirmDiv": "0",
+                        "lockDiv": "0",
+                        "enableLock": "0",
+                        "lockUser": "",
+                        "lockTime": "",
+                        "children": [
+                            {
+                                "id": "1210",
+                                "parentId": "1200",
+                                "name": "ｸﾗｳﾄﾞ基盤部",
+                                "readDiv": "0",
+                                "confirmDiv": "0",
+                                "lockDiv": "0",
+                                "enableLock": "0",
+                                "lockUser": "",
+                                "lockTime": "",
+                                "children": [
+                                    {
+                                        "id": "1211",
+                                        "parentId": "1210",
+                                        "name": "第1Unit",
+                                        "children": null,
+                                        "readDiv": "0",
+                                        "confirmDiv": "0",
+                                        "lockDiv": "0",
+                                        "enableLock": "0",
+                                        "lockUser": "",
+                                        "lockTime": ""
+                                    },
+                                    {
+                                        "id": "1212",
+                                        "parentId": "1210",
+                                        "name": "第2Unit",
+                                        "children": null,
+                                        "readDiv": "0",
+                                        "confirmDiv": "0",
+                                        "lockDiv": "0",
+                                        "enableLock": "0",
+                                        "lockUser": "",
+                                        "lockTime": ""
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "1220",
+                                "parentId": "1200",
+                                "name": "北京支店",
+                                "readDiv": "0",
+                                "confirmDiv": "0",
+                                "lockDiv": "0",
+                                "enableLock": "0",
+                                "lockUser": "",
+                                "lockTime": "",
+                                "children": [
+                                    {
+                                        "id": "1221",
+                                        "parentId": "1220",
+                                        "name": "UNIT1",
+                                        "children": null,
+                                        "readDiv": "0",
+                                        "confirmDiv": "0",
+                                        "lockDiv": "0",
+                                        "enableLock": "0",
+                                        "lockUser": "",
+                                        "lockTime": ""
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "1230",
+                                "parentId": "1200",
+                                "name": "ITｲﾝﾌﾗ部",
+                                "readDiv": "0",
+                                "confirmDiv": "0",
+                                "lockDiv": "0",
+                                "enableLock": "0",
+                                "lockUser": "",
+                                "lockTime": "",
+                                "children": [
+                                    {
+                                        "id": "1231",
+                                        "parentId": "1230",
+                                        "name": "第1Unit",
+                                        "children": null,
+                                        "readDiv": "0",
+                                        "confirmDiv": "0",
+                                        "lockDiv": "0",
+                                        "enableLock": "0",
+                                        "lockUser": "",
+                                        "lockTime": ""
+                                    },
+                                    {
+                                        "id": "1232",
+                                        "parentId": "1230",
+                                        "name": "第2Unit",
+                                        "children": null,
+                                        "readDiv": "0",
+                                        "confirmDiv": "0",
+                                        "lockDiv": "0",
+                                        "enableLock": "0",
+                                        "lockUser": "",
+                                        "lockTime": ""
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "1240",
+                                "parentId": "1200",
+                                "name": "ｻﾎﾟｰﾄｻｰﾋﾞｽ部",
+                                "readDiv": "0",
+                                "confirmDiv": "0",
+                                "lockDiv": "0",
+                                "enableLock": "0",
+                                "lockUser": "",
+                                "lockTime": "",
+                                "children": [
+                                    {
+                                        "id": "1241",
+                                        "parentId": "1240",
+                                        "name": "DT",
+                                        "children": null,
+                                        "readDiv": "0",
+                                        "confirmDiv": "0",
+                                        "lockDiv": "0",
+                                        "enableLock": "0",
+                                        "lockUser": "",
+                                        "lockTime": ""
+                                    },
+                                    {
+                                        "id": "1242",
+                                        "parentId": "1240",
+                                        "name": "PUR",
+                                        "children": null,
+                                        "readDiv": "0",
+                                        "confirmDiv": "0",
+                                        "lockDiv": "0",
+                                        "enableLock": "0",
+                                        "lockUser": "",
+                                        "lockTime": ""
+                                    },
+                                    {
+                                        "id": "1243",
+                                        "parentId": "1240",
+                                        "name": "SD",
+                                        "children": null,
+                                        "readDiv": "1",
+                                        "confirmDiv": "1",
+                                        "lockDiv": "2",
+                                        "enableLock": "0",
+                                        "lockUser": "金融部长",
+                                        "lockTime": "2020年4月5日 13:00:03"
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "1250",
+                                "parentId": "1200",
+                                "name": "ERPｻｰﾋﾞｽ部",
+                                "children": null,
+                                "readDiv": "0",
+                                "confirmDiv": "0",
+                                "lockDiv": "0",
+                                "enableLock": "0",
+                                "lockUser": "",
+                                "lockTime": ""
+                            },
+                            {
+                                "id": "1260",
+                                "parentId": "1200",
+                                "name": "事業企画部",
+                                "children": null,
+                                "readDiv": "0",
+                                "confirmDiv": "0",
+                                "lockDiv": "0",
+                                "enableLock": "0",
+                                "lockUser": "",
+                                "lockTime": ""
+                            },
+                            {
+                                "id": "1270",
+                                "parentId": "1200",
+                                "name": "広州支店",
+                                "readDiv": "0",
+                                "confirmDiv": "0",
+                                "lockDiv": "0",
+                                "enableLock": "0",
+                                "lockUser": "",
+                                "lockTime": "",
+                                "children": [
+                                    {
+                                        "id": "1271",
+                                        "parentId": "1270",
+                                        "name": "UNIT1",
+                                        "children": null,
+                                        "readDiv": "0",
+                                        "confirmDiv": "0",
+                                        "lockDiv": "0",
+                                        "enableLock": "0",
+                                        "lockUser": "",
+                                        "lockTime": ""
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "1300",
+                        "parentId": "1000",
+                        "name": "管理統括",
+                        "readDiv": "0",
+                        "confirmDiv": "0",
+                        "lockDiv": "0",
+                        "enableLock": "0",
+                        "lockUser": "",
+                        "lockTime": "",
+                        "children": [
+                            {
+                                "id": "1310",
+                                "parentId": "1300",
+                                "name": "人事総務部",
+                                "children": null,
+                                "readDiv": "1",
+                                "confirmDiv": "1",
+                                "lockDiv": "2",
+                                "enableLock": "0",
+                                "lockUser": "金融部长",
+                                "lockTime": "2020年4月5日 13:00:03"
+                            },
+                            {
+                                "id": "1320",
+                                "parentId": "1300",
+                                "name": "財務会計部",
+                                "children": null,
+                                "readDiv": "0",
+                                "confirmDiv": "0",
+                                "lockDiv": "0",
+                                "enableLock": "0",
+                                "lockUser": "",
+                                "lockTime": ""
+                            }
+                        ]
+                    },
+                    {
+                        "id": "1400",
+                        "parentId": "1000",
+                        "name": "Consulting统括",
+                        "readDiv": "0",
+                        "confirmDiv": "0",
+                        "lockDiv": "0",
+                        "enableLock": "0",
+                        "lockUser": "",
+                        "lockTime": "",
+                        "children": [
+                            {
+                                "id": "1410",
+                                "parentId": "1400",
+                                "name": "ｼｽﾃﾑｺﾝｻﾙﾃｨﾝｸﾞ部",
+                                "readDiv": "0",
+                                "confirmDiv": "0",
+                                "lockDiv": "0",
+                                "enableLock": "0",
+                                "lockUser": "",
+                                "lockTime": "",
+                                "children": [
+                                    {
+                                        "id": "1411",
+                                        "parentId": "1410",
+                                        "name": "ｼｽﾃﾑｺﾝｻﾙﾃｨﾝｸUnit",
+                                        "children": null,
+                                        "readDiv": "0",
+                                        "confirmDiv": "0",
+                                        "lockDiv": "0",
+                                        "enableLock": "0",
+                                        "lockUser": "",
+                                        "lockTime": ""
+                                    },
+                                    {
+                                        "id": "1412",
+                                        "parentId": "1410",
+                                        "name": "ITﾏﾈｼﾞﾒﾝﾄUnit",
+                                        "children": null,
+                                        "readDiv": "1",
+                                        "confirmDiv": "1",
+                                        "lockDiv": "2",
+                                        "enableLock": "0",
+                                        "lockUser": "金融部长",
+                                        "lockTime": "2020年4月5日 13:00:03"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "1500",
+                        "parentId": "1000",
+                        "name": "BS統括",
+                        "readDiv": "0",
+                        "confirmDiv": "0",
+                        "lockDiv": "0",
+                        "enableLock": "0",
+                        "lockUser": "",
+                        "lockTime": "",
+                        "children": [
+                            {
+                                "id": "1510",
+                                "parentId": "1500",
+                                "name": "産業ｼｽﾃﾑ部",
+                                "readDiv": "0",
+                                "confirmDiv": "0",
+                                "lockDiv": "0",
+                                "enableLock": "0",
+                                "lockUser": "",
+                                "lockTime": "",
+                                "children": [
+                                    {
+                                        "id": "1511",
+                                        "parentId": "1510",
+                                        "name": "Solution Unit",
+                                        "children": null,
+                                        "readDiv": "0",
+                                        "confirmDiv": "0",
+                                        "lockDiv": "0",
+                                        "enableLock": "0",
+                                        "lockUser": "",
+                                        "lockTime": ""
+                                    },
+                                    {
+                                        "id": "1512",
+                                        "parentId": "1510",
+                                        "name": "保守Unit",
+                                        "children": null,
+                                        "readDiv": "0",
+                                        "confirmDiv": "0",
+                                        "lockDiv": "0",
+                                        "enableLock": "0",
+                                        "lockUser": "",
+                                        "lockTime": ""
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "1520",
+                                "parentId": "1500",
+                                "name": "ERPｿﾘｭｰｼｮﾝ部",
+                                "readDiv": "0",
+                                "confirmDiv": "0",
+                                "lockDiv": "0",
+                                "enableLock": "0",
+                                "lockUser": "",
+                                "lockTime": "",
+                                "children": [
+                                    {
+                                        "id": "1521",
+                                        "parentId": "1520",
+                                        "name": "ERP第1Unit",
+                                        "children": null,
+                                        "readDiv": "0",
+                                        "confirmDiv": "0",
+                                        "lockDiv": "0",
+                                        "enableLock": "0",
+                                        "lockUser": "",
+                                        "lockTime": ""
+                                    },
+                                    {
+                                        "id": "1522",
+                                        "parentId": "1520",
+                                        "name": "ERP第2Unit",
+                                        "children": null,
+                                        "readDiv": "0",
+                                        "confirmDiv": "0",
+                                        "lockDiv": "0",
+                                        "enableLock": "0",
+                                        "lockUser": "",
+                                        "lockTime": ""
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "1530",
+                                "parentId": "1500",
+                                "name": "金融ｼｽﾃﾑ部",
+                                "readDiv": "1",
+                                "confirmDiv": "2",
+                                "lockDiv": "0",
+                                "enableLock": "0",
+                                "lockUser": "",
+                                "lockTime": "",
+                                "children": [
+                                    {
+                                        "id": "1531",
+                                        "parentId": "1530",
+                                        "name": "金融第1Unit",
+                                        "children": null,
+                                        "readDiv": "1",
+                                        "confirmDiv": "2",
+                                        "lockDiv": "0",
+                                        "enableLock": "0",
+                                        "lockUser": "",
+                                        "lockTime": ""
+                                    },
+                                    {
+                                        "id": "1532",
+                                        "parentId": "1530",
+                                        "name": "金融第2Unit",
+                                        "children": null,
+                                        "readDiv": "1",
+                                        "confirmDiv": "2",
+                                        "lockDiv": "0",
+                                        "enableLock": "0",
+                                        "lockUser": "",
+                                        "lockTime": ""
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "1540",
+                                "parentId": "1500",
+                                "name": "HV-SCM部",
+                                "children": null,
+                                "readDiv": "1",
+                                "confirmDiv": "1",
+                                "lockDiv": "2",
+                                "enableLock": "0",
+                                "lockUser": "金融部长",
+                                "lockTime": "2020年4月5日 13:00:03"
+                            },
+                            {
+                                "id": "1550",
+                                "parentId": "1500",
+                                "name": "ｿﾘｭｰｼｮﾝ開発部",
+                                "readDiv": "1",
+                                "confirmDiv": "2",
+                                "lockDiv": "0",
+                                "enableLock": "1",
+                                "lockUser": "",
+                                "lockTime": "",
+                                "children": [
+                                    {
+                                        "id": "1551",
+                                        "parentId": "1550",
+                                        "name": "unit1",
+                                        "children": null,
+                                        "readDiv": "1",
+                                        "confirmDiv": "2",
+                                        "lockDiv": "0",
+                                        "enableLock": "1",
+                                        "lockUser": "",
+                                        "lockTime": ""
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "1600",
+                        "parentId": "1000",
+                        "name": "技术统括",
+                        "readDiv": "0",
+                        "confirmDiv": "0",
+                        "lockDiv": "0",
+                        "enableLock": "0",
+                        "lockUser": "",
+                        "lockTime": "",
+                        "children": [
+                            {
+                                "id": "1610",
+                                "parentId": "1600",
+                                "name": "技術統括部",
+                                "readDiv": "0",
+                                "confirmDiv": "0",
+                                "lockDiv": "0",
+                                "enableLock": "0",
+                                "lockUser": "",
+                                "lockTime": "",
+                                "children": [
+                                    {
+                                        "id": "1611",
+                                        "parentId": "1610",
+                                        "name": "UNIT1",
+                                        "children": null,
+                                        "readDiv": "0",
+                                        "confirmDiv": "0",
+                                        "lockDiv": "0",
+                                        "enableLock": "0",
+                                        "lockUser": "",
+                                        "lockTime": ""
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "1700",
+                        "parentId": "1000",
+                        "name": "INNOVATION推进部",
+                        "readDiv": "0",
+                        "confirmDiv": "0",
+                        "lockDiv": "0",
+                        "enableLock": "0",
+                        "lockUser": "",
+                        "lockTime": "",
+                        "children": [
+                            {
+                                "id": "1710",
+                                "parentId": "1700",
+                                "name": "INNOVATION推进部",
+                                "children": null,
+                                "readDiv": "0",
+                                "confirmDiv": "0",
+                                "lockDiv": "0",
+                                "enableLock": "0",
+                                "lockUser": "",
+                                "lockTime": ""
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

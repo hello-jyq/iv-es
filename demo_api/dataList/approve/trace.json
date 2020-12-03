@@ -1,0 +1,207 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "activityInfos": [
+            {
+                "currentActiviti": false,
+                "currentConfirm":true,
+                "x": 610,
+                "width": 105,
+                "y": 350,
+                "vars": {
+                    "任务类型": "用户任务",
+                    "当前处理人": "系统管理员",
+                    "节点说明": null,
+                    "描述": null
+                },
+                "height": 55
+            },
+            {
+                "currentActiviti": false,
+                "currentConfirm":false,
+                "x": 130,
+                "width": 105,
+                "y": 140,
+                "vars": {
+                    "任务类型": "用户任务",
+                    "当前处理人": "植木心",
+                    "节点说明": null,
+                    "描述": null
+                },
+                "height": 55
+            },
+            {
+                "currentActiviti": true,
+                "currentConfirm":false,
+                "x": 375,
+                "width": 105,
+                "y": 140,
+                "vars": {
+                    "任务类型": "用户任务",
+                    "当前处理人": "植木心",
+                    "节点说明": null,
+                    "描述": null
+                },
+                "height": 55
+            },
+            {
+                "currentActiviti": false,
+                "currentConfirm":false,
+                "x": 610,
+                "width": 105,
+                "y": 140,
+                "vars": {
+                    "任务类型": "用户任务",
+                    "最近操作人": "吴二涛| 2020-03-23 09:52:05",
+                    "节点说明": null,
+                    "描述": null
+                },
+                "height": 55
+            },
+            {
+                "currentActiviti": false,
+                "currentConfirm":false,
+                "x": 610,
+                "width": 105,
+                "y": 60,
+                "vars": {
+                    "任务类型": "用户任务",
+                    "最近操作人": "吴一涛| 2020-03-23 09:52:05",
+                    "节点说明": null,
+                    "描述": null
+                },
+                "height": 55
+            },
+            {
+                "currentActiviti": false,
+                "currentConfirm":false,
+                "x": 610,
+                "width": 105,
+                "y": 220,
+                "vars": {
+                    "任务类型": "用户任务",
+                    "最近操作人": "吴三涛| 2020-03-23 09:52:05",
+                    "节点说明": null,
+                    "描述": null
+                },
+                "height": 55
+            }
+        ],
+        "approveHis": [
+            {
+                "id": "1000333189",
+                "createTime": null,
+                "createBy": null,
+                "updateTime": null,
+                "updateBy": null,
+                "deleteFlag": null,
+                "rightNo": 4,
+                "processInstId": "2501",
+                "businessKey": null,
+                "taskId": "2508",
+                "taskName": "报价申请",
+                "taskDefKey": "quotation-new-apply",
+                "userId": "admin",
+                "nickName": "系统管理员",
+                "approveResult": "agree",
+                "destActId": null,
+                "destActName": null,
+                "comment": null,
+                "withdrawTaskId": "2511",
+                "approveTime": "2020-03-23 09:52:05"
+            },
+            {
+                "id": "100033312",
+                "createTime": null,
+                "createBy": null,
+                "updateTime": null,
+                "updateBy": null,
+                "deleteFlag": null,
+                "rightNo": 4,
+                "processInstId": "2501",
+                "businessKey": null,
+                "taskId": "2508",
+                "taskName": "报价申请",
+                "taskDefKey": "quotation-new-apply",
+                "userId": "admin",
+                "nickName": "系统管理员",
+                "approveResult": "agree",
+                "destActId": null,
+                "destActName": null,
+                "comment": null,
+                "withdrawTaskId": "2511",
+                "approveTime": "2020-03-23 09:52:05"
+            },
+            {
+                "id": "1000333133",
+                "createTime": null,
+                "createBy": null,
+                "updateTime": null,
+                "updateBy": null,
+                "deleteFlag": null,
+                "rightNo": 4,
+                "processInstId": "2501",
+                "businessKey": null,
+                "taskId": "2508",
+                "taskName": "报价申请",
+                "taskDefKey": "quotation-new-apply",
+                "userId": "admin",
+                "nickName": "系统管理员",
+                "approveResult": "agree",
+                "destActId": null,
+                "destActName": null,
+                "comment": null,
+                "withdrawTaskId": "2511",
+                "approveTime": "2020-03-23 09:52:05"
+            },
+            {
+                "id": "100033312",
+                "createTime": null,
+                "createBy": null,
+                "updateTime": null,
+                "updateBy": null,
+                "deleteFlag": null,
+                "rightNo": 4,
+                "processInstId": "2501",
+                "businessKey": null,
+                "taskId": "2508",
+                "taskName": "报价申请",
+                "taskDefKey": "quotation-new-apply",
+                "userId": "admin",
+                "nickName": "系统管理员",
+                "approveResult": "agree",
+                "destActId": null,
+                "destActName": null,
+                "comment": null,
+                "withdrawTaskId": "2511",
+                "approveTime": "2020-03-23 09:52:05"
+            },
+            {
+                "id": "1000333133",
+                "createTime": null,
+                "createBy": null,
+                "updateTime": null,
+                "updateBy": null,
+                "deleteFlag": null,
+                "rightNo": 4,
+                "processInstId": "2501",
+                "businessKey": null,
+                "taskId": "2508",
+                "taskName": "报价申请",
+                "taskDefKey": "quotation-new-apply",
+                "userId": "admin",
+                "nickName": "系统管理员",
+                "approveResult": "agree",
+                "destActId": null,
+                "destActName": null,
+                "comment": null,
+                "withdrawTaskId": "2511",
+                "approveTime": "2020-03-23 09:52:05"
+            }
+        ]
+    }
+}

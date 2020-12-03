@@ -1,0 +1,454 @@
+/* 公共样式 */
+.collapse-title {
+  flex: 1 0 90%;
+  order: 1;
+}
+.el-collapse-item__header {
+  font-size: 16px;
+  color: rgb(50, 50, 50); 
+  font-weight: 700;
+  flex: 1 0 auto;
+  order: -1;
+}
+.input_box {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.input_box > div {
+  box-sizing: border-box;
+  padding: 5px 25px 20px 10px;
+  display: flex;
+  align-items: center;
+}
+.input_box > div.flex1 {
+  width: 90%;
+}
+// .input_box > div.flex1 .title {
+  // width: 130px;
+// }
+.input_box > div.flex2 {
+  width: 50%;
+}
+/* .input_box > div.flex2 .title {
+  width: 130px;
+} */
+.input_box > div.flex3 {
+  width: 33.33%;
+}
+.input_box > div.flex3_1 {
+  width: 66.66%;
+}
+.input_box > div.flex4 {
+  width: 25%;
+}
+.input_box > div .title {
+  width: 110px;
+  font-size: 14px;
+}
+.input_box > div .must::before {
+  content: "*";
+  color: #f56c6c;
+  // margin-right: 4px;
+}
+.input_box > div .input, .select {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  position: relative;
+  .message {
+    position: absolute;
+    left: 0;
+    height: 20px;
+    line-height: 20px;
+    padding-left: 5px;
+    font-size: 12px;
+    color: red;
+    top: 100%;
+  }
+}
+section {
+  &>div {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #eaeaea;
+    box-shadow: 0 0 5px #cac6c6;
+    overflow: auto;
+    .search .btns {
+      padding: 10px;
+      box-sizing: border-box;
+      width: 100%;
+      text-align: right;
+      overflow: hidden;
+      & > div {
+        width: 50%;
+      }
+      .left {
+        float: left;
+        text-align: left;
+      }
+      .right {
+        float: right;
+      }
+    }
+    .pagination {
+      padding: 20px 0;
+      text-align: right;
+    }
+  }
+}
+.btns {
+  padding: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: right;
+  overflow: hidden;
+  & > div {
+    width: 50%;
+  }
+  .left {
+    float: left;
+    text-align: left;
+  }
+  .right {
+    float: right;
+  }
+}
+
+.link {
+  text-decoration:underline;
+  cursor:pointer;
+  color:rgb(120, 165, 241);
+}
+.el-dialog {
+  h4,h5,h3 {
+    font-size: 16px;
+    line-height: 30px;
+    height: 30px;
+    position: relative;
+    .add_row {
+      position: absolute;
+      right: 25px;
+      bottom: 0;
+      bottom: 2px;
+      border-radius: 6px;
+      // border: 1px solid #ccc;
+      cursor: pointer;
+      font-size: 12px;
+      width: 100px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      background-image: linear-gradient(rgb(52, 165, 248), rgb(8, 142, 240));
+      color: #fff;
+      &:hover {
+        background-image: linear-gradient(rgb(42, 155, 238), rgb(8, 142, 240));
+      }
+    }
+  }
+}
+body {
+  // color: #343434;
+  // font-family: "微软雅黑";
+  // font-size: 14px;
+  // min-width: 1300px;
+}
+body .el-table th.gutter{
+  display: table-cell!important;
+}
+body .el-table colgroup.gutter{
+  display: table-cell!important;
+}
+
+.abow_dialog {
+  display: flex;
+  justify-content: center;
+  align-items: Center;
+  overflow: hidden;
+  .el-dialog {
+      margin: 0 auto !important;
+      height: 70%;
+      overflow: hidden;
+      .el-dialog__body {
+          position: absolute;
+          left: 0;
+          top: 54px;
+          bottom: 100px;
+          right: 0;
+         
+          z-index: 1;
+          overflow: hidden;
+          overflow-y: overlay;
+          height: 80%;
+          padding: 40px;
+
+      }
+  }
+
+}
+
+.detail-label {
+  background-color: rgba(158,158,158,0.1);
+  line-height: 38px;
+  padding-left: 10px;
+  word-break: break-all;
+  min-height: 38px;
+  font-size: 15px;
+}
+// .el-select-dropdown{
+//   border: 1px solid #E4E7ED;
+//   border-radius: 4px;
+//   background: #FFF;
+//   -webkit-box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+//   box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+// }
+// .el-popper .popper__arrow{
+//   border-bottom-color: #EBEEF5 !important;
+//   border-top-color: #EBEEF5 !important;
+// }
+.addUserDilog{
+  .el-dialog__wrapper{
+    z-index: 2003 !important;
+    .el-dialog{
+      margin-left: 17%;
+    }
+  }
+}
+#processDialog{
+  // z-index: 9999999 !important;
+  // .el-dialog{
+  //   margin-left: 17%;
+  // }
+}
+
+#app .before-dailog{
+  .el-input__inner,
+  .el-textarea__inner{
+    color: #000000;
+    background-color: #fff;
+    border: 1px solid #DCDFE6;
+  }
+}
+#app .permissions,
+#app .createDialog,
+#app .upload_zip,
+#app .role,
+.agent,
+#app .taskList{
+  .el-dialog{
+    padding: 20px;
+  }
+}
+
+
+#app .upload_zip{
+	.el-dialog__body{
+		overflow: hidden;
+	}
+}
+#processDialog{
+  .el-dialog{
+    // padding: 20px;
+    margin-bottom: 0;
+  }
+  .el-dialog__title{
+    color: #303133;
+  }
+  .el-table th,
+  .el-table tr{
+    background-color:#fff !important;
+    color: #909399 !important;
+  }
+  .el-table td, .el-table th.is-leaf,.el-table--border, .el-table--group{
+    border-color: #ebeef5 !important;
+  }
+  .el-table--border::after, .el-table--group::after, .el-table::before{
+    background-color: #ebeef5 !important;
+  }
+  .el-table--border td{
+    border-bottom: 1px solid #ebeef5 !important;
+  }
+  .el-table--striped .el-table__body tr  td{
+    background: #ffffff !important;
+  }
+  .el-table--striped .el-table__body tr.el-table__row--striped td{
+    background: #fafafa !important;
+  }
+  .el-table .el-checkbox__inner:hover,
+   .el-table .el-checkbox__input.is-focus .el-checkbox__inner,
+    .el-table .el-checkbox__inner,  
+    .el-table .el-checkbox__input.is-indeterminate .el-checkbox__inner{
+     
+      background-color: #fff  !important;
+      border: 1px solid #dcdfe6  !important;
+  }
+  .el-table .el-checkbox__input.is-checked .el-checkbox__inner {
+    background-color: #409eff;
+    border-color: #409eff;
+  }
+  .el-table .el-checkbox__inner::after{
+    border-color: #fff;
+  }
+  .el-table__header-wrapper{
+    overflow: initial;
+  }
+}
+#app .advice .content,
+#app .advice .table{
+  width: 100%;
+  padding-left: 20px;
+}
+
+#app .running,
+#app .taskList,
+#app .user,
+#app .dict,
+#app .activity,
+#app .role,
+#app .permissions,
+#app .scheduler,
+#app .definition,
+#app .agent,
+#app .online,
+#app .addApply,
+#app .advice,
+.input_box{
+  padding-left: 30px !important;
+  padding-right: 20px;
+  overflow: hidden;
+  background-color: #fff;
+  .el-input__prefix, .el-input__suffix{
+    width: auto;
+    height: auto;
+  }
+  .el-dialog__header{
+    text-align: left;
+    padding: 20px;
+    cursor:default ;
+  }
+  .el-dialog__title{
+    color: #303133;
+  }
+  .el-input__inner,
+  .el-textarea__inner{
+    color: #000000;
+    background-color: #fff;
+    border: 1px solid #DCDFE6;
+  }
+  .el-radio__input .el-radio__inner{
+    border: 1px solid #dcdfe6;
+    background-color: #fff;
+  }
+  .el-radio__input.is-checked+.el-radio__label, .el-radio{
+	  color: #409eff;
+  }
+  .el-radio__input.is-checked .el-radio__inner{
+    border-color: #409eff;
+    background: #409eff;
+  }
+  .el-radio__inner:after{
+    background-color: #fff;
+  }
+  .el-radio__label{
+    color: #606266;
+  }
+  .el-table__body{
+   border-bottom-color: transparent;
+  }
+  .el-table__header-wrapper{
+    overflow: initial;
+  }
+  .el-table th,
+  .el-table tr{
+    background-color:#fff ;
+    color: #909399;
+  }
+  .el-table td, .el-table th.is-leaf,.el-table--border, .el-table--group{
+    border-color: #ebeef5;
+  }
+  .el-table--border::after, .el-table--group::after, .el-table::before{
+    background-color: #ebeef5;
+  }
+  .el-table--border td{
+    border-bottom: 1px solid #ebeef5;
+  }
+  .el-table--striped .el-table__body tr  td{
+    background: #ffffff !important;
+  }
+  .el-table--striped .el-table__body tr.el-table__row--striped td{
+    background: #fafafa !important;
+  }
+
+  .el-table .el-checkbox__inner:hover,
+   .el-table .el-checkbox__input.is-focus .el-checkbox__inner,
+    .el-table .el-checkbox__inner,  
+    .el-table .el-checkbox__input.is-indeterminate .el-checkbox__inner{
+     
+      background-color: #fff;
+      border: 1px solid #dcdfe6;
+  }
+  .el-table .el-checkbox__input.is-checked .el-checkbox__inner {
+    background-color: #409eff;
+    border-color: #409eff;
+  }
+  .el-table .el-checkbox__inner::after{
+    border-color: #fff;
+  }
+  .el-pagination{
+    float:right;
+    min-width: 30px;
+    color: #606266;
+    padding-top: 10px;
+  }
+   .el-pagination .el-select .el-input .el-input__inner{
+     color: #606266;
+    background:#fff;
+    box-shadow:none;
+    border-radius:20px;
+    border:1px solid #DCDFE6;
+  }
+  .page-first-page,
+  .page-last-page,
+  .el-pagination .btn-prev,
+  .el-pagination button:disabled,
+  .el-pagination .btn-next{
+    color: #c0c4cc;
+    background: #f4f4f5;
+    box-shadow: none;
+    border: none;
+  }
+  .el-pager li.active{
+    background: #409eff;
+    box-shadow: none;
+      border: none;
+  }
+}
+
+#app #user,
+#app .dict,
+#app .role,
+#app .running,
+#app .activity,
+#app .permissions,
+#app .scheduler,
+#app .definition,
+#app .taskList,
+#app .agent,
+#app .online,
+#app .addApply{
+  padding-left: 50px !important;
+.content{
+  display: block;
+    width: 100% !important;
+  }
+}
+#app .role,
+#app .addApply{
+  .el-dialog__header{
+    padding: 0;
+  }
+}

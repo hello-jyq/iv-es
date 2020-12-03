@@ -1,0 +1,100 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "id": "300-1203",
+        "year": "2020",
+        "itemName": "办公用品费",
+        "dataDiv": "禀议",
+        "orgTreeId": "2020-0001",
+        "orgDetails": [
+            {
+                "orgId": "1000",
+                "orgName": "iVision",
+                "orgLevel": "1"
+            },
+            {
+                "orgId": "1500",
+                "orgName": "BS统括",
+                "orgLevel": "2"
+            },
+            {
+                "orgId": "1510",
+                "orgName": "上海浦东新区主管UNIT1",
+                "orgLevel": "3"
+            },
+            {
+                "orgId": "1511",
+                "orgName": "UNIT1",
+                "orgLevel": "4"
+            }
+        ],
+
+        "applyList":[
+            {
+                "applyNo":"ADA20020001",
+                "applyTemplate": "文件采购申请表",
+                "applyAmount": "600.00",
+                "usedAmount": "600.00",
+                "balance":"20,000.08",
+                "user":"张无忌",
+                "useDate":"2020-04-19",
+                "orgName":"金融系统部",
+                "applyUser":"李四",
+                "applyTime":"2020-04-01 12:55:44"
+            },
+            {
+                "applyNo":"ADA20020002",
+                "applyTemplate": "数码设备采购申请表",
+                "applyAmount": "0.00",
+                "usedAmount": "0.00",
+                "balance":"20,000.08",
+                "user":"王雨燕",
+                "useDate":"2020-04-19",
+                "orgName":"金融系统部",
+                "applyUser":"李明",
+                "applyTime":"2020-03-30 12:55:44"
+            },
+            {
+                "applyNo":"ADA20020003",
+                "applyTemplate": "电脑设备采购申请表",
+                "applyAmount": "600.00",
+                "usedAmount": "600.00",
+                "balance":"20,000.08",
+                "user":"周芷若",
+                "useDate":"2020-04-19",
+                "orgName":"金融系统部",
+                "applyUser":"李明",
+                "applyTime":"2020-03-28 12:52:44"
+            },
+            {
+                "applyNo":"ADA20020004",
+                "applyTemplate": "数码设备采购申请表",
+                "applyAmount": "600.00",
+                "usedAmount": "600.00",
+                "balance":"20,000.08",
+                "user":"王燕",
+                "useDate":"2020-04-19",
+                "orgName":"金融系统部",
+                "applyUser":"李明",
+                "applyTime":"2020-03-27 11:55:33"
+            },
+            {
+                "applyNo":"ADA20020005",
+                "applyTemplate": "数码设备采购申请表",
+                "applyAmount": "600.00",
+                "usedAmount": "600.00",
+                "balance":"20,000.08",
+                "user":"欧阳峰",
+                "useDate":"2020-04-19",
+                "orgName":"金融系统部",
+                "applyUser":"李明",
+                "applyTime":"2020-03-17 09:23:22"
+            }
+
+        ]
+    }
+}

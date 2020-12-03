@@ -1,0 +1,439 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "searchResult": {
+            "pageNo": 1,
+            "pageSize": 15,
+            "offset": -1,
+            "totalRecord": 45,
+            "totalPage": 3,
+            "results": [
+                {
+                    "itemName": "教育研修費",
+                    "persionalApplying": "500.00",
+                    "persionalPass": "600.00",
+                    "orgApplying": "500.00",
+                    "orgPass": "800.00",
+                    "departmentBudget": "800.00",
+                    "orgUsed": "750.00",
+                    "approveDetals": [
+                        {
+                            "identiferNum": "BY001",
+                            "applyTemplate": "情報機器購入申請書",
+                            "applyTime":"2020-04-03 12:55:44",
+                            "applyName": "研修费",
+                            "applyAmount": "800.00",
+                            "status": "同意"  
+                        },
+                        {
+                            "identiferNum": "BY002",
+                            "applyTemplate": "情報機器購入申請書",
+                            "applyTime":"2020-04-02 10:55:33",
+                            "applyName": "研修费",
+                            "applyAmount": "6,500.00",
+                            "status": "驳回" 
+                        },
+                        {
+                            "identiferNum": "BY003",
+                            "applyTemplate": "情報機器購入申請書",
+                            "applyTime":"2020-04-02 10:55:33",
+                            "applyName": "研修费",
+                            "applyAmount": "500.00",
+                            "status": "申请中" 
+                        },
+                        {
+                            "identiferNum": "BY004",
+                            "applyTemplate": "情報機器購入申請書",
+                            "applyTime":"2020-04-02 10:55:33",
+                            "applyName": "研修费",
+                            "applyAmount": "200.00",
+                            "status": "暂存" 
+                        }
+                    ]
+                },                
+                {
+                    "itemName": "人材紹介費",
+                    "persionalApplying": "300.00",
+                    "persionalPass": "0.00",
+                    "orgApplying": "1,200.00",
+                    "orgPass": "1,000.00",
+                    "departmentBudget": "1,000.00",
+                    "orgUsed": "1,050.00",
+                    "approveDetals": [
+                        {
+                            "identiferNum": "BY001",
+                            "applyTemplate": "名刺作成申請書",
+                            "applyTime":"2020-04-03 12:55:44",
+                            "applyName": "介绍费",
+                            "applyAmount": "800.00",
+                            "status": "同意"  
+                        },
+                        {
+                            "identiferNum": "BY002",
+                            "applyTemplate": "名刺作成申請書",
+                            "applyTime":"2020-04-02 10:55:33",
+                            "applyName": "介绍费",
+                            "applyAmount": "6,500.00",
+                            "status": "驳回" 
+                        },
+                        {
+                            "identiferNum": "BY003",
+                            "applyTemplate": "名刺作成申請書",
+                            "applyTime":"2020-04-01 10:55:33",
+                            "applyName": "介绍费",
+                            "applyAmount": "500.00",
+                            "status": "申请中" 
+                        },
+                        {
+                            "identiferNum": "BY004",
+                            "applyTemplate": "名刺作成申請書",
+                            "applyTime":"2020-03-02 10:55:33",
+                            "applyName": "介绍费",
+                            "applyAmount": "200.00",
+                            "status": "暂存" 
+                        },
+                        {
+                            "identiferNum": "BY005",
+                            "applyTemplate": "名刺作成申請書",
+                            "applyTime":"2020-02-02 10:55:33",
+                            "applyName": "介绍费",
+                            "applyAmount": "6,500.00",
+                            "status": "驳回" 
+                        },
+                        {
+                            "identiferNum": "BY006",
+                            "applyTemplate": "名刺作成申請書",
+                            "applyTime":"2020-01-22 10:55:33",
+                            "applyName": "介绍费",
+                            "applyAmount": "500.00",
+                            "status": "申请中" 
+                        },
+                        {
+                            "identiferNum": "BY007",
+                            "applyTemplate": "名刺作成申請書",
+                            "applyTime":"2020-01-20 10:55:33",
+                            "applyName": "介绍费",
+                            "applyAmount": "200.00",
+                            "status": "暂存" 
+                        },
+                        {
+                            "identiferNum": "BY008",
+                            "applyTemplate": "名刺作成申請書",
+                            "applyTime":"2020-01-18 10:55:33",
+                            "applyName": "介绍费",
+                            "applyAmount": "6,500.00",
+                            "status": "驳回" 
+                        },
+                        {
+                            "identiferNum": "BY009",
+                            "applyTemplate": "名刺作成申請書",
+                            "applyTime":"2020-01-17 10:55:33",
+                            "applyName": "介绍费",
+                            "applyAmount": "500.00",
+                            "status": "申请中" 
+                        },
+                        {
+                            "identiferNum": "BY010",
+                            "applyTemplate": "名刺作成申請書",
+                            "applyTime":"2020-01-02 10:55:33",
+                            "applyName": "介绍费",
+                            "applyAmount": "200.00",
+                            "status": "暂存" 
+                        }
+                    ]
+                },                
+                {
+                    "itemName": "国内出張費",
+                    "persionalApplying": "500.00",
+                    "persionalPass": "600.00",
+                    "orgApplying": "500.00",
+                    "orgPass": "900.00",
+                    "departmentBudget": "900.00",
+                    "orgUsed": "3,600.00",
+                    "approveDetals": []
+                },                
+                {
+                    "itemName": "業務委託費",
+                    "persionalApplying": "500.00",
+                    "persionalPass": "600.00",
+                    "orgApplying": "500.00",
+                    "orgPass": "900.00",
+                    "departmentBudget": "900.00",
+                    "orgUsed": "3,600.00",
+                    "approveDetals": []
+                },               
+                {
+                    "itemName": "接待交際費",
+                    "persionalApplying": "350,000.00",
+                    "persionalPass": "2,000.00",
+                    "orgApplying": "5,000,500.00",
+                    "orgPass": "333,900.00",
+                    "departmentBudget": "333,900.00",
+                    "orgUsed": "3,600.00",
+                    "approveDetals": [
+                        {
+                            "applyTime":"2020-04-03 12:55:44",
+                            "applyName": "交际费",
+                            "applyAmount": "800.00",
+                            "status": "同意"  
+                        },
+                        {
+                            "applyTime":"2020-04-02 10:55:33",
+                            "applyName": "交际费",
+                            "applyAmount": "6,500.00",
+                            "status": "驳回" 
+                        },
+                        {
+                            "applyTime":"2020-04-02 10:55:33",
+                            "applyName": "交际费",
+                            "applyAmount": "500.00",
+                            "status": "申请中" 
+                        },
+                        {
+                            "applyTime":"2020-04-02 10:55:33",
+                            "applyName": "交际费",
+                            "applyAmount": "200.00",
+                            "status": "暂存" 
+                        }
+                    ]
+                },                
+                {
+                    "itemName": "社内交際費",
+                    "persionalApplying": "350,000.00",
+                    "persionalPass": "2,000.00",
+                    "orgApplying": "5,000,500.00",
+                    "orgPass": "333,900.00",
+                    "departmentBudget": "333,900.00",
+                    "orgUsed": "3,600.00",
+                    "approveDetals": [
+                        {
+                            "applyTime":"2020-04-03 12:55:44",
+                            "applyName": "交际费",
+                            "applyAmount": "800.00",
+                            "status": "同意"  
+                        },
+                        {
+                            "applyTime":"2020-04-02 10:55:33",
+                            "applyName": "交际费",
+                            "applyAmount": "6,500.00",
+                            "status": "驳回" 
+                        }
+                    ]
+                },                
+                {
+                    "itemName": "会議費",
+                    "persionalApplying": "350,000.00",
+                    "persionalPass": "2,000.00",
+                    "orgApplying": "5,000,500.00",
+                    "orgPass": "333,900.00",
+                    "departmentBudget": "333,900.00",
+                    "orgUsed": "3,600.00",
+                    "approveDetals": [
+                        {
+                            "applyTime":"2020-04-03 12:55:44",
+                            "applyName": "会议费",
+                            "applyAmount": "800.00",
+                            "status": "同意"  
+                        }
+                    ]
+                },                
+                {
+                    "itemName": "一般福利費",
+                    "persionalApplying": "350,000.00",
+                    "persionalPass": "2,000.00",
+                    "orgApplying": "5,000,500.00",
+                    "orgPass": "333,900.00",
+                    "departmentBudget": "333,900.00",
+                    "orgUsed": "3,600.00",
+                    "approveDetals": [
+                        {
+                            "applyTime":"2020-04-03 12:55:44",
+                            "applyName": "福利费",
+                            "applyAmount": "800.00",
+                            "status": "同意"  
+                        },
+                        {
+                            "applyTime":"2020-04-02 10:55:33",
+                            "applyName": "福利费",
+                            "applyAmount": "6,500.00",
+                            "status": "驳回" 
+                        }
+                    ]
+                },                
+                {
+                    "itemName": "事務用品費",
+                    "persionalApplying": "350,000.00",
+                    "persionalPass": "2,000.00",
+                    "orgApplying": "5,000,500.00",
+                    "orgPass": "333,900.00",
+                    "departmentBudget": "333,900.00",
+                    "orgUsed": "3,600.00",
+                    "approveDetals": [
+                        {
+                            "applyTime":"2020-04-03 12:55:44",
+                            "applyName": "用品费",
+                            "applyAmount": "800.00",
+                            "status": "同意"  
+                        }
+                    ]
+                },                
+                {
+                    "itemName": "OA部品費",
+                    "persionalApplying": "350,000.00",
+                    "persionalPass": "2,000.00",
+                    "orgApplying": "5,000,500.00",
+                    "orgPass": "333,900.00",
+                    "departmentBudget": "333,900.00",
+                    "orgUsed": "3,600.00",
+                    "approveDetals": [
+                        {
+                            "applyTime":"2020-04-03 12:55:44",
+                            "applyName": "部品费",
+                            "applyAmount": "800.00",
+                            "status": "同意"  
+                        },
+                        {
+                            "applyTime":"2020-04-02 10:55:33",
+                            "applyName": "部品费",
+                            "applyAmount": "6,500.00",
+                            "status": "驳回" 
+                        }
+                    ]
+                },                
+                {
+                    "itemName": "研究開発費用",
+                    "persionalApplying": "350,000.00",
+                    "persionalPass": "2,000.00",
+                    "orgApplying": "5,000,500.00",
+                    "orgPass": "333,900.00",
+                    "departmentBudget": "333,900.00",
+                    "orgUsed": "3,600.00",
+                    "approveDetals": [
+                        {
+                            "applyTime":"2020-04-03 12:55:44",
+                            "applyName": "开发费",
+                            "applyAmount": "800.00",
+                            "status": "同意"  
+                        }
+                    ]
+                },                
+                {
+                    "itemName": "雑費-その他",
+                    "persionalApplying": "350,000.00",
+                    "persionalPass": "2,000.00",
+                    "orgApplying": "5,000,500.00",
+                    "orgPass": "333,900.00",
+                    "departmentBudget": "333,900.00",
+                    "orgUsed": "3,600.00",
+                    "approveDetals": [
+                        {
+                            "applyTime":"2020-04-03 12:55:44",
+                            "applyName": "雑費",
+                            "applyAmount": "800.00",
+                            "status": "同意"  
+                        },
+                        {
+                            "applyTime":"2020-04-02 10:55:33",
+                            "applyName": "雑費",
+                            "applyAmount": "6,500.00",
+                            "status": "驳回" 
+                        }
+                    ]
+                },                
+                {
+                    "itemName": "社員住宅費用",
+                    "persionalApplying": "350,000.00",
+                    "persionalPass": "2,000.00",
+                    "orgApplying": "5,000,500.00",
+                    "orgPass": "333,900.00",
+                    "departmentBudget": "333,900.00",
+                    "orgUsed": "3,600.00",
+                    "approveDetals": [
+                        {
+                            "applyTime":"2020-04-03 12:55:44",
+                            "applyName": "住宅费",
+                            "applyAmount": "800.00",
+                            "status": "同意"  
+                        }
+                    ]
+                },                
+                {
+                    "itemName": "市内交通費",
+                    "persionalApplying": "350,000.00",
+                    "persionalPass": "2,000.00",
+                    "orgApplying": "5,000,500.00",
+                    "orgPass": "333,900.00",
+                    "departmentBudget": "333,900.00",
+                    "orgUsed": "3,600.00",
+                    "approveDetals": [
+                        {
+                            "applyTime":"2020-04-03 12:55:44",
+                            "applyName": "交通费",
+                            "applyAmount": "800.00",
+                            "status": "同意"  
+                        },
+                        {
+                            "applyTime":"2020-04-02 10:55:33",
+                            "applyName": "交通费",
+                            "applyAmount": "6,500.00",
+                            "status": "驳回" 
+                        }
+                    ]
+                },                
+                {
+                    "itemName": "通信費",
+                    "persionalApplying": "350,000.00",
+                    "persionalPass": "2,000.00",
+                    "orgApplying": "5,000,500.00",
+                    "orgPass": "333,900.00",
+                    "departmentBudget": "333,900.00",
+                    "orgUsed": "3,600.00",
+                    "approveDetals": [
+                        {
+                            "applyTime":"2020-04-03 12:55:44",
+                            "applyName": "通信费",
+                            "applyAmount": "800.00",
+                            "status": "同意"  
+                        }
+                    ]
+                },                
+                {
+                    "itemName": "広告宣伝費",
+                    "persionalApplying": "350,000.00",
+                    "persionalPass": "2,000.00",
+                    "orgApplying": "5,000,500.00",
+                    "orgPass": "333,900.00",
+                    "departmentBudget": "333,900.00",
+                    "orgUsed": "3,600.00",
+                    "approveDetals": []
+                },                
+                {
+                    "itemName": "車両レンタル費",
+                    "persionalApplying": "350,000.00",
+                    "persionalPass": "2,000.00",
+                    "orgApplying": "5,000,500.00",
+                    "orgPass": "333,900.00",
+                    "departmentBudget": "333,900.00",
+                    "orgUsed": "3,600.00",
+                    "approveDetals": [
+                        {
+                            "applyTime":"2020-04-03 12:55:44",
+                            "applyName": "車両レンタル費",
+                            "applyAmount": "800.00",
+                            "status": "同意"  
+                        }
+                    ]
+                }
+
+            ],
+            "params": {
+                "orgId": "1111"
+            },
+            "paging": true
+        }
+    }
+}

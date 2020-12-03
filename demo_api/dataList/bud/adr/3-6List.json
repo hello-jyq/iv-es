@@ -1,0 +1,157 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "applyNo": "ADA20200001",
+        "userAmount": "400,000,09",
+        "detailList":[
+            {
+                "serialNo":"BXD-00001",
+                "invoiceNo": "3000005648216",
+                "amount": "300.00",
+                "costCenter": "金融部",
+                "applyNum":"张无忌",
+                "applyTime":"2020-04-01 12:55:44",
+                "remake":"2020年4月1日 浦东新区浦东大道135号和客户商谈后的宴会。人均100元人名币。"
+            },
+            {
+                "serialNo":"BXD-00002",
+                "invoiceNo": "2900005648216",
+                "amount": "500.00",
+                "costCenter": "金融部",
+                "applyNum":"张无忌",
+                "applyTime":"2020-03-01 12:55:44",
+                "remake":""
+            },
+            {
+                "serialNo":"BXD-00003",
+                "invoiceNo": "2800005648216",
+                "amount": "300.00",
+                "costCenter": "金融部",
+                "applyNum":"李无忌",
+                "applyTime":"2020-02-01 12:55:44",
+                "remake":"2020年4月1日 浦东新区浦东大道135号和客户商谈后的宴会。人均100元人名币。"
+            },
+            {
+                "serialNo":"BXD-00004",
+                "invoiceNo": "2700005648216",
+                "amount": "500.00",
+                "costCenter": "金融部",
+                "applyNum":"张三丰",
+                "applyTime":"2020-04-01 12:55:44",
+                "remake":""
+            },
+            {
+                "serialNo":"BXD-00005",
+                "invoiceNo": "2900005648216",
+                "amount": "500.00",
+                "costCenter": "金融部",
+                "applyNum":"张无忌",
+                "applyTime":"2020-03-01 12:55:44",
+                "remake":""
+            },
+            {
+                "serialNo":"BXD-00006",
+                "invoiceNo": "2800005648216",
+                "amount": "300.00",
+                "costCenter": "金融部",
+                "applyNum":"李无忌",
+                "applyTime":"2020-02-01 12:55:44",
+                "remake":"2020年4月1日 浦东新区浦东大道135号和客户商谈后的宴会。人均100元人名币。"
+            },
+            {
+                "serialNo":"BXD-00007",
+                "invoiceNo": "2700005648216",
+                "amount": "500.00",
+                "costCenter": "金融部",
+                "applyNum":"张三丰",
+                "applyTime":"2020-04-01 12:55:44",
+                "remake":""
+            },
+            {
+                "serialNo":"BXD-00008",
+                "invoiceNo": "2900005648216",
+                "amount": "500.00",
+                "costCenter": "金融部",
+                "applyNum":"张无忌",
+                "applyTime":"2020-03-01 12:55:44",
+                "remake":""
+            },
+            {
+                "serialNo":"BXD-00009",
+                "invoiceNo": "2800005648216",
+                "amount": "300.00",
+                "costCenter": "金融部",
+                "applyNum":"李无忌",
+                "applyTime":"2020-02-01 12:55:44",
+                "remake":"2020年4月1日 浦东新区浦东大道135号和客户商谈后的宴会。人均100元人名币。"
+            },
+            {
+                "serialNo":"BXD-00010",
+                "invoiceNo": "2700005648216",
+                "amount": "500.00",
+                "costCenter": "金融部",
+                "applyNum":"张三丰",
+                "applyTime":"2020-04-01 12:55:44",
+                "remake":""
+            },
+            {
+                "serialNo":"BXD-00011",
+                "invoiceNo": "2900005648216",
+                "amount": "500.00",
+                "costCenter": "金融部",
+                "applyNum":"张无忌",
+                "applyTime":"2020-03-01 12:55:44",
+                "remake":""
+            },
+            {
+                "serialNo":"BXD-00012",
+                "invoiceNo": "2800005648216",
+                "amount": "300.00",
+                "costCenter": "金融部",
+                "applyNum":"李无忌",
+                "applyTime":"2020-02-01 12:55:44",
+                "remake":"2020年4月1日 浦东新区浦东大道135号和客户商谈后的宴会。人均100元人名币。"
+            },
+            {
+                "serialNo":"BXD-00013",
+                "invoiceNo": "2700005648216",
+                "amount": "500.00",
+                "costCenter": "金融部",
+                "applyNum":"张三丰",
+                "applyTime":"2020-04-01 12:55:44",
+                "remake":""
+            },
+            {
+                "serialNo":"BXD-00014",
+                "invoiceNo": "2900005648216",
+                "amount": "500.00",
+                "costCenter": "金融部",
+                "applyNum":"张无忌",
+                "applyTime":"2020-03-01 12:55:44",
+                "remake":""
+            },
+            {
+                "serialNo":"BXD-00015",
+                "invoiceNo": "2800005648216",
+                "amount": "300.00",
+                "costCenter": "金融部",
+                "applyNum":"李无忌",
+                "applyTime":"2020-02-01 12:55:44",
+                "remake":"2020年4月1日 浦东新区浦东大道135号和客户商谈后的宴会。人均100元人名币。"
+            },
+            {
+                "serialNo":"BXD-00016",
+                "invoiceNo": "2700005648216",
+                "amount": "500.00",
+                "costCenter": "金融部",
+                "applyNum":"张三丰",
+                "applyTime":"2020-04-01 12:55:44",
+                "remake":""
+            }
+        ]
+    }
+}
