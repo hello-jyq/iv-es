@@ -47,10 +47,45 @@
                  <span class="item_title">
                   搜索履历
                 </span>
-                <span class="refresh_words" @click="keyWordRefresh()"><i class="iconfont icon-refresh"/>换一换</span>
+                  <el-table
+                  
+                    :data="tableData"
+                    height="90%"
+                    border
+                    style="width: 100%">
+                    <el-table-column
+                    label="序号"
+                    type="index"
+                    >
+                  </el-table-column>
+                    <el-table-column
+                      prop="date"
+                      label="搜索时间"
+                      width="180">
+                    </el-table-column>
+                    <el-table-column
+                      prop="name"
+                      label="搜索内容"
+                      width="180"
+                      class-name="font_center"
+                      >
+                      <template slot-scope="scope">
+                      <a class="link" @click.prevent="handleProcessInstClick(scope.row.name)">{{ scope.row.name }}</a>
+                    </template>
+                    </el-table-column>
+                    <el-table-column
+                      prop="result"
+                       class-name="font_left"
+                      label="搜索结果">
+                      <template slot-scope="scope">
+                      <a class="link" @click.prevent="handleProcessInstClick(scope.row.result)">{{ scope.row.result }}</a>
+                    </template>
+                    </el-table-column>
+                  </el-table>
+                <!-- <span class="refresh_words" @click="keyWordRefresh()"><i class="iconfont icon-refresh"/>换一换</span>
                  <ul class="item_content">
                   <li v-for="(item,index) in item_key_contents" :key="index" @click="getKeyValue(item)">{{index+1}}、{{item}}</li>              
-                </ul>
+                </ul> -->
               </div>
             </div>
             <div class="theme_search">
@@ -88,7 +123,35 @@ export default {
         label: '日文'
       }],
       item_hot_contents: ["锦鲤", "杠精", "佛系", "确认过眼神", "官宣", "C位", "土味情话", "皮一下", "卡路里", "创造101", "超越妹妹", "五位一体", "四个全面", "共享经济", "大数据", "互联网+", "全十四五规划全面小康"],
-      item_key_contents: ["联想 笔记本 四核 超薄", "晨光 笔记本 厚", "动物园 湖里 鱼", "中国 上海 浦东 陆家嘴软件园 ivison", "china Beijing", "导弹 东风 使命必达", "上班 工作 累"],
+      tableData: [{
+        date: '2016-05-03',
+        name: '王小虎',
+        result: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-02',
+        name: '王小虎',
+        result: '上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-04',
+        name: '王小虎',
+        result: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-01',
+        name: '王小虎',
+        result: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-08',
+        name: '王小虎',
+        result: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-06',
+        name: '王小虎',
+        result: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-07',
+        name: '王小虎',
+        result: '上海市普陀区金沙江路 1518 弄'
+      }],
       theme_options_values: ["合同", "组件", "资源", "组件", "资源1", "组件2", "资源4"],
       theme_options: [
         {
@@ -183,6 +246,15 @@ export default {
         }
       })
     },
+    handleProcessInstClick(value) {
+      this.$router.push({
+        path: '/search_result',
+        query: {
+          search: value
+        }
+      })
+
+    },
     getThemeValue(value) {
       this.$router.push({
         path: '/search_result',
@@ -251,7 +323,7 @@ export default {
   justify-content: space-between;
 }
 .hot_search {
-  height: calc(50% - 15px);
+  height: 240px;
   background: #ffffff;
   border-radius: 16px;
   padding: 30px;
@@ -261,7 +333,7 @@ export default {
   overflow: hidden;
 }
 .key_search {
-  height: calc(50% - 15px);
+  height: calc(100% - 270px);
   background: #ffffff;
   border-radius: 16px;
   padding: 30px;

@@ -50,6 +50,10 @@
     width: 530px;
     height: 100%;
   }
+  .font_center{
+    text-align: center !important;
+  }
+
   .flex_ceter{
     display: flex;
     justify-content: center;
@@ -84,6 +88,9 @@
   }
 .icon_active{
   color: #2D7A9C;;
+}
+.icon_gif{
+  transform:rotate(180deg);
 }
 /* 字体 */
   .fontS_size_12{

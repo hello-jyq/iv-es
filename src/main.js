@@ -27,7 +27,7 @@ import '@/assets/styles/styles.css'
 // // 引入i18n
 import i18n from './i18n'
 // // 引入进度条样式库
-// import 'nprogress/nprogress.css'
+import 'nprogress/nprogress.css'
 // // 引入重置样式表
 // import '@/assets/css/reset.css'
 
@@ -48,8 +48,8 @@ import i18n from './i18n'
 
 // 路由守卫与动态路由处理
 // import './permission.js'
-// import '@/utils/array.js'
-// import '@/utils/direct.js'
+import '@/utils/array.js'
+import '@/utils/direct.js'
 
 Vue.use(ElementUI)
 Vue.config.productionTip = false

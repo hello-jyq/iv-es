@@ -3,7 +3,7 @@
         <div :class="isCollapse?'result_DIY result_filter_all':'result_DIY result_filter'">
           <div class="title_box">
             <ul>
-              <li v-for="(item,index) in 5" :key="index" :class="active==index?'active':''" @click="active=index">文件服务器{{index+1}}</li>
+              <li v-for="(item,index) in 5" :key="index" :class="active==index?'active':''" @click="active=index" :title="'文件服务器'+(index+1)">文件服务器{{index+1}}</li>
             </ul>
           </div>
           <div class="con_box" :class="active==index?'show':''" v-for="(item,index) in 5" :key="item.index">
@@ -11,13 +11,16 @@
               <div class="search_num" @click="istree=!istree">
                 <i class="iconfont icon-sousuo2" />
                 <span>搜索结果数量</span>
-                <i class="iconfont icon-ai-arrow-down"></i>
+                <i class="iconfont icon-ai-arrow-down" :class="istree?'':'icon_gif'"></i>
               </div>     
               <el-tree
               v-show="istree"
                 :data="data"
                 show-checkbox
                 node-key="id"
+                :expand-on-click-node=false
+                :check-on-click-node=true
+                :check-strictly=true
                 :default-expanded-keys="[2, 5]"
                 :default-checked-keys="[1]"
                 :default-expand-all="istree"
@@ -29,7 +32,7 @@
               <div class="search_num" style="margin-top:30px" @click="ischeck=!ischeck">
                   <i class="iconfont icon-duomeitiicon-" />
                   <span>文档类型</span>
-                  <i class="iconfont icon-ai-arrow-down"></i>
+                  <i class="iconfont icon-ai-arrow-down" :class="ischeck?'':'icon_gif'"></i>
               </div>
               <el-checkbox-group v-model="filecheckList" v-show='ischeck'>
                 <el-checkbox label="Word (11)"></el-checkbox>
@@ -46,9 +49,10 @@
               <div class="search_num" style="margin-top:30px" @click="isradio=!isradio">
                   <i class="iconfont icon-shijian" />
                   <span>更新时间</span>
-                  <i class="iconfont icon-ai-arrow-down"></i>
+                  <i class="iconfont icon-ai-arrow-down" :class="isradio?'':'icon_gif'"></i>
               </div>
               <el-radio-group v-model="radioList" v-show="isradio">
+                 <el-radio :label="0">全部时间 (188)</el-radio>
                   <el-radio :label="1">一天内 (33)</el-radio>
                   <el-radio :label="2">一周内 (33)</el-radio>
                   <el-radio :label="3">一月内 (66)</el-radio>
@@ -58,8 +62,9 @@
                </el-radio-group>
               <div class="block" v-show="isradio">        
                   <el-date-picker
+                  popper-class="date_picker"
                     v-model="radiotime"
-                    type="daterange"
+                    type="datetimerange"
                     range-separator="至"
                     start-placeholder="开始日期"
                     end-placeholder="结束日期">
@@ -69,14 +74,14 @@
                 <div class="search_num" style="margin-top:30px" @click="issize=!issize">
                   <i class="iconfont icon-daxiao" />
                   <span>文件大小</span>
-                  <i class="iconfont icon-ai-arrow-down"></i>
+                  <i class="iconfont icon-ai-arrow-down" :class="issize?'':'icon_gif'"></i>
                 </div>
                 <el-checkbox-group v-model="sizecheckList" v-show='issize'>
                   <el-checkbox label="100K - 500K (33)"></el-checkbox>
                   <el-checkbox label="500K - 1M (33)"></el-checkbox>
                   <el-checkbox label="1M - 100M (33)"></el-checkbox>
                   <el-checkbox label="100M以上 (33)"></el-checkbox>
-                  <el-checkbox label="自定义大小"></el-checkbox>
+                  <el-checkbox label="自定义大小" @click.native="diysize"></el-checkbox>
                 </el-checkbox-group> 
                 <div class="diy_size"  v-show='issize'>
                   <el-input
@@ -96,7 +101,7 @@
                 <div class="search_num" style="margin-top:30px" @click="isfile=!isfile">
                   <i class="iconfont icon-ziyuan" />
                   <span>文档语言</span>
-                  <i class="iconfont icon-ai-arrow-down"></i>
+                  <i class="iconfont icon-ai-arrow-down" :class="isfile?'':'icon_gif'"></i>
                 </div>
                 <el-checkbox-group v-model="lancheckList" v-show='isfile'>
                   <el-checkbox label="全部语言"></el-checkbox>
@@ -105,10 +110,10 @@
                   <el-checkbox label="日文"></el-checkbox>
                 </el-checkbox-group> 
             </div>
-            <el-row type="flex" justify="space-around" style="margin-top:20px;margin-right:20px">
+            <!-- <el-row type="flex" justify="space-around" style="margin-top:20px;margin-right:20px">
               <el-button round icon="iconfont icon-refresh">重置</el-button>
               <el-button type="primary" round icon="iconfont icon-queding">确定</el-button>
-            </el-row>
+            </el-row> -->
           </div>
         </div>
         <div  class="container">
@@ -153,7 +158,7 @@
               </div>
              
             </div>
-            <div class="result_main">
+            <div class="result_main" v-if="results!=''">
                 <div class="each_reult">
                   <div class="each_r_top">
                     <div>
@@ -333,19 +338,58 @@
                   </div>            
                 </div>               
             </div>
-
+            <div class="result_main_empty" v-else>
+              <div class="empty_img">
+                <img src="../../assets/img/result_empty.png"/>
+                <span>抱歉，没有找到符合条件的内容</span>
+                <span>您可以简化或缩短关键词再进行搜索</span>
+              
+              </div>
+              <div>
+              <span class="empty_title">未搜索到结果的原因为： </span>
+              <span>未搜索到结果的原因有多种，关键词太繁杂，可以试着删除一些；未搜索到结果的原因有多种，关键词太繁杂，可以试着删除一些；未搜索到结果的原因有多种，关键词太繁杂，可以试着删除一些；未搜索到结果的原因有多种，关键词太繁杂，可以试着删除一些。</span>
+              </div>
+            </div>
             
           </div>   
-          <div class="search_Pagination">
-               
+          <div class="search_Pagination" v-show="results!=''">             
                 <el-pagination
                   @size-change="handleSizeChange"
                   @current-change="handleCurrentChange"
-                  :current-page.sync="currentPage1"
-                   background
+                  :current-page="currentPage1"
+                  background
+                  :page-sizes="[10, 50, 100, 500]"
                   :page-size="10"
-                  layout="total, prev, pager, next"
-                  :total="400">
+                  layout="total, sizes"
+                  :total="500"
+                  class='pagination_left'
+                  >
+                </el-pagination>                
+                <el-pagination
+                  @size-change="handleSizeChange"
+                  @current-change="handleCurrentChange"
+                  :current-page="currentPage1"
+                  background
+                  :page-sizes="[10, 50, 100, 500]"
+                  :page-size="10"
+                  layout=" pager, next,slot"
+                  :total="500"
+                   class='pagination_right'
+                  >
+                  <button type="button" class="last-pager" @click="jumpPage('0')"><i class="iconfont icon-Group-1"></i></button>   
+                </el-pagination>
+                <el-pagination
+                  @size-change="handleSizeChange"
+                  @current-change="handleCurrentChange"
+                  :current-page="currentPage1"
+                  background
+                  :page-sizes="[10, 50, 100, 500]"
+                  :page-size="10"
+                  layout="slot, prev"
+                  :total="500"
+                   class='pagination_right'
+                  >
+                    <button type="button" class="first-pager" @click="jumpPage('1')"><i class="iconfont icon-zuiqian"></i></button>   
                 </el-pagination>
             </div>  
         </div>
@@ -369,8 +413,35 @@
             <div class="each_r_con">
               2020-11-11 12:00:00 900KB - Powerpoint
             </div>
-            <div class="slt"><img src="../../assets/img/slt_empty.png"></div> 
+            <div class="slt"><iframe width="100%"     frameborder="0" height="100%" src="https://file.keking.cn/onlinePreview?url=https%3A%2F%2Ffile.keking.cn%2Fdemo%2F%E6%9E%97%E7%89%B9%E4%BA%A7%E5%93%81%E7%94%B5%E5%AD%90%E5%95%86%E5%8A%A1%E5%AD%B5%E5%8C%96%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.pptx&officePreviewType=pdf"></iframe></div> 
             <div class="slt_down"><i class="iconfont icon-Group-"/>点击下载</div>    
+        </el-dialog>
+        <el-dialog
+          title="自定义文件大小"
+          :visible.sync="filesizeDialogVisible"
+          :close-on-click-modal="false"
+          class="diyfilesize"
+          > 
+
+            <div class="each_r_con">
+             <div class="diy_size_pop">
+                  <el-input
+                  class="from"
+                    placeholder="请输入数值"               
+                    v-model="diysizefrom">
+                  </el-input>
+                  <span class="zhi">至</span>
+                  <el-input
+                   class="to"
+                    placeholder="请输入数值"
+                    v-model="diysizeto">
+                  </el-input>
+                </div>
+                <div class="diy_size_pop_button">
+                  <div class="clear_size" @click="diysizefrom='';diysizeto=''">清&nbsp;空</div>
+                  <div class="submit_size"  @click="submitSize">确&nbsp;定</div>
+                </div>
+            </div>  
         </el-dialog>
     </div>
 </template>
@@ -394,6 +465,7 @@ export default {
         label: '日文'
       }],
       centerDialogVisible: false,
+      filesizeDialogVisible: false,
       active: 1,
       data: [{
         id: 1,
@@ -403,7 +475,7 @@ export default {
           label: '二级 2-1 (3)',
           children: [{
             id: 4,
-            label: '三级 3-1-1 (2)',
+            label: '三级 3-1-1 (2)222222222222222222222222222222',
             children: [{
               id: 9,
               label: '四级 4-1-1'
@@ -467,6 +539,7 @@ export default {
       isrelativity: '',
       istime: '',
       lancheckList: ["全部语言"],
+      results: "1",
       currentPage1: 5,
 
       // isCollapse: this.$store.state.falg
@@ -499,6 +572,14 @@ export default {
     },
     getLang(value) {
       this.lang = value
+    },
+    diysize() {
+      console.log(this.sizecheckList.length)
+      this.sizecheckList.length = 0
+      this.filesizeDialogVisible = true
+    },
+    submitSize() {
+      this.filesizeDialogVisible = false
     },
     closeTree() {
 
@@ -555,6 +636,7 @@ export default {
 .search_Pagination {
   height: 40px;
   padding: 20px 60px 0 0;
+  width: 100%;
 }
 .inline-input {
   width: 100%;
@@ -586,7 +668,7 @@ export default {
   overflow: hidden;
 }
 .left_result {
-  height: calc(100% - 60px);
+  height: 100%;
   overflow: auto;
 }
 .title_box li {
@@ -704,6 +786,40 @@ export default {
   flex: 1;
   overflow: auto;
 }
+.result_main_empty {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+}
+.empty_img {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+}
+.empty_img img {
+  margin-bottom: 30px;
+}
+.empty_img span {
+  font-size: 20px;
+  font-family: "微软雅黑";
+  color: #333333;
+  line-height: 32px;
+}
+.empty_title {
+  display: block;
+}
+.result_main_empty div {
+  padding: 0 100px 0 70px;
+  font-size: 16px;
+  font-family: "微软雅黑";
+  color: #666666;
+  line-height: 28px;
+}
+
 .each_reult {
   padding: 25px 0;
   width: 100%;

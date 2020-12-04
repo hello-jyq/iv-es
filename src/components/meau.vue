@@ -53,12 +53,29 @@
                 <el-menu-item index="/background_plan_config">后台计划配置</el-menu-item>
                 <el-menu-item index="/query_result_analysis">查询结果分析</el-menu-item>
             </el-submenu>
+            <!-- <el-submenu index="5">
+                 <template slot="title">
+                    <div  @click="onOpen()">
+                        <i class="iconfont icon-shezhi"></i>
+                        <span slot="title">系统管理(旧)</span>
+                    </div>
+                </template>
+                <el-menu-item index="/user_management">组织管理</el-menu-item>
+                <el-menu-item index="/role_management">业务字典</el-menu-item>
+                <el-menu-item index="/access_management">资源管理</el-menu-item>
+                <el-menu-item index="/search_history_management">全文检索权限</el-menu-item>
+                <el-menu-item index="/background_plan_config">角色管理</el-menu-item>
+                <el-menu-item index="/query_result_analysis">国际化</el-menu-item>
+                <el-menu-item index="/background_plan_config">数据权限管理</el-menu-item>
+                <el-menu-item index="/query_result_analysis">在线用户查看</el-menu-item>
+            </el-submenu> -->
             </el-menu>
       </aside> 
 
 
 </template>
 <script>
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 export default {
   data() {
     return {
@@ -70,9 +87,10 @@ export default {
     };
   },
   mounted() {
-
+    console.log(this.menuList)
   },
   methods: {
+
     changeCollapse() {
       this.isCollapse = !this.isCollapse;
       this.openeds = [];

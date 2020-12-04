@@ -26,7 +26,7 @@
 
            
       </div>
-      <el-form label-position="left" label-width="0px" @submit.native.prevent :model="ruleForm">
+      <el-form label-position="left" label-width="0px" @submit.native.prevent :model="ruleForm"  :rules="rules" ref="ruleForm">
         <h1 class="logo">
           <router-link to>
             <img src="@/assets/img/logo_login.png" />
@@ -109,6 +109,8 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+import { formValidator } from '@/mixins/form-validator'
 export default {
   data() {
     return {
@@ -126,6 +128,22 @@ export default {
         userName: "",
         userPassword: ""
       },
+      rules: {
+        userName: [
+          {
+            required: true,
+            message: "请输入用户名",
+            trigger: 'blur'
+          }
+        ],
+        userPassword: [
+          {
+            required: true,
+            message: "请输入密码",
+            trigger: 'blur'
+          }
+        ]
+      },
       itemTxt: [{
         title: '嘿，欢迎回来！',
         content: '从现在开始，Huge Vision ESE 系统将快速、高效、精准帮助您搜索到您想要的内容'
@@ -139,14 +157,50 @@ export default {
 
     };
   },
+  computed: {
 
+  },
   mounted() {
 
   },
   methods: {
     login() {
-      this.$router.push("/general_search");
+      this.$refs.ruleForm.validate(
+        async valid => {
+          if (valid) {
+            this.$router.push("/")
+          }
+        })
+      // this.$refs.ruleForm.validate(async valid => {
+      //   if (valid) {
+      //     const params = this.ruleForm
+      //     const res = await this.loginAction(params)
+      //     // // console.log(res)
+      //     if (res && res.success) {
+      //       // this.initLang(this.userInfo.locale)
+      //       // this.$message({
+      //       //   type: 'success',
+      //       //   message: this.$t('comm.welcome') + this.userInfo.nickName,
+      //       //   customClass: localStorage.getItem('theme') === 'Dark' ? 'dark-message-box' : 'light-message-box'
+      //       // })
+      //       // if (res.datas.userInfo.isNeedChangePassword) {
+      //       //   this.$router.push('/changePassword')
+      //       //   return
+      //       // }
+      //       let redirect = this.$router.history.current.query.redirect
+      //       redirect = redirect === '/login' ? '' : redirect
+      //       const path = redirect || '/'
+      //       // // console.log(path)
+      //       this.$router.push(path)
+      //     }
+      //   } else {
+      //     return false
+      //   }
+      // })
     },
+    // ...mapActions(['loginAction']),
+
+
     onOpen() {
       this.isOpen = !this.isOpen;
     },
@@ -161,7 +215,8 @@ export default {
       if (this.isSucccess = true) {
         this.$router.push("/login");
       }
-    }
+    },
+
   }
 };
 </script>
