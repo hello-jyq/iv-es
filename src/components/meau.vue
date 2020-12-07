@@ -9,7 +9,7 @@
             <div class="logo">
                <img :src="isCollapse?require('../assets/img/logo_menu_small.png'):require('../assets/img/logo_menu.png')"/>
            </div>
-            <el-menu  :default-active="activeIndex" class="el-menu-vertical-demo" menu-trigger='click' @open="handleOpen" @close="handleClose" :default-openeds="openeds" :collapse="isCollapse" :router=true :collapse-transition='false' :unique-opened='false'>
+            <!-- <el-menu  :default-active="activeIndex" class="el-menu-vertical-demo" menu-trigger='click' @open="handleOpen" @close="handleClose" :default-openeds="openeds" :collapse="isCollapse" :router=true :collapse-transition='false' :unique-opened='false'>
             <el-submenu index="1">
                 <template slot="title">
                     <div  @click="onOpen()">
@@ -53,7 +53,7 @@
                 <el-menu-item index="/background_plan_config">后台计划配置</el-menu-item>
                 <el-menu-item index="/query_result_analysis">查询结果分析</el-menu-item>
             </el-submenu>
-            <!-- <el-submenu index="5">
+            <el-submenu index="5">
                  <template slot="title">
                     <div  @click="onOpen()">
                         <i class="iconfont icon-shezhi"></i>
@@ -68,29 +68,79 @@
                 <el-menu-item index="/query_result_analysis">国际化</el-menu-item>
                 <el-menu-item index="/background_plan_config">数据权限管理</el-menu-item>
                 <el-menu-item index="/query_result_analysis">在线用户查看</el-menu-item>
-            </el-submenu> -->
-            </el-menu>
+            </el-submenu> 
+            </el-menu> -->
+            <div class="meau">
+             <el-menu   :default-active="reURL" class="el-menu-vertical-demo" menu-trigger='click'  @select="handleselect" @open="handleOpen" @close="handleClose" :default-openeds="openeds" :collapse="isCollapse"  :collapse-transition='false' :unique-opened='false'>
+            <template  v-for="(menu,index) in menuList" >
+              <el-submenu v-if="menu.children && menu.children.length >= 1" :index="'' + menu.seqNo"  :key="index">
+                <template slot="title">
+                  <div @click="onOpen()">
+                       <i :class="menu.icon"></i>
+                        <span slot="title">
+                      <span slot="title">  {{menu.resName}}</span>
+                  </span>
+                  </div>             
+                </template>
+                <template v-for="item in menu.children">
+                  <template v-if="item.children == 0">
+                    <el-menu-item v-if="item.isHidden!=false" :key="item.id" :index="'' + item.seqNo" @click="handleRoute(item)">
+                      <span slot="title">{{ item.resName }}</span>
+                    </el-menu-item>
+                  </template>
+                  <el-submenu v-else :key="item.id" :index="'' + item.seqNo">
+                    <span slot="title">{{ item.resName }}</span>
+                    <el-menu-item v-for="items in item.children" :key="items.id" :index="'' + items.seqNo" @click="handleRoute(items)">
+                      <span slot="title">{{ items.resName }}</span>
+                    </el-menu-item>
+                  </el-submenu>
+                </template>
+              </el-submenu>
+            </template>
+             </el-menu>
+            </div>
       </aside> 
 
 
 </template>
 <script>
 import { mapGetters, mapActions, mapMutations } from 'vuex'
+import { saveActiveMenu } from '@/utils/storage'
 export default {
   data() {
     return {
       // 菜单折起状态
       isCollapse: false,
       openeds: [],
+      reURL: '',
       // 默认选中菜单
-      activeIndex: this.$route.path == '' ? '/general_search' : this.$route.path
+      activeIndex: this.$route.path == '' ? '/search/general_search' : this.$route.path
     };
   },
+  computed: {
+    ...mapGetters([
+      'menuList'
+    ])
+  },
   mounted() {
-    console.log(this.menuList)
+    const menuIndex = window.sessionStorage.getItem('activeMenu')
+    if (menuIndex) {
+      // this.activeIndex = menuIndex
+      this.breadcrumbItems = []
+      const seqNo = menuIndex.split(':')
+      this.getSelectedMenus(this.menuList, seqNo)
+      this.reURL = menuIndex
+    }
   },
   methods: {
-
+    handleRoute(menu) {
+      // 通过菜单URL跳转至指定路由
+      if (menu.resUrl.substring(0, 1) === '/') {
+        this.$router.push(menu.resUrl)
+      } else {
+        this.$router.push('/' + menu.resUrl)
+      }
+    },
     changeCollapse() {
       this.isCollapse = !this.isCollapse;
       this.openeds = [];
@@ -104,7 +154,26 @@ export default {
       this.isCollapse = false;
     },
     handleClose(key, keyPath) {
+
       console.log(key, keyPath);
+    },
+
+    getSelectedMenus(menuList, seqNo) {
+      const id = seqNo.shift()
+      if (!id || id === 'null') {
+        return
+      }
+      const menu = menuList.filter(menu => menu.id === id)
+      this.breadcrumbItems.push(menu[0])
+      this.getSelectedMenus(menu[0].children, seqNo)
+    },
+    handleselect(menuIndex) {
+      // // console.log(9999999, menuIndex)
+      saveActiveMenu(menuIndex)
+      // this.activeIndex = menuIndex
+      this.breadcrumbItems = []
+      const seqNo = menuIndex.split(':')
+      this.getSelectedMenus(this.menuList, seqNo)
     },
   }
 }
@@ -127,15 +196,20 @@ aside {
 }
 .collapse {
   width: 100%;
-  height: auto;
+  height: 20px;
   line-height: 1;
   background-size: cover;
   text-align: right;
   padding-right: 20px;
   cursor: pointer;
 }
+.meau {
+  height: calc(100% - 155px);
+  overflow: auto;
+}
 aside.collapse {
   width: 60px;
+  height: 100%;
   overflow: hidden;
   padding-right: 0px;
 }

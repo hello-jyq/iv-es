@@ -17,12 +17,15 @@
             </ul>
          </div>
            <div class="acc_con" :class="active==index?'show':''" v-for="(item,index) in 5" :key="item.index">
-             <el-checkbox v-model="checked" @change="setCheckedKeys(checked,index)">全选</el-checkbox>
+             <el-checkbox v-model="checked"   @change="selectAllNodes(checked,index)">全选</el-checkbox>
              <div class="acc_con_tee">
               <el-tree
                 :data="data"
                 show-checkbox
                 default-expand-all
+                :expand-on-click-node=false
+                :check-on-click-node=true
+                :check-strictly=true
                 node-key="id"
                 ref="tree"
                 highlight-current
@@ -140,11 +143,40 @@ export default {
   },
   methods: {
     setCheckedKeys(e, i) {
-      console.log(e)
-      if (e) { this.$refs.tree[i].setCheckedKeys([1, 2, 3]); } else {
+      console.log(this.$refs.tree[i])
+      if (e) { this.$refs.tree[i].setCheckedKeys([]); } else {
         this.$refs.tree[i].setCheckedKeys([]);
       }
     },
+    // setCheckedNodes(e, i) {
+    //   this.$refs.tree[i].setCheckedNodes(this.data);
+    // },
+    selectAllNodes: function (e, i) {
+      if (e) {
+        //  获取根节点
+        let rootNode = this.$refs.tree[i].getNode(this.data[0].id).parent;
+        travelNodes(rootNode);
+        function travelNodes(tmpRoot) {
+          // 选中该节点
+          tmpRoot.checked = true;
+          // 叶子节点
+          if (tmpRoot.childNodes.length === 0) {
+            return;
+          }
+          // 不是叶子节点,递归遍历
+          else {
+            let tmpChildNoes = tmpRoot.childNodes;
+            for (let i = 0; i < tmpChildNoes.length; i++) {
+              travelNodes(tmpChildNoes[i]);
+            }
+          }
+        }
+      } else {
+        this.$refs.tree[i].setCheckedKeys([]);
+      }
+    },
+
+
   }
 }
 </script>

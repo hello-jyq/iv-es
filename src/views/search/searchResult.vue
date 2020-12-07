@@ -76,7 +76,7 @@
                   <span>文件大小</span>
                   <i class="iconfont icon-ai-arrow-down" :class="issize?'':'icon_gif'"></i>
                 </div>
-                <el-checkbox-group v-model="sizecheckList" v-show='issize'>
+                <el-checkbox-group v-model="sizecheckList" v-show='issize' @change="checkboxChange">
                   <el-checkbox label="100K - 500K (33)"></el-checkbox>
                   <el-checkbox label="500K - 1M (33)"></el-checkbox>
                   <el-checkbox label="1M - 100M (33)"></el-checkbox>
@@ -86,12 +86,14 @@
                 <div class="diy_size"  v-show='issize'>
                   <el-input
                   class="from"
+                 readonly
                     placeholder="请输入数值"
                     prefix-icon="iconfont icon-daxiao"
                     v-model="diysizefrom">
                   </el-input>
                   <span class="zhi">至</span>
                   <el-input
+                  readonly
                    class="to"
                     placeholder="请输入数值"
                     v-model="diysizeto">
@@ -149,7 +151,7 @@
             </el-col>
           </el-row>   
        
-         <div class="main_box">
+         <div class="main_box" v-loading="loading">
             <div class="result_header">
               <span>找到约41,300条结果(用时0.55秒)</span>
               <div class="result_header_filter">
@@ -467,6 +469,7 @@ export default {
       centerDialogVisible: false,
       filesizeDialogVisible: false,
       active: 1,
+      loading: true,
       data: [{
         id: 1,
         label: '一级 2 (4)',
@@ -595,6 +598,11 @@ export default {
       //   }
       // }
 
+    },
+    checkboxChange(e) {
+      if (e.includes("自定义大小") && e.length > 1) {
+        this.sizecheckList.splice(this.sizecheckList, 1)
+      }
     },
     copyUrl() {
       document.getElementById("urlcoby").select();

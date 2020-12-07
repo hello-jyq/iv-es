@@ -165,13 +165,17 @@
 .login .retrieve_password {
     box-shadow: none;
     position: relative;
-    top: calc(50% - 195px);
+    /* top: calc(50% - 195px); */
+    min-width: 600px;
     width: 680px;
     height: 390px;
     background: #ffffff;
     border: 0;
-    padding: 30px 20px 30px 30px;
+    padding: 0;
     border-radius: 16px;
+}
+.login .el-dialog__header{
+padding: 5px 30px;
 }
 .login .retrieve_password .el-dialog__title {
     line-height: 30px;

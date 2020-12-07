@@ -165,40 +165,45 @@ export default {
   },
   methods: {
     login() {
-      this.$refs.ruleForm.validate(
-        async valid => {
-          if (valid) {
-            this.$router.push("/")
-          }
-        })
-      // this.$refs.ruleForm.validate(async valid => {
-      //   if (valid) {
-      //     const params = this.ruleForm
-      //     const res = await this.loginAction(params)
-      //     // // console.log(res)
-      //     if (res && res.success) {
-      //       // this.initLang(this.userInfo.locale)
-      //       // this.$message({
-      //       //   type: 'success',
-      //       //   message: this.$t('comm.welcome') + this.userInfo.nickName,
-      //       //   customClass: localStorage.getItem('theme') === 'Dark' ? 'dark-message-box' : 'light-message-box'
-      //       // })
-      //       // if (res.datas.userInfo.isNeedChangePassword) {
-      //       //   this.$router.push('/changePassword')
-      //       //   return
-      //       // }
+
+      // this.$refs.ruleForm.validate(
+      //   async valid => {
+      //     if (valid) {
       //       let redirect = this.$router.history.current.query.redirect
       //       redirect = redirect === '/login' ? '' : redirect
       //       const path = redirect || '/'
       //       // // console.log(path)
       //       this.$router.push(path)
       //     }
-      //   } else {
-      //     return false
-      //   }
-      // })
+      //   })
+      this.$refs.ruleForm.validate(async valid => {
+        if (valid) {
+          const params = this.ruleForm
+          const res = await this.loginAction(params)
+          // // console.log(res)
+          if (res && res.success) {
+            // this.initLang(this.userInfo.locale)
+            // this.$message({
+            //   type: 'success',
+            //   message: this.$t('comm.welcome') + this.userInfo.nickName,
+            //   customClass: localStorage.getItem('theme') === 'Dark' ? 'dark-message-box' : 'light-message-box'
+            // })
+            // if (res.datas.userInfo.isNeedChangePassword) {
+            //   this.$router.push('/changePassword')
+            //   return
+            // }
+            let redirect = this.$router.history.current.query.redirect
+            redirect = redirect === '/login' ? '' : redirect
+            const path = redirect || '/'
+            // // console.log(path)
+            this.$router.push(path)
+          }
+        } else {
+          return false
+        }
+      })
     },
-    // ...mapActions(['loginAction']),
+    ...mapActions(['loginAction']),
 
 
     onOpen() {
