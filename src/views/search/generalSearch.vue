@@ -287,7 +287,7 @@ export default {
   border-radius: 16px;
 }
 .main_box {
-  height: calc(100vh - 248px);
+  height: calc(100vh - 288px);
   box-shadow: 0px 2px 10px 0px rgba(68, 100, 163, 0.1);
   background: #ffffff;
   border-radius: 16px;
@@ -377,6 +377,8 @@ export default {
 }
 .item_content {
   margin-top: 20px;
+  height: calc(100% - 40px);
+  overflow: auto;
 }
 .item_content li {
   float: left;

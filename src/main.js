@@ -40,12 +40,14 @@ import '@/assets/css/theme.scss'
 
 import '@/assets/css/beforeCommon.scss'
 // // 自适应css
-import '@/assets/css/media.css'
+// import '@/assets/css/media.css'
 import '@/assets/fonts/iconfont.css'
 // 引入重置样式表
 import '@/assets/styles/elrest.css'
 // 引入样式表
 import '@/assets/styles/styles.css'
+// 自适应css
+import '@/assets/styles/media.css'
 // 路由守卫与动态路由处理
 import './permission.js'
 import '@/utils/array.js'

@@ -172,9 +172,9 @@
                      <i class="iconfont  icon-Group-"/>点击下载
                     </span>
                   </div>
-                  <div class="each_r_title" @click="centerDialogVisible = true">
+                  <div class="each_r_title" >
                     <img src="../../assets/img/PPT.png"/>
-                    <span>ns <span class="key">neuron</span> Solr Cloud. pptx</span>
+                    <span @click="centerDialogVisible = true">ns <span class="key">neuron</span> Solr Cloud. pptx</span>
                     <img class="each_lan" src="../../assets/img/cn_ico.png"/>
                   </div>
                   <div class="each_r_con">
@@ -211,9 +211,9 @@
                      <i class="iconfont  icon-Group-"/>点击下载
                     </span>
                   </div>
-                  <div class="each_r_title" @click="centerDialogVisible = true">
+                  <div class="each_r_title" >
                     <img src="../../assets/img/PDF.png"/>
-                    <span>ns <span class="key">neuron</span> Solr Cloud. pptx</span>
+                    <span @click="centerDialogVisible = true">ns <span class="key">neuron</span> Solr Cloud. pptx</span>
                     <img class="each_lan" src="../../assets/img/cn_ico.png"/>
                   </div>
                   <div class="each_r_con_p">
@@ -243,9 +243,9 @@
                      <i class="iconfont  icon-Group-"/>点击下载
                     </span>
                   </div>
-                  <div class="each_r_title" @click="centerDialogVisible = true">
+                  <div class="each_r_title" >
                     <img src="../../assets/img/excel.png"/>
-                    <span>ns <span class="key">neuron</span> Solr Cloud. pptx</span>
+                    <span @click="centerDialogVisible = true">ns <span class="key">neuron</span> Solr Cloud. pptx</span>
                     <img class="each_lan" src="../../assets/img/jp_ico.png"/>
                   </div>
                   <div class="each_r_con">
@@ -272,9 +272,9 @@
                      <i class="iconfont  icon-Group-"/>点击下载
                     </span>
                   </div>
-                  <div class="each_r_title" @click="centerDialogVisible = true">
+                  <div class="each_r_title" >
                     <img src="../../assets/img/word.png"/>
-                    <span>ns <span class="key">neuron</span> Solr Cloud. pptx</span>
+                    <span @click="centerDialogVisible = true">ns <span class="key">neuron</span> Solr Cloud. pptx</span>
                     <img class="each_lan" src="../../assets/img/jp_ico.png"/>
                   </div>
                   <div class="each_r_con">
@@ -311,9 +311,9 @@
                      <i class="iconfont  icon-Group-"/>点击下载
                     </span>
                   </div>
-                  <div class="each_r_title" @click="centerDialogVisible = true">
+                  <div class="each_r_title" >
                     <img src="../../assets/img/TXT.png"/>
-                    <span>ns <span class="key">neuron</span> Solr Cloud. pptx</span>
+                    <span @click="centerDialogVisible = true">ns <span class="key">neuron</span> Solr Cloud. pptx</span>
                     <img class="each_lan" src="../../assets/img/jp_ico.png"/>
                   </div>
                   <div class="each_r_con">
@@ -469,7 +469,7 @@ export default {
       centerDialogVisible: false,
       filesizeDialogVisible: false,
       active: 1,
-      loading: true,
+      loading: false,
       data: [{
         id: 1,
         label: '一级 2 (4)',
@@ -843,7 +843,6 @@ export default {
   font-size: 12px;
   font-family: "微软雅黑";
   color: #333333;
-  line-height: 28px;
 }
 .each_r_top span {
   margin-right: 20px;
@@ -874,9 +873,12 @@ export default {
   font-size: 24px;
   font-family: "微软雅黑";
   color: #2440b4;
-  line-height: 28px;
-  cursor: pointer;
+  line-height: 25px;
+
   text-decoration: underline;
+}
+.each_r_title span {
+  cursor: pointer;
 }
 .each_r_title img {
   margin-right: 5px;

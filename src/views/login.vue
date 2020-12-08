@@ -218,7 +218,8 @@ export default {
     },
     submitResult() {
       if (this.isSucccess = true) {
-        this.$router.push("/login");
+        // this.$router.push("/login");
+        this.resultDialog = false
       }
     },
 

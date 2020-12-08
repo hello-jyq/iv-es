@@ -1,0 +1,337 @@
+@media (max-width: 1600px) { 
+
+    /* layout */
+    [class^="icon"], .iconfont{
+          display: inline-block;
+          font-size: 12px !important;
+        }
+       aside{
+         width:245px !important;       
+       }
+       aside.collapse{
+          width: 52px !important; 
+       }
+     .el-submenu  .el-menu-item, .el-submenu__title{
+           height: 40px;
+           line-height: 40px;
+       }
+      .el-menu span{
+          font-size: 12px;
+      }
+      .el-submenu__title .iconfont{
+          margin-top: 3px;
+      }
+      .el-submenu__icon-arrow{
+          margin-top: -9px;
+      }
+      .iconfont.icon-yousuojin,.icon-zuosuojin{
+          font-size: 18px !important;
+      }
+      .icon-shezhi{
+          font-size: 14px !important;
+      }
+      .header{
+          height: 56px!important;
+        margin-left: 35px!important;
+        margin-right: 35px!important;
+      }
+      .el-breadcrumb{
+          line-height: 56px;
+      }
+      .el-breadcrumb__inner a, .el-breadcrumb__inner.is-link{
+          font-size: 12px;
+      }
+      .el-breadcrumb__item:last-child .el-breadcrumb__inner, .el-breadcrumb__item:last-child .el-breadcrumb__inner a, .el-breadcrumb__item:last-child .el-breadcrumb__inner a:hover, .el-breadcrumb__item:last-child .el-breadcrumb__inner:hover{
+          font-size: 12px;
+      }
+      .el-dropdown{
+          font-size: 12px;
+          line-height: 20px;
+      }
+      .btn_round_icon{
+          width: 20px;
+          height: 20px;
+          line-height: 20px;
+      }
+      .result_filter{
+          width: 270px;
+      }
+      .title_box{
+          height: 26px !important;
+      }
+      .title_box li{
+             width: 37px !important;
+            height: 26px !important;
+            font-size: 12px !important;
+            line-height: 26px !important;
+            padding: 0 !important;
+      }
+      .title_box li.active{
+          width: 91px !important;
+      }
+.result_filter_all{
+    width: 465px;
+}
+.result_filter_all .title_box li{
+    width: 87px !important;
+}
+/* 普通搜索初始 */
+.search_box{
+    height: 144px !important;
+    margin-bottom: 18px !important;
+}
+.search_box .inline-input{
+    padding: 35px 26px 18px !important;
+}
+.search_box .el-input--prefix .el-input__inner{
+    padding-left: 48px !important;
+}
+.search_box .el-input__inner{
+    height: 44px !important;
+}
+.search_box .icon-sousuo1{
+    line-height: 44px !important;
+}
+.search_box .el-button{
+    width: 140px !important;
+    height: 44px !important;
+    border-radius: 22px !important;
+    font-size: 14px !important;
+}
+.search_box .el-select .el-input__inner{
+    width: 105px !important;
+    height: 21px !important;
+    font-size: 12px;
+}
+.search_box .el-radio__label{
+font-size: 12px;
+}
+.font_size_14 {
+    font-size: 12px;
+}
+.el-radio__input.is-checked .el-radio__inner{
+    width: 16px;
+    height: 16px;
+}
+.el-radio__inner::after{
+    width: 8px;
+    height: 8px;
+}
+.el-radio__inner{
+    width: 16px;
+    height: 16px; 
+}
+.main_box{
+    padding: 26px !important; 
+}
+.hot_search{
+    padding: 26px !important;
+}
+.main_box .item_title{
+font-size: 16px !important;
+}
+.refresh_words{
+    font-size: 14px !important;
+}
+.item_content li{
+    margin-right: 26px !important;
+    margin-bottom: 18px !important;
+    font-size: 14px !important;
+}
+.key_search{
+      padding: 26px !important;
+}
+.key_search .el-table{
+    margin-top: 18px;
+}
+
+.el-table th{
+    padding: 0;
+    height: 44px;
+    line-height: 44px;
+}
+.el-table td{
+    height: 35px;
+    line-height: 35px;
+}
+.el-table td .cell{
+    font-size: 12px;
+}
+.theme_search_input .el-input__inner{
+    height: 33px;
+}
+.theme_search_input i{
+    line-height: 33px;
+    height: 33px;
+}
+.theme_search_input{
+     line-height: 33px;
+    height: 33px;
+    margin-bottom: 8px;
+}
+
+/* 搜索结果 */
+.con_box{
+       height: calc(100vh - 100px) !important;
+    padding: 18px 0 18px 18px !important; 
+}
+.search_num .icon-sousuo2{
+    font-size: 18px !important;
+}
+.search_num span{
+    font-size: 12px !important;
+}
+.search_num .icon-ai-arrow-down{
+    font-size: 10px !important;
+}
+.el-tree-node__label{
+    font-size: 12px;
+}
+.el-tree-node__content .is-disabled + .el-tree-node__label{
+     font-size: 12px;
+}
+.el-tree-node__content>label.el-checkbox{
+    margin-top: -2px;
+}
+.el-checkbox__label{
+  font-size: 12px;
+}
+.el-radio__label{
+    font-size: 12px;
+}
+.result_header{
+    height: 35px !important;
+    line-height: 35px !important;
+    font-size: 12px !important;
+}
+.each_reult{
+    padding:22px  0 !important;
+}
+.each_r_title{
+    margin-top: 13px !important;
+    height: 22px !important;
+    font-size: 21px !important;
+    line-height: 22px !important;
+}
+.each_r_con {
+    margin-top: 17px !important;
+    height: 35px !important;
+    font-size: 12px !important;
+    line-height: 18px !important;
+}
+.each_r_url{
+    margin-top: 13px !important;
+    height: 13px !important;
+    line-height: 8px !important;
+}
+.each_r_lable li{
+    width: 88px !important;
+    height: 21px !important;
+    font-size: 12px !important;
+    line-height: 18px !important;
+        margin-right: 18px !important;
+    margin-top: 13px !important;
+    padding-left: 8px !important;
+}
+.each_r_lable .set_label{
+    width: 105px !important;
+}
+.each_down{
+    font-size: 12px !important;
+    line-height: 20px !important;
+}
+.el-pagination button, .el-pagination span:not([class*=suffix]){
+    font-size: 12px;
+}
+.el-pagination__editor.el-input .el-input__inner, .el-pagination .el-select .el-input .el-input__inner{
+    font-size: 12px;
+    width: 105px;
+    height: 21px;
+}
+.pagination_right slot button{
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    line-height: 18px;
+}
+.el-pagination.is-background .btn-next, .el-pagination.is-background .btn-prev{
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+     min-width: 18px;
+    line-height: 18px
+}
+.el-pagination.is-background .btn-next i, .el-pagination.is-background .btn-prev i{
+
+    line-height: 18px
+}
+.el-pagination.is-background .el-pager li{
+    font-size: 12px;
+    line-height: 18px;
+     width: 18px;
+    height: 18px;
+    min-width: 18px;
+}
+/* login */
+.language-in .el-dropdown{
+    margin-top: 44px !important;
+    margin-left: 52px !important;
+}
+.login-info form{
+    top: calc(50% - 236px) !important;
+    left: calc(50% - 188px) !important;
+    width: 376px !important;
+}
+.el-dropdown-menu__item{
+    line-height: 32px;  
+    font-size: 12px;
+}
+.el-dropdown-menu__item img{
+    width: 14px;
+    margin-right: 5px;
+}
+.acc_title{
+    height: 44px !important;
+    line-height: 44px !important;
+}
+.acc_title li{
+    width:136px !important;
+    height: 44px !important;
+    font-size: 14px !important;
+}
+.login .logo{
+    width: 228px !important; 
+    height: 91px !important;
+    margin: 0 auto 58px auto !important;
+}
+.login .el-form-item{
+    margin-bottom: 35px !important;
+}
+.login .el-form-item__content{
+    line-height: 35px;
+}
+.login .el-input__inner{
+    height: 44px ;
+    font-size: 16px;
+}
+.login .retrieve{
+    line-height:17px !important; 
+    margin-top:-17px !important
+}
+.login .retrieve span{
+    font-size: 12px !important;
+}
+.login .el-button{
+    height: 42px;
+    line-height: 42px;
+}
+.login-banner h2{
+    font-size: 26px !important;
+}
+.login-banner .txt{
+    width: 620px !important;
+    left: calc(50% - 310px) !important;
+    height: 49px !important;
+    font-size: 16px !important;
+}
+}

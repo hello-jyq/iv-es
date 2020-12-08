@@ -15,6 +15,9 @@
   img{
       max-width: 100%;
   }
+  body{
+    min-width: 1300px;
+  }
   #app{
     height: 100vh;  
     background: #EEF2F6;

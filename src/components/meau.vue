@@ -145,7 +145,7 @@ export default {
       this.isCollapse = !this.isCollapse;
       this.openeds = [];
       this.$store.state.falg = this.isCollapse
-      console.log('meau', this.isCollapse)
+      // console.log('meau', this.isCollapse)
     },
     onOpen() {
       this.isCollapse = false;

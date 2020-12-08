@@ -1,14 +1,15 @@
 <template>
-     <div class="container"> 
+     <div class="container acc"> 
        <div class="header_box">
         选择用户角色：
-          <el-radio-group v-model="radio">
-            <el-radio :label="1">角色1</el-radio>
-            <el-radio :label="2">角色2</el-radio>
-            <el-radio :label="3">角色3</el-radio>
-            <el-radio :label="4">角色4</el-radio>
-            <el-radio :label="5">角色5</el-radio>
-          </el-radio-group>
+         <el-select v-model="selectvalue" placeholder="请选择" popper-class="acc">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
        </div>
        <div class="main_box">
          <div class="acc_title">
@@ -33,7 +34,7 @@
               </el-tree>
              </div>
                 <el-row type="flex" justify="center" class="acc_button">
-                    <el-button round icon="iconfont icon-refresh">重置</el-button>
+                    <el-button round icon="iconfont icon-refresh" @click="reset(index)">重置</el-button>
                     <el-button type="primary" round icon="iconfont icon-queding">确定</el-button>
                 </el-row>
           </div>
@@ -44,7 +45,23 @@
 export default {
   data() {
     return {
-      radio: 3,
+      options: [{
+        value: '1',
+        label: '总经理'
+      }, {
+        value: '2',
+        label: '角色一'
+      }, {
+        value: '3',
+        label: '角色二'
+      }, {
+        value: '4',
+        label: '角色三'
+      }, {
+        value: '5',
+        label: '角色四'
+      }],
+      selectvalue: '1',
       active: 1,
       checked: '',
       data: [{
@@ -175,7 +192,9 @@ export default {
         this.$refs.tree[i].setCheckedKeys([]);
       }
     },
-
+    reset(i) {
+      this.$refs.tree[i].setCheckedKeys([]);
+    }
 
   }
 }
@@ -187,12 +206,17 @@ export default {
   background: #ffffff;
   box-shadow: 0px 2px 10px 0px rgba(68, 100, 163, 0.1);
   border-radius: 16px;
-  padding: 0 20px;
-  line-height: 100px;
+  padding: 30px 30px 30px 20px;
+  line-height: 40px;
+  font-size: 14px;
+  font-family: "微软雅黑";
+  color: #333333;
+  display: flex;
+  justify-content: left;
+  white-space: nowrap;
 }
 .main_box {
   height: calc(100vh - 328px);
-
   background: #ffffff;
   border-radius: 0px 0px 16px 16px;
   overflow: hidden;
@@ -202,9 +226,7 @@ export default {
   box-sizing: border-box;
   flex-direction: column;
 }
-.el-radio {
-  margin-left: 10px;
-}
+
 .acc_title {
   width: 100%;
   height: 50px;

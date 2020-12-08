@@ -59,14 +59,15 @@
     color: #2D7A9C;
 }
 .el-breadcrumb__inner a, .el-breadcrumb__inner.is-link{
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
 }
 .el-breadcrumb__item:last-child .el-breadcrumb__inner, .el-breadcrumb__item:last-child .el-breadcrumb__inner a, .el-breadcrumb__item:last-child .el-breadcrumb__inner a:hover, .el-breadcrumb__item:last-child .el-breadcrumb__inner:hover{
-    font-size: 12px;
+    font-size: 14px;
      font-weight: normal;
 }
 /* 下拉菜单*/
+
 .el-dropdown{
     cursor: pointer;
     
@@ -89,6 +90,15 @@
 }
 .el-dropdown-menu__item{
     color: #fff;
+}
+.login-down .el-dropdown-menu__item{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+.login-down .el-dropdown-menu__item img{
+    margin-right: 5px;
+    width: 20px;
 }
 .el-dropdown-menu__item:not(.is-disabled):hover {
     background: none;
@@ -114,8 +124,20 @@
     border-color: transparent;
     border-style: solid;
 }
-
-
+.acc .el-select{
+    width:100% ;
+}
+.acc .el-select .el-input__inner{
+    width: 100%;
+    height: 40px;
+}
+.acc .popper__arrow::after {
+    border-bottom-color: #fff !important;
+    border-top-color: #fff !important;
+}
+.acc  .el-select-dropdown__item.selected{
+    color: #2D7A9C;
+}
 /***********  input ***********/
 /* login */
 .login .el-input__inner {
@@ -175,7 +197,8 @@
     border-radius: 16px;
 }
 .login .el-dialog__header{
-padding: 5px 30px;
+padding: 60px 0px 25px 0 ;
+background: none;
 }
 .login .retrieve_password .el-dialog__title {
     line-height: 30px;
@@ -352,6 +375,15 @@ background: linear-gradient(180deg, #475BA0 0%, #2FA5BB 100%);
 .login-info  .el-button--primary:focus, .el-button--primary:hover {
     background: linear-gradient(135deg, #475ba0 0%, #2fa5bb 100%)
 }
+
+.el-button--default:focus,
+.el-button--default:hover {
+  background: #ffffff;
+  
+color: #888888;
+border: 1px solid #3F71A8;
+}
+
 /************* 二次检索 **************/
 /*  树形控件*/
 .el-tree{
@@ -433,6 +465,9 @@ border-color: #2D7A9C;
 .acc_con .el-checkbox__input.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner{
     background-color: transparent;
     border-color: #2D7A9C;
+}
+.acc_con .el-checkbox__input.is-focus .el-checkbox__inner{
+      border-color: #2D7A9C;
 }
 .acc_con .el-checkbox__inner:hover {
     border-color: #2D7A9C;
