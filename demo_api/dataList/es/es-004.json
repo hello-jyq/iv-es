@@ -539,13 +539,13 @@
 						"seqNo": ".121929902801113088.121929902801113089"
 					}
 				],
-				"seqNo": ".121929902801113088"
+				"seqNo": ".12192990280111308"
 			},
 			{
 				"id": "121929902801113089",
 				"pid": null,
 				"dataSource": "iv-fileserver-private",
-				"label": "C:(0)",
+				"label": "D:(0)",
 				"fileItemCount": "0",
 				"realPath": "C:/",
 				"children": [
@@ -978,16 +978,6 @@
 						"seqNo": ".121929902801113088.121929902801113089"
 					}
 				],
-				"seqNo": ".121929902801113088"
-			},
-			{
-				"id": "121929902801113086",
-				"pid": null,
-				"dataSource": "iv-fileserver-private-3",
-				"label": "C:(0)",
-				"fileItemCount": "0",
-				"realPath": "C:/",
-				"children": [],
 				"seqNo": ".121929902801113088"
 			}
 		],

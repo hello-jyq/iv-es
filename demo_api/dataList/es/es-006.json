@@ -1,0 +1,66 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "rolesList": [{
+            "id": "ROLE_DATA_ES_ALL",
+            "createTime": "2020-07-01 00:00:00",
+            "createBy": "admin",
+            "updateTime": "2020-07-01 00:00:00",
+            "updateBy": "admin",
+            "deleteFlag": 0,
+            "rightNo": 4,
+            "roleName": "全文检索数据权限"
+        }, {
+            "id": "ROLE_DATA_ES_BS_SOL",
+            "createTime": "2020-07-01 00:00:00",
+            "createBy": "admin",
+            "updateTime": "2020-07-01 00:00:00",
+            "updateBy": "admin",
+            "deleteFlag": 0,
+            "rightNo": 4,
+            "roleName": "BS_SOL 权限"
+        },{
+            "id": "ROLE_DATA_ES_BS_PRO",
+            "createTime": "2020-07-01 00:00:00",
+            "createBy": "admin",
+            "updateTime": "2020-07-01 00:00:00",
+            "updateBy": "admin",
+            "deleteFlag": 0,
+            "rightNo": 4,
+            "roleName": "BS_PRO 权限"
+        },{
+            "id": "ROLE_DATA_ES_BS_FINANCE",
+            "createTime": "2020-07-01 00:00:00",
+            "createBy": "admin",
+            "updateTime": "2020-07-01 00:00:00",
+            "updateBy": "admin",
+            "deleteFlag": 0,
+            "rightNo": 4,
+            "roleName": "BS_FINANCE 权限"
+        },{
+            "id": "ROLE_DATA_ES_BS_ERP",
+            "createTime": "2020-07-01 00:00:00",
+            "createBy": "admin",
+            "updateTime": "2020-07-01 00:00:00",
+            "updateBy": "admin",
+            "deleteFlag": 0,
+            "rightNo": 4,
+            "roleName": "BS_ERP 权限"
+        },{
+            "id": "ROLE_DATA_ES_ITL",
+            "createTime": "2020-07-01 00:00:00",
+            "createBy": "admin",
+            "updateTime": "2020-07-01 00:00:00",
+            "updateBy": "admin",
+            "deleteFlag": 0,
+            "rightNo": 4,
+            "roleName": "BS_ITL 权限"
+        }
+    ],
+        "roleId": "ROLE_DATA_ES_ALL"
+    }
+}

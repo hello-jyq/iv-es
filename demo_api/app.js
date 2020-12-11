@@ -427,11 +427,13 @@ app.post('/budgetms/api/comm/bdminfo', (req, res) => {
   sentResByJson('dataList/bud/bdm/2-1detail.json', res)
 })
 
+// 【ES-API-004】基本检索API
 app.post('/iv-es/api/es/search', (req, res) => {
   // 读取json文件并送信
   sentResByJson('dataList/es/es-004.json', res)
 })
 
+// 【ES-API-005】基本检索过滤API.xlsx
 app.post('/iv-es/api/es/filtersearch', (req, res) => {
   // 读取json文件并送信
   sentResByJson('dataList/es/es-005.json', res)
@@ -441,22 +443,34 @@ app.post('/iv-es/api/es/list', (req, res) => {
   sentResByJson('dataList/es/searchresult.json', res)
 })
 
-// 联想词
+// 联想词  【ES-API-001】联想词API.xlsx
 app.get('/iv-es/api/es/terms', (req, res) => {
   // 读取json文件并送信
   sentResByJson('dataList/es/terms.json', res)
 })
 
-// 热词
-app.get('/iv-es/api/es/hotWords', (req, res) => {
+// 热词  // 【ES-API-002】热词取得API.xlsx
+app.get('/iv-es/api/es/hotwords', (req, res) => {
   // 读取json文件并送信
   sentResByJson('dataList/es/hotWords.json', res)
 })
 
-// 搜索履历
+// 搜索履历  【ES-API-003】搜索履历列表取得API.xlsx
 app.get('/iv-es/api/log/keywords', (req, res) => {
   // 读取json文件并送信
   sentResByJson('dataList/es/keywords.json', res)
+})
+
+// 【ES-API-006】文件树访问角色取得API
+app.get('/iv-es/api/folderauth/esroles', (req, res) => {
+  // 读取json文件并送信
+  sentResByJson('dataList/es/es-006.json', res)
+})
+
+// 【ES-API-007】文件访问权限树取得API
+app.post('/iv-es/api/folderauth/foldertree', (req, res) => {
+  // 读取json文件并送信
+  sentResByJson('dataList/es/es-007.json', res)
 })
 
 function sentResByJson(filePath, res) {

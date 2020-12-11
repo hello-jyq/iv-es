@@ -3,17 +3,19 @@
         <div :class="isCollapse?'result_DIY result_filter_all':'result_DIY result_filter'">
           <div class="title_box">
             <ul >
-              <li v-for="(item,index) in filetab" :key="index" :class="activeDataSource==index?'active':''"   @click="filetapClick(item.id),activeDataSource=index" :title="item.dictName">{{item.dictName}}</li>
+             
+              <li v-for="(item,index) in filetab" :key="index" :class="activeDataSource==index?'active':''"   @click="filetapClick(item.id,index),activeDataSource=index" :title="item.value">{{item.value}}</li>
             </ul>
           </div>
           <div class="con_box" >
             <div class="left_result">
-              <div class="search_num" @click="istree=!istree">
+              <div class="search_num" @click="istree=!istree"  v-if="activeDataSource!='0'">
                 <i class="iconfont icon-sousuo2" />
                 <span>搜索结果数量</span>
                 <i class="iconfont icon-ai-arrow-down" :class="istree?'':'icon_gif'"></i>
               </div>     
               <el-tree
+              v-if="activeDataSource!='0'"
               v-show="istree"
                 :data="treeData"
                 show-checkbox
@@ -29,8 +31,9 @@
                 @check="docTreeCheck"
                 >             
               </el-tree>
-
-              <div class="search_num" style="margin-top:30px" @click="ischeck=!ischeck">
+              <div style="margin-top:30px"   v-if="activeDataSource!='0'"></div>
+              <div v-if="activeDataSource==0">
+              <div class="search_num"  @click="ischeck=!ischeck">
                   <i class="iconfont icon-duomeitiicon-" />
                   <span>文档类型</span>
                   <i class="iconfont icon-ai-arrow-down" :class="ischeck?'':'icon_gif'"></i>
@@ -98,6 +101,7 @@
                   <el-checkbox label="英文"></el-checkbox>
                   <el-checkbox label="日文"></el-checkbox>
                 </el-checkbox-group> 
+                </div>
             </div>
             <!-- <el-row type="flex" justify="space-around" style="margin-top:20px;margin-right:20px">
               <el-button round icon="iconfont icon-refresh">重置</el-button>
@@ -154,7 +158,7 @@
                   <div class="each_r_top">
                     <div>
                       <span><i class="iconfont icon-wenjianjia"/>{{item.dataSource}}</span>
-                      <span><i class="iconfont icon-wendang"/>{{item.filePath}}</span>
+                      <div class="each_m"><i class="iconfont icon-wendang"/>{{item.filePath}}</div>
                       <span><i class="iconfont icon-wode"/>{{item.updateUser}}</span>
                     </div>
                     <span class="each_down" @click="down(item.fileUrl)">
@@ -333,7 +337,7 @@
 </template>
 <script>
 import { advancedSearch, downloadFile, getTerms, filterSearch } from '@/api/es/es-api'
-import { getDictEntriesByTypeId } from '@/api/base'
+// import { getDictEntriesByTypeId } from '@/api/base'
 export default {
 
   data() {
@@ -382,7 +386,7 @@ export default {
       sltData: '',
       centerDialogVisible: false,
       filesizeDialogVisible: false,
-      activeDataSource: '',
+      activeDataSource: 0,
       filetab: [
       ],
       loading: false,
@@ -438,6 +442,7 @@ export default {
   created() {
     console.log(this.dictTypeId)
     console.log(this.$route.query)
+    this.advancedSearch(this.search)
   },
   computed: {
     isCollapse() {
@@ -467,15 +472,14 @@ export default {
         this.pageSize = res.datas.searchResult.pageSize
         this.totalPage = res.datas.searchResult.totalPage
         this.totalRecord = res.datas.searchResult.totalRecord
-        this.filetab = []
+        this.filetab = [{ id: 'fixed', value: '搜索结果表' }]
         for (var i = 0; i < res.datas.folderTreeResult.length; i++) {
           this.filetab.push({
             id: res.datas.folderTreeResult[i].id,
-            name: res.datas.folderTreeResult[i].dataSource
+            value: res.datas.folderTreeResult[i].dataSource
           })
         }
-        this.getDictEntriesByTypeId(this.filetab)
-        // console.log(1111, res.datas.folderTreeResult[2].dataSource)
+
       }
     },
     async getTerms(queryString) {
@@ -497,14 +501,17 @@ export default {
         this.results = res.datas.searchResult
       }
     },
-    async getDictEntriesByTypeId(item) {
+    // async getDictEntriesByTypeId(item) {
 
-      // const res = await getDictEntriesByTypeId({ dictTypeId: item.name })
-      const res = await getDictEntriesByTypeId({ dictTypeId: 'ESDataSourceName' })
-      if (res && res.success) {
-        this.filetab = res.datas.dicts
-      }
-    },
+    //   // const res = await getDictEntriesByTypeId({ dictTypeId: item.name })
+    //   const res = await getDictEntriesByTypeId({ dictTypeId: 'ESDataSourceName' })
+    //   if (res && res.success) {
+    //     this.filetab = res.datas.dicts
+    //     let fixedTap = { dictId: 'fixed', dictName: '搜索结果表' }
+    //     this.filetab.unshift(fixedTap);
+    //     console.log(this.filetab)
+    //   }
+    // },
     querySearch(queryString, cb) {
       this.restaurants = []
       this.getTerms(queryString)
@@ -530,10 +537,15 @@ export default {
       this.filterSearch(this.filteritem)
     },
     //文件服务器tab
-    filetapClick(value) {
-      //  console.log(value)
+    filetapClick(value, index) {
+      // console.log(index)
+      // if (this.treeData.length > 1) {
+      //   this.treeData = this.treeData[0]
+      // }
       this.filteritem.dataSource = value
       this.filterSearch(this.filteritem)
+      console.log(3333, this.treeData.id)
+
     },
     // 选择tree
     docTreeCheck(node, key) {
@@ -880,6 +892,10 @@ export default {
 }
 .each_r_top div {
   height: 20px;
+  display: flex;
+}
+.each_m {
+  margin-right: 15px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
