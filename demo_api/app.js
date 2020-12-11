@@ -427,16 +427,36 @@ app.post('/budgetms/api/comm/bdminfo', (req, res) => {
   sentResByJson('dataList/bud/bdm/2-1detail.json', res)
 })
 
-
-
-
 app.post('/iv-es/api/es/search', (req, res) => {
   // 读取json文件并送信
-  sentResByJson('dataList/es/searchresult.json', res)
+  sentResByJson('dataList/es/es-004.json', res)
+})
+
+app.post('/iv-es/api/es/filtersearch', (req, res) => {
+  // 读取json文件并送信
+  sentResByJson('dataList/es/es-005.json', res)
 })
 app.post('/iv-es/api/es/list', (req, res) => {
   // 读取json文件并送信
   sentResByJson('dataList/es/searchresult.json', res)
+})
+
+// 联想词
+app.get('/iv-es/api/es/terms', (req, res) => {
+  // 读取json文件并送信
+  sentResByJson('dataList/es/terms.json', res)
+})
+
+// 热词
+app.get('/iv-es/api/es/hotWords', (req, res) => {
+  // 读取json文件并送信
+  sentResByJson('dataList/es/hotWords.json', res)
+})
+
+// 搜索履历
+app.get('/iv-es/api/log/keywords', (req, res) => {
+  // 读取json文件并送信
+  sentResByJson('dataList/es/keywords.json', res)
 })
 
 function sentResByJson(filePath, res) {

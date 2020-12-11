@@ -9,6 +9,10 @@ export function advancedSearch(params) {
   return request('POST', '/api/es/search', params)
 }
 
+export function filterSearch(params) {
+  return request('POST', '/api/es/filtersearch', params)
+}
+
 export function downloadFile(param) {
   return download('POST', '/api/es/download', param)
 }

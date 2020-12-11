@@ -11,7 +11,7 @@
             </el-option>
           </el-select>
        </div>
-       <div class="main_box">
+       <div class="acc_main_box">
          <div class="acc_title">
             <ul>
               <li v-for="(item,index) in 5" :key="index" :class="active==index?'active':''" @click="active=index">文件服务器{{index+1}}</li>
@@ -215,7 +215,7 @@ export default {
   justify-content: left;
   white-space: nowrap;
 }
-.main_box {
+.acc_main_box {
   height: calc(100vh - 328px);
   background: #ffffff;
   border-radius: 0px 0px 16px 16px;

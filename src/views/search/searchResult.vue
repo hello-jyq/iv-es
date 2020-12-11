@@ -2,11 +2,11 @@
     <div class="result_box">
         <div :class="isCollapse?'result_DIY result_filter_all':'result_DIY result_filter'">
           <div class="title_box">
-            <ul>
-              <li v-for="(item,index) in 5" :key="index" :class="active==index?'active':''" @click="active=index" :title="'文件服务器'+(index+1)">文件服务器{{index+1}}</li>
+            <ul >
+              <li v-for="(item,index) in filetab" :key="index" :class="activeDataSource==index?'active':''"   @click="filetapClick(item.id),activeDataSource=index" :title="item.dictName">{{item.dictName}}</li>
             </ul>
           </div>
-          <div class="con_box" :class="active==index?'show':''" v-for="(item,index) in 5" :key="item.index">
+          <div class="con_box" >
             <div class="left_result">
               <div class="search_num" @click="istree=!istree">
                 <i class="iconfont icon-sousuo2" />
@@ -15,7 +15,7 @@
               </div>     
               <el-tree
               v-show="istree"
-                :data="data"
+                :data="treeData"
                 show-checkbox
                 node-key="id"
                 :expand-on-click-node=false
@@ -26,6 +26,7 @@
                 :default-expand-all="istree"
                 icon-class="iconfont icon-jiantou-copy"
                 ref="ProjectTree"
+                @check="docTreeCheck"
                 >             
               </el-tree>
 
@@ -34,16 +35,8 @@
                   <span>文档类型</span>
                   <i class="iconfont icon-ai-arrow-down" :class="ischeck?'':'icon_gif'"></i>
               </div>
-              <el-checkbox-group v-model="filecheckList" v-show='ischeck'>
-                <el-checkbox label="Word (11)"></el-checkbox>
-                <el-checkbox label="Excel (12)"></el-checkbox>
-                <el-checkbox label="PowerPoint (22)"></el-checkbox>
-                <el-checkbox label="Adobe Acrobat PDF (44)"></el-checkbox>
-                <el-checkbox label="文本类 (54)"></el-checkbox>
-                <el-checkbox label="图像类 (77)"></el-checkbox>
-                <el-checkbox label="压缩类 (22)"></el-checkbox>
-                <el-checkbox label="媒体类 (54)"></el-checkbox>
-                <el-checkbox label="其他类型 (7997)"></el-checkbox>
+              <el-checkbox-group v-model="filecheckList" @change="fileType" v-show='ischeck' >
+                <el-checkbox v-for="type in fileTypeAggResult" :key="type.id" :label="type.id">{{type.name}}</el-checkbox>
               </el-checkbox-group> 
         
               <div class="search_num" style="margin-top:30px" @click="isradio=!isradio">
@@ -51,19 +44,16 @@
                   <span>更新时间</span>
                   <i class="iconfont icon-ai-arrow-down" :class="isradio?'':'icon_gif'"></i>
               </div>
-              <el-radio-group v-model="radioList" v-show="isradio">
-                 <el-radio :label="0">全部时间 (188)</el-radio>
-                  <el-radio :label="1">一天内 (33)</el-radio>
-                  <el-radio :label="2">一周内 (33)</el-radio>
-                  <el-radio :label="3">一月内 (66)</el-radio>
-                  <el-radio :label="4">半年内 (33)</el-radio>
-                  <el-radio :label="5">一年内 (55)</el-radio>
-                  <el-radio :label="6">自定义时间</el-radio>
+              <el-radio-group v-model="radiocheckList" @change="radioTimeCheck" v-show="isradio">
+                 <el-radio :label="time.id" v-for="time in fileUpdateTimeAggResult" :id="time.id" :key="time.id">{{time.name}}</el-radio>
+                  <el-radio label="自定义时间"></el-radio>
                </el-radio-group>
               <div class="block" v-show="isradio">        
                   <el-date-picker
                   popper-class="date_picker"
                     v-model="radiotime"
+                    @change="diyTime"
+                    value-format="yyyy-MM-dd hh:mm"
                     type="datetimerange"
                     range-separator="至"
                     start-placeholder="开始日期"
@@ -77,10 +67,7 @@
                   <i class="iconfont icon-ai-arrow-down" :class="issize?'':'icon_gif'"></i>
                 </div>
                 <el-checkbox-group v-model="sizecheckList" v-show='issize' @change="checkboxChange">
-                  <el-checkbox label="100K - 500K (33)"></el-checkbox>
-                  <el-checkbox label="500K - 1M (33)"></el-checkbox>
-                  <el-checkbox label="1M - 100M (33)"></el-checkbox>
-                  <el-checkbox label="100M以上 (33)"></el-checkbox>
+                  <el-checkbox  v-for="filesize in fileSizeAggResult" :key="filesize.index"  :label="filesize.id">{{filesize.name}}</el-checkbox>
                   <el-checkbox label="自定义大小" @click.native="diysize"></el-checkbox>
                 </el-checkbox-group> 
                 <div class="diy_size"  v-show='issize'>
@@ -105,7 +92,7 @@
                   <span>文档语言</span>
                   <i class="iconfont icon-ai-arrow-down" :class="isfile?'':'icon_gif'"></i>
                 </div>
-                <el-checkbox-group v-model="lancheckList" v-show='isfile'>
+                <el-checkbox-group v-model="lancheckList" @change="langCheckbox" v-show='isfile'>
                   <el-checkbox label="全部语言"></el-checkbox>
                   <el-checkbox label="中文"></el-checkbox>
                   <el-checkbox label="英文"></el-checkbox>
@@ -123,26 +110,28 @@
             <el-col :span="24">             
                 <el-autocomplete
                   class="inline-input "
-                  v-model="searchs"
+                  v-model="keyWords"
                   :fetch-suggestions="querySearch"
+                  @select="searchWords"
                   placeholder="请输入您想要搜索的内容"
+                  :maxlength=300
                   :trigger-on-focus="false"
                   popper-class="search_input"
                 >
                 <i slot="prefix" class="iconfont icon-sousuo1"></i>
-                <el-button slot="suffix" @click="search">搜&nbsp;&nbsp;索</el-button>
+                <el-button slot="suffix" @click="btnSearch">搜&nbsp;&nbsp;索</el-button>
               </el-autocomplete>
             </el-col>
             <el-col :span="24" class="flex_ceter" style="height:24px;line-height:24px">
               <span class="font_size_14 fontC_333">搜索条件：</span>
-              <el-radio-group v-model="radio">
-                <el-radio label="all">不限</el-radio>
-                <el-radio label="fileName">文件名</el-radio>
-                <el-radio label="fileCon">文件内容</el-radio>
+              <el-radio-group v-model="fieldScale" @change="fileScale">
+                <el-radio label="ALL">不限</el-radio>
+                <el-radio label="FILENAME">文件名</el-radio>
+                <el-radio label="FILECONTENT">文件内容</el-radio>
               </el-radio-group>
-              <el-select v-model="lang" placeholder="所有语言" placement="top-end" @change="getLang" popper-class="lang_select">
+              <el-select v-model="docLanguage" placeholder="选择语言" placement="top-end" @change="getLang" popper-class="lang_select">
                 <el-option
-                  v-for="item in options"
+                  v-for="item in optionslang"
                   :key="item.value"
                   :label="item.label"
                   :value="item.value">
@@ -153,36 +142,56 @@
        
          <div class="main_box" v-loading="loading">
             <div class="result_header">
-              <span>找到约41,300条结果(用时0.55秒)</span>
+              <span>找到约{{totalRecord}}条结果(用时0.55秒)</span>
               <div class="result_header_filter">
-                  结果排序：<span @click="isrelativity=!isrelativity">相关度<i class="iconfont icon-xuanze" :class="isrelativity?'icon_active':''"/></span><span  @click="istime=!istime">时间<i class="iconfont icon-xuanze" :class="istime?'icon_active':''"/></span>
+                  结果排序：<span @click="relativity('big'),isrelativity=!isrelativity">相关度<i class="iconfont icon-xuanze" :class="isrelativity?'icon_active':''"/></span><span  @click="timeSort('new'),istime=!istime">时间<i class="iconfont icon-xuanze" :class="istime?'icon_active':''"/></span>
                   <!-- <div class="pop_btn"><i class="iconfont icon-sousuo2"/></div> -->
               </div>
              
             </div>
-            <div class="result_main" v-if="results!=''">
-                <div class="each_reult">
+            <div class="result_main" v-if="results.results!=''">
+                <div class="each_reult" v-for="(item,index) in results.results" :key="item.id">
                   <div class="each_r_top">
                     <div>
-                      <span><i class="iconfont icon-wenjianjia"/>文件服务器一</span>
-                      <span><i class="iconfont icon-wendang"/>\菱威深搜索系统项目\搜索引擎\设计稿</span>
-                      <span><i class="iconfont icon-wode"/>李四</span>
+                      <span><i class="iconfont icon-wenjianjia"/>{{item.dataSource}}</span>
+                      <span><i class="iconfont icon-wendang"/>{{item.filePath}}</span>
+                      <span><i class="iconfont icon-wode"/>{{item.updateUser}}</span>
                     </div>
-                    <span class="each_down">
+                    <span class="each_down" @click="down(item.fileUrl)">
                      <i class="iconfont  icon-Group-"/>点击下载
                     </span>
                   </div>
                   <div class="each_r_title" >
-                    <img src="../../assets/img/PPT.png"/>
-                    <span @click="centerDialogVisible = true">ns <span class="key">neuron</span> Solr Cloud. pptx</span>
-                    <img class="each_lan" src="../../assets/img/cn_ico.png"/>
+                    <img v-if="item.fileType=='Excel'" src="../../assets/img/filetype/excel.png"/>
+                    <img v-else-if="item.fileType=='Word'" src="../../assets/img/filetype/word.png"/>
+                    <img v-else-if="item.fileType=='PowerPoint'" src="../../assets/img/filetype/PPT.png"/>
+                    <img v-else-if="item.fileType=='Pdf'" src="../../assets/img/filetype/PDF.png"/>
+                    <img v-else-if="item.fileType=='Text'" src="../../assets/img/filetype/TXT.png"/>
+                    <img v-else-if="item.fileType=='Image'" src="../../assets/img/filetype/img.png"/>
+                    <img v-else-if="item.fileType=='zip'" src="../../assets/img/filetype/excel.png"/>
+                    <img v-else-if="item.fileType=='Media'" src="../../assets/img/filetype/other.png"/>
+                    <img v-else src="../../assets/img/filetype/other.png"/>
+                    <span @click="showSLT(item)" v-html="item.fileName"></span>
+                     <img v-if="item.language=='CN'" class="each_lan" src="../../assets/img/cn_ico.png"/>
+                    <img v-else-if="item.language=='EN'" class="each_lan" src="../../assets/img/en_ico.png"/>
+                    <img v-else class="each_lan" src="../../assets/img/jp_ico.png"/>
                   </div>
                   <div class="each_r_con">
-                    2020-11-11 12:00:00 900KB - Powerpoint プレゼンテーションエンタープライズサーチシステム[<span class="key">Neuron</span>が利用するテクノロジ Solrcloudプレインズテクノロジー株式会社 Copyright(ctプレゼンテーションエンタープライズサーチシステム[Neuronが利用するテクノロジ…
+                    {{item.updateTime}} {{item.fileSize}}KB - {{item.fileType}} <span v-html="item.fileContentOutline"></span>
                   </div>
                   <div class="each_r_url" id="eachurl">
-                    <input id="urlcoby" value="192.168.0.0\菱威深搜索系统项目\搜索引擎\设计稿" style="display:none"/>
-                    192.168.0.0\菱威深搜索系统项目\搜索引擎\设计稿 - <span @click="copyUrl">点击可复制路径</span>
+                 
+                    {{item.fileDerectory}} - 
+                     <el-popover
+                        placement="right"
+                        width="200"
+                        trigger="click"
+                        content="复制成功"
+                        popper-class="coby"
+                      >
+                        <span slot="reference"  @click="copyUrl(index)">点击可复制路径</span>
+                      </el-popover>
+                       <input :id="'urlcoby'+index" type="text" :value="item.fileDerectory" style="opacity: 0"/>
                   </div>
                   <div class="each_r_lable">
                     <ul>
@@ -200,145 +209,7 @@
                     </ul>
                   </div>
                 </div>
-                <div class="each_reult">
-                  <div class="each_r_top">
-                    <div>
-                      <span><i class="iconfont icon-wenjianjia"/>文件服务器一</span>
-                      <span><i class="iconfont icon-wendang"/>\菱威深搜索系统项目\搜索引擎\设计稿</span>
-                      <span><i class="iconfont icon-wode"/>李四</span>
-                    </div>
-                    <span class="each_down">
-                     <i class="iconfont  icon-Group-"/>点击下载
-                    </span>
-                  </div>
-                  <div class="each_r_title" >
-                    <img src="../../assets/img/PDF.png"/>
-                    <span @click="centerDialogVisible = true">ns <span class="key">neuron</span> Solr Cloud. pptx</span>
-                    <img class="each_lan" src="../../assets/img/cn_ico.png"/>
-                  </div>
-                  <div class="each_r_con_p">
-                   <div class="each_r_con_p_img"><img src="../../assets/img/search_pdf.png"/></div> 2020-11-11 12:00:00 900KB - image 点击查看内容
-                  </div>
-                  <div class="each_r_url" id="eachurl">
-                    <input id="urlcoby" value="192.168.0.0\菱威深搜索系统项目\搜索引擎\设计稿" style="display:none"/>
-                    192.168.0.0\菱威深搜索系统项目\搜索引擎\设计稿 - <span @click="copyUrl">点击可复制路径</span>
-                  </div>
-                  <div class="each_r_lable">
-                    <ul>
-                      <li><i class="iconfont icon-label"/>电子商务</li>
-                      <li><i class="iconfont icon-label"/>网络推广</li>
-                      <li><i class="iconfont icon-label"/>报表合同</li>
-                      <li class="set_label"><i class="iconfont icon-label"/>设置个人标签</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="each_reult">
-                  <div class="each_r_top">
-                    <div>
-                      <span><i class="iconfont icon-wenjianjia"/>文件服务器一</span>
-                      <span><i class="iconfont icon-wendang"/>\菱威深搜索系统项目\搜索引擎\设计稿</span>
-                      <span><i class="iconfont icon-wode"/>李四</span>
-                    </div>
-                    <span class="each_down">
-                     <i class="iconfont  icon-Group-"/>点击下载
-                    </span>
-                  </div>
-                  <div class="each_r_title" >
-                    <img src="../../assets/img/excel.png"/>
-                    <span @click="centerDialogVisible = true">ns <span class="key">neuron</span> Solr Cloud. pptx</span>
-                    <img class="each_lan" src="../../assets/img/jp_ico.png"/>
-                  </div>
-                  <div class="each_r_con">
-                    2020-11-11 12:00:00 900KB - Powerpoint プレゼンテーションエンタープライズサーチシステム[<span class="key">Neuron</span>が利用するテクノロジ Solrcloudプレインズテクノロジー株式会社 Copyright(ctプレゼンテーションエンタープライズサーチシステム[Neuronが利用するテクノロジ…
-                  </div>
-                  <div class="each_r_url" id="eachurl">
-                    <input id="urlcoby" value="192.168.0.0\菱威深搜索系统项目\搜索引擎\设计稿" style="display:none"/>
-                    192.168.0.0\菱威深搜索系统项目\搜索引擎\设计稿 - <span @click="copyUrl">点击可复制路径</span>
-                  </div>
-                  <div class="each_r_lable">
-                    <ul>
-                      <li class="set_label"><i class="iconfont icon-label"/>设置个人标签</li>
-                    </ul>
-                  </div>            
-                </div>
-                <div class="each_reult">
-                  <div class="each_r_top">
-                    <div>
-                      <span><i class="iconfont icon-wenjianjia"/>文件服务器一</span>
-                      <span><i class="iconfont icon-wendang"/>\菱威深搜索系统项目\搜索引擎\设计稿</span>
-                      <span><i class="iconfont icon-wode"/>李四</span>
-                    </div>
-                    <span class="each_down">
-                     <i class="iconfont  icon-Group-"/>点击下载
-                    </span>
-                  </div>
-                  <div class="each_r_title" >
-                    <img src="../../assets/img/word.png"/>
-                    <span @click="centerDialogVisible = true">ns <span class="key">neuron</span> Solr Cloud. pptx</span>
-                    <img class="each_lan" src="../../assets/img/jp_ico.png"/>
-                  </div>
-                  <div class="each_r_con">
-                    2020-11-11 12:00:00 900KB - Powerpoint プレゼンテーションエンタープライズサーチシステム[<span class="key">Neuron</span>が利用するテクノロジ Solrcloudプレインズテクノロジー株式会社 Copyright(ctプレゼンテーションエンタープライズサーチシステム[Neuronが利用するテクノロジ…
-                  </div>
-                  <div class="each_r_url" id="eachurl">
-                    <input id="urlcoby" value="192.168.0.0\菱威深搜索系统项目\搜索引擎\设计稿" style="display:none"/>
-                    192.168.0.0\菱威深搜索系统项目\搜索引擎\设计稿 - <span @click="copyUrl">点击可复制路径</span>
-                  </div>
-                  <div class="each_r_lable">
-                    <ul>
-                      <li><i class="iconfont icon-label"/>电子商务</li>
-                      <li><i class="iconfont icon-label"/>网络推广</li>
-                      <li><i class="iconfont icon-label"/>报表合同</li>
-                      <li><i class="iconfont icon-label"/>电子商务啊啊啊啊</li>
-                      <li><i class="iconfont icon-label"/>网络推广</li>
-                      <li><i class="iconfont icon-label"/>报表合同</li>
-                      <li><i class="iconfont icon-label"/>网络推广</li>
-                      <li><i class="iconfont icon-label"/>报表合同</li>
-                      <li><i class="iconfont icon-label"/>电子商务啊啊啊啊</li>
-                      <li><i class="iconfont icon-label"/>网络推广</li>
-                      <li class="set_label"><i class="iconfont icon-label"/>设置个人标签</li>
-                    </ul>
-                  </div>            
-                </div>
-                <div class="each_reult">
-                  <div class="each_r_top">
-                    <div>
-                      <span><i class="iconfont icon-wenjianjia"/>文件服务器一</span>
-                      <span><i class="iconfont icon-wendang"/>\菱威深搜索系统项目\搜索引擎\设计稿</span>
-                      <span><i class="iconfont icon-wode"/>李四</span>
-                    </div>
-                    <span class="each_down">
-                     <i class="iconfont  icon-Group-"/>点击下载
-                    </span>
-                  </div>
-                  <div class="each_r_title" >
-                    <img src="../../assets/img/TXT.png"/>
-                    <span @click="centerDialogVisible = true">ns <span class="key">neuron</span> Solr Cloud. pptx</span>
-                    <img class="each_lan" src="../../assets/img/jp_ico.png"/>
-                  </div>
-                  <div class="each_r_con">
-                    2020-11-11 12:00:00 900KB - Powerpoint プレゼンテーションエンタープライズサーチシステム[<span class="key">Neuron</span>が利用するテクノロジ Solrcloudプレインズテクノロジー株式会社 Copyright(ctプレゼンテーションエンタープライズサーチシステム[Neuronが利用するテクノロジ…
-                  </div>
-                  <div class="each_r_url" id="eachurl">
-                    <input id="urlcoby" value="192.168.0.0\菱威深搜索系统项目\搜索引擎\设计稿" style="display:none"/>
-                    192.168.0.0\菱威深搜索系统项目\搜索引擎\设计稿 - <span @click="copyUrl">点击可复制路径</span>
-                  </div>
-                  <div class="each_r_lable">
-                    <ul>
-                      <li><i class="iconfont icon-label"/>电子商务</li>
-                      <li><i class="iconfont icon-label"/>网络推广</li>
-                      <li><i class="iconfont icon-label"/>报表合同</li>
-                      <li><i class="iconfont icon-label"/>电子商务啊啊啊啊</li>
-                      <li><i class="iconfont icon-label"/>网络推广</li>
-                      <li><i class="iconfont icon-label"/>报表合同</li>
-                      <li><i class="iconfont icon-label"/>网络推广</li>
-                      <li><i class="iconfont icon-label"/>报表合同</li>
-                      <li><i class="iconfont icon-label"/>电子商务啊啊啊啊</li>
-                      <li><i class="iconfont icon-label"/>网络推广</li>
-                      <li class="set_label"><i class="iconfont icon-label"/>设置个人标签</li>
-                    </ul>
-                  </div>            
-                </div>               
+          
             </div>
             <div class="result_main_empty" v-else>
               <div class="empty_img">
@@ -358,24 +229,24 @@
                 <el-pagination
                   @size-change="handleSizeChange"
                   @current-change="handleCurrentChange"
-                  :current-page="currentPage1"
+                  :current-page="pageNo"
                   background
-                  :page-sizes="[10, 50, 100, 500]"
-                  :page-size="10"
+                  :page-sizes="[10, 20, 50, 100]"
+                  :page-size="pageSize"
                   layout="total, sizes"
-                  :total="500"
+                  :total="totalRecord"
                   class='pagination_left'
                   >
                 </el-pagination>                
                 <el-pagination
                   @size-change="handleSizeChange"
                   @current-change="handleCurrentChange"
-                  :current-page="currentPage1"
+                  :current-page="pageNo"
                   background
-                  :page-sizes="[10, 50, 100, 500]"
-                  :page-size="10"
+                  :page-sizes="[10, 20, 50, 100]"
+                  :page-size="pageSize"
                   layout=" pager, next,slot"
-                  :total="500"
+                  :total="totalRecord"
                    class='pagination_right'
                   >
                   <button type="button" class="last-pager" @click="jumpPage('0')"><i class="iconfont icon-Group-1"></i></button>   
@@ -383,12 +254,12 @@
                 <el-pagination
                   @size-change="handleSizeChange"
                   @current-change="handleCurrentChange"
-                  :current-page="currentPage1"
+                  :current-page="pageNo"
                   background
-                  :page-sizes="[10, 50, 100, 500]"
-                  :page-size="10"
+                  :page-sizes="[10, 20, 50, 100]"
+                  :page-size="pageSize"
                   layout="slot, prev"
-                  :total="500"
+                  :total="totalRecord"
                    class='pagination_right'
                   >
                     <button type="button" class="first-pager" @click="jumpPage('1')"><i class="iconfont icon-zuiqian"></i></button>   
@@ -399,33 +270,46 @@
           title="缩略图"
           :visible.sync="centerDialogVisible"
           :close-on-click-modal="false"
+          v-model="sltData"
+           class="sltDialog"
           > 
             <div class="each_r_top">
               <div>
-                <span><i class="iconfont icon-wenjianjia"/>文件服务器一</span>
-                <span><i class="iconfont icon-wendang"/>\菱威深搜索系统项目\搜索引擎\设计稿</span>
-                <span><i class="iconfont icon-wode"/>李四</span>
+                <span><i class="iconfont icon-wenjianjia"/>{{sltData.dataSource}}</span>
+                <span><i class="iconfont icon-wendang"/>{{sltData.filePath}}</span>
+                <span><i class="iconfont icon-wode"/>{{sltData.updateUser}}</span>
               </div>
             </div>
-            <div class="each_r_title" @click="centerDialogVisible = true">
-              <img src="../../assets/img/PPT.png"/>
-              <span>ns <span class="key">neuron</span> Solr Cloud. pptx</span>
-              <img class="each_lan" src="../../assets/img/cn_ico.png"/>
+            <div class="each_r_title">
+                <img v-if="sltData.fileType=='Excel'" src="../../assets/img/filetype/excel.png"/>
+                <img v-else-if="sltData.fileType=='Word'" src="../../assets/img/filetype/word.png"/>
+                <img v-else-if="sltData.fileType=='PowerPoint'" src="../../assets/img/filetype/PPT.png"/>
+                <img v-else-if="sltData.fileType=='Pdf'" src="../../assets/img/filetype/PDF.png"/>
+                <img v-else-if="sltData.fileType=='Text'" src="../../assets/img/filetype/TXT.png"/>
+                <img v-else-if="sltData.fileType=='Image'" src="../../assets/img/filetype/img.png"/>
+                <img v-else-if="sltData.fileType=='zip'" src="../../assets/img/filetype/excel.png"/>
+                <img v-else-if="sltData.fileType=='Media'" src="../../assets/img/filetype/other.png"/>
+                <img v-else src="../../assets/img/filetype/other.png"/>
+              <span v-html="sltData.fileName"></span>
+              <img v-if="sltData.language=='CN'" class="each_lan" src="../../assets/img/cn_ico.png"/>
+              <img v-else-if="sltData.language=='EN'" class="each_lan" src="../../assets/img/en_ico.png"/>
+              <img v-else class="each_lan" src="../../assets/img/jp_ico.png"/>
             </div>
             <div class="each_r_con">
-              2020-11-11 12:00:00 900KB - Powerpoint
+               {{sltData.updateTime}}  {{sltData.fileSize}}KB - {{sltData.fileType}}
             </div>
-            <div class="slt"><iframe width="100%"     frameborder="0" height="100%" src="https://file.keking.cn/onlinePreview?url=https%3A%2F%2Ffile.keking.cn%2Fdemo%2F%E6%9E%97%E7%89%B9%E4%BA%A7%E5%93%81%E7%94%B5%E5%AD%90%E5%95%86%E5%8A%A1%E5%AD%B5%E5%8C%96%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.pptx&officePreviewType=pdf"></iframe></div> 
-            <div class="slt_down"><i class="iconfont icon-Group-"/>点击下载</div>    
+            <div class="slt">      
+              <iframe v-if="sltData.fileType!='Other'" width="100%"     frameborder="0" height="100%" src="https://file.keking.cn/onlinePreview?url=https%3A%2F%2Ffile.keking.cn%2Fdemo%2F%E6%9E%97%E7%89%B9%E4%BA%A7%E5%93%81%E7%94%B5%E5%AD%90%E5%95%86%E5%8A%A1%E5%AD%B5%E5%8C%96%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.pptx&officePreviewType=pdf"></iframe>
+              <img v-else src="../../assets/img/slt_empty.png"/>
+              </div> 
+            <div class="slt_down" @click="down(sltData.fileUrl)"><i class="iconfont icon-Group-"/>点击下载</div>    
         </el-dialog>
         <el-dialog
           title="自定义文件大小"
           :visible.sync="filesizeDialogVisible"
           :close-on-click-modal="false"
           class="diyfilesize"
-          > 
-
-            <div class="each_r_con">
+          >         
              <div class="diy_size_pop">
                   <el-input
                   class="from"
@@ -443,115 +327,117 @@
                   <div class="clear_size" @click="diysizefrom='';diysizeto=''">清&nbsp;空</div>
                   <div class="submit_size"  @click="submitSize">确&nbsp;定</div>
                 </div>
-            </div>  
+            
         </el-dialog>
     </div>
 </template>
 <script>
-
+import { advancedSearch, downloadFile, getTerms, filterSearch } from '@/api/es/es-api'
+import { getDictEntriesByTypeId } from '@/api/base'
 export default {
+
   data() {
     return {
-      restaurants: [{ value: '1' }, { value: '21' }, { value: '311贝斯1' }, { value: '43123' }, { value: '5' }, { value: '贝斯无锡1' }, { value: '贝斯无锡信息系统' }, { value: '73123' }, { value: '8' }],
-      searchs: this.$route.query.search,
-      radio: this.$route.query.radio,
-      lang: this.$route.query.lang,
-      options: [{
-        value: 'cn',
-        label: '中文'
-      }, {
-        value: 'en',
-        label: '英文'
-      }, {
-        value: 'ja',
-        label: '日文'
-      }],
+      restaurants: [],
+      keyWords: this.$route.query.search != '' ? this.$route.query.search : '',
+      fieldScale: this.$route.query.radio != '' ? this.$route.query.radio : 'ALL',
+      docLanguage: this.$route.query.lang != '' ? this.$route.query.lang : 'ALL',
+      optionslang: [
+        {
+          value: 'ALL',
+          label: '所有语言'
+        }, {
+          value: 'CN',
+          label: '中文'
+        }, {
+          value: 'EN',
+          label: '英文'
+        }, {
+          value: 'JP',
+          label: '日文'
+        }],
+      // 搜索参数
+      search: [
+        { keyWords: '' },
+        { fieldScale: '' },
+        { docLanguage: '' },
+        { searchLogId: '' },
+        { dataSource: '' },
+      ],
+      // 过滤参数
+      filteritem: [
+        { keyWords: this.keyWords },      //搜索
+        { fieldScale: '' },    //字段范围
+        { docLanguage: '' },   //语言
+        { searchLogId: '' },   //查询日志主键
+        { dataSource: '' },    //tab服务器
+        { docFolderList: [] }, //tree
+        { fileTypeList: [] },  //文件类型
+        { fileSizeList: [] },  //文件大小
+        { modifyTimeKey: '' }, //时间
+        { modifyStartTime: '' },//自定义开始时间
+        { modifyEndTime: '' },  //自定义结束时间
+        { sortItem: [] },      //排序项目——格式为：字段名称+“,”+排序类型，例如“fileSize,desc"
+      ],
+      sltData: '',
       centerDialogVisible: false,
       filesizeDialogVisible: false,
-      active: 1,
+      activeDataSource: '',
+      filetab: [
+      ],
       loading: false,
-      data: [{
-        id: 1,
-        label: '一级 2 (4)',
-        children: [{
-          id: 3,
-          label: '二级 2-1 (3)',
-          children: [{
-            id: 4,
-            label: '三级 3-1-1 (2)222222222222222222222222222222',
-            children: [{
-              id: 9,
-              label: '四级 4-1-1'
-            }, {
-              id: 10,
-              label: '四级 4-1-2'
-            }, {
-              id: 11,
-              label: '四级 4-1-3',
-              disabled: true
-            }, {
-              id: 12,
-              label: '四级 4-1-4 (1)',
-              children: [{
-                id: 14,
-                label: '五级 5-4-1'
-              }, {
-                id: 15,
-                label: '五级 5-4-2',
-                disabled: true
-              }]
-            }, {
-              id: 13,
-              label: '四级 4-1-5',
-              disabled: true
-            }]
-          }, {
-            id: 5,
-            label: '三级 3-1-2',
-            disabled: true
-          }]
-        }, {
-          id: 2,
-          label: '二级 2-2 (1)',
-          disabled: true,
-          children: [{
-            id: 6,
-            label: '三级 3-2-1'
-          }, {
-            id: 7,
-            label: '三级 3-2-2',
-            disabled: true
-          }]
-        }]
-      }],
-      defaultProps: {
-        children: 'children',
-        label: 'label'
-      },
+
       istree: true,
       ischeck: true,
       isradio: true,
       issize: true,
       isfile: true,
-      filecheckList: ['Word (11)', '图像类 (77)'],
-      radioList: 4,
+      treeData: [],
+      fileTypeAggResult: [
+        { id: "Word", name: "Word(0)", count: "0" },
+        { id: "Excel", name: "Excel(0)", count: "0" },
+        { id: "PowerPoint", name: "PowerPoint(0)", count: "0" },
+        { id: "Pdf", name: "Adobe Acrobat PDF(0)", count: "0" },
+        { id: "Text", name: "文本类(0)", count: "0" },
+        { id: "Image", name: "图像类(0)", count: "0" },
+        { id: "zip", name: "压缩类(0)", count: "0" },
+        { id: "Media", name: "媒体类(0)", count: "0" },
+        { id: "Others", name: "其他类型(0)", count: "0" }],
+      filecheckList: [],
+      fileUpdateTimeAggResult: [
+        { id: "all", name: "全部时间 (0)", count: "0" },
+        { id: "1", name: "一天内（0）", count: "0" },
+        { id: "7", name: "一周内（0）", count: "0" },
+        { id: "30", name: "一月内（0）", count: "0" },
+        { id: "188", name: "半年内（0）", count: "0" },
+        { id: "365", name: "一年内（0）", count: "0" }
+      ],
+      radiocheckList: "all",
       radiotime: '',
-      sizecheckList: ['500K - 1M (33)', '100M以上 (33)'],
+      fileSizeAggResult: [
+        { id: '1', name: '0~500KB(0)', count: '0' },
+        { id: '2', name: '500KB~1MB((0)', count: '0' },
+        { id: '3', name: '1MB以上(0)', count: '0' }
+      ],
+      sizecheckList: [],
       diysizefrom: '',
       diysizeto: '',
-      isrelativity: '',
-      istime: '',
+      isrelativity: false,
+      istime: false,
       lancheckList: ["全部语言"],
-      results: "1",
-      currentPage1: 5,
-
+      results: "",
+      // 分页
+      pageNo: 1,
+      pageSize: 10,
+      totalPage: 1,
+      totalRecord: 0
       // isCollapse: this.$store.state.falg
     }
   },
 
   created() {
+    console.log(this.dictTypeId)
     console.log(this.$route.query)
-    // console.log('搜索', this.$store.state.falg)
   },
   computed: {
     isCollapse() {
@@ -559,25 +445,161 @@ export default {
     }
   },
   methods: {
-    search() {
+    btnSearch() {
+      this.loading = true
+      this.search.keyWords = this.keyWords
+      this.search.fieldScale = this.fieldScale
+      this.search.docLanguage = this.docLanguage
+      setTimeout(() => this.loading = false, 1000)
+      this.advancedSearch(this.search)
 
     },
+    async advancedSearch(item) {
+      const res = await advancedSearch({ item })
+      if (res && res.success) {
+        console.log("搜索结果", res)
+        this.results = res.datas.searchResult
+        this.treeData = res.datas.folderTreeResult
+        this.fileTypeAggResult = res.datas.fileTypeAggResult
+        this.fileUpdateTimeAggResult = res.datas.fileUpdateTimeAggResult
+        this.fileSizeAggResult = res.datas.fileSizeAggResult
+        this.pageNo = res.datas.searchResult.pageNo
+        this.pageSize = res.datas.searchResult.pageSize
+        this.totalPage = res.datas.searchResult.totalPage
+        this.totalRecord = res.datas.searchResult.totalRecord
+        this.filetab = []
+        for (var i = 0; i < res.datas.folderTreeResult.length; i++) {
+          this.filetab.push({
+            id: res.datas.folderTreeResult[i].id,
+            name: res.datas.folderTreeResult[i].dataSource
+          })
+        }
+        this.getDictEntriesByTypeId(this.filetab)
+        // console.log(1111, res.datas.folderTreeResult[2].dataSource)
+      }
+    },
+    async getTerms(queryString) {
+      const res = await getTerms({ queryString })
+      if (res && res.success) {
+        for (var i = 0; i < res.datas.terms.length; i++) {
+          this.restaurants.push({
+            id: i,
+            value: res.datas.terms[i]
+
+          })
+        }
+      }
+    },
+    async filterSearch(item) {
+      const res = await filterSearch({ item })
+      if (res && res.success) {
+        // console.log('过滤条件', res)
+        this.results = res.datas.searchResult
+      }
+    },
+    async getDictEntriesByTypeId(item) {
+
+      // const res = await getDictEntriesByTypeId({ dictTypeId: item.name })
+      const res = await getDictEntriesByTypeId({ dictTypeId: 'ESDataSourceName' })
+      if (res && res.success) {
+        this.filetab = res.datas.dicts
+      }
+    },
     querySearch(queryString, cb) {
-      var restaurants = this.restaurants;
-      var results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants;
+      this.restaurants = []
+      this.getTerms(queryString)
       // 调用 callback 返回建议列表的数据
-      cb(results);
+      cb(this.restaurants);
     },
-    createFilter(queryString) {
-      return (restaurant) => {
-        return (restaurant.value.toLowerCase().includes(queryString.toLowerCase()) === true);
-      };
+    // 搜索关键字
+    searchWords(value) {
+      console.log(value.value);
+      // this.filteritem.keyWords = value.value
+      // this.filterSearch(this.filteritem)
     },
+    //搜索字段位置(文件名、文件内容)
+    fileScale(value) {
+      // console.log(value)
+      this.filteritem.fieldScale = value
+      this.filterSearch(this.filteritem)
+    },
+    //文档语言
     getLang(value) {
-      this.lang = value
+      // console.log(value)
+      this.filteritem.docLanguage = value
+      this.filterSearch(this.filteritem)
+    },
+    //文件服务器tab
+    filetapClick(value) {
+      //  console.log(value)
+      this.filteritem.dataSource = value
+      this.filterSearch(this.filteritem)
+    },
+    // 选择tree
+    docTreeCheck(node, key) {
+      // console.log(key.checkedKeys)
+      this.filteritem.docFolderList = key.checkedKeys
+      this.filterSearch(this.filteritem)
+    },
+    // 选择文件类型
+    fileType(value) {
+      // console.log(value)
+      this.filteritem.fileTypeList = value
+      this.filterSearch(this.filteritem)
+
+    },
+
+    // 选择更新时间
+    radioTimeCheck(value) {
+      console.log(value)
+      console.log(this.radiotime)
+      if (value != "自定义时间") {
+        this.filteritem.modifyTimeKey = value
+
+      }
+    },
+    // 选择文件大小
+    checkboxChange(val) {
+      if (val.includes("自定义大小") && val.length > 1) {
+        this.sizecheckList.splice(this.sizecheckList, 1)
+      } else {
+        this.filteritem.fileSizeList = this.sizecheckList
+        this.filterSearch(this.filteritem)
+      }
+
+      console.log(val)
+    },
+    // 自定义开始时间 - 结束时间
+    diyTime() {
+      this.filteritem.modifyStartTime = this.radiotime[0]
+      this.filteritem.modifyEndTime = this.radiotime[1]
+      this.filterSearch(this.filteritem)
+    },
+    //语言复选框
+    langCheckbox(val) {
+      console.log(val)
+    },
+    // 排序（相关度、时间）
+    relativity(v) {
+
+      this.istime = false
+      if (v != 'big') {
+        this.filteritem.sortItem = ['relativity', 'small']
+      } else {
+        this.filteritem.sortItem = ['relativity', 'big']
+      }
+      this.filterSearch(this.filteritem)
+    },
+    timeSort(v) {
+      this.isrelativity = false
+      if (v != 'new') {
+        this.filteritem.sortItem = ['timeSort', 'old']
+      } else {
+        this.filteritem.sortItem = ['timeSort', 'new']
+      }
+      this.filterSearch(this.filteritem)
     },
     diysize() {
-      console.log(this.sizecheckList.length)
       this.sizecheckList.length = 0
       this.filesizeDialogVisible = true
     },
@@ -599,16 +621,18 @@ export default {
       // }
 
     },
-    checkboxChange(e) {
-      if (e.includes("自定义大小") && e.length > 1) {
-        this.sizecheckList.splice(this.sizecheckList, 1)
-      }
+
+    down(e) {
+      console.log("下载路径", e)
+      window.location.href = e
     },
-    copyUrl() {
-      document.getElementById("urlcoby").select();
-      console.log(document.getElementById("urlcoby").select())
+    showSLT(item) {
+      this.centerDialogVisible = true
+      this.sltData = item
+    },
+    copyUrl(i) {
+      document.getElementById('urlcoby' + i).select();
       document.execCommand("copy");
-      alert('复制成功')
     },
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
@@ -665,13 +689,17 @@ export default {
   border: none;
 }
 .title_box {
+  width: 100%;
   height: 30px;
   box-shadow: 0px 2px 4px 1px rgba(45, 122, 156, 0.2);
+}
+.title_box ul {
+  display: flex;
+  flex-direction: row;
 }
 .con_box {
   height: calc(100vh - 114px);
   padding: 20px 0 20px 20px;
-  display: none;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -680,14 +708,13 @@ export default {
   overflow: auto;
 }
 .title_box li {
-  width: 44px;
+  width: auto;
   height: 30px;
   float: left;
   font-size: 14px;
   font-family: "微软雅黑";
   color: #999999;
   line-height: 30px;
-  padding: 0 2px;
   text-align: center;
   box-shadow: 0px 2px 4px 1px rgba(45, 122, 156, 0.2);
   border-radius: 6px 6px 0px 0px;
@@ -695,9 +722,12 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   cursor: pointer;
+  padding: 0 4px;
 }
 .title_box li.active {
-  width: 104px;
+  width: auto;
+  /* min-width: 100px; */
+  display: inline-table;
   background: #2d7a9c;
   box-shadow: 0px 2px 4px 1px rgba(45, 122, 156, 0.2);
   border-radius: 6px 6px 0px 0px;
@@ -705,11 +735,13 @@ export default {
   color: #ffffff;
 }
 .result_filter_all .title_box li {
-  width: 100px;
+  width: auto;
   height: 30px;
 }
 .result_filter_all .title_box li.active {
-  width: 100px;
+  width: auto;
+  /* min-width: 100px; */
+  display: inline-table;
   background: #2d7a9c;
   box-shadow: 0px 2px 4px 1px rgba(45, 122, 156, 0.2);
   border-radius: 6px 6px 0px 0px;
@@ -791,6 +823,8 @@ export default {
 }
 .result_main {
   width: 100%;
+  min-width: 690px;
+  margin-bottom: 10px;
   flex: 1;
   overflow: auto;
 }
@@ -837,12 +871,18 @@ export default {
   flex-direction: column;
 }
 .each_r_top {
-  height: 16px;
+  height: 20px;
   display: flex;
   justify-content: space-between;
   font-size: 12px;
   font-family: "微软雅黑";
   color: #333333;
+}
+.each_r_top div {
+  height: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .each_r_top span {
   margin-right: 20px;
@@ -863,6 +903,7 @@ export default {
   color: #2d7a9c;
   line-height: 28px;
   cursor: pointer;
+  min-width: 70px;
 }
 .each_down i {
   font-size: 18px;
@@ -894,6 +935,11 @@ export default {
   font-family: "微软雅黑";
   color: #333333;
   line-height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 .each_r_con_p {
   margin-top: 20px;

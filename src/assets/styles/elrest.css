@@ -91,6 +91,10 @@
 .el-dropdown-menu__item{
     color: #fff;
 }
+.el-select-dropdown__item.selected {
+    color: #2D7A9C;
+    font-weight: 700;
+}
 .login-down .el-dropdown-menu__item{
     display: flex;
     justify-content: left;
@@ -137,6 +141,18 @@
 }
 .acc  .el-select-dropdown__item.selected{
     color: #2D7A9C;
+}
+.coby .popper__arrow::after {
+    border-bottom-color: #fff !important;
+    border-top-color: #fff !important;
+}
+.coby{
+    height: 20px;
+    padding: 0;
+    line-height: 20px;
+    text-align: center;
+    width: 100px !important;
+    min-width: 100px !important;
 }
 /***********  input ***********/
 /* login */
