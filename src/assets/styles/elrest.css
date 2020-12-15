@@ -231,6 +231,7 @@ background: none;
     margin: 55px auto 0;
 }
 /* serch */
+
 .search_box .el-input__inner {
 
     height: 50px;
@@ -254,6 +255,7 @@ background: none;
   height: 24px;
   background: #FFFFFF;
   border-radius: 4px;
+  line-height: 24px;
   border: 1px solid #CCCCCC;
   color: #333333;
 }
@@ -391,7 +393,7 @@ background: linear-gradient(180deg, #475BA0 0%, #2FA5BB 100%);
 .login-info  .el-button--primary:focus, .el-button--primary:hover {
     background: linear-gradient(135deg, #475ba0 0%, #2fa5bb 100%)
 }
-
+.el-message-box__btns .el-button--default:first-child{border-color:#cccccc ;}
 .el-button--default:focus,
 .el-button--default:hover {
   background: #ffffff;
@@ -475,7 +477,10 @@ border-color: #2D7A9C;
 .result_DIY  .el-checkbox__input.is-checked+.el-checkbox__label{
      color: #333333;
 }
-
+.diycheck{
+    margin-top: 15px;
+    color: #333333;
+}
 /* access */
 
 .acc_con .el-checkbox__input.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner{
@@ -506,10 +511,13 @@ border-color: #2D7A9C;
     color: #333333;
     margin-top: 15px;
 }
-.acc_con .el-checkbox__input.is-checked+.el-checkbox__label{
+ .el-checkbox__input.is-checked+.el-checkbox__label{
      color: #333333;
 }
-
+.acc_con .el-tree-node__content > .el-tree-node__expand-icon {
+  padding: 6px 10px;
+  font-size: 12px;
+}
 /* 单选框 */
 .result_DIY .el-radio-group{
     display: flex;
@@ -547,6 +555,7 @@ border-color: #2D7A9C;
    max-width: 240px;
 }
 .diy_size .zhi{
+    height: 28px;
     border-top: 1px solid #cccccc;
     border-bottom: 1px solid #cccccc;
     line-height: 26px;
@@ -558,6 +567,7 @@ border-color: #2D7A9C;
 }
 .diy_size .from .el-input__inner {
   height: 28px;
+  line-height: 28px;
   background: #ffffff;
  border-radius: 0;
  padding-left: 25px;
@@ -572,6 +582,7 @@ border-color: #2D7A9C;
 
 .diy_size .to .el-input__inner {
   height: 28px;
+  line-height: 28px;
   background: #ffffff;
   border-radius: 0;
   border-top-right-radius: 4px;
@@ -691,6 +702,10 @@ border-color: #2D7A9C;
 }
 .el-table tr:nth-child(even){  
 background: #F5F5F5;
+}
+.el-table td,
+.el-table th {
+  padding: 0 ;
 }
 /* 分页 */
 .el-pagination{

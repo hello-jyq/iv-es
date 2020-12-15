@@ -125,4 +125,24 @@
     color: #F73031;
   }
   
-
+ .el-submenu__title .icon-sousuo{
+   font-size: 20px;
+ }
+.el-submenu__title .icon-guanli{
+   font-size: 18px;
+ }
+ .el-submenu__title .icon-bangzhu{
+   font-size: 18px;
+ }
+ .el-submenu__title .icon-shenpi{
+   font-size: 18px;
+ }
+ .el-submenu__title .icon-fuqian{
+   font-size: 20px;
+ }
+  .el-submenu__title .icon-shezhi{
+   font-size: 20px;
+ }
+   .el-submenu__title .icon-resume-s{
+   font-size: 20px;
+ }

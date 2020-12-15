@@ -2,199 +2,223 @@
      <div class="container acc"> 
        <div class="header_box">
         选择用户角色：
-         <el-select v-model="selectvalue" placeholder="请选择" popper-class="acc">
+         <el-select v-model="selectvalue" placeholder="请选择" @change="selectChange"  popper-class="acc">
             <el-option
               v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
+              :key="item.id"
+              :label="item.roleName"
+              :value="item.id">
             </el-option>
           </el-select>
        </div>
        <div class="acc_main_box">
          <div class="acc_title">
             <ul>
-              <li v-for="(item,index) in 5" :key="index" :class="active==index?'active':''" @click="active=index">文件服务器{{index+1}}</li>
+              <li v-for="(item,index) in ESDataSourceList" :key="index"  :class="active==index?'active':''" @click="ESDataSourceClick(item.dictId,index,item.dictName),active=index">{{item.dictName}}</li>
             </ul>
          </div>
-           <div class="acc_con" :class="active==index?'show':''" v-for="(item,index) in 5" :key="item.index">
+           <div class="acc_con" :class="active==index?'show':''" v-for="(item,index) in ESDataSourceList" :key="index">
              <el-checkbox v-model="checked"   @change="selectAllNodes(checked,index)">全选</el-checkbox>
              <div class="acc_con_tee">
               <el-tree
-                :data="data"
-                show-checkbox
-                default-expand-all
+                :data="treedata"
+                show-checkbox        
                 :expand-on-click-node=false
-                :check-on-click-node=true
-                :check-strictly=true
-                node-key="id"
-                ref="tree"
-                highlight-current
-                :props="defaultProps">
+                node-key="seqNo"              
+                :default-expanded-keys="expandedKeys"
+                :default-checked-keys="checkedKeys"
+                ref="tree"            
+                :props="defaultProps"
+                icon-class="iconfont icon-jiantou-copy"
+                  >
               </el-tree>
              </div>
                 <el-row type="flex" justify="center" class="acc_button">
                     <el-button round icon="iconfont icon-refresh" @click="reset(index)">重置</el-button>
-                    <el-button type="primary" round icon="iconfont icon-queding">确定</el-button>
+                    <el-button type="primary" round   @click="submit(index)" icon="iconfont icon-queding">确定</el-button>
                 </el-row>
           </div>
        </div>
     </div>   
 </template>
 <script>
+import { getEsRoles, getFoldertree } from '@/api/es/es-api'
+import { getDictEntriesByTypeId } from '@/api/base'
 export default {
   data() {
     return {
-      options: [{
-        value: '1',
-        label: '总经理'
-      }, {
-        value: '2',
-        label: '角色一'
-      }, {
-        value: '3',
-        label: '角色二'
-      }, {
-        value: '4',
-        label: '角色三'
-      }, {
-        value: '5',
-        label: '角色四'
-      }],
-      selectvalue: '1',
-      active: 1,
-      checked: '',
-      data: [{
-        id: 1,
-        label: '菱威深搜索系统项目',
-        children: [{
-          id: 4,
-          label: '搜索引擎',
-          children: [{
-            id: 9,
-            label: '普通搜索引擎设计稿权限访问管理页面',
-            children: [{
-              id: 11,
-              label: '営業第1'
-            }, {
-              id: 12,
-              label: '営業第2'
-            }, {
-              id: 13,
-              label: '営業第3'
-            }, {
-              id: 14,
-              label: '営業第4'
-            }, {
-              id: 15,
-              label: '営業第5'
-            }, {
-              id: 16,
-              label: '営業第6'
-            }, {
-              id: 17,
-              label: '営業第7',
-              children: [{
-                id: 18,
-                label: '搜索引擎1'
-              }, {
-                id: 19,
-                label: '搜索引擎2'
-              }, {
-                id: 20,
-                label: '搜索引擎3'
-              }, {
-                id: 21,
-                label: '搜索引擎4'
-              }, {
-                id: 22,
-                label: '搜索引擎5'
-              }, {
-                id: 23,
-                label: '搜索引擎6'
-              }, {
-                id: 24,
-                label: '搜索引擎7'
-              }]
-            }]
-          }, {
-            id: 10,
-            label: '営業企画部'
-          }, {
-            id: 30,
-            label: 'IT企画支援部',
-            children: [{
-              id: 31,
-              label: 'Unit1'
-            }]
-          }
-
-          ]
-        }]
-      }, {
-        id: 2,
-        label: '一级 2',
-        children: [{
-          id: 5,
-          label: '二级 2-1'
-        }, {
-          id: 6,
-          label: '二级 2-2'
-        }]
-      }, {
-        id: 3,
-        label: '一级 3',
-        children: [{
-          id: 7,
-          label: '二级 3-1'
-        }, {
-          id: 8,
-          label: '二级 3-2'
-        }]
-      }],
+      options: "",
+      selectvalue: '',
+      selectOldvalue: '',
+      ESDataSourceList: '',
+      ESDataSourcID: '',
+      ESDataSourcName: '',
+      active: 0,
+      checked: false,
+      treedata: [],
+      treeold: [],
+      expandedKeys: [],
+      checkedKeys: [],
       defaultProps: {
         children: 'children',
-        label: 'label'
+        label: 'folderName'
       }
     }
   },
+  created() {
+    this.getEsRoles()
+    this.getDictEntriesByTypeId()
+    this.getFoldertree(0)
+  },
   methods: {
-    setCheckedKeys(e, i) {
-      console.log(this.$refs.tree[i])
-      if (e) { this.$refs.tree[i].setCheckedKeys([]); } else {
-        this.$refs.tree[i].setCheckedKeys([]);
+    // 获取用户角色
+    async getEsRoles(item) {
+      const res = await getEsRoles({ item })
+      if (res && res.success) {
+        this.options = res.datas.rolesList
       }
+    },
+    // 获取tree
+    async getFoldertree(i) {
+      const res = await getFoldertree({ roleId: this.selectvalue })
+      if (res && res.success) {
+        // console.log('tree', res.datas)
+        this.datas = res.datas
+        // this.treedata = this.filter(res.datas.folderTree)
+        if (res.datas.folderTree[i]) {
+          this.treedata = [res.datas.folderTree[i]]
+          this.expandedKeys.push(res.datas.expandedKeys[i])
+          // this.checkedKeys.push(res.datas.checkedKeys[0])
+          sessionStorage.setItem("tree" + i, JSON.stringify(res.datas.folderTree[i]));
+          this.$nextTick(() => {
+            // console.log(3, this.$refs.tree[0])
+            this.$refs.tree[i].setCheckedKeys([res.datas.checkedKeys[i]])
+          })
+        } else {
+          this.treedata = []
+          sessionStorage.setItem("tree" + i, JSON.stringify('empty'));
+        }
+      }
+    },
+    // 获取服务器列表
+    async getDictEntriesByTypeId(item) {
+      const res = await getDictEntriesByTypeId({ dictTypeId: 'ESDataSourceName' })
+      if (res && res.success) {
+        // console.log("ESDataSource", res)
+        this.ESDataSourceList = res.datas.dicts
+      }
+    },
+    // tab服务器切换
+    ESDataSourceClick(id, i, val) {
+      this.ESDataSourcID = id
+      this.ESDataSourcName = val
+      this.checked = false
+      let sessoin = JSON.parse(sessionStorage.getItem("tree" + i))
+      if (sessoin && sessoin != 'empty') {
+        this.treedata = [sessoin]
+      } else if (sessoin) { this.treedata = [] } else {
+        this.getFoldertree(i)
+      }
+      // console.log(id)
+
+    },
+
+    // setCheckedKeys(e, i) {
+    //   // console.log(this.$refs.tree[i])
+    //   if (e) { this.$refs.tree[i].setCheckedKeys([]); } else {
+    //     this.$refs.tree[i].setCheckedKeys([]);
+    //   }
+    // },
+    selectAllNodes(flag, i) {
+      if (flag) { this.$refs.tree[i].setCheckedNodes(this.treedata) } else {
+        this.$refs.tree[i].setCheckedNodes([])
+      }
+
+
     },
     // setCheckedNodes(e, i) {
     //   this.$refs.tree[i].setCheckedNodes(this.data);
     // },
-    selectAllNodes: function (e, i) {
-      if (e) {
-        //  获取根节点
-        let rootNode = this.$refs.tree[i].getNode(this.data[0].id).parent;
-        travelNodes(rootNode);
-        function travelNodes(tmpRoot) {
-          // 选中该节点
-          tmpRoot.checked = true;
-          // 叶子节点
-          if (tmpRoot.childNodes.length === 0) {
-            return;
+    // selectAllNodes: function (e, i) {
+    //   if (e) {
+    //     //  获取根节点
+    //     let rootNode = this.$refs.tree[i].getNode(this.data[0].id).parent;
+    //     travelNodes(rootNode);
+    //     function travelNodes(tmpRoot) {
+    //       // 选中该节点
+    //       tmpRoot.checked = true;
+    //       // 叶子节点
+    //       if (tmpRoot.childNodes.length === 0) {
+    //         return;
+    //       }
+    //       // 不是叶子节点,递归遍历
+    //       else {
+    //         let tmpChildNoes = tmpRoot.childNodes;
+    //         for (let i = 0; i < tmpChildNoes.length; i++) {
+    //           travelNodes(tmpChildNoes[i]);
+    //         }
+    //       }
+    //     }
+    //   } else {
+    //     this.$refs.tree[i].setCheckedKeys([]);
+    //   }
+    // },
+    filter(arr) {
+      if (arr != '') {
+        console.log('filter', arr)
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i].dataSource == this.ESDataSourcID) {
+            return [arr[i]]
           }
-          // 不是叶子节点,递归遍历
-          else {
-            let tmpChildNoes = tmpRoot.childNodes;
-            for (let i = 0; i < tmpChildNoes.length; i++) {
-              travelNodes(tmpChildNoes[i]);
-            }
-          }
+
         }
       } else {
-        this.$refs.tree[i].setCheckedKeys([]);
+        return null
       }
     },
     reset(i) {
       this.$refs.tree[i].setCheckedKeys([]);
+    },
+    //选择用户角色二次确认
+    selectChange(val) {
+      if (this.selectOldvalue != val) {
+        this.$confirm('切换用户将清空未保存的数据, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.selectvalue = val
+          this.selectOldvalue = val
+          this.active = 0
+
+
+          for (let i = 0; i < this.ESDataSourceList.length; i++) {
+            sessionStorage.removeItem("tree" + i);
+          }
+          this.getFoldertree(0)
+          this.ESDataSourceClick(this.ESDataSourceList[0].dictId, 0, this.ESDataSourceList[0].dictName)
+        }).catch(() => {
+          this.selectvalue = this.selectOldvalue
+        });
+      }
+    },
+    // 提交
+    submit(i) {
+      if (this.selectvalue) {
+        this.$message({
+          message: this.ESDataSourcName + '提交成功',
+          type: 'success'
+        });
+      } else {
+        this.$message({
+          message: '提交失败，请选择用户角色',
+          type: 'error'
+        });
+      }
+
     }
+  },
+  mounted() {
 
   }
 }
@@ -215,6 +239,7 @@ export default {
   justify-content: left;
   white-space: nowrap;
 }
+
 .acc_main_box {
   height: calc(100vh - 328px);
   background: #ffffff;

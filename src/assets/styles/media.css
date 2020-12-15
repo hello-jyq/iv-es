@@ -365,4 +365,33 @@ font-size: 16px !important;
     height: 49px !important;
     font-size: 16px !important;
 }
+
+
+
+
+
+
+
+
+ .el-submenu__title .icon-sousuo{
+   font-size: 16px !important;
+ }
+.el-submenu__title .icon-guanli{
+   font-size: 16px!important;
+ }
+ .el-submenu__title .icon-bangzhu{
+   font-size: 16px!important;
+ }
+ .el-submenu__title .icon-shenpi{
+   font-size: 16px!important;
+ }
+ .el-submenu__title .icon-fuqian{
+   font-size: 16px!important;
+ }
+  .el-submenu__title .icon-shezhi{
+   font-size: 16px!important;
+ }
+   .el-submenu__title .icon-resume-s{
+   font-size: 16px!important;
+ }
 }

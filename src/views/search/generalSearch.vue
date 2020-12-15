@@ -358,6 +358,7 @@ export default {
   box-sizing: border-box;
   overflow: hidden;
 }
+
 .theme_search {
   width: 34%;
   background: #ffffff;

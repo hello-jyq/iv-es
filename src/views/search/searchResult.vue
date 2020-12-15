@@ -17,14 +17,12 @@
               <el-tree
               v-if="activeDataSource!='0'"
               v-show="istree"
-                :data="treeData"
+                :data="choseTreeData"
                 show-checkbox
                 node-key="id"
                 :expand-on-click-node=false
                 :check-on-click-node=true
                 :check-strictly=true
-                :default-expanded-keys="[2, 5]"
-                :default-checked-keys="[1]"
                 :default-expand-all="istree"
                 icon-class="iconfont icon-jiantou-copy"
                 ref="ProjectTree"
@@ -70,21 +68,23 @@
                   <i class="iconfont icon-ai-arrow-down" :class="issize?'':'icon_gif'"></i>
                 </div>
                 <el-checkbox-group v-model="sizecheckList" v-show='issize' @change="checkboxChange">
-                  <el-checkbox  v-for="filesize in fileSizeAggResult" :key="filesize.index"  :label="filesize.id">{{filesize.name}}</el-checkbox>
-                  <el-checkbox label="自定义大小" @click.native="diysize"></el-checkbox>
+                  <el-checkbox  v-for="filesize in fileSizeAggResult" :key="filesize.index"  :label="filesize.id">{{filesize.name}}</el-checkbox>             
                 </el-checkbox-group> 
+                <el-checkbox v-model="sizecheckDIY" class="diycheck" v-show='issize'  @change="checkboxDIYChange(sizecheckDIY),sizecheckDIY=!sizecheckDIY" label="自定义大小">自定义大小</el-checkbox>
                 <div class="diy_size"  v-show='issize'>
                   <el-input
                   class="from"
-                 readonly
+              
                     placeholder="请输入数值"
                     prefix-icon="iconfont icon-daxiao"
+                    @focus="diysize"
                     v-model="diysizefrom">
                   </el-input>
                   <span class="zhi">至</span>
                   <el-input
-                  readonly
+             
                    class="to"
+                     @focus="diysize"
                     placeholder="请输入数值"
                     v-model="diysizeto">
                   </el-input>
@@ -397,6 +397,7 @@ export default {
       issize: true,
       isfile: true,
       treeData: [],
+      choseTreeData: [],
       fileTypeAggResult: [
         { id: "Word", name: "Word(0)", count: "0" },
         { id: "Excel", name: "Excel(0)", count: "0" },
@@ -408,6 +409,7 @@ export default {
         { id: "Media", name: "媒体类(0)", count: "0" },
         { id: "Others", name: "其他类型(0)", count: "0" }],
       filecheckList: [],
+      sizecheckDIY: false,
       fileUpdateTimeAggResult: [
         { id: "all", name: "全部时间 (0)", count: "0" },
         { id: "1", name: "一天内（0）", count: "0" },
@@ -538,10 +540,11 @@ export default {
     },
     //文件服务器tab
     filetapClick(value, index) {
-      // console.log(index)
-      // if (this.treeData.length > 1) {
-      //   this.treeData = this.treeData[0]
-      // }
+      if (this.treeData.length > 1) {
+        this.choseTreeData = []
+        this.choseTreeData.push(this.treeData[index - 1])
+
+      }
       this.filteritem.dataSource = value
       this.filterSearch(this.filteritem)
       console.log(3333, this.treeData.id)
@@ -563,23 +566,28 @@ export default {
 
     // 选择更新时间
     radioTimeCheck(value) {
-      console.log(value)
-      console.log(this.radiotime)
-      if (value != "自定义时间") {
-        this.filteritem.modifyTimeKey = value
+      // console.log(value)
+      // console.log(this.radiotime)
 
+      if (value != "自定义时间") {
+        this.radiotime = ''
+        this.filteritem.modifyTimeKey = value
       }
     },
     // 选择文件大小
     checkboxChange(val) {
-      if (val.includes("自定义大小") && val.length > 1) {
-        this.sizecheckList.splice(this.sizecheckList, 1)
-      } else {
-        this.filteritem.fileSizeList = this.sizecheckList
-        this.filterSearch(this.filteritem)
-      }
+      this.sizecheckDIY = false
+      this.diysizefrom = ''
+      this.diysizeto = ''
+      this.filteritem.fileSizeList = this.sizecheckList
+      this.filterSearch(this.filteritem)
 
-      console.log(val)
+    },
+    checkboxDIYChange(val) {
+      if (val) {
+        this.sizecheckDIY = !this.sizecheckDIY
+        this.sizecheckList = []
+      }
     },
     // 自定义开始时间 - 结束时间
     diyTime() {
@@ -612,6 +620,7 @@ export default {
       this.filterSearch(this.filteritem)
     },
     diysize() {
+      this.sizecheckDIY = true
       this.sizecheckList.length = 0
       this.filesizeDialogVisible = true
     },
