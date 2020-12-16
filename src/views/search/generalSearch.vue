@@ -1,112 +1,132 @@
 <template>
-    <div class="container">      
-          <el-row class="search_box">
-            <el-col :span="24">             
-                <el-autocomplete
-                  class="inline-input "
-                  v-model="searchs"
-                  :fetch-suggestions="querySearch"
-                   @select="handleSelect"
-                    :maxlength=300
-                  placeholder="请输入您想要搜索的内容"
-                  :trigger-on-focus="false"
-                  popper-class="search_input"
-                >
-                <i slot="prefix" class="iconfont icon-sousuo1"></i>
-                <el-button slot="suffix" @click="search">搜&nbsp;&nbsp;索</el-button>
-              </el-autocomplete>
-            </el-col>
-            <el-col :span="24" class="flex_ceter" style="height:24px;line-height:24px">
-              <span class="font_size_14 fontC_333">搜索条件：</span>
-              <el-radio-group v-model="radio">
-                <el-radio label="ALL">不限</el-radio>
-                <el-radio label="FILENAME">文件名</el-radio>
-                <el-radio label="FILECONTENT">文件内容</el-radio>
-              </el-radio-group>
-              <el-select v-model="lang" placeholder="选择语言" placement="top-end" @change="getLang" popper-class="lang_select">
-                <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-                </el-option>
-              </el-select>
-            </el-col>
-          </el-row>        
-        <div class="main_box">
-            <div class="main_left_box">
-              <div class="hot_search">
-                <span class="item_title">
-                  热词搜索
-                </span>
-                <span class="refresh_words" @click="hotWordRefresh()"><i class="iconfont icon-refresh"/>换一换</span>
-                <ul class="item_content">
-                  <li v-for="item in item_hot_contents" :key="item.index" @click="getHotValue(item)">{{item}}</li>
-                  
-                </ul>
-              </div>
-              <div class="key_search">
-                 <span class="item_title">
-                  搜索履历
-                </span>
-                  <el-table
-                  
-                    :data="tableData"
-                    height="90%"
-                    border
-                    style="width: 100%">
-                    <el-table-column
-                    label="序号"
-                    type="index"
-                    >
-                  </el-table-column>
-                    <el-table-column
-                      prop="date"
-                      label="搜索时间"
-                      width="180">
-                    </el-table-column>
-                    <el-table-column
-                      prop="name"
-                      label="搜索内容"
-                      width="180"
-                      class-name="font_center"
-                      >
-                      <template slot-scope="scope">
-                      <a class="link" @click.prevent="handleProcessInstClick(scope.row.name)">{{ scope.row.name }}</a>
-                    </template>
-                    </el-table-column>
-                    <el-table-column
-                      prop="result"
-                       class-name="font_left"
-                      label="搜索结果">
-                      <template slot-scope="scope">
-                      <a class="link" @click.prevent="handleProcessInstClick(scope.row.result)">{{ scope.row.result }}</a>
-                    </template>
-                    </el-table-column>
-                  </el-table>
-                <!-- <span class="refresh_words" @click="keyWordRefresh()"><i class="iconfont icon-refresh"/>换一换</span>
-                 <ul class="item_content">
-                  <li v-for="(item,index) in item_key_contents" :key="index" @click="getKeyValue(item)">{{index+1}}、{{item}}</li>              
-                </ul> -->
-              </div>
-            </div>
-            <div class="theme_search">
-               <span class="item_title">
-                  主题搜索
-                </span>
-                <span class="refresh_words" @click="themeRefresh()"><i class="iconfont icon-refresh"/>换一换</span>
-                <div class="theme_search_item" >
-                  <template v-for="item in theme_options_values">
-                  <el-cascader :placeholder="item"  :key="item.index" @change="getThemeValue" :options="theme_options" class="theme_search_input" :show-all-levels="false" popper-class="theme_search"></el-cascader>
-                  </template>
-                </div>
-              
-            </div>
+  <div class="container">
+    <el-row class="search_box">
+      <el-col :span="24">
+        <el-autocomplete
+          v-model="searchs"
+          class="inline-input"
+          :fetch-suggestions="querySearch"
+          :maxlength="300"
+          placeholder="请输入您想要搜索的内容"
+          :trigger-on-focus="false"
+          popper-class="search_input"
+          @select="handleSelect"
+        >
+          <i slot="prefix" class="iconfont icon-sousuo1" />
+          <el-button slot="suffix" @click="search">
+            搜&nbsp;&nbsp;索
+          </el-button>
+        </el-autocomplete>
+      </el-col>
+      <el-col :span="24" class="flex_ceter" style="height:24px;line-height:24px">
+        <span class="font_size_14 fontC_333">搜索条件：</span>
+        <el-radio-group v-model="radio">
+          <el-radio label="ALL">
+            不限
+          </el-radio>
+          <el-radio label="FILENAME">
+            文件名
+          </el-radio>
+          <el-radio label="FILECONTENT">
+            文件内容
+          </el-radio>
+        </el-radio-group>
+        <el-select v-model="lang" placeholder="选择语言" placement="top-end" popper-class="lang_select" @change="getLang">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+      </el-col>
+    </el-row>
+    <div class="main_box">
+      <div class="main_left_box">
+        <div class="hot_search">
+          <span class="item_title">
+            热词搜索
+          </span>
+          <span class="refresh_words" @click="hotWordRefresh()"><i class="iconfont icon-refresh" />
+            换一换
+          </span>
+          <ul class="item_content">
+            <li v-for="item in item_hot_contents" :key="item.index" @click="getHotValue(item)">
+              {{ item }}
+            </li>
+          </ul>
         </div>
+        <div class="key_search">
+          <span class="item_title">
+            搜索履历
+          </span>
+          <el-table
+            :data="tableData"
+            height="90%"
+            border
+            style="width: 100%"
+          >
+            <el-table-column
+              label="序号"
+              type="index"
+            />
+            <el-table-column
+              prop="date"
+              label="搜索时间"
+              width="180"
+            />
+            <el-table-column
+              prop="name"
+              label="搜索内容"
+              width="180"
+              class-name="font_center"
+            >
+              <template slot-scope="scope">
+                <a class="link" @click.prevent="handleProcessInstClick(scope.row.name)">{{ scope.row.name }}</a>
+              </template>
+            </el-table-column>
+            <el-table-column
+              prop="result"
+              class-name="font_left"
+              label="搜索结果"
+            >
+              <template slot-scope="scope">
+                <a class="link" @click.prevent="handleProcessInstClick(scope.row.result)">{{ scope.row.result }}</a>
+              </template>
+            </el-table-column>
+          </el-table>
+          <!-- <span class="refresh_words" @click="keyWordRefresh()"><i class="iconfont icon-refresh"/>换一换</span>
+            <ul class="item_content">
+            <li v-for="(item,index) in item_key_contents" :key="index" @click="getKeyValue(item)">
+              {{index+1}}、{{item}}
+            </li>
+          </ul> -->
+        </div>
+      </div>
+      <div class="theme_search">
+        <span class="item_title">
+          主题搜索
+        </span>
+        <span class="refresh_words" @click="themeRefresh()"><i class="iconfont icon-refresh" />换一换</span>
+        <div class="theme_search_item">
+          <template v-for="item in theme_options_values">
+            <el-cascader
+              :key="item.index"
+              :options="theme_options"
+              class="theme_search_input"
+              :show-all-levels="false"
+              popper-class="theme_search"
+              :placeholder="item"
+              @change="getThemeValue"
+            />
+          </template>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 <script>
-import { advancedSearch, getItems, getTerms } from '@/api/es/es-api'
+import { getHotwords, getKeywords, getTerms } from '@/api/es/es-api'
 export default {
   data() {
     return {
@@ -128,37 +148,9 @@ export default {
           value: 'JP',
           label: '日文'
         }],
-      item_hot_contents: ["锦鲤", "杠精", "佛系", "确认过眼神", "官宣", "C位", "土味情话", "皮一下", "卡路里", "创造101", "超越妹妹", "五位一体", "四个全面", "共享经济", "大数据", "互联网+", "全十四五规划全面小康"],
-      tableData: [{
-        date: '2016-05-03',
-        name: '王小虎',
-        result: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-02',
-        name: '王小虎',
-        result: '上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        result: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        result: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        result: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-06',
-        name: '王小虎',
-        result: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-07',
-        name: '王小虎',
-        result: '上海市普陀区金沙江路 1518 弄'
-      }],
-      theme_options_values: ["合同", "组件", "资源", "组件", "资源1", "组件2", "资源4"],
+      item_hot_contents: [],
+      tableData: [],
+      theme_options_values: ['合同', '组件', '资源', '组件', '资源1', '组件2', '资源4'],
       theme_options: [
         {
           value: 'zhinan',
@@ -168,7 +160,7 @@ export default {
             label: '设计原则'
           }, {
             value: 'daohang',
-            label: '导航',
+            label: '导航'
           }]
         },
         {
@@ -176,22 +168,22 @@ export default {
           label: '组件',
           children: [{
             value: 'basic',
-            label: 'Basic',
+            label: 'Basic'
           }, {
             value: 'form',
-            label: 'Form',
+            label: 'Form'
           }, {
             value: 'data',
-            label: 'Data',
+            label: 'Data'
           }, {
             value: 'notice',
-            label: 'Notice',
+            label: 'Notice'
           }, {
             value: 'navigation',
-            label: 'Navigation',
+            label: 'Navigation'
           }, {
             value: 'others',
-            label: 'Others',
+            label: 'Others'
           }]
         },
         {
@@ -211,10 +203,13 @@ export default {
 
     }
   },
-
+  created() {
+    this.getHotwords()
+    this.getKeywords()
+  },
   methods: {
     async getTerms(queryString) {
-      const res = await getTerms({ queryString })
+      const res = await getTerms({ prefix: queryString })
       if (res && res.success) {
         for (var i = 0; i < res.datas.terms.length; i++) {
           this.restaurants.push({
@@ -225,26 +220,42 @@ export default {
         }
       }
     },
+    async getHotwords(item) {
+      const res = await getHotwords({ item })
+      if (res && res.success) {
+        console.log('热词', res)
+        this.item_hot_contents = res.datas.terms
+      }
+    },
+    async getKeywords(item) {
+      const res = await getKeywords({ item })
+      if (res && res.success) {
+        console.log('履历', res)
+        for (let i = 0; i < res.datas.logs.length; i++) {
+          this.tableData.push({ date: null, name: res.datas.logs[i], result: null })
+        }
+      }
+    },
     querySearch(queryString, cb) {
       this.restaurants = []
       this.getTerms(queryString)
       // 调用 callback 返回建议列表的数据
-      cb(this.restaurants);
+      cb(this.restaurants)
     },
     handleSelect(item) {
-      console.log(item);
+      console.log(item)
     },
     getLang(value) {
       this.lang = value
     },
     hotWordRefresh() {
-      this.item_hot_contents.sort(() => Math.random() - 0.5);
+      this.item_hot_contents.sort(() => Math.random() - 0.5)
     },
     keyWordRefresh() {
-      this.item_key_contents.sort(() => Math.random() - 0.5);
+      this.item_key_contents.sort(() => Math.random() - 0.5)
     },
     themeRefresh() {
-      this.theme_options_values.sort(() => Math.random() - 0.5);
+      this.theme_options_values.sort(() => Math.random() - 0.5)
     },
     getHotValue(value) {
       this.$router.push({
@@ -269,7 +280,6 @@ export default {
           search: value
         }
       })
-
     },
     getThemeValue(value) {
       this.$router.push({
@@ -290,11 +300,10 @@ export default {
       })
     }
   }
-
-
 }
 </script>
-<style scoped>
+
+<style lang="css" scoped>
 .search_box {
   height: 164px;
   margin-bottom: 20px;

@@ -15,5 +15,5 @@ module.exports = {
   // publicPath: '/cone/',
   publicPath: process.env.VUE_APP_CONTEXT_PATH,
   productionSourceMap: false,
-  lintOnSave: false
+  // lintOnSave: false
 }

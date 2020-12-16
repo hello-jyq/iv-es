@@ -1,45 +1,49 @@
 <template>
-     <div class="container acc"> 
-       <div class="header_box">
-        选择用户角色：
-         <el-select v-model="selectvalue" placeholder="请选择" @change="selectChange"  popper-class="acc">
-            <el-option
-              v-for="item in options"
-              :key="item.id"
-              :label="item.roleName"
-              :value="item.id">
-            </el-option>
-          </el-select>
-       </div>
-       <div class="acc_main_box">
-         <div class="acc_title">
-            <ul>
-              <li v-for="(item,index) in ESDataSourceList" :key="index"  :class="active==index?'active':''" @click="ESDataSourceClick(item.dictId,index,item.dictName),active=index">{{item.dictName}}</li>
-            </ul>
-         </div>
-           <div class="acc_con" :class="active==index?'show':''" v-for="(item,index) in ESDataSourceList" :key="index">
-             <el-checkbox v-model="checked"   @change="selectAllNodes(checked,index)">全选</el-checkbox>
-             <div class="acc_con_tee">
-              <el-tree
-                :data="treedata"
-                show-checkbox        
-                :expand-on-click-node=false
-                node-key="seqNo"              
-                :default-expanded-keys="expandedKeys"
-                :default-checked-keys="checkedKeys"
-                ref="tree"            
-                :props="defaultProps"
-                icon-class="iconfont icon-jiantou-copy"
-                  >
-              </el-tree>
-             </div>
-                <el-row type="flex" justify="center" class="acc_button">
-                    <el-button round icon="iconfont icon-refresh" @click="reset(index)">重置</el-button>
-                    <el-button type="primary" round   @click="submit(index)" icon="iconfont icon-queding">确定</el-button>
-                </el-row>
-          </div>
-       </div>
-    </div>   
+  <div class="container acc">
+    <div class="header_box">
+      选择用户角色：
+      <el-select v-model="selectvalue" placeholder="请选择" popper-class="acc" @change="selectChange">
+        <el-option v-for="item in options" :key="item.id" :label="item.roleName" :value="item.id" />
+      </el-select>
+    </div>
+    <div class="acc_main_box">
+      <div class="acc_title">
+        <ul>
+          <li v-for="(item,index) in ESDataSourceList" :key="index" :class="active==index?'active':''" @click="ESDataSourceClick(item.dictId,index,item.dictName),active=index">
+            {{ item.dictName }}
+          </li>
+        </ul>
+      </div>
+      <div v-for="(item,index) in ESDataSourceList" :key="index" class="acc_con" :class="active==index?'show':''">
+        <el-checkbox v-model="checked" @change="selectAllNodes(checked,index)">
+          全选
+        </el-checkbox>
+        <div class="acc_con_tee">
+          <el-tree
+            ref="tree"
+            show-checkbox
+            :data="treedata"
+            :expand-on-click-node="false"
+            node-key="seqNo"
+            :default-expanded-keys="expandedKeys"
+            :default-checked-keys="checkedKeys"
+            :props="defaultProps"
+            icon-class="iconfont icon-jiantou-copy"
+            @check="handleCheckChange"
+            @current-change="nodeCheckChange"
+          />
+        </div>
+        <el-row type="flex" justify="center" class="acc_button">
+          <el-button round icon="iconfont icon-refresh" @click="reset(index)">
+            重置
+          </el-button>
+          <el-button type="primary" round icon="iconfont icon-queding" @click="submit(index)">
+            确定
+          </el-button>
+        </el-row>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 import { getEsRoles, getFoldertree } from '@/api/es/es-api'
@@ -47,7 +51,7 @@ import { getDictEntriesByTypeId } from '@/api/base'
 export default {
   data() {
     return {
-      options: "",
+      options: '',
       selectvalue: '',
       selectOldvalue: '',
       ESDataSourceList: '',
@@ -87,16 +91,17 @@ export default {
         // this.treedata = this.filter(res.datas.folderTree)
         if (res.datas.folderTree[i]) {
           this.treedata = [res.datas.folderTree[i]]
-          this.expandedKeys.push(res.datas.expandedKeys[i])
+
           // this.checkedKeys.push(res.datas.checkedKeys[0])
-          sessionStorage.setItem("tree" + i, JSON.stringify(res.datas.folderTree[i]));
+          sessionStorage.setItem('tree' + i, JSON.stringify(res.datas.folderTree[i]))
           this.$nextTick(() => {
             // console.log(3, this.$refs.tree[0])
+            this.expandedKeys = [res.datas.expandedKeys[i]]
             this.$refs.tree[i].setCheckedKeys([res.datas.checkedKeys[i]])
           })
         } else {
           this.treedata = []
-          sessionStorage.setItem("tree" + i, JSON.stringify('empty'));
+          sessionStorage.setItem('tree' + i, JSON.stringify('empty'))
         }
       }
     },
@@ -113,16 +118,30 @@ export default {
       this.ESDataSourcID = id
       this.ESDataSourcName = val
       this.checked = false
-      let sessoin = JSON.parse(sessionStorage.getItem("tree" + i))
-      if (sessoin && sessoin != 'empty') {
-        this.treedata = [sessoin]
-      } else if (sessoin) { this.treedata = [] } else {
+      const sessointree = JSON.parse(sessionStorage.getItem('tree' + i))
+      if (sessointree && sessointree !== 'empty') {
+        this.treedata = [sessointree]
+        this.expandedKeys = JSON.parse(sessionStorage.getItem('treeexpand' + i))
+        this.$nextTick(() => {
+          const sessointreekey = JSON.parse(sessionStorage.getItem('treekey' + i))
+          if (sessointreekey) {
+            this.$refs.tree[i].setCheckedNodes(sessointreekey)
+          }
+        })
+      } else if (sessointree) { this.treedata = [] } else {
         this.getFoldertree(i)
       }
-      // console.log(id)
-
     },
-
+    handleCheckChange(a, b) {
+      if (b.checkedNodes) {
+        sessionStorage.setItem('treekey' + this.active, JSON.stringify(b.checkedNodes))
+        sessionStorage.setItem('treeexpand' + this.active, JSON.stringify(b.halfCheckedKeys))
+      }
+      // }
+    },
+    nodeCheckChange(a, b) {
+      console.log(a, b)
+    },
     // setCheckedKeys(e, i) {
     //   // console.log(this.$refs.tree[i])
     //   if (e) { this.$refs.tree[i].setCheckedKeys([]); } else {
@@ -130,11 +149,11 @@ export default {
     //   }
     // },
     selectAllNodes(flag, i) {
-      if (flag) { this.$refs.tree[i].setCheckedNodes(this.treedata) } else {
+      if (flag) {
+        this.$refs.tree[i].setCheckedNodes(this.treedata)
+      } else {
         this.$refs.tree[i].setCheckedNodes([])
       }
-
-
     },
     // setCheckedNodes(e, i) {
     //   this.$refs.tree[i].setCheckedNodes(this.data);
@@ -163,25 +182,24 @@ export default {
     //     this.$refs.tree[i].setCheckedKeys([]);
     //   }
     // },
-    filter(arr) {
-      if (arr != '') {
-        console.log('filter', arr)
-        for (let i = 0; i < arr.length; i++) {
-          if (arr[i].dataSource == this.ESDataSourcID) {
-            return [arr[i]]
-          }
-
-        }
-      } else {
-        return null
-      }
-    },
+    // filter(arr) {
+    //   if (arr !== '') {
+    //     console.log('filter', arr)
+    //     for (let i = 0; i < arr.length; i++) {
+    //       if (arr[i].dataSource === this.ESDataSourcID) {
+    //         return [arr[i]]
+    //       }
+    //     }
+    //   } else {
+    //     return null
+    //   }
+    // },
     reset(i) {
-      this.$refs.tree[i].setCheckedKeys([]);
+      this.$refs.tree[i].setCheckedKeys([])
     },
-    //选择用户角色二次确认
+    // 选择用户角色二次确认
     selectChange(val) {
-      if (this.selectOldvalue != val) {
+      if (this.selectOldvalue !== val) {
         this.$confirm('切换用户将清空未保存的数据, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
@@ -190,16 +208,16 @@ export default {
           this.selectvalue = val
           this.selectOldvalue = val
           this.active = 0
-
-
           for (let i = 0; i < this.ESDataSourceList.length; i++) {
-            sessionStorage.removeItem("tree" + i);
+            sessionStorage.removeItem('tree' + i)
+            sessionStorage.removeItem('treekey' + i)
+            sessionStorage.removeItem('treeexpand' + i)
           }
           this.getFoldertree(0)
           this.ESDataSourceClick(this.ESDataSourceList[0].dictId, 0, this.ESDataSourceList[0].dictName)
         }).catch(() => {
           this.selectvalue = this.selectOldvalue
-        });
+        })
       }
     },
     // 提交
@@ -208,22 +226,18 @@ export default {
         this.$message({
           message: this.ESDataSourcName + '提交成功',
           type: 'success'
-        });
+        })
       } else {
         this.$message({
           message: '提交失败，请选择用户角色',
           type: 'error'
-        });
+        })
       }
-
     }
-  },
-  mounted() {
-
   }
 }
 </script>
-<style scoped>
+<style lang="css" scoped>
 .header_box {
   width: 100%;
   height: 100px;

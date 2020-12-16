@@ -1,110 +1,46 @@
 <template>
-      <aside class="menu" :class="isCollapse ? 'collapse' : ''"> 
-           
-           <div class="collapse" :class="isCollapse ? 'iscollapse' : '' ">
-                 <span class="btn_icon" @click="changeCollapse">
-                     <i class="iconfont" :class="isCollapse ? 'icon-yousuojin' : 'icon-zuosuojin' " />
-                 </span>
-            </div>
-            <div class="logo">
-               <img :src="isCollapse?require('../assets/img/logo_menu_small.png'):require('../assets/img/logo_menu.png')"/>
-           </div>
-            <!-- <el-menu  :default-active="activeIndex" class="el-menu-vertical-demo" menu-trigger='click' @open="handleOpen" @close="handleClose" :default-openeds="openeds" :collapse="isCollapse" :router=true :collapse-transition='false' :unique-opened='false'>
-            <el-submenu index="1">
-                <template slot="title">
-                    <div  @click="onOpen()">
-                        <i class="iconfont icon-sousuo"></i>
-                        <span slot="title">搜索方式</span>
-                    </div>
-                </template>
-                <el-menu-item index="/general_search">普通搜索</el-menu-item>
-                <el-menu-item index="/advanced_search">高级搜索</el-menu-item>
-            </el-submenu>
-            <el-submenu index="2">
-                 <template slot="title">
-                    <div  @click="onOpen()">
-                    <i class="iconfont icon-guanli"></i>
-                    <span slot="title">搜索管理</span>
-                    </div>
-                </template>
-                <el-menu-item index="/personal_tag">个人标签管理</el-menu-item>
-                <el-menu-item index="/search_history">搜索履历管理</el-menu-item>
-            </el-submenu>
-            <el-submenu index="3">
-                 <template slot="title">
-                    <div  @click="onOpen()">
-                        <i class="iconfont icon-bangzhu"></i>
-                        <span slot="title">搜索帮助</span>
-                    </div>
-                </template>
-                <el-menu-item index="/search_help">搜索帮助</el-menu-item>
-            </el-submenu>
-            <el-submenu index="4">
-                 <template slot="title">
-                    <div  @click="onOpen()">
-                        <i class="iconfont icon-shezhi"></i>
-                        <span slot="title">系统管理</span>
-                    </div>
-                </template>
-                <el-menu-item index="/user_management">用户管理</el-menu-item>
-                <el-menu-item index="/role_management">角色管理</el-menu-item>
-                <el-menu-item index="/access_management">访问权限管理</el-menu-item>
-                <el-menu-item index="/search_history_management">搜索履历</el-menu-item>
-                <el-menu-item index="/background_plan_config">后台计划配置</el-menu-item>
-                <el-menu-item index="/query_result_analysis">查询结果分析</el-menu-item>
-            </el-submenu>
-            <el-submenu index="5">
-                 <template slot="title">
-                    <div  @click="onOpen()">
-                        <i class="iconfont icon-shezhi"></i>
-                        <span slot="title">系统管理(旧)</span>
-                    </div>
-                </template>
-                <el-menu-item index="/user_management">组织管理</el-menu-item>
-                <el-menu-item index="/role_management">业务字典</el-menu-item>
-                <el-menu-item index="/access_management">资源管理</el-menu-item>
-                <el-menu-item index="/search_history_management">全文检索权限</el-menu-item>
-                <el-menu-item index="/background_plan_config">角色管理</el-menu-item>
-                <el-menu-item index="/query_result_analysis">国际化</el-menu-item>
-                <el-menu-item index="/background_plan_config">数据权限管理</el-menu-item>
-                <el-menu-item index="/query_result_analysis">在线用户查看</el-menu-item>
-            </el-submenu> 
-            </el-menu> -->
-            <div class="meau">
-             <el-menu   :default-active="reURL" class="el-menu-vertical-demo" menu-trigger='click'  @select="handleselect" @open="handleOpen" @close="handleClose" :default-openeds="openeds" :collapse="isCollapse"  :collapse-transition='false' :unique-opened='false'>
-            <template  v-for="(menu,index) in menuList" >
-              <el-submenu v-if="menu.children && menu.children.length >= 1" :index="'' + menu.seqNo"  :key="index">
-                <template slot="title">
-                  <div @click="onOpen()">
-                       <i :class="menu.icon"></i>
-                        <span slot="title">
-                      <span slot="title">  {{menu.resName}}</span>
-                  </span>
-                  </div>             
-                </template>
-                <template v-for="item in menu.children">
-                  <template v-if="item.children == 0">
-                    <el-menu-item v-if="item.isHidden!=false" :key="item.id" :index="'' + item.seqNo" @click="handleRoute(item)">
-                      <span slot="title">{{ item.resName }}</span>
-                    </el-menu-item>
-                  </template>
-                  <el-submenu v-else :key="item.id" :index="'' + item.seqNo">
-                    <span slot="title">{{ item.resName }}</span>
-                    <el-menu-item v-for="items in item.children" :key="items.id" :index="'' + items.seqNo" @click="handleRoute(items)">
-                      <span slot="title">{{ items.resName }}</span>
-                    </el-menu-item>
-                  </el-submenu>
-                </template>
+  <aside class="menu" :class="isCollapse ? 'collapse' : ''">
+    <div class="collapse" :class="isCollapse ? 'iscollapse' : '' ">
+      <span class="btn_icon" @click="changeCollapse">
+        <i class="iconfont" :class="isCollapse ? 'icon-yousuojin' : 'icon-zuosuojin' " />
+      </span>
+    </div>
+    <div class="logo">
+      <img :src="isCollapse?require('../assets/img/logo_menu_small.png'):require('../assets/img/logo_menu.png')">
+    </div>
+    <div class="meau">
+      <el-menu :default-active="reURL" :default-openeds="openeds" :collapse="isCollapse" :collapse-transition="false" :unique-opened="false" class="el-menu-vertical-demo" menu-trigger="click" @select="handleselect" @open="handleOpen" @close="handleClose">
+        <template v-for="(menu,index) in menuList">
+          <el-submenu v-if="menu.children && menu.children.length >= 1" :key="index" :index="'' + menu.seqNo">
+            <template slot="title">
+              <div @click="onOpen()">
+                <i :class="menu.icon" />
+                <span slot="title">
+                  <span slot="title">{{ menu.resName }}</span>
+                </span>
+              </div>
+            </template>
+            <template v-for="item in menu.children">
+              <template v-if="item.children == 0">
+                <el-menu-item v-if="item.isHidden!=false" :key="item.id" :index="'' + item.seqNo" @click="handleRoute(item)">
+                  <span slot="title">{{ item.resName }}</span>
+                </el-menu-item>
+              </template>
+              <el-submenu v-else :key="item.id" :index="'' + item.seqNo">
+                <span slot="title">{{ item.resName }}</span>
+                <el-menu-item v-for="items in item.children" :key="items.id" :index="'' + items.seqNo" @click="handleRoute(items)">
+                  <span slot="title">{{ items.resName }}</span>
+                </el-menu-item>
               </el-submenu>
             </template>
-             </el-menu>
-            </div>
-      </aside> 
-
-
+          </el-submenu>
+        </template>
+      </el-menu>
+    </div>
+  </aside>
 </template>
 <script>
-import { mapGetters, mapActions, mapMutations } from 'vuex'
+import { mapGetters } from 'vuex'
 import { saveActiveMenu } from '@/utils/storage'
 export default {
   data() {
@@ -114,8 +50,8 @@ export default {
       openeds: [],
       reURL: '',
       // 默认选中菜单
-      activeIndex: this.$route.path == '' ? '/search/general_search' : this.$route.path
-    };
+      activeIndex: this.$route.path === '' ? '/search/general_search' : this.$route.path
+    }
   },
   computed: {
     ...mapGetters([
@@ -142,20 +78,19 @@ export default {
       }
     },
     changeCollapse() {
-      this.isCollapse = !this.isCollapse;
-      this.openeds = [];
+      this.isCollapse = !this.isCollapse
+      this.openeds = []
       this.$store.state.falg = this.isCollapse
       // console.log('meau', this.isCollapse)
     },
     onOpen() {
-      this.isCollapse = false;
+      this.isCollapse = false
     },
     handleOpen(key, keyPath) {
-      this.isCollapse = false;
+      this.isCollapse = false
     },
     handleClose(key, keyPath) {
-
-      console.log(key, keyPath);
+      console.log(key, keyPath)
     },
 
     getSelectedMenus(menuList, seqNo) {
@@ -174,11 +109,11 @@ export default {
       this.breadcrumbItems = []
       const seqNo = menuIndex.split(':')
       this.getSelectedMenus(this.menuList, seqNo)
-    },
+    }
   }
 }
 </script>
-<style scoped>
+<style lang="css" scoped>
 aside {
   width: 280px;
   height: 100%;

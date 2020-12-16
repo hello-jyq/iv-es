@@ -10,30 +10,28 @@
           </span>
           <el-dropdown-menu slot="dropdown" class="login-down">
             <el-dropdown-item>
-              <img src="@/assets/img/cn.png" class="lanIcon" />
+              <img src="@/assets/img/cn.png" class="lanIcon">
               <span>中文</span>
             </el-dropdown-item>
             <el-dropdown-item>
-              <img src="@/assets/img/en.png" class="lanIcon" />
+              <img src="@/assets/img/en.png" class="lanIcon">
               <span>English</span>
             </el-dropdown-item>
             <el-dropdown-item>
-              <img src="@/assets/img/jp.png" class="lanIcon" />
+              <img src="@/assets/img/jp.png" class="lanIcon">
               <span>にほんご</span>
             </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
-
-           
       </div>
-      <el-form label-position="left" label-width="0px" @submit.native.prevent :model="ruleForm"  :rules="rules" ref="ruleForm">
+      <el-form ref="ruleForm" :model="ruleForm" :rules="rules" label-position="left" label-width="0px" @submit.native.prevent>
         <h1 class="logo">
           <router-link to>
-            <img src="@/assets/img/logo_login.png" />
+            <img src="@/assets/img/logo_login.png">
           </router-link>
         </h1>
-       <el-form-item prop="userName">
-          <el-input  type="text" v-model="ruleForm.userName" placeholder="用户名" />
+        <el-form-item prop="userName">
+          <el-input v-model="ruleForm.userName" type="text" placeholder="用户名" />
         </el-form-item>
         <el-form-item prop="userPassword">
           <el-input v-if="!isOpen" v-model="ruleForm.userPassword" type="password" placeholder="密码">
@@ -47,17 +45,23 @@
           <span @click="retrieveDialog = true">找回密码</span>
         </div>
         <el-form-item style="width:100%;margin-bottom:0 !important">
-          <el-button type="primary" style="width:100%;"   @click.native="login">登&nbsp;&nbsp;录</el-button>
+          <el-button type="primary" style="width:100%;" @click.native="login">
+            登&nbsp;&nbsp;录
+          </el-button>
         </el-form-item>
       </el-form>
-      <div class="copyright">©Copyright 2009-2020 iVision Shanghai Co., Ltd. All Rights Reserved. 沪ICP备xxxxxxxx号</div>
+      <div class="copyright">
+        ©Copyright 2009-2020 iVision Shanghai Co., Ltd. All Rights Reserved. 沪ICP备xxxxxxxx号
+      </div>
     </div>
     <!--右边banner-->
     <div class="login-banner">
       <el-carousel arrow="never" :autoplay="true" trigger="click">
         <el-carousel-item v-for="item in itemTxt" :key="item.index">
-          <h2>{{item.title}}</h2>
-          <div class="txt">{{item.content}}</div>
+          <h2>{{ item.title }}</h2>
+          <div class="txt">
+            {{ item.content }}
+          </div>
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -70,10 +74,12 @@
       center
     >
       <div class="context">
-        <p class="retrieve-tips">为了确定是您本人，系统将发送一条邮件到您的邮箱，请按邮件提示操作!</p>
+        <p class="retrieve-tips">
+          为了确定是您本人，系统将发送一条邮件到您的邮箱，请按邮件提示操作!
+        </p>
         <el-form ref="retrieveForm" :model="retrieveForm" class="retrieve-form">
           <el-form-item
-            prop="userName"        
+            prop="userName"
           >
             <el-input v-model="retrieveForm.userName" placeholder="请输入邮箱" />
           </el-form-item>
@@ -81,12 +87,13 @@
             <el-button
               type="primary"
               @click="sendEmail"
-            >发&nbsp;&nbsp;送</el-button>
+            >
+              发&nbsp;&nbsp;送
+            </el-button>
           </el-form-item>
         </el-form>
       </div>
     </el-dialog>
-
     <!--  发送结果弹窗-->
     <el-dialog
       top="0"
@@ -96,12 +103,16 @@
       center
     >
       <div class="context">
-        <p class="retrieve-tips">{{ isSucccess ? successText : failText }}</p>
+        <p class="retrieve-tips">
+          {{ isSucccess ? successText : failText }}
+        </p>
         <div class="retrieve-form">
           <el-button
             type="primary"
             @click="submitResult"
-          >{{ isSucccess ? ' 完&nbsp;&nbsp;成' : ' 重新填写' }}</el-button>
+          >
+            {{ isSucccess ? ' 完&nbsp;&nbsp;成' : ' 重新填写' }}
+          </el-button>
         </div>
       </div>
     </el-dialog>
@@ -110,36 +121,38 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import { formValidator } from '@/mixins/form-validator'
+import { getLanguageType } from '@/utils/lang'
+import { setLang } from '@/utils/storage'
+// import { formValidator } from '@/mixins/form-validator'
 export default {
   data() {
     return {
       isOpen: false,
       resultDialog: false,
       isSucccess: false,
-      successText: "系统已将邮件发送至您的邮箱，请注意查收！",
-      failText: "邮箱发送失败，请重新填写邮箱地址！",
-      title: "发送成功",
+      successText: '系统已将邮件发送至您的邮箱，请注意查收！',
+      failText: '邮箱发送失败，请重新填写邮箱地址！',
+      title: '发送成功',
       retrieveDialog: false,
       retrieveForm: {
         userName: ''
       },
       ruleForm: {
-        userName: "",
-        userPassword: ""
+        userName: '',
+        userPassword: ''
       },
       rules: {
         userName: [
           {
             required: true,
-            message: "请输入用户名",
+            message: '请输入用户名',
             trigger: 'blur'
           }
         ],
         userPassword: [
           {
             required: true,
-            message: "请输入密码",
+            message: '请输入密码',
             trigger: 'blur'
           }
         ]
@@ -154,48 +167,34 @@ export default {
         title: 'こんにちは、おかえりなさい！',
         content: '今後、Huge Vision ESEシステムは、必要なコンテンツを迅速、効率的、正確に検索するのに役立ちます。'
       }]
-
-    };
+    }
   },
   computed: {
-
+    ...mapGetters(['userInfo'])
   },
   mounted() {
 
   },
   methods: {
     login() {
-
-      // this.$refs.ruleForm.validate(
-      //   async valid => {
-      //     if (valid) {
-      //       let redirect = this.$router.history.current.query.redirect
-      //       redirect = redirect === '/login' ? '' : redirect
-      //       const path = redirect || '/'
-      //       // // console.log(path)
-      //       this.$router.push(path)
-      //     }
-      //   })
       this.$refs.ruleForm.validate(async valid => {
         if (valid) {
           const params = this.ruleForm
           const res = await this.loginAction(params)
           // // console.log(res)
           if (res && res.success) {
-            // this.initLang(this.userInfo.locale)
-            // this.$message({
-            //   type: 'success',
-            //   message: this.$t('comm.welcome') + this.userInfo.nickName,
-            //   customClass: localStorage.getItem('theme') === 'Dark' ? 'dark-message-box' : 'light-message-box'
-            // })
-            // if (res.datas.userInfo.isNeedChangePassword) {
-            //   this.$router.push('/changePassword')
-            //   return
-            // }
+            this.initLang(this.userInfo.locale)
+            this.$message({
+              type: 'success',
+              message: this.$t('comm.welcome') + this.userInfo.nickName
+            })
+            if (res.datas.userInfo.isNeedChangePassword) {
+              this.$router.push('/changePassword')
+              return
+            }
             let redirect = this.$router.history.current.query.redirect
             redirect = redirect === '/login' ? '' : redirect
             const path = redirect || '/'
-            // // console.log(path)
             this.$router.push(path)
           }
         } else {
@@ -204,30 +203,42 @@ export default {
       })
     },
     ...mapActions(['loginAction']),
-
-
+    initLang(langStr) {
+      const lang = getLanguageType(langStr)
+      // // console.log('lang', lang)
+      setLang(lang)
+      this.$i18n.locale = lang
+    },
     onOpen() {
-      this.isOpen = !this.isOpen;
+      this.isOpen = !this.isOpen
     },
     sendEmail() {
-      if (this.retrieveForm.userName != '') {
-        this.isSucccess = true;
+      if (this.retrieveForm.userName !== '') {
+        this.isSucccess = true
+        this.retrieveDialog = false
+        this.resultDialog = true
+        this.title = '发送成功'
+      } else {
+        this.isSucccess = false
+        this.title = '发送失败'
         this.retrieveDialog = false
         this.resultDialog = true
       }
     },
     submitResult() {
-      if (this.isSucccess = true) {
+      if (this.isSucccess === true) {
         // this.$router.push("/login");
+        this.retrieveDialog = false
         this.resultDialog = false
+      } else {
+        this.retrieveDialog = true
       }
-    },
-
+    }
   }
-};
+}
 </script>
 
-<style scoped>
+<style lang="css" scoped>
 .login {
   position: relative;
   height: 100vh;
@@ -356,3 +367,4 @@ export default {
   text-align: center;
 }
 </style>
+

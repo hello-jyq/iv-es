@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Homeold from '@/views/Home.vue'
+// import Homeold from '@/views/Home.vue'
 import Home from '@/views/index.vue'
 import Login from '@/views/login'
 import NotFound from '@/views/404'
@@ -32,7 +32,7 @@ const createRouter = () => new Router({
           path: '/search_result',
           name: '搜索结果',
           component: () => import('@/views/search/searchResult')
-        },
+        }
         // {
         //   path: '/personal_tag',
         //   name: '个人标签管理',

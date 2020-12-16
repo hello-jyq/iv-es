@@ -1337,11 +1337,19 @@ aside.collapse+.header+.main .content-dialog-box{
 // 没有左侧检索条件的内容
   .no-search-content-box{
     height: 100%;
-    padding-left: 70px;
-    padding-right: 40px;
-   
+    margin: 0 40px 30px 40px;
+    flex: 1;
+    overflow: hidden;
     .table-bg-box{
       width: 100%;
+      height: calc(100% - 500px);
+      overflow: auto;
+    }
+    .el-table{
+      margin: 0;
+      padding: 20px;
+      box-shadow: 0px 2px 10px 0px rgba(68, 100, 163, 0.1);
+      border-radius: 16px;
     }
   }
 
