@@ -2,7 +2,7 @@
   <div class="container acc">
     <div class="header_box">
       选择用户角色：
-      <el-select v-model="selectvalue" placeholder="请选择" popper-class="acc" @change="selectChange">
+      <el-select v-model="selectid" placeholder="请选择" popper-class="acc" @change="selectChange">
         <el-option v-for="item in options" :key="item.id" :label="item.roleName" :value="item.id" />
       </el-select>
     </div>
@@ -30,7 +30,6 @@
             :props="defaultProps"
             icon-class="iconfont icon-jiantou-copy"
             @check="handleCheckChange"
-            @current-change="nodeCheckChange"
           />
         </div>
         <el-row type="flex" justify="center" class="acc_button">
@@ -52,15 +51,13 @@ export default {
   data() {
     return {
       options: '',
-      selectvalue: '',
+      selectid: '',
       selectOldvalue: '',
       ESDataSourceList: '',
       ESDataSourcID: '',
-      ESDataSourcName: '',
       active: 0,
       checked: false,
       treedata: [],
-      treeold: [],
       expandedKeys: [],
       checkedKeys: [],
       defaultProps: {
@@ -71,83 +68,61 @@ export default {
   },
   created() {
     this.getEsRoles()
-    this.getDictEntriesByTypeId()
-    this.getFoldertree(0)
+    this.getDictEntriesByTypeId().then(() => {
+      this.getFoldertree(this.ESDataSourcID, 0)
+    })
   },
   methods: {
     // 获取用户角色
     async getEsRoles(item) {
       const res = await getEsRoles({ item })
       if (res && res.success) {
+        this.selectid = res.datas.rolesList[0].id
         this.options = res.datas.rolesList
       }
     },
     // 获取tree
-    async getFoldertree(i) {
-      const res = await getFoldertree({ roleId: this.selectvalue })
+    async getFoldertree(dictId, i) {
+      const res = await getFoldertree({ roleId: this.selectid })
       if (res && res.success) {
-        // console.log('tree', res.datas)
-        this.datas = res.datas
-        // this.treedata = this.filter(res.datas.folderTree)
-        if (res.datas.folderTree[i]) {
-          this.treedata = [res.datas.folderTree[i]]
-
-          // this.checkedKeys.push(res.datas.checkedKeys[0])
-          sessionStorage.setItem('tree' + i, JSON.stringify(res.datas.folderTree[i]))
-          this.$nextTick(() => {
-            // console.log(3, this.$refs.tree[0])
-            this.expandedKeys = [res.datas.expandedKeys[i]]
-            this.$refs.tree[i].setCheckedKeys([res.datas.checkedKeys[i]])
-          })
-        } else {
-          this.treedata = []
-          sessionStorage.setItem('tree' + i, JSON.stringify('empty'))
-        }
+        this.treedata = res.datas.folderTree
+        this.expandedKeys = res.datas.expandedKeys
+        this.checkedKeys = res.datas.checkedKeys
+        sessionStorage.setItem('tree' + i, JSON.stringify(res.datas.folderTree))
+        sessionStorage.setItem('checked' + i, JSON.stringify(res.datas.checkedKeys))
+        sessionStorage.setItem('expanded' + i, JSON.stringify(res.datas.expandedKeys))
       }
     },
     // 获取服务器列表
     async getDictEntriesByTypeId(item) {
       const res = await getDictEntriesByTypeId({ dictTypeId: 'ESDataSourceName' })
       if (res && res.success) {
-        // console.log("ESDataSource", res)
         this.ESDataSourceList = res.datas.dicts
+        this.ESDataSourcID = res.datas.dicts[0].dictId
       }
     },
     // tab服务器切换
-    ESDataSourceClick(id, i, val) {
-      this.ESDataSourcID = id
-      this.ESDataSourcName = val
+    ESDataSourceClick(dictId, i) {
+      this.ESDataSourcID = dictId
       this.checked = false
       const sessointree = JSON.parse(sessionStorage.getItem('tree' + i))
-      if (sessointree && sessointree !== 'empty') {
-        this.treedata = [sessointree]
-        this.expandedKeys = JSON.parse(sessionStorage.getItem('treeexpand' + i))
-        this.$nextTick(() => {
-          const sessointreekey = JSON.parse(sessionStorage.getItem('treekey' + i))
-          if (sessointreekey) {
-            this.$refs.tree[i].setCheckedNodes(sessointreekey)
-          }
-        })
-      } else if (sessointree) { this.treedata = [] } else {
-        this.getFoldertree(i)
+      const sessointreechecked = JSON.parse(sessionStorage.getItem('checked' + i))
+      const sessointreeexpanded = JSON.parse(sessionStorage.getItem('expanded' + i))
+      if (sessointree) {
+        this.treedata = sessointree
+        this.expandedKeys = sessointreeexpanded
+        this.checkedKeys = sessointreechecked
+      } else {
+        this.getFoldertree(dictId, i)
       }
     },
     handleCheckChange(a, b) {
       if (b.checkedNodes) {
-        sessionStorage.setItem('treekey' + this.active, JSON.stringify(b.checkedNodes))
-        sessionStorage.setItem('treeexpand' + this.active, JSON.stringify(b.halfCheckedKeys))
+        sessionStorage.setItem('checked' + this.active, JSON.stringify(b.checkedKeys))
+        sessionStorage.setItem('expanded' + this.active, JSON.stringify(b.halfCheckedKeys))
       }
-      // }
     },
-    nodeCheckChange(a, b) {
-      console.log(a, b)
-    },
-    // setCheckedKeys(e, i) {
-    //   // console.log(this.$refs.tree[i])
-    //   if (e) { this.$refs.tree[i].setCheckedKeys([]); } else {
-    //     this.$refs.tree[i].setCheckedKeys([]);
-    //   }
-    // },
+    // 全选
     selectAllNodes(flag, i) {
       if (flag) {
         this.$refs.tree[i].setCheckedNodes(this.treedata)
@@ -155,45 +130,6 @@ export default {
         this.$refs.tree[i].setCheckedNodes([])
       }
     },
-    // setCheckedNodes(e, i) {
-    //   this.$refs.tree[i].setCheckedNodes(this.data);
-    // },
-    // selectAllNodes: function (e, i) {
-    //   if (e) {
-    //     //  获取根节点
-    //     let rootNode = this.$refs.tree[i].getNode(this.data[0].id).parent;
-    //     travelNodes(rootNode);
-    //     function travelNodes(tmpRoot) {
-    //       // 选中该节点
-    //       tmpRoot.checked = true;
-    //       // 叶子节点
-    //       if (tmpRoot.childNodes.length === 0) {
-    //         return;
-    //       }
-    //       // 不是叶子节点,递归遍历
-    //       else {
-    //         let tmpChildNoes = tmpRoot.childNodes;
-    //         for (let i = 0; i < tmpChildNoes.length; i++) {
-    //           travelNodes(tmpChildNoes[i]);
-    //         }
-    //       }
-    //     }
-    //   } else {
-    //     this.$refs.tree[i].setCheckedKeys([]);
-    //   }
-    // },
-    // filter(arr) {
-    //   if (arr !== '') {
-    //     console.log('filter', arr)
-    //     for (let i = 0; i < arr.length; i++) {
-    //       if (arr[i].dataSource === this.ESDataSourcID) {
-    //         return [arr[i]]
-    //       }
-    //     }
-    //   } else {
-    //     return null
-    //   }
-    // },
     reset(i) {
       this.$refs.tree[i].setCheckedKeys([])
     },
@@ -205,26 +141,26 @@ export default {
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          this.selectvalue = val
+          this.selectid = val
           this.selectOldvalue = val
           this.active = 0
           for (let i = 0; i < this.ESDataSourceList.length; i++) {
             sessionStorage.removeItem('tree' + i)
-            sessionStorage.removeItem('treekey' + i)
-            sessionStorage.removeItem('treeexpand' + i)
+            sessionStorage.removeItem('checked' + i)
+            sessionStorage.removeItem('expanded' + i)
           }
-          this.getFoldertree(0)
+          this.getFoldertree(this.ESDataSourcID, 0)
           this.ESDataSourceClick(this.ESDataSourceList[0].dictId, 0, this.ESDataSourceList[0].dictName)
         }).catch(() => {
-          this.selectvalue = this.selectOldvalue
+          this.selectid = this.selectOldvalue
         })
       }
     },
     // 提交
-    submit(i) {
-      if (this.selectvalue) {
+    submit() {
+      if (this.selectid) {
         this.$message({
-          message: this.ESDataSourcName + '提交成功',
+          message: 'id：' + this.ESDataSourcID + '提交成功',
           type: 'success'
         })
       } else {
