@@ -22,11 +22,11 @@
       <div class="search-btn-box">
         <div class="reset-box" @click="resetForm('form')">
           <p>{{ $t('comm.reset') }}</p>
-          <span class="circle-larger-btn btn-default-color"><i class="iconfont iconrefresh" /></span>
+          <span class="circle-larger-btn btn-default-color"><i class="iconfont icon-refresh" /></span>
         </div>
         <div class="search-box" @click="searchOrgYear(searchParam.params.validYear)">
           <p>{{ $t('comm.query') }}</p>
-          <span class="circle-larger-btn btn-light-color bluebg"><i class="iconfont iconsousuo" /></span>
+          <span class="circle-larger-btn btn-light-color bluebg"><i class="iconfont icon-sousuo" /></span>
         </div>
       </div>
     </div>
@@ -34,11 +34,11 @@
     <div class="content content-light">
       <ul class="operation-box">
         <li class="operation-item" @click="handleEdit(multipleSelection)">
-          <span class="operation-circle circle-middle-btn btn-light-color bluebg"><i class="iconfont iconbianji" /></span>
+          <span class="operation-circle circle-middle-btn btn-light-color bluebg"><i class="iconfont icon-wendang" /></span>
           <span class="operation-text">编&nbsp;辑</span>
         </li>
         <li class="operation-item" @click="handleActive(multipleSelection)">
-          <span class="operation-circle circle-middle-btn btn-light-color bluebg"><i class="iconfont iconrefresh" /></span>
+          <span class="operation-circle circle-middle-btn btn-light-color bluebg"><i class="iconfont icon-refresh" /></span>
           <span class="operation-text">激&nbsp;活</span>
         </li>
       </ul>
@@ -98,10 +98,10 @@
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
         >
-          <span class="iconfont iconjiantou-youzhi page-last-page" @click="toLastPage" />
+          <span class="iconfont icon-Group-1 page-last-page" @click="toLastPage" />
         </el-pagination>
         <el-pagination class="page-right  page-first" layout="slot">
-          <span class="iconfont iconjiantou-zuozhi page-first-page" @click="toFirstPage" />
+          <span class="iconfont icon-zuiqian page-first-page" @click="toFirstPage" />
         </el-pagination>
       </div>
     </div>
@@ -228,8 +228,8 @@ export default {
   mounted() {
     var erd = elementResizeDetectorMaker()
     var that = this
-    erd.listenTo(that.$refs.apply, function(element) {
-      that.$nextTick(function() {
+    erd.listenTo(that.$refs.apply, (element) => {
+      that.$nextTick(() => {
         this.getScrollBar()
         this.getDragBar()
         this.changeTableHeight()
@@ -237,17 +237,18 @@ export default {
       })
     })
 
-    erd.listenTo(document.getElementsByClassName('dialog-drag')[0], function(element) {
-      that.$nextTick(function() {
-        // console.log('a')
-        this.getScrollBar()
-        this.getDragBar()
-        $('.el-table__body-wrapper').getNiceScroll().resize()
-        $('.el-dialog__body').getNiceScroll().resize()
-      })
+    erd.listenTo(document.getElementsByClassName('dialog-drag')[0], (element) => {
+      that.$nextTick(
+        () => {
+          // console.log('a')
+          this.getScrollBar()
+          this.getDragBar()
+          $('.el-table__body-wrapper').getNiceScroll().resize()
+          $('.el-dialog__body').getNiceScroll().resize()
+        })
     })
-    erd.listenTo(document.getElementsByClassName('dialog-drag')[1], function(element) {
-      that.$nextTick(function() {
+    erd.listenTo(document.getElementsByClassName('dialog-drag')[1], (element) => {
+      that.$nextTick(() => {
         this.getScrollBar()
         this.getDragBar()
         $('.el-table__body-wrapper').getNiceScroll().resize()
@@ -405,9 +406,11 @@ export default {
         })
         return
       }
-      this.$router.push({ path: '/admin/orgUser/org', query: {
-        validYear: selectYear
-      }})
+      this.$router.push({
+        path: '/admin/orgUser/org', query: {
+          validYear: selectYear
+        }
+      })
     },
     async handleActive(val) {
       // 所选项目大于1个时，不可编辑

@@ -90,11 +90,11 @@
 
           <ul class="content-top-btn">
             <li class="operation-item" @click="reset">
-              <span class="operation-circle circle-middle-btn btn-light-color"><i class="iconfont iconrefresh" /></span>
+              <span class="operation-circle circle-middle-btn btn-light-color"><i class="iconfont icon-refresh" /></span>
               <span class="operation-text">{{ $t('comm.reset') }}</span>
             </li>
             <li class="operation-item" @click="search">
-              <span class="operatiouln-circle circle-middle-btn btn-light-color"><i class="iconfont iconsousuo" /></span>
+              <span class="operatiouln-circle circle-middle-btn btn-light-color"><i class="iconfont icon-sousuo" /></span>
               <span class="operation-text">{{ $t('comm.query') }}</span>
             </li>
           </ul>
@@ -209,10 +209,10 @@
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
           >
-            <span class="iconfont iconjiantou-youzhi page-last-page" @click="toLastPage" />
+            <span class="iconfont icon-Group-1 page-last-page" @click="toLastPage" />
           </el-pagination>
           <el-pagination class="page-right  page-first" layout="slot">
-            <span class="iconfont iconjiantou-zuozhi page-first-page" @click="toFirstPage" />
+            <span class="iconfont icon-zuiqian page-first-page" @click="toFirstPage" />
           </el-pagination>
         </div>
       </template>
@@ -355,7 +355,7 @@ export default {
     this.fetchData()
     // var erd = elementResizeDetectorMaker()
     var that = this
-    that.$nextTick(function() {
+    that.$nextTick(() => {
       this.getScrollBar()
       $('.el-table__body-wrapper').getNiceScroll().resize()
     })
@@ -390,7 +390,7 @@ export default {
         this.searchParam.pageNo = pageNo
         this.searchParam.totalRecord = totalRecord
 
-        this.$nextTick(function() {
+        this.$nextTick(() => {
           this.getScrollBar()
           $('.el-table__body-wrapper').getNiceScroll().resize()
         })
@@ -590,7 +590,7 @@ export default {
     },
     // 显示右键操作菜单
     showOperation(ref) {
-    // 判断前一个的操作菜单是否隐藏
+      // 判断前一个的操作菜单是否隐藏
       if (this.activeOperation) {
         this.$refs[this.activeOperation].style.display = 'none'
       }
@@ -617,7 +617,7 @@ export default {
     onConfirm(item) {
       this.radioNumner = -1
       this.dialogUserVisible = false
-    // this.UserList.push(user)
+      // this.UserList.push(user)
     },
 
     checkPassword(table) {
@@ -640,215 +640,222 @@ export default {
 
 </script>
 <style lang="scss" scoped>
-  .user {
+.user {
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  padding: 0 !important;
+  .left {
+    width: 180px;
     height: 100%;
-    width: 100%;
-    background-color: #fff;
-    border-radius: 6px;
-    overflow: hidden;
-    padding: 0 !important;
-    .left {
-      width: 180px;
-      height: 100%;
-      float: left;
-      overflow: auto;
-      box-sizing: border-box;
-      padding: 0 5px;
-      background-color: #eee;
-      border-right: 5px solid #ccc;
-      // background-color: skyblue;
-      .tree_content {
-        position: relative;
-        .tree_item {
-          .iconfont {
-            font-size: 16px;
-          }
-          .icon-bumenguanli_h {
-            color: rgb(180, 87, 6);
-            font-size: 18px;
-          }
-          .icon-Avatar {
-            color: rgb(64, 179, 224);
-            font-size: 14px;
-          }
-          .icon-zuzhijiagou {
-            color: cadetblue;
-            font-size: 16px;
-            position: relative;
-            left: -12px;
-          }
-        }
-        .tree_down {
-          position: absolute;
-          top: 20px;
-          left: 15px;
-          z-index: 999;
-          background-color: #fff;
-          padding: 3px;
-          // height: 300px;
-          display: none;
-          p {
-            height: 20px;
-            line-height: 20px;
-            font-size: 12px;
-            color: #000;
-            &:hover {
-              background-color: #ccc;
-            }
-          }
-        }
-      }
-    }
-    .content {
-      overflow: auto;
-      height: 100%;
-      box-sizing: border-box;
-      padding: 20px;
-      .list {
-        h3 {
-          height: 40px;
-          line-height: 40px;
-          font-size: 20px;
-          border-bottom: 1px dashed #ccc;
-          margin-bottom: 15px;
-          position: relative;
-          color: rgb(50, 50, 50);
-        }
-        .search {
-          display: flex;
-          flex-wrap: wrap;
-          &>div {
-            width: 33.33%;
-            min-width: 200px;
-            box-sizing: border-box;
-            padding: 0 30px 15px 10px;
-            display: flex;
-            align-items: center;
-            .title {
-              width: 130px;
-              font-size: 14px;
-              font-weight: 700;
-            }
-            .input {
-              flex: 1;
-            }
-          }
-        }
-        .pagination {
-          text-align: right;
-          padding: 20px 5px;
-        }
-      }
-      .department {
-        width: 100%;
-        box-sizing: border-box;
-        padding-left: 10%;
-        .info {
-          width: 50%;
-          & > div {
-            display: flex;
-            padding: 10px 0;
-            align-items: center;
-            .title {
-              width: 130px;
-              font-size: 14px;
-              font-weight: 700;
-            }
-            .input {
-              flex: 1;
-            }
-          }
-        }
-        .btn {
-          width: 50%;
-          box-sizing: border-box;
-          padding-left: 130px;
-          margin-top: 10px;
-        }
-      }
-      .personnel {
-        .info {
-          display: flex;
-          flex-wrap: wrap;
-          &>div {
-            width: 50%;
-            display: flex;
-            box-sizing: border-box;
-            padding: 10px 0;
-            padding-right: 50px;
-            align-items: center;
-            .title {
-              width: 120px;
-              font-size: 14px;
-              font-weight: 700;
-            }
-            .input {
-              flex: 1;
-            }
-          }
-        }
-        h4 {
-          height: 30px;
-          line-height: 30px;
+    float: left;
+    overflow: auto;
+    box-sizing: border-box;
+    padding: 0 5px;
+    background-color: #eee;
+    border-right: 5px solid #ccc;
+    // background-color: skyblue;
+    .tree_content {
+      position: relative;
+      .tree_item {
+        .iconfont {
           font-size: 16px;
-          border-bottom: 1px dashed #ccc;
-          color: rgb(50, 50, 50);
-          margin-bottom: 10px;
-          padding: 10px 0;
+        }
+        .icon-bumenguanli_h {
+          color: rgb(180, 87, 6);
+          font-size: 18px;
+        }
+        .icon-Avatar {
+          color: rgb(64, 179, 224);
+          font-size: 14px;
+        }
+        .icon-zuzhijiagou {
+          color: cadetblue;
+          font-size: 16px;
           position: relative;
-          // color: #000;
-          .add_row {
-            position: absolute;
-            right: 0;
-            bottom: 10px;
-            border-radius: 6px;
-            // border: 1px solid #ccc;
-            cursor: pointer;
-            font-size: 12px;
-            width: 100px;
-            height: 30px;
-            line-height: 30px;
-            text-align: center;
-            background-image: linear-gradient(rgb(52, 165, 248), rgb(8, 142, 240));
-            color: #fff;
-            &:hover {
-              background-image: linear-gradient(rgb(42, 155, 238), rgb(8, 142, 240));
-            }
-          }
-        }
-        .affiliation,.role {
-          width: 80%;
-          .select_role {
-            display: flex;
-            .input {
-              margin-right: 15px;
-            }
-          }
-        }
-        .btn {
-          width: 80%;
-          box-sizing: border-box;
-          padding-left: 30px;
-          margin-top: 10px;
+          left: -12px;
         }
       }
-    }
-    .orgChoseDilog {
-      .box {
-        height: 400px;
-        overflow: auto;
+      .tree_down {
+        position: absolute;
+        top: 20px;
+        left: 15px;
+        z-index: 999;
         background-color: #fff;
+        padding: 3px;
+        // height: 300px;
+        display: none;
+        p {
+          height: 20px;
+          line-height: 20px;
+          font-size: 12px;
+          color: #000;
+          &:hover {
+            background-color: #ccc;
+          }
+        }
       }
     }
   }
+  .content {
+    overflow: auto;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    .list {
+      h3 {
+        height: 40px;
+        line-height: 40px;
+        font-size: 20px;
+        border-bottom: 1px dashed #ccc;
+        margin-bottom: 15px;
+        position: relative;
+        color: rgb(50, 50, 50);
+      }
+      .search {
+        display: flex;
+        flex-wrap: wrap;
+        & > div {
+          width: 33.33%;
+          min-width: 200px;
+          box-sizing: border-box;
+          padding: 0 30px 15px 10px;
+          display: flex;
+          align-items: center;
+          .title {
+            width: 130px;
+            font-size: 14px;
+            font-weight: 700;
+          }
+          .input {
+            flex: 1;
+          }
+        }
+      }
+      .pagination {
+        text-align: right;
+        padding: 20px 5px;
+      }
+    }
+    .department {
+      width: 100%;
+      box-sizing: border-box;
+      padding-left: 10%;
+      .info {
+        width: 50%;
+        & > div {
+          display: flex;
+          padding: 10px 0;
+          align-items: center;
+          .title {
+            width: 130px;
+            font-size: 14px;
+            font-weight: 700;
+          }
+          .input {
+            flex: 1;
+          }
+        }
+      }
+      .btn {
+        width: 50%;
+        box-sizing: border-box;
+        padding-left: 130px;
+        margin-top: 10px;
+      }
+    }
+    .personnel {
+      .info {
+        display: flex;
+        flex-wrap: wrap;
+        & > div {
+          width: 50%;
+          display: flex;
+          box-sizing: border-box;
+          padding: 10px 0;
+          padding-right: 50px;
+          align-items: center;
+          .title {
+            width: 120px;
+            font-size: 14px;
+            font-weight: 700;
+          }
+          .input {
+            flex: 1;
+          }
+        }
+      }
+      h4 {
+        height: 30px;
+        line-height: 30px;
+        font-size: 16px;
+        border-bottom: 1px dashed #ccc;
+        color: rgb(50, 50, 50);
+        margin-bottom: 10px;
+        padding: 10px 0;
+        position: relative;
+        // color: #000;
+        .add_row {
+          position: absolute;
+          right: 0;
+          bottom: 10px;
+          border-radius: 6px;
+          // border: 1px solid #ccc;
+          cursor: pointer;
+          font-size: 12px;
+          width: 100px;
+          height: 30px;
+          line-height: 30px;
+          text-align: center;
+          background-image: linear-gradient(
+            rgb(52, 165, 248),
+            rgb(8, 142, 240)
+          );
+          color: #fff;
+          &:hover {
+            background-image: linear-gradient(
+              rgb(42, 155, 238),
+              rgb(8, 142, 240)
+            );
+          }
+        }
+      }
+      .affiliation,
+      .role {
+        width: 80%;
+        .select_role {
+          display: flex;
+          .input {
+            margin-right: 15px;
+          }
+        }
+      }
+      .btn {
+        width: 80%;
+        box-sizing: border-box;
+        padding-left: 30px;
+        margin-top: 10px;
+      }
+    }
+  }
+  .orgChoseDilog {
+    .box {
+      height: 400px;
+      overflow: auto;
+      background-color: #fff;
+    }
+  }
+}
 </style>
 <style lang="scss">
 .userOrg {
   .tree-lock-text {
-      top: 20px;
-      min-width: auto;
-      width: 100px;
-      height: 120px;
+    top: 20px;
+    min-width: auto;
+    width: 100px;
+    height: 120px;
   }
 }
 
@@ -905,7 +912,7 @@ export default {
 
   span {
     position: absolute;
-      top: -12px;
+    top: -12px;
     right: -15px;
 
     i {

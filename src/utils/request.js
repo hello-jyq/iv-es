@@ -14,6 +14,16 @@ import i18n from '@/i18n/index.js'
 // } else if (process.env.NODE_ENV == 'production') {
 //   axios.defaults.baseURL = ''
 // }
+// 设置进度条参数
+NProgress.configure({
+  mininum: 0.1, // 开始时的最低百分比（默认0.08）
+  // template: ' ', // 进度条自定义HTML
+  // easing: 'ease', speed: 500, // 动画设置，接收CSS3 缓冲动画字符串，以及动画速度
+  trickle: false, // 设置自动递增的默认行为（默认true）
+  trickleSpeed: 200, // 进度条默认速度
+  showSpinner: false, // 是否显示右上角螺旋加载提示
+  parent: 'body' // 父容器（默认body）
+})
 if (process.env.NODE_ENV === 'production') {
   axios.defaults.baseURL = ''
 }

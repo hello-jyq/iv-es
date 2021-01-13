@@ -1,0 +1,103 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "userOrgs": [{
+            "userId": "15630",
+            "orgId": "2021-1531",
+            "positionCode": "1",
+            "isMain": "0",
+            "orgName": "金融第1Unit",
+            "userRoles": [{
+                "roleId": "ROLE_OPC_SYS_TOOL_AUTH",
+                "roleName": "系统功能照会角色",
+                "userId": "15630"
+            }]
+        }, {
+            "userId": "zhangpengID",
+            "orgId": "2021-1550",
+            "positionCode": "1",
+            "isMain": "1",
+            "orgName": "ｿﾘｭｰｼｮﾝ開発部",
+            "userRoles": [{
+                "roleId": "ROLE_OPC_BAF_RNU_OWN_111",
+                "roleName": "预实担当用户角色",
+                "userId": "zhangpengID"
+            }, {
+                "roleId": "ROLE_OPC_BDM_RNU_OWN_111",
+                "roleName": "预算担当用户角色",
+                "userId": "zhangpengID"
+            }, {
+                "roleId": "ROLE_OPC_SYS_TOOL_AUTH",
+                "roleName": "系统功能照会角色",
+                "userId": "zhangpengID"
+            }]
+        }],
+        "user": {
+            "id": "zhangpengID",
+            "createTime": "2019-10-12 11:04:32",
+            "createBy": "admin",
+            "updateTime": "2020-12-17 12:28:22",
+            "updateBy": "admin",
+            "deleteFlag": 0,
+            "rightNo": 4,
+            "userName": "zhangpeng",
+            "userType": "0",
+            "password": "$2a$10$UbAXdzScaLbqqiqyNipjN.XdC/lgYxZ8ytbmiaLb/tDbQpztxSzKm",
+            "openId": null,
+            "unionId": null,
+            "nickName": "张鹏",
+            "corpUserId": "peng.zhang",
+            "corpUserName": null,
+            "departIds": null,
+            "position": null,
+            "mobile": "",
+            "sex": null,
+            "sexCode": "0",
+            "email": "peng.zhang@ivision-china.cn",
+            "language": "zh_CN",
+            "country": null,
+            "province": null,
+            "city": null,
+            "headImgUrl": null,
+            "status": 1,
+            "isEnabled": 1,
+            "isExpired": 0,
+            "isLocked": 0,
+            "isSubscribed": 0,
+            "isLeader": 0,
+            "subscribeTime": null,
+            "remark": null,
+            "groupId": null,
+            "authMode": "local",
+            "ldapUserId": "zhangpeng@ivisionsh",
+            "userRoles": [{
+                "userId": "zhangpengID",
+                "roleId": "ROLE_OPC_BAF_RNU_OWN_111",
+                "validYear": null,
+                "activeFlag": 0
+            }, {
+                "userId": "zhangpengID",
+                "roleId": "ROLE_OPC_BDM_RNU_OWN_111",
+                "validYear": null,
+                "activeFlag": 0
+            }, {
+                "userId": "zhangpengID",
+                "roleId": "ROLE_OPC_SYS_TOOL_AUTH",
+                "validYear": null,
+                "activeFlag": 0
+            }],
+            "errCount": 0,
+            "invalidDate": null,
+            "lockTime": null,
+            "unlockTime": "2020-12-17T04:28:22.000+0000",
+            "passwordBak1": null,
+            "passwordBak2": null,
+            "jobRank": "G5",
+            "staffNum": null
+        }
+    }
+}

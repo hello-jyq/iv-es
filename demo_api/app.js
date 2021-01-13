@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 var hostName = '127.0.0.1' // ip
 var port = 8081 // 端口
 // 设置允许跨域请求
-app.all('*', function(req, res, next) {
+app.all('*', function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
   res.header('Access-Control-Allow-Metheds', 'PUT, POST, GET, DELETE, OPTIONS')
@@ -24,7 +24,7 @@ app.post('/iv-es/api/getSummaryList', (req, res) => {
   const { year, department, category, state, zero } = req.body
   const file = path.join(__dirname, 'dataList/data.json') // 文件路径，__dirname为当前运行js文件的目录
   // 读取json文件
-  fs.readFile(file, 'utf-8', function(err, data1) {
+  fs.readFile(file, 'utf-8', function (err, data1) {
     if (err) {
       console.log('文件读取失败')
       res.send({
@@ -83,7 +83,7 @@ app.post('/iv-es/api/base/getDictEntriesByTypeId', (req, res) => {
   // 读取json文件并送信
   const file = path.join(__dirname, 'dataList/dict.json') // 文件路径，__dirname为当前运行js文件的目录
   // 读取json文件
-  fs.readFile(file, 'utf-8', function(err, data1) {
+  fs.readFile(file, 'utf-8', function (err, data1) {
     if (err) {
       console.log('文件读取失败')
       res.send({
@@ -118,7 +118,7 @@ app.get('/iv-es/api/auth/loginInfo', (req, res) => {
 app.get('/iv-es/api/auth/logout', (req, res) => {
   console.log('查询参数：', req.body) // 获取请求参数
   // 读取json文件并送信
-  const data = { 'messages': [], 'warnings': [], 'message': null, 'arguments': null, 'success': true, 'datas': {}}
+  const data = { 'messages': [], 'warnings': [], 'message': null, 'arguments': null, 'success': true, 'datas': {} }
   setTimeout(() => {
     res.send(data)
   }, 200)
@@ -180,6 +180,11 @@ app.post('/iv-es/api/home/running', (req, res) => {
 app.post('/iv-es/api/org/getAllOrgTree', (req, res) => {
   // 读取json文件并送信
   sentResByJson('dataList/admin/allOrgTree.json', res)
+})
+
+app.post('/iv-es/api/org/getAllOrgTree/:year', (req, res) => {
+  // 读取json文件并送信
+  sentResByJson('dataList/admin/org/allOrgTree.json', res)
 })
 
 app.post('/iv-es/api/org/getAllOrgYears', (req, res) => {
@@ -428,7 +433,8 @@ app.post('/budgetms/api/comm/bdminfo', (req, res) => {
 })
 
 // 【ES-API-004】基本检索API
-app.post('/iv-es/api/es/search', (req, res) => {
+// app.post('/iv-es/api/es/search', (req, res) => {
+app.post('/iv-es/api/es/normalSearch', (req, res) => {
   // 读取json文件并送信
   sentResByJson('dataList/es/es-004.json', res)
 })
@@ -473,9 +479,72 @@ app.post('/iv-es/api/folderauth/foldertree', (req, res) => {
   sentResByJson('dataList/es/es-007.json', res)
 })
 
+// 组织画面，拉去人员信息
+app.post('/iv-es/api/org/orgUserInfo/:userId/:year', (req, res) => {
+  // 读取json文件并送信
+  sentResByJson('dataList/admin/org/getUserInfo.json', res)
+})
+// 组织画面，拉去人员列表
+app.post('/iv-es/api/org/listUsers', (req, res) => {
+  // 读取json文件并送信
+  sentResByJson('dataList/admin/org/listUser.json', res)
+})
+// 组织画面，拉去人员列表
+app.get('/iv-es/api/role/getAllRole', (req, res) => {
+  // 读取json文件并送信
+  sentResByJson('dataList/admin/org/getAllRole.json', res)
+})
+// 组织画面，拉去人员列表
+app.post('/iv-es/api/role/getRoleList', (req, res) => {
+  // 读取json文件并送信
+  sentResByJson('dataList/admin/role/getRoleList.json', res)
+})
+app.post('/iv-es/api/role/editDetail/:roldId', (req, res) => {
+  // 读取json文件并送信
+  sentResByJson('dataList/admin/role/roleDetail.json', res)
+})
+app.post('/iv-es/api/role/getAllResourceList', (req, res) => {
+  // 读取json文件并送信
+  sentResByJson('dataList/admin/role/getAllResourceList.json', res)
+})
+
+app.post('/iv-es/api/dict/getDictTypeList', (req, res) => {
+  // 读取json文件并送信
+  sentResByJson('dataList/admin/dict/getDictTypeList.json', res)
+})
+
+app.post('/iv-es/api/dict/getEntryList', (req, res) => {
+  // 读取json文件并送信
+  sentResByJson('dataList/admin/dict/getEntryList.json', res)
+})
+
+app.post('/iv-es/api/resource/getResList', (req, res) => {
+  // 读取json文件并送信
+  sentResByJson('dataList/admin/resource/getResList.json', res)
+})
+
+app.post('/iv-es/api/i18n/getList', (req, res) => {
+  // 读取json文件并送信
+  sentResByJson('dataList/admin/i18n/getList.json', res)
+})
+app.get('/iv-es/api/online/onlineUsers', (req, res) => {
+  // 读取json文件并送信
+  sentResByJson('dataList/admin/i18n/onlineUsers.json', res)
+})
+
+app.post('/iv-es/api/dac/getDacList', (req, res) => {
+  // 读取json文件并送信
+  sentResByJson('dataList/admin/i18n/getDacList.json', res)
+})
+
+app.post('/iv-es/api/scheduler/getScheduler', (req, res) => {
+  // 读取json文件并送信
+  sentResByJson('dataList/admin/i18n/getScheduler.json', res)
+})
+
 function sentResByJson(filePath, res) {
   const file = path.join(__dirname, filePath) // 文件路径，__dirname为当前运行js文件的目录
-  fs.readFile(file, 'utf-8', function(err, data1) {
+  fs.readFile(file, 'utf-8', function (err, data1) {
     if (err) {
       console.log('文件读取失败')
       res.send({
@@ -493,7 +562,7 @@ function sentResByJson(filePath, res) {
     }
   })
 }
-app.listen(port, hostName, function() {
+app.listen(port, hostName, function () {
   console.log('服务启动')
   console.log(`监听端口${port}`)
   console.log(`连接地址http://${hostName}:${port}`)

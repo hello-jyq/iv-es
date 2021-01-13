@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Homeold from '@/views/Home.vue'
+import Homeold from '@/views/Home.vue'
 import Home from '@/views/index.vue'
 import Login from '@/views/login'
 import NotFound from '@/views/404'
@@ -8,6 +8,7 @@ import NotFound from '@/views/404'
 // import {getToken, getUserInfo} from '@/utils/storage'
 
 Vue.use(Router)
+
 const createRouter = () => new Router({
   mode: 'history',
   base: '/iv-es/',
@@ -18,21 +19,21 @@ const createRouter = () => new Router({
       component: Home,
       redirect: '/search/general_search',
       children: [
-        {
-          path: '/search/general_search',
-          name: '普通搜索',
-          component: () => import('@/views/search/generalSearch')
-        },
+        // {
+        //   path: '/search/general_search',
+        //   name: '普通搜索',
+        //   component: () => import('@/views/search/generalSearch')
+        // },
         // {
         //   path: '/advanced_search',
         //   name: '高级搜索',
         //   component: () => import('@/views/search/advancedSearch')
         // },
-        {
-          path: '/search_result',
-          name: '搜索结果',
-          component: () => import('@/views/search/searchResult')
-        }
+        // {
+        //   path: '/search_result',
+        //   name: '搜索结果',
+        //   component: () => import('@/views/search/searchResult')
+        // },
         // {
         //   path: '/personal_tag',
         //   name: '个人标签管理',
@@ -94,7 +95,11 @@ const createRouter = () => new Router({
     }
   ]
 })
-
+// 解决ElementUI导航栏中的vue-router在3.0版本以上重复点菜单报错问题
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 const router = createRouter()
 
 export function resetRouter() {

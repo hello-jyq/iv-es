@@ -6,17 +6,19 @@
       </span>
     </div>
     <div class="logo">
-      <img :src="isCollapse?require('../assets/img/logo_menu_small.png'):require('../assets/img/logo_menu.png')">
+      <router-link to="/">
+        <img :src="isCollapse?require('../assets/img/logo_menu_small.png'):require('../assets/img/logo_menu.png')">
+      </router-link>
     </div>
     <div class="meau">
-      <el-menu :default-active="reURL" :default-openeds="openeds" :collapse="isCollapse" :collapse-transition="false" :unique-opened="false" class="el-menu-vertical-demo" menu-trigger="click" @select="handleselect" @open="handleOpen" @close="handleClose">
+      <el-menu :default-active="reURL" class="el-menu-vertical-demo" menu-trigger="click" :default-openeds="openeds" :collapse="isCollapse" :collapse-transition="false" :unique-opened="false" @select="handleselect" @open="handleOpen" @close="handleClose">
         <template v-for="(menu,index) in menuList">
           <el-submenu v-if="menu.children && menu.children.length >= 1" :key="index" :index="'' + menu.seqNo">
             <template slot="title">
               <div @click="onOpen()">
                 <i :class="menu.icon" />
                 <span slot="title">
-                  <span slot="title">{{ menu.resName }}</span>
+                  <span slot="title">  {{ menu.resName }}</span>
                 </span>
               </div>
             </template>
@@ -40,7 +42,7 @@
   </aside>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 import { saveActiveMenu } from '@/utils/storage'
 export default {
   data() {
@@ -48,9 +50,10 @@ export default {
       // 菜单折起状态
       isCollapse: false,
       openeds: [],
+      breadcrumbItems: [],
       reURL: '',
       // 默认选中菜单
-      activeIndex: this.$route.path === '' ? '/search/general_search' : this.$route.path
+      activeIndex: ''
     }
   },
   computed: {
@@ -58,14 +61,35 @@ export default {
       'menuList'
     ])
   },
+  watch: {
+    $route(newValue, oldValue) {
+      if (newValue) {
+        const menuIndex = window.sessionStorage.getItem('activeMenu')
+        if (menuIndex) {
+          this.activeIndex = menuIndex
+          this.breadcrumbItems = []
+          const seqNo = menuIndex.split(':')
+          this.getSelectedMenus(this.menuList, seqNo)
+          console.log(11111111, this.menuList)
+        } else {
+          this.reURL = 'menu-search:menu-search-general-search'
+        }
+        if (newValue.name === '普通检索') {
+          // const menuIndex = 'menu-search:menu-search-general-search'
+          // this.activeIndex = menuIndex
+          // this.breadcrumbItems = []
+          // const seqNo = menuIndex.split(':')
+          // this.getSelectedMenus(this.menuList, seqNo)
+        }
+      }
+    }
+  },
   mounted() {
     const menuIndex = window.sessionStorage.getItem('activeMenu')
     if (menuIndex) {
-      // this.activeIndex = menuIndex
-      this.breadcrumbItems = []
-      const seqNo = menuIndex.split(':')
-      this.getSelectedMenus(this.menuList, seqNo)
       this.reURL = menuIndex
+    } else {
+      this.reURL = 'menu-search:menu-search-general-search'
     }
   },
   methods: {
@@ -90,6 +114,7 @@ export default {
       this.isCollapse = false
     },
     handleClose(key, keyPath) {
+      this.openeds = keyPath
       console.log(key, keyPath)
     },
 
@@ -103,9 +128,8 @@ export default {
       this.getSelectedMenus(menu[0].children, seqNo)
     },
     handleselect(menuIndex) {
-      // // console.log(9999999, menuIndex)
       saveActiveMenu(menuIndex)
-      // this.activeIndex = menuIndex
+      this.activeIndex = menuIndex
       this.breadcrumbItems = []
       const seqNo = menuIndex.split(':')
       this.getSelectedMenus(this.menuList, seqNo)
@@ -113,7 +137,7 @@ export default {
   }
 }
 </script>
-<style lang="css" scoped>
+<style scoped>
 aside {
   width: 280px;
   height: 100%;
@@ -122,8 +146,12 @@ aside {
   position: relative;
   padding-top: 30px;
   border-radius: 0 30px 30px 0;
+  transition: all .3s linear;
 }
-
+aside .logo,aside .logo img {
+    -webkit-transition: all .2s linear;
+    transition: all .3s linear;
+}
 .logo {
   width: 158px;
   height: 65px;

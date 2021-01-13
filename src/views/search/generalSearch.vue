@@ -4,11 +4,12 @@
       <el-col :span="24">
         <el-autocomplete
           v-model="searchs"
-          class="inline-input"
+          class="inline-input search_input"
           :fetch-suggestions="querySearch"
-          :maxlength="300"
           placeholder="请输入您想要搜索的内容"
           :trigger-on-focus="false"
+          clearable
+          :maxlength="81"
           popper-class="search_input"
           @select="handleSelect"
         >
@@ -19,7 +20,7 @@
         </el-autocomplete>
       </el-col>
       <el-col :span="24" class="flex_ceter" style="height:24px;line-height:24px">
-        <span class="font_size_14 fontC_333">搜索条件：</span>
+        <span class="font_size_14 fontC_333">搜索位置：</span>
         <el-radio-group v-model="radio">
           <el-radio label="ALL">
             不限
@@ -31,6 +32,7 @@
             文件内容
           </el-radio>
         </el-radio-group>
+        <span class="font_size_14 fontC_333">文档语言：</span>
         <el-select v-model="lang" placeholder="选择语言" placement="top-end" popper-class="lang_select" @change="getLang">
           <el-option
             v-for="item in options"
@@ -39,17 +41,24 @@
             :value="item.value"
           />
         </el-select>
+        <span class="font_size_14 fontC_333" style="margin-left:20px">搜索方式：</span>
+        <el-select v-model="fuzzy" placeholder="请选择" placement="top-end" popper-class="lang_select" @change="getFuzzy">
+          <el-option
+            v-for="item in searchOption"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
       </el-col>
     </el-row>
     <div class="main_box">
-      <div class="main_left_box">
+      <!-- <div class="main_left_box">
         <div class="hot_search">
           <span class="item_title">
             热词搜索
           </span>
-          <span class="refresh_words" @click="hotWordRefresh()"><i class="iconfont icon-refresh" />
-            换一换
-          </span>
+          <span class="refresh_words" @click="hotWordRefresh()"><i class="iconfont icon-refresh" />换一换</span>
           <ul class="item_content">
             <li v-for="item in item_hot_contents" :key="item.index" @click="getHotValue(item)">
               {{ item }}
@@ -61,6 +70,7 @@
             搜索履历
           </span>
           <el-table
+
             :data="tableData"
             height="90%"
             border
@@ -95,12 +105,6 @@
               </template>
             </el-table-column>
           </el-table>
-          <!-- <span class="refresh_words" @click="keyWordRefresh()"><i class="iconfont icon-refresh"/>换一换</span>
-            <ul class="item_content">
-            <li v-for="(item,index) in item_key_contents" :key="index" @click="getKeyValue(item)">
-              {{index+1}}、{{item}}
-            </li>
-          </ul> -->
         </div>
       </div>
       <div class="theme_search">
@@ -110,30 +114,47 @@
         <span class="refresh_words" @click="themeRefresh()"><i class="iconfont icon-refresh" />换一换</span>
         <div class="theme_search_item">
           <template v-for="item in theme_options_values">
-            <el-cascader
-              :key="item.index"
-              :options="theme_options"
-              class="theme_search_input"
-              :show-all-levels="false"
-              popper-class="theme_search"
-              :placeholder="item"
-              @change="getThemeValue"
-            />
+            <el-cascader :key="item.index" :placeholder="item" :options="theme_options" class="theme_search_input" :show-all-levels="false" popper-class="theme_search" @change="getThemeValue" />
           </template>
         </div>
-      </div>
+      </div> -->
+      <img src="../../assets/img/search_bg.png">
     </div>
   </div>
 </template>
 <script>
-import { getHotwords, getKeywords, getTerms } from '@/api/es/es-api'
+import { advancedSearch, getItems, getTerms, getHotwords, getKeywords } from '@/api/es/es-api'
 export default {
   data() {
     return {
       restaurants: [],
       searchs: '',
-      radio: 'FILENAME',
+      searchParam: {
+        paging: true,
+        pageNo: 1, // 当前页码
+        pageSize: 10, // 每页条数
+        totalRecord: null, // 总条数
+        params: {
+          keyWords: '',
+          fieldScale: '',
+          docLanguage: '',
+          language: 'cn',
+          fuzzySearchDiv: '0',
+          searchTarget: [],
+          fileNameBoost: '1',
+          fileContentBoost: '1',
+          fileExtent: [],
+          fileSizeFrom: '',
+          fileSizeTo: '',
+          sortItem: 'default',
+          fileSize: [],
+          fileUpdateTime: [],
+          filePath: []
+        }
+      },
+      radio: 'ALL',
       lang: 'ALL',
+      fuzzy: '0',
       options: [
         {
           value: 'ALL',
@@ -148,8 +169,48 @@ export default {
           value: 'JP',
           label: '日文'
         }],
-      item_hot_contents: [],
-      tableData: [],
+      searchOption: [
+        {
+          value: '0',
+          label: '部分一致'
+        },
+        {
+          value: '2',
+          label: '完全一致'
+        }
+      ],
+      item_hot_contents: ['锦鲤', '杠精', '佛系', '确认过眼神', '官宣', 'C位', '土味情话', '皮一下', '卡路里', '创造101', '超越妹妹', '五位一体', '四个全面', '共享经济', '大数据', '互联网+', '全十四五规划全面小康'],
+      hotWords: [],
+      searchLogs: [],
+      tableData: [{
+        date: '2016-05-03',
+        name: '王小虎',
+        result: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-02',
+        name: '王小虎',
+        result: '上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-04',
+        name: '王小虎',
+        result: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-01',
+        name: '王小虎',
+        result: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-08',
+        name: '王小虎',
+        result: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-06',
+        name: '王小虎',
+        result: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-07',
+        name: '王小虎',
+        result: '上海市普陀区金沙江路 1518 弄'
+      }],
       theme_options_values: ['合同', '组件', '资源', '组件', '资源1', '组件2', '资源4'],
       theme_options: [
         {
@@ -203,13 +264,42 @@ export default {
 
     }
   },
+  watch: {
+    searchs(newVal, oldVal) {
+      if (newVal.length > 80) {
+        this.$message({
+          message: '被搜索的关键字被限制在80个字符以内，请调整重新输入！',
+          type: 'warning'
+        })
+        return false
+      }
+    }
+  },
   created() {
-    this.getHotwords()
-    this.getKeywords()
+    // this.getHotwords()
+    // this.getKeywords()
   },
   methods: {
-    async getTerms(queryString) {
-      const res = await getTerms({ prefix: queryString })
+    // 获得热词
+    async getHotwords() {
+      const res = await getHotwords()
+      if (res && res.success) {
+        const hotWords = res.datas.terms
+        this.hotWords = hotWords
+        // console.log(terms)
+      }
+    },
+    // 获得搜索履历
+    async getKeywords() {
+      const res = await getKeywords()
+      if (res && res.success) {
+        const searchLogs = res.datas.logs
+        this.searchLogs = searchLogs
+        // console.log(logs)
+      }
+    },
+    async getTerms(prefix) {
+      const res = await getTerms({ prefix })
       if (res && res.success) {
         for (var i = 0; i < res.datas.terms.length; i++) {
           this.restaurants.push({
@@ -220,25 +310,9 @@ export default {
         }
       }
     },
-    async getHotwords(item) {
-      const res = await getHotwords({ item })
-      if (res && res.success) {
-        console.log('热词', res)
-        this.item_hot_contents = res.datas.terms
-      }
-    },
-    async getKeywords(item) {
-      const res = await getKeywords({ item })
-      if (res && res.success) {
-        console.log('履历', res)
-        for (let i = 0; i < res.datas.logs.length; i++) {
-          this.tableData.push({ date: null, name: res.datas.logs[i], result: null })
-        }
-      }
-    },
-    querySearch(queryString, cb) {
+    querySearch(prefix, cb) {
       this.restaurants = []
-      this.getTerms(queryString)
+      this.getTerms(prefix)
       // 调用 callback 返回建议列表的数据
       cb(this.restaurants)
     },
@@ -247,6 +321,9 @@ export default {
     },
     getLang(value) {
       this.lang = value
+    },
+    getFuzzy(value) {
+      this.fuzzy = value
     },
     hotWordRefresh() {
       this.item_hot_contents.sort(() => Math.random() - 0.5)
@@ -259,7 +336,7 @@ export default {
     },
     getHotValue(value) {
       this.$router.push({
-        path: '/search_result',
+        path: '/search/search_result',
         query: {
           search: value
         }
@@ -267,7 +344,7 @@ export default {
     },
     getKeyValue(value) {
       this.$router.push({
-        path: '/search_result',
+        path: '/search/search_result',
         query: {
           search: value
         }
@@ -275,7 +352,7 @@ export default {
     },
     handleProcessInstClick(value) {
       this.$router.push({
-        path: '/search_result',
+        path: '/search/search_result',
         query: {
           search: value
         }
@@ -283,27 +360,36 @@ export default {
     },
     getThemeValue(value) {
       this.$router.push({
-        path: '/search_result',
+        path: '/search/search_result',
         query: {
           search: value[1]
         }
       })
     },
     search() {
-      this.$router.push({
-        path: '/search_result',
-        query: {
-          search: this.searchs,
-          radio: this.radio,
-          lang: this.lang
-        }
-      })
+      console.log(this.searchs)
+      if (this.searchs) {
+        this.$router.push({
+          path: '/search/search_result',
+          query: {
+            search: this.searchs,
+            radio: this.radio,
+            lang: this.lang,
+            fuzzy: this.fuzzy
+          }
+        })
+      } else {
+        this.$message({
+          message: '请输入搜索内容！',
+          type: 'warning'
+        })
+      }
     }
   }
+
 }
 </script>
-
-<style lang="css" scoped>
+<style scoped>
 .search_box {
   height: 164px;
   margin-bottom: 20px;
@@ -322,6 +408,10 @@ export default {
   justify-content: space-between;
   padding: 30px;
   box-sizing: border-box;
+}
+.main_box img{
+  margin: 0 auto;
+  height: 100%;
 }
 .inline-input {
   width: 100%;

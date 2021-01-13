@@ -295,30 +295,30 @@
           </div>
         </el-card>
       </div>
-      <div>
+      <el-row>
         <el-button
           size="mini"
           icon="el-icon-edit"
           type="primary"
-          style="padding: 10px;margin: 10px;    float: right;"
+          style="margin: 10px;    float: right;"
           @click.stop="orgChoseAndAddOrgRow('personEdit', -1)"
         >
           增加组织
         </el-button>
-      </div>
+      </el-row>
 
       <!-- 保存，取消按钮 -->
-      <div
+      <el-row
         class="btn"
-        style="margin-top: 50px;"
+        style="margin-bottom: 50px;"
       >
         <ul class="content-top-btn">
           <li class="operation-item" @click="userSave('personEdit')">
-            <span class="operation-circle circle-middle-btn btn-light-color bluebg"><i class="iconfont iconbaocun" /></span>
+            <span class="operation-circle circle-middle-btn btn-light-color bluebg"><i class="iconfont icon-wendang" /></span>
             <span class="operation-text">保&nbsp;存</span>
           </li>
         </ul>
-      </div>
+      </el-row>
     </div>
 
     <!-- 选择组织的popup -->
@@ -671,8 +671,10 @@ export default {
         const personUserOrgs = []
 
         if (dbUserOrgs === null || dbUserOrgs.length === 0) {
-          this.personEdit.userOrgs = [{ orgId: this.newUserOrg.orgId,
-            orgName: this.newUserOrg.orgName, userId: userId }]
+          this.personEdit.userOrgs = [{
+            orgId: this.newUserOrg.orgId,
+            orgName: this.newUserOrg.orgName, userId: userId
+          }]
           this.personEdit.userOrgs[0].userRoles = [{ roleId: 'ROLE_OPC_SYS_TOOL_AUTH', roleName: '系统功能照会角色' }]
           this.isLoading = false
           return
@@ -684,7 +686,7 @@ export default {
           // 去掉重复的项目
           // 如果现有组织数组里有没有和后台相同的orgId
           const userOrgId = this.newUserOrg.orgId
-          var findIndex = dbUserOrgs.findIndex(function(item) {
+          var findIndex = dbUserOrgs.findIndex((item) => {
             return item.orgId === userOrgId
           })
           // 如果有相同的覆盖当前画面
@@ -695,7 +697,7 @@ export default {
           // 确认用户是否已经被使用，被使用的时候，
           // 表示错误信息，该用户已经追加到了对象组织。
           // var orgFullName = ''
-          var findUserIndex = dbUserOrgs.findIndex(function(item) {
+          var findUserIndex = dbUserOrgs.findIndex((item) => {
             // orgFullName = item.orgName
             return item.userId === userId
           })
@@ -943,7 +945,7 @@ export default {
       this.searchId = ''
       this.searchName = ''
       this.roleChoseData = [...this.allRoleList]
-      this.$nextTick(function() {
+      this.$nextTick(() => {
         // this[table].userOrgs.forEach(org => {
         this[table].userOrgs[index].userRoles.forEach(role => {
           const roles = this.roleChoseData.filter(item => item.id === role.roleId)
@@ -984,7 +986,7 @@ export default {
           return flag
         }
       })
-      this.$nextTick(function() {
+      this.$nextTick(() => {
         this.roleChoseData.forEach(obj => {
           if (obj.checkFlag) {
             this.$refs.roleChoseMultipleTable.toggleRowSelection(obj, true)
@@ -1040,7 +1042,7 @@ export default {
       this.searchParam.params.nickName = ''
       this.searchParam.params.userName = ''
       this.userChoseData = [...this.allUserList]
-      this.$nextTick(function() {
+      this.$nextTick(() => {
         const userId = this[table].id
         const users = this.userChoseData.filter(item => item.id === userId)
         this.$refs.userChoseMultipleTable.toggleRowSelection(users, true)
@@ -1072,7 +1074,7 @@ export default {
           return flag
         }
       })
-      this.$nextTick(function() {
+      this.$nextTick(() => {
         this.userChoseData.forEach(obj => {
           if (obj.checkFlag) {
             this.$refs.userChoseMultipleTable.toggleRowSelection(obj, true)
@@ -1109,8 +1111,7 @@ export default {
 </script>
 <style lang="scss">
 .orgChoseDilog .el-dialog__body {
-
-    height: 450px !important;
+  height: 450px !important;
 }
 </style>
 

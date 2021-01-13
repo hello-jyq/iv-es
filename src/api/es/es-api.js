@@ -4,6 +4,17 @@ import { request, download } from '@/utils/request'
 export function getItems(params) {
   return request('POST', '/api/es/list', params)
 }
+
+// 普通检索
+export function normalSearch(params) {
+  return request('POST', '/api/es/normalsearch', params)
+}
+
+// 普通检索
+export function fileternormalsearch(params) {
+  return request('POST', '/api/es/fileternormalsearch', params)
+}
+
 // 高级检索
 export function advancedSearch(params) {
   return request('POST', '/api/es/search', params)
@@ -29,7 +40,7 @@ export function getTerms(params) {
 
 // 【ES-API-002】热词取得API.xlsx
 export function getHotwords(params) {
-  return request('GET', '/api/es/hotwords', params)
+  return request('GET', '/api/es/hotWords', params)
 }
 // 【ES-API-003】搜索履历列表取得API.xlsx
 export function getKeywords(params) {

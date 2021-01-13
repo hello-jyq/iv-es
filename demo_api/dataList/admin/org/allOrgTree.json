@@ -1,0 +1,60 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "result": [{
+            "id": "2021-1000",
+            "parentId": "",
+            "name": "iVision-2021",
+            "children": [{
+                "id": "2021-1200",
+                "parentId": "2021-1000",
+                "name": "ITS事业統括",
+                "children": [{
+                    "id": "2021-1210",
+                    "parentId": "2021-1200",
+                    "name": "ｸﾗｳﾄﾞ基盤部",
+                    "children": null
+                }]
+            }, {
+                "id": "2021-1300",
+                "parentId": "2021-1000",
+                "name": "管理統括",
+                "children": [{
+                    "id": "2021-1320",
+                    "parentId": "2021-1300",
+                    "name": "財務会計部",
+                    "children": null
+                }]
+            }, {
+                "id": "2021-1500",
+                "parentId": "2021-1000",
+                "name": "BS事业統括",
+                "children": [{
+                    "id": "2021-1530",
+                    "parentId": "2021-1500",
+                    "name": "金融ｼｽﾃﾑ部",
+                    "children": [{
+                        "id": "2021-1531",
+                        "parentId": "2021-1530",
+                        "name": "金融第1Unit",
+                        "children": null
+                    }, {
+                        "id": "2021-1532",
+                        "parentId": "2021-1530",
+                        "name": "金融第2Unit",
+                        "children": null
+                    }]
+                }, {
+                    "id": "2021-1550",
+                    "parentId": "2021-1500",
+                    "name": "ｿﾘｭｰｼｮﾝ開発部",
+                    "children": null
+                }]
+            }]
+        }]
+    }
+}

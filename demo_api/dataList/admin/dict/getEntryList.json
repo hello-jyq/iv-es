@@ -1,0 +1,46 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "entryList": [{
+            "dictTypeId": "ActiveFlag",
+            "dictId": "0",
+            "dictName": "未激活",
+            "status": 1,
+            "sortNo": 1,
+            "rankNo": null,
+            "parentId": null,
+            "seqNo": ".ActiveFlag.0.",
+            "filter1": null,
+            "filter2": null,
+            "description": null
+        }, {
+            "dictTypeId": "ActiveFlag",
+            "dictId": "1",
+            "dictName": "已激活",
+            "status": 1,
+            "sortNo": 2,
+            "rankNo": null,
+            "parentId": null,
+            "seqNo": ".ActiveFlag.1.",
+            "filter1": null,
+            "filter2": null,
+            "description": null
+        }, {
+            "dictTypeId": "ActiveFlag",
+            "dictId": "2",
+            "dictName": "-",
+            "status": 1,
+            "sortNo": 3,
+            "rankNo": null,
+            "parentId": null,
+            "seqNo": ".ActiveFlag.2.",
+            "filter1": null,
+            "filter2": null,
+            "description": null
+        }]
+    }
+}

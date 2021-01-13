@@ -1,0 +1,22 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "searchResult": {
+            "pageNo": 1,
+            "pageSize": 10,
+            "offset": -1,
+            "totalRecord": 0,
+            "totalPage": 0,
+            "results": [],
+            "params": {
+                "agentFrom": "",
+                "agentTo": ""
+            },
+            "paging": true
+        }
+    }
+}

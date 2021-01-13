@@ -1058,7 +1058,7 @@ export default {
           return flag
         }
       })
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         this.roleChoseData.forEach(obj => {
           if (obj.checkFlag) {
             this.$refs.roleChoseMultipleTable.toggleRowSelection(obj, true)
@@ -1454,7 +1454,7 @@ export default {
       this.searchId = ''
       this.searchName = ''
       this.roleChoseData = [...this.allRoleList]
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         this[table].userRoles.forEach(obj => {
           const roles = this.roleChoseData.filter(item => item.id === obj.roleId)
           if (roles.length > 0) {
@@ -1643,213 +1643,220 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .user {
+.user {
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  padding: 0 !important;
+  .left {
+    width: 180px;
     height: 100%;
-    width: 100%;
-    background-color: #fff;
-    border-radius: 6px;
-    overflow: hidden;
-    padding: 0 !important;
-    .left {
-      width: 180px;
-      height: 100%;
-      float: left;
-      overflow: auto;
-      box-sizing: border-box;
-      padding: 0 5px;
-      background-color: #eee;
-      border-right: 5px solid #ccc;
-      // background-color: skyblue;
-      .tree_content {
-        position: relative;
-        .tree_item {
-          .iconfont {
-            font-size: 16px;
-          }
-          .icon-bumenguanli_h {
-            color: rgb(180, 87, 6);
-            font-size: 18px;
-          }
-          .icon-Avatar {
-            color: rgb(64, 179, 224);
-            font-size: 14px;
-          }
-          .icon-zuzhijiagou {
-            color: cadetblue;
-            font-size: 16px;
-            position: relative;
-            left: -12px;
-          }
-        }
-        .tree_down {
-          position: absolute;
-          top: 20px;
-          left: 15px;
-          z-index: 999;
-          background-color: #fff;
-          padding: 3px;
-          // height: 300px;
-          display: none;
-          p {
-            height: 20px;
-            line-height: 20px;
-            font-size: 12px;
-            color: #000;
-            &:hover {
-              background-color: #ccc;
-            }
-          }
-        }
-      }
-    }
-    .content {
-      overflow: auto;
-      width: calc(100% - 180px);
-      height: 100%;
-      box-sizing: border-box;
-      padding: 20px;
-      .list {
-        h3 {
-          height: 40px;
-          line-height: 40px;
-          font-size: 20px;
-          border-bottom: 1px dashed #ccc;
-          margin-bottom: 15px;
-          position: relative;
-          color: rgb(50, 50, 50);
-        }
-        .search {
-          display: flex;
-          flex-wrap: wrap;
-          &>div {
-            width: 33.33%;
-            min-width: 200px;
-            box-sizing: border-box;
-            padding: 0 30px 15px 10px;
-            display: flex;
-            align-items: center;
-            .title {
-              width: 130px;
-              font-size: 14px;
-              font-weight: 700;
-            }
-            .input {
-              flex: 1;
-            }
-          }
-        }
-        .pagination {
-          text-align: right;
-          padding: 20px 5px;
-        }
-      }
-      .department {
-        width: 100%;
-        box-sizing: border-box;
-        padding-left: 10%;
-        .info {
-          width: 50%;
-          & > div {
-            display: flex;
-            padding: 10px 0;
-            align-items: center;
-            .title {
-              width: 130px;
-              font-size: 14px;
-              font-weight: 700;
-            }
-            .input {
-              flex: 1;
-            }
-          }
-        }
-        .btn {
-          width: 50%;
-          box-sizing: border-box;
-          padding-left: 130px;
-          margin-top: 10px;
-        }
-      }
-      .personnel {
-        .info {
-          display: flex;
-          flex-wrap: wrap;
-          &>div {
-            width: 50%;
-            display: flex;
-            box-sizing: border-box;
-            padding: 10px 0;
-            padding-right: 50px;
-            align-items: center;
-            .title {
-              width: 120px;
-              font-size: 14px;
-              font-weight: 700;
-            }
-            .input {
-              flex: 1;
-            }
-          }
-        }
-        h4 {
-          height: 30px;
-          line-height: 30px;
+    float: left;
+    overflow: auto;
+    box-sizing: border-box;
+    padding: 0 5px;
+    background-color: #eee;
+    border-right: 5px solid #ccc;
+    // background-color: skyblue;
+    .tree_content {
+      position: relative;
+      .tree_item {
+        .iconfont {
           font-size: 16px;
-          border-bottom: 1px dashed #ccc;
-          color: rgb(50, 50, 50);
-          margin-bottom: 10px;
-          padding: 10px 0;
+        }
+        .icon-bumenguanli_h {
+          color: rgb(180, 87, 6);
+          font-size: 18px;
+        }
+        .icon-Avatar {
+          color: rgb(64, 179, 224);
+          font-size: 14px;
+        }
+        .icon-zuzhijiagou {
+          color: cadetblue;
+          font-size: 16px;
           position: relative;
-          // color: #000;
-          .add_row {
-            position: absolute;
-            right: 0;
-            bottom: 10px;
-            border-radius: 6px;
-            // border: 1px solid #ccc;
-            cursor: pointer;
-            font-size: 12px;
-            width: 100px;
-            height: 30px;
-            line-height: 30px;
-            text-align: center;
-            background-image: linear-gradient(rgb(52, 165, 248), rgb(8, 142, 240));
-            color: #fff;
-            &:hover {
-              background-image: linear-gradient(rgb(42, 155, 238), rgb(8, 142, 240));
-            }
-          }
-        }
-        .role{
-          padding-top: 20px;
-        }
-        .affiliation,.role {
-          width: 80%;
-          .select_role {
-            display: flex;
-            .input {
-              margin-right: 15px;
-            }
-          }
-        }
-        .btn {
-          width: 80%;
-          box-sizing: border-box;
-          padding-left: 30px;
-          margin-top: 10px;
+          left: -12px;
         }
       }
-    }
-    .orgChoseDilog {
-      .box {
-        height: 300px;
-        overflow: auto;
+      .tree_down {
+        position: absolute;
+        top: 20px;
+        left: 15px;
+        z-index: 999;
         background-color: #fff;
+        padding: 3px;
+        // height: 300px;
+        display: none;
+        p {
+          height: 20px;
+          line-height: 20px;
+          font-size: 12px;
+          color: #000;
+          &:hover {
+            background-color: #ccc;
+          }
+        }
       }
     }
   }
+  .content {
+    overflow: auto;
+    width: calc(100% - 180px);
+    height: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    .list {
+      h3 {
+        height: 40px;
+        line-height: 40px;
+        font-size: 20px;
+        border-bottom: 1px dashed #ccc;
+        margin-bottom: 15px;
+        position: relative;
+        color: rgb(50, 50, 50);
+      }
+      .search {
+        display: flex;
+        flex-wrap: wrap;
+        & > div {
+          width: 33.33%;
+          min-width: 200px;
+          box-sizing: border-box;
+          padding: 0 30px 15px 10px;
+          display: flex;
+          align-items: center;
+          .title {
+            width: 130px;
+            font-size: 14px;
+            font-weight: 700;
+          }
+          .input {
+            flex: 1;
+          }
+        }
+      }
+      .pagination {
+        text-align: right;
+        padding: 20px 5px;
+      }
+    }
+    .department {
+      width: 100%;
+      box-sizing: border-box;
+      padding-left: 10%;
+      .info {
+        width: 50%;
+        & > div {
+          display: flex;
+          padding: 10px 0;
+          align-items: center;
+          .title {
+            width: 130px;
+            font-size: 14px;
+            font-weight: 700;
+          }
+          .input {
+            flex: 1;
+          }
+        }
+      }
+      .btn {
+        width: 50%;
+        box-sizing: border-box;
+        padding-left: 130px;
+        margin-top: 10px;
+      }
+    }
+    .personnel {
+      .info {
+        display: flex;
+        flex-wrap: wrap;
+        & > div {
+          width: 50%;
+          display: flex;
+          box-sizing: border-box;
+          padding: 10px 0;
+          padding-right: 50px;
+          align-items: center;
+          .title {
+            width: 120px;
+            font-size: 14px;
+            font-weight: 700;
+          }
+          .input {
+            flex: 1;
+          }
+        }
+      }
+      h4 {
+        height: 30px;
+        line-height: 30px;
+        font-size: 16px;
+        border-bottom: 1px dashed #ccc;
+        color: rgb(50, 50, 50);
+        margin-bottom: 10px;
+        padding: 10px 0;
+        position: relative;
+        // color: #000;
+        .add_row {
+          position: absolute;
+          right: 0;
+          bottom: 10px;
+          border-radius: 6px;
+          // border: 1px solid #ccc;
+          cursor: pointer;
+          font-size: 12px;
+          width: 100px;
+          height: 30px;
+          line-height: 30px;
+          text-align: center;
+          background-image: linear-gradient(
+            rgb(52, 165, 248),
+            rgb(8, 142, 240)
+          );
+          color: #fff;
+          &:hover {
+            background-image: linear-gradient(
+              rgb(42, 155, 238),
+              rgb(8, 142, 240)
+            );
+          }
+        }
+      }
+      .role {
+        padding-top: 20px;
+      }
+      .affiliation,
+      .role {
+        width: 80%;
+        .select_role {
+          display: flex;
+          .input {
+            margin-right: 15px;
+          }
+        }
+      }
+      .btn {
+        width: 80%;
+        box-sizing: border-box;
+        padding-left: 30px;
+        margin-top: 10px;
+      }
+    }
+  }
+  .orgChoseDilog {
+    .box {
+      height: 300px;
+      overflow: auto;
+      background-color: #fff;
+    }
+  }
+}
 
-  .content-top-state .el-form-item {
+.content-top-state .el-form-item {
   margin-bottom: 30px;
 }
 
@@ -1902,7 +1909,7 @@ export default {
 
   span {
     position: absolute;
-      top: -12px;
+    top: -12px;
     right: -15px;
 
     i {
@@ -1940,7 +1947,7 @@ export default {
       background-color: #eee;
       color: #000;
       font-size: 14px;
-      .el-tree-node>.el-tree-node__children {
+      .el-tree-node > .el-tree-node__children {
         overflow: visible;
       }
     }

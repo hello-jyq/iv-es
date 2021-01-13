@@ -1,0 +1,140 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "allRole": [{
+            "id": "ROLE_OPC_BAFF_RNU_ALL_111",
+            "createTime": "2020-07-01 00:00:00",
+            "createBy": null,
+            "updateTime": "2020-07-01 00:00:00",
+            "updateBy": null,
+            "deleteFlag": 0,
+            "rightNo": 4,
+            "roleName": "预实财务全操作权限",
+            "roleDesc": "预实编制"
+        }, {
+            "id": "ROLE_OPC_BAF_RNU_OWN_111",
+            "createTime": "2020-07-01 00:00:00",
+            "createBy": null,
+            "updateTime": "2020-07-01 00:00:00",
+            "updateBy": null,
+            "deleteFlag": 0,
+            "rightNo": 4,
+            "roleName": "预实担当用户角色",
+            "roleDesc": "预实编制"
+        }, {
+            "id": "ROLE_OPC_BAF_R_ALL_001",
+            "createTime": "2020-07-01 00:00:00",
+            "createBy": null,
+            "updateTime": "2020-07-01 00:00:00",
+            "updateBy": null,
+            "deleteFlag": 0,
+            "rightNo": 4,
+            "roleName": "预实照会用户角色",
+            "roleDesc": "预实编制"
+        }, {
+            "id": "ROLE_OPC_BDMF_RNUWF_ALL_111",
+            "createTime": "2020-07-01 00:00:00",
+            "createBy": null,
+            "updateTime": "2020-07-01 00:00:00",
+            "updateBy": null,
+            "deleteFlag": 0,
+            "rightNo": 4,
+            "roleName": "预算财务全操作权限角色",
+            "roleDesc": "预算编制等"
+        }, {
+            "id": "ROLE_OPC_BDM_RNU_OWN_111",
+            "createTime": "2020-07-01 00:00:00",
+            "createBy": null,
+            "updateTime": "2020-07-01 00:00:00",
+            "updateBy": null,
+            "deleteFlag": 0,
+            "rightNo": 4,
+            "roleName": "预算担当用户角色",
+            "roleDesc": "预算编制等"
+        }, {
+            "id": "ROLE_OPC_BDM_RWF_ALL_001",
+            "createTime": "2020-07-01 00:00:00",
+            "createBy": null,
+            "updateTime": "2020-07-01 00:00:00",
+            "updateBy": null,
+            "deleteFlag": 0,
+            "rightNo": 4,
+            "roleName": "预算审批用户角色",
+            "roleDesc": "预算编制等"
+        }, {
+            "id": "ROLE_OPC_BDM_R_ALL_001",
+            "createTime": "2020-07-01 00:00:00",
+            "createBy": null,
+            "updateTime": "2020-07-01 00:00:00",
+            "updateBy": null,
+            "deleteFlag": 0,
+            "rightNo": 4,
+            "roleName": "预算照会用户角色",
+            "roleDesc": "预算编制等"
+        }, {
+            "id": "ROLE_OPC_ITMF_RNU_ALL_111",
+            "createTime": "2020-07-01 00:00:00",
+            "createBy": "adminID",
+            "updateTime": "2020-07-01 00:00:00",
+            "updateBy": "adminID",
+            "deleteFlag": 0,
+            "rightNo": 4,
+            "roleName": "科目财务全访问角色",
+            "roleDesc": "预算科目全访问角色"
+        }, {
+            "id": "ROLE_OPC_ITMF_R_ALL_001",
+            "createTime": "2020-07-01 00:00:00",
+            "createBy": "adminID",
+            "updateTime": "2020-07-01 00:00:00",
+            "updateBy": "adminID",
+            "deleteFlag": 0,
+            "rightNo": 4,
+            "roleName": "科目财务照会角色",
+            "roleDesc": "预算科目照会角色"
+        }, {
+            "id": "ROLE_OPC_SYS_FULL_AUTH",
+            "createTime": "2020-07-01 00:00:00",
+            "createBy": "adminID",
+            "updateTime": "2020-07-01 00:00:00",
+            "updateBy": "adminID",
+            "deleteFlag": 0,
+            "rightNo": 4,
+            "roleName": "系统管理角色",
+            "roleDesc": "系统管理者用的role"
+        }, {
+            "id": "ROLE_OPC_SYS_TOOL_AUTH",
+            "createTime": "2020-07-01 00:00:00",
+            "createBy": "adminID",
+            "updateTime": "2020-07-01 00:00:00",
+            "updateBy": "adminID",
+            "deleteFlag": 0,
+            "rightNo": 4,
+            "roleName": "系统功能照会角色",
+            "roleDesc": "主页，活动，审批待处理，处理中一栏，popup参照画面。"
+        }, {
+            "id": "ROLE_OPC_TPLF_RNU_ALL_111",
+            "createTime": "2020-07-01 00:00:00",
+            "createBy": null,
+            "updateTime": "2020-07-01 00:00:00",
+            "updateBy": null,
+            "deleteFlag": 0,
+            "rightNo": 4,
+            "roleName": "模板财务全操作权限",
+            "roleDesc": "预算模板全操作觉得"
+        }, {
+            "id": "ROLE_OPC_TPL_R_ALL_001",
+            "createTime": "2020-07-01 00:00:00",
+            "createBy": null,
+            "updateTime": "2020-07-01 00:00:00",
+            "updateBy": null,
+            "deleteFlag": 0,
+            "rightNo": 4,
+            "roleName": "模板照会用户权限",
+            "roleDesc": "预算模板照会角色"
+        }]
+    }
+}

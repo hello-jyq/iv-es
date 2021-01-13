@@ -3,28 +3,28 @@
     <!--左边登录-->
     <div class="login-info">
       <div class="language-in">
-        <el-dropdown trigger="click">
+        <!-- <el-dropdown trigger="click">
           <span class="el-dropdown-link" style="color:#202B5C">
             中文
             <i class="el-icon-arrow-down el-icon--right" />
           </span>
           <el-dropdown-menu slot="dropdown" class="login-down">
             <el-dropdown-item>
-              <img src="@/assets/img/cn.png" class="lanIcon">
+              <img src="@/assets/img/cn.png" class="lanIcon" />
               <span>中文</span>
             </el-dropdown-item>
             <el-dropdown-item>
-              <img src="@/assets/img/en.png" class="lanIcon">
+              <img src="@/assets/img/en.png" class="lanIcon" />
               <span>English</span>
             </el-dropdown-item>
             <el-dropdown-item>
-              <img src="@/assets/img/jp.png" class="lanIcon">
+              <img src="@/assets/img/jp.png" class="lanIcon" />
               <span>にほんご</span>
             </el-dropdown-item>
           </el-dropdown-menu>
-        </el-dropdown>
+        </el-dropdown> -->
       </div>
-      <el-form ref="ruleForm" :model="ruleForm" :rules="rules" label-position="left" label-width="0px" @submit.native.prevent>
+      <el-form ref="ruleForm" label-position="left" label-width="0px" :model="ruleForm" :rules="rules" @submit.native.prevent>
         <h1 class="logo">
           <router-link to>
             <img src="@/assets/img/logo_login.png">
@@ -41,9 +41,9 @@
             <i slot="suffix" class="iconfont icon-yanjing" @click.prevent="onOpen" />
           </el-input>
         </el-form-item>
-        <div class="retrieve">
+        <!-- <div class="retrieve">
           <span @click="retrieveDialog = true">找回密码</span>
-        </div>
+        </div> -->
         <el-form-item style="width:100%;margin-bottom:0 !important">
           <el-button type="primary" style="width:100%;" @click.native="login">
             登&nbsp;&nbsp;录
@@ -51,7 +51,7 @@
         </el-form-item>
       </el-form>
       <div class="copyright">
-        ©Copyright 2009-2020 iVision Shanghai Co., Ltd. All Rights Reserved. 沪ICP备xxxxxxxx号
+        ©Copyright 2009-2020 iVision Shanghai Co., Ltd. All Rights Reserved. <a href="http://www.miibeian.gov.cn/" target="_blank"> 沪ICP备09091858号-4</a> 
       </div>
     </div>
     <!--右边banner-->
@@ -94,6 +94,7 @@
         </el-form>
       </div>
     </el-dialog>
+
     <!--  发送结果弹窗-->
     <el-dialog
       top="0"
@@ -121,9 +122,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import { getLanguageType } from '@/utils/lang'
-import { setLang } from '@/utils/storage'
-// import { formValidator } from '@/mixins/form-validator'
+import { formValidator } from '@/mixins/form-validator'
 export default {
   data() {
     return {
@@ -159,42 +158,57 @@ export default {
       },
       itemTxt: [{
         title: '嘿，欢迎回来！',
-        content: '从现在开始，Huge Vision ESE 系统将快速、高效、精准帮助您搜索到您想要的内容'
+        // content: '从现在开始，Huge Vision ESE 系统将快速、高效、精准帮助您搜索到您想要的内容'
+        content: '从现在开始，Huge Vision Eentreprise Seach 将帮助您快速，高效，精准的找到想要搜索的内容，成为您提升工作效率的好助手'
       }, {
         title: 'Hey there, Welcome back！',
-        content: 'From now on, Huge Vision ESE system will help you search for the content you want quickly, efficiently and accurately.'
+        // content: 'From now on, Huge Vision ESE system will help you search for the content you want quickly, efficiently and accurately.'
+        content: 'From now on, Huge Vision Eentreprise Seach will help you search for content  quickly, efficiently and accurately, and become a good assistant to improve your business performance'
       }, {
         title: 'こんにちは、おかえりなさい！',
         content: '今後、Huge Vision ESEシステムは、必要なコンテンツを迅速、効率的、正確に検索するのに役立ちます。'
       }]
+
     }
   },
   computed: {
-    ...mapGetters(['userInfo'])
+
   },
   mounted() {
 
   },
   methods: {
     login() {
+      // this.$refs.ruleForm.validate(
+      //   async valid => {
+      //     if (valid) {
+      //       let redirect = this.$router.history.current.query.redirect
+      //       redirect = redirect === '/login' ? '' : redirect
+      //       const path = redirect || '/'
+      //       // // console.log(path)
+      //       this.$router.push(path)
+      //     }
+      //   })
       this.$refs.ruleForm.validate(async valid => {
         if (valid) {
           const params = this.ruleForm
           const res = await this.loginAction(params)
           // // console.log(res)
           if (res && res.success) {
-            this.initLang(this.userInfo.locale)
-            this.$message({
-              type: 'success',
-              message: this.$t('comm.welcome') + this.userInfo.nickName
-            })
-            if (res.datas.userInfo.isNeedChangePassword) {
-              this.$router.push('/changePassword')
-              return
-            }
+            // this.initLang(this.userInfo.locale)
+            // this.$message({
+            //   type: 'success',
+            //   message: this.$t('comm.welcome') + this.userInfo.nickName,
+            //   customClass: localStorage.getItem('theme') === 'Dark' ? 'dark-message-box' : 'light-message-box'
+            // })
+            // if (res.datas.userInfo.isNeedChangePassword) {
+            //   this.$router.push('/changePassword')
+            //   return
+            // }
             let redirect = this.$router.history.current.query.redirect
             redirect = redirect === '/login' ? '' : redirect
             const path = redirect || '/'
+            // // console.log(path)
             this.$router.push(path)
           }
         } else {
@@ -203,42 +217,29 @@ export default {
       })
     },
     ...mapActions(['loginAction']),
-    initLang(langStr) {
-      const lang = getLanguageType(langStr)
-      // // console.log('lang', lang)
-      setLang(lang)
-      this.$i18n.locale = lang
-    },
+
     onOpen() {
       this.isOpen = !this.isOpen
     },
     sendEmail() {
-      if (this.retrieveForm.userName !== '') {
+      if (this.retrieveForm.userName != '') {
         this.isSucccess = true
-        this.retrieveDialog = false
-        this.resultDialog = true
-        this.title = '发送成功'
-      } else {
-        this.isSucccess = false
-        this.title = '发送失败'
         this.retrieveDialog = false
         this.resultDialog = true
       }
     },
     submitResult() {
-      if (this.isSucccess === true) {
+      if (this.isSucccess = true) {
         // this.$router.push("/login");
-        this.retrieveDialog = false
         this.resultDialog = false
-      } else {
-        this.retrieveDialog = true
       }
     }
+
   }
 }
 </script>
 
-<style lang="css" scoped>
+<style scoped>
 .login {
   position: relative;
   height: 100vh;
@@ -367,4 +368,3 @@ export default {
   text-align: center;
 }
 </style>
-

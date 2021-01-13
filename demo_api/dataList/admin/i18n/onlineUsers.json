@@ -1,0 +1,17 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "onlineUserList": [{
+            "userId": "admin",
+            "nickName": "系统管理员",
+            "sessionId": "4488C8BE67C95865FBCB03BF16308189",
+            "loginTime": "2020-12-17 12:22:50.975",
+            "lastAccsessTime": "2020-12-17 13:05:28.199",
+            "loginIp": "127.0.0.1"
+        }]
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "result": {
+            "pageNo": 1,
+            "pageSize": 10,
+            "offset": -1,
+            "totalRecord": 1,
+            "totalPage": 1,
+            "results": [{
+                "id": "BdmNew:1:92524",
+                "category": "http://www.activiti.org/test",
+                "name": "预算申请",
+                "key": "BdmNew",
+                "description": null,
+                "version": "1",
+                "resourceName": "BdmNew.bpmn",
+                "deploymentId": "92521",
+                "diagramResourceName": "BdmNew.png"
+            }],
+            "params": {
+                "defId": "",
+                "key": ""
+            },
+            "paging": true
+        }
+    }
+}

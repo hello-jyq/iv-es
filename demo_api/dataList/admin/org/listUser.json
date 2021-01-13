@@ -1,0 +1,232 @@
+{
+    "messages": [],
+    "warnings": [],
+    "message": null,
+    "arguments": null,
+    "success": true,
+    "datas": {
+        "searchResult": {
+            "pageNo": 1,
+            "pageSize": 10,
+            "offset": -1,
+            "totalRecord": 0,
+            "totalPage": 0,
+            "results": [{
+                "deleteFlag": 0,
+                "corpUserId": "kokoro.ueki",
+                "jobRank": "M3",
+                "orgName": "iVision-2021",
+                "nickName": "植木心",
+                "mobile": "",
+                "id": "1000414556",
+                "userName": "ueki",
+                "email": "kokoro.ueki@ivision-china.cn",
+                "ldapUserId": ""
+            }, {
+                "deleteFlag": 0,
+                "corpUserId": "kentaro.matsuda",
+                "jobRank": "M3",
+                "orgName": "iVision-2021",
+                "nickName": "松田健太朗",
+                "mobile": "151111111",
+                "id": "matsudaID",
+                "staffNum": "1111",
+                "userName": "matsuda",
+                "email": "kentaro.matsuda@ivision-china.cn",
+                "ldapUserId": ""
+            }, {
+                "deleteFlag": 0,
+                "corpUserId": "peng.zhang",
+                "jobRank": "G1",
+                "orgName": "iVision-2021",
+                "nickName": "系统管理员",
+                "id": "admin",
+                "userName": "admin",
+                "email": "peng.zhang@ivision-china.cn",
+                "ldapUserId": ""
+            }, {
+                "deleteFlag": 0,
+                "corpUserId": "jugo.nakamura",
+                "jobRank": "M1",
+                "orgName": "iVision-2021 > ITS事业統括 > ｸﾗｳﾄﾞ基盤部",
+                "nickName": "中村柔刚",
+                "id": "nakamura",
+                "userName": "nakamura",
+                "email": "jugo.nakamura@ivision-china.cn",
+                "ldapUserId": ""
+            }, {
+                "deleteFlag": 0,
+                "corpUserId": "yun-yi.su",
+                "jobRank": "M2",
+                "orgName": "iVision-2021 > ITS事业統括 > ｸﾗｳﾄﾞ基盤部",
+                "nickName": "苏云逸",
+                "mobile": "",
+                "id": "suyunyi",
+                "userName": "suyunyi",
+                "email": "yun-yi.su@ivision-china.cn",
+                "ldapUserId": ""
+            }, {
+                "deleteFlag": 0,
+                "corpUserId": "chun-guang.a.jiang",
+                "jobRank": "M3",
+                "orgName": "iVision-2021 > 管理統括",
+                "nickName": "江春光",
+                "mobile": "",
+                "id": "jiangchunguangaID",
+                "userName": "jiangchunguang",
+                "email": "chun-guang.a.jiang@ivision-china.cn",
+                "ldapUserId": ""
+            }, {
+                "deleteFlag": 0,
+                "corpUserId": "hua.li",
+                "jobRank": "G4",
+                "orgName": "iVision-2021 > 管理統括 > 財務会計部",
+                "nickName": "李华",
+                "mobile": "",
+                "id": "lihuaID",
+                "userName": "lihua",
+                "email": "hua.li@ivision-china.cn",
+                "ldapUserId": ""
+            }, {
+                "deleteFlag": 0,
+                "corpUserId": "jun.xiong",
+                "jobRank": "G3",
+                "orgName": "iVision-2021 > 管理統括 > 財務会計部",
+                "nickName": "熊珺",
+                "mobile": "",
+                "id": "xiongjunID",
+                "userName": "xiongjun",
+                "email": "jun.xiong@ivision-china.cn",
+                "ldapUserId": ""
+            }, {
+                "deleteFlag": 0,
+                "corpUserId": "",
+                "jobRank": "6",
+                "orgName": "iVision-2021 > 管理統括 > 財務会計部",
+                "nickName": "中川贵雅",
+                "mobile": "",
+                "id": "12086",
+                "staffNum": "",
+                "userName": "nakagawa",
+                "email": "takamasa.nakagawa@ivision-china.cn",
+                "ldapUserId": ""
+            }, {
+                "deleteFlag": 0,
+                "corpUserId": "yu-sheng.niu",
+                "jobRank": "M2",
+                "orgName": "iVision-2021 > 管理統括 > 財務会計部",
+                "nickName": "钮宇声",
+                "id": "niuyusheng",
+                "userName": "niuyusheng",
+                "email": "yu-sheng.niu@ivision-china.cn",
+                "ldapUserId": ""
+            }, {
+                "deleteFlag": 0,
+                "corpUserId": "li.tang",
+                "jobRank": "G2",
+                "orgName": "iVision-2021 > 管理統括 > 財務会計部",
+                "nickName": "汤丽",
+                "mobile": "",
+                "id": "tangliID",
+                "userName": "tangli",
+                "email": "li.tang@ivision-china.cn",
+                "ldapUserId": ""
+            }, {
+                "deleteFlag": 0,
+                "corpUserId": "hao.chen",
+                "jobRank": "M3",
+                "orgName": "iVision-2021 > BS事业統括",
+                "nickName": "陈浩",
+                "id": "chenhao",
+                "userName": "chenhao",
+                "email": "hao.chen@ivision-china.cn",
+                "ldapUserId": ""
+            }, {
+                "deleteFlag": 0,
+                "corpUserId": "yi-tao.wu",
+                "jobRank": "M1",
+                "orgName": "iVision-2021 > BS事业統括 > 金融ｼｽﾃﾑ部",
+                "nickName": "吴益涛",
+                "id": "wuyitao",
+                "userName": "wuyitao",
+                "email": "yi-tao.wu@ivision-china.cn",
+                "ldapUserId": ""
+            }, {
+                "deleteFlag": 0,
+                "corpUserId": "peng.zhang",
+                "jobRank": "G5",
+                "orgName": "iVision-2021 > BS事业統括 > 金融ｼｽﾃﾑ部 > 金融第1Unit",
+                "nickName": "张鹏",
+                "mobile": "",
+                "id": "15630",
+                "userName": "zhangpeng",
+                "email": "peng.zhang@ivision-china.cn",
+                "ldapUserId": "zhangpeng@ivisionsh"
+            }, {
+                "deleteFlag": 0,
+                "corpUserId": "guang-guang.cao",
+                "jobRank": "G5",
+                "orgName": "iVision-2021 > BS事业統括 > 金融ｼｽﾃﾑ部 > 金融第1Unit",
+                "nickName": "曹光广",
+                "mobile": "",
+                "id": "caoguangguangID",
+                "userName": "caoguangguang",
+                "email": "guang-guang.cao@ivision-china.cn",
+                "ldapUserId": ""
+            }, {
+                "deleteFlag": 0,
+                "corpUserId": "hong.chen",
+                "jobRank": "G5",
+                "orgName": "iVision-2021 > BS事业統括 > 金融ｼｽﾃﾑ部 > 金融第2Unit",
+                "nickName": "陈虹",
+                "mobile": "",
+                "id": "chenhongID",
+                "userName": "chenhong",
+                "email": "hong.chen@ivision-china.cn",
+                "ldapUserId": ""
+            }, {
+                "deleteFlag": 0,
+                "corpUserId": "peng.zhang",
+                "jobRank": "G5",
+                "orgName": "iVision-2021 > BS事业統括 > ｿﾘｭｰｼｮﾝ開発部",
+                "nickName": "张鹏",
+                "mobile": "",
+                "id": "zhangpengID",
+                "userName": "zhangpeng",
+                "email": "peng.zhang@ivision-china.cn",
+                "ldapUserId": "zhangpeng@ivisionsh"
+            }, {
+                "deleteFlag": 0,
+                "corpUserId": "lei.wang",
+                "jobRank": "G3",
+                "orgName": "iVision-2021 > BS事业統括 > ｿﾘｭｰｼｮﾝ開発部",
+                "nickName": "王磊",
+                "mobile": "",
+                "id": "1000361899",
+                "staffNum": "20190901",
+                "userName": "wanglei",
+                "email": "lei.wang@ivision-china.cn",
+                "ldapUserId": ""
+            }, {
+                "deleteFlag": 0,
+                "corpUserId": "zhen-xing.wu",
+                "jobRank": "G4",
+                "orgName": "iVision-2021 > BS事业統括 > ｿﾘｭｰｼｮﾝ開発部",
+                "nickName": "吴振兴",
+                "mobile": "",
+                "id": "wuzhenxingID",
+                "userName": "wuzhenxing",
+                "email": "zhen-xing.wu@ivision-china.cn",
+                "ldapUserId": ""
+            }],
+            "params": {
+                "orgCode": "",
+                "orgName": "",
+                "userName": "",
+                "nickName": "",
+                "validYear": "2021"
+            },
+            "paging": false
+        }
+    }
+}

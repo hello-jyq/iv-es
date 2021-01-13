@@ -542,6 +542,10 @@ const cn = {
       addProcess: '增加流程',
       selcetProcess: '流程选择',
       selectUser: '请选择人员'
+    },
+    esAuth: {
+      selectEsRole: '选择ES访问角色',
+      tip1: '切换角色将清空未保存的数据, 是否继续?'
     }
   },
   bud: {

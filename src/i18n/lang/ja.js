@@ -542,6 +542,10 @@ const ja = {
       addProcess: 'フロー追加',
       selcetProcess: 'ワークフロー選択',
       selectUser: '人員選択'
+    },
+    esAuth: {
+      selectEsRole: '选择ES访问角色',
+      tip1: '切换角色将清空未保存的数据, 是否继续?'
     }
   },
   bud: {

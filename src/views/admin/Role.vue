@@ -362,7 +362,7 @@ export default {
           // this.checkedKeys = res.datas.menuCheckedKeys
           // // console.log(this.menuTreeFilter(this.createTree, res.datas.menuCheckedKeys))
           this.checkedKeys = this.menuTreeFilter(this.createTree, res.datas.menuCheckedKeys)
-          this.$nextTick(function() {
+          this.$nextTick(function () {
             this.clearErrorMessage()
             res.datas.urlCheckedKeys.forEach(i => {
               this.$refs.resUrlMultipleTable.toggleRowSelection(this.allUrl.filter(item => item.id === i)[0], true)
@@ -419,7 +419,7 @@ export default {
         confirmButtonText: this.$t('comm.certain'),
         cancelButtonText: this.$t('comm.cancel'),
         type: 'warning'
-      }).then(async() => {
+      }).then(async () => {
         await refreshRole()
       }).catch(() => {
         this.$message({
@@ -489,35 +489,35 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .role {
-    height: 100%;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 20px;
-    border-radius: 6px;
-    background-color: #fff;
-    .search {
-      .btns {
-        padding: 10px 0;
-        text-align: right;
-      }
+.role {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+  border-radius: 6px;
+  background-color: #fff;
+  .search {
+    .btns {
+      padding: 10px 0;
+      text-align: right;
     }
-    .content {
-      .pagination {
-        text-align: right;
-        padding: 10px 0;
-      }
-      .roleDialog {
-        .main {
-          h4 {
-            height: 30px;
-            line-height: 30px;
-            margin: 15px 0;
-            border-bottom: 1px dashed #ccc;
-            font-size: 16px;
-          }
+  }
+  .content {
+    .pagination {
+      text-align: right;
+      padding: 10px 0;
+    }
+    .roleDialog {
+      .main {
+        h4 {
+          height: 30px;
+          line-height: 30px;
+          margin: 15px 0;
+          border-bottom: 1px dashed #ccc;
+          font-size: 16px;
         }
       }
     }
   }
+}
 </style>

@@ -125,6 +125,8 @@ section {
   color:rgb(120, 165, 241);
 }
 .el-dialog {
+  border-radius: 16px;
+  margin: 0 !important;
   h4,h5,h3 {
     font-size: 16px;
     line-height: 30px;
@@ -240,7 +242,13 @@ body .el-table colgroup.gutter{
 .agent,
 #app .taskList{
   .el-dialog{
-    padding: 20px;
+    padding: 0px;
+    .el-dialog__header{
+      padding: 0 20px;
+    }
+    .el-dialog__footer{
+      text-align: center;
+    }
   }
 }
 
@@ -327,11 +335,11 @@ body .el-table colgroup.gutter{
   }
   .el-dialog__header{
     text-align: left;
-    padding: 20px;
+     padding: 0px 20px;
     cursor:default ;
   }
   .el-dialog__title{
-    color: #303133;
+    color: #ffffff;
   }
   .el-input__inner,
   .el-textarea__inner{
@@ -440,7 +448,8 @@ body .el-table colgroup.gutter{
 #app .agent,
 #app .online,
 #app .addApply{
-  padding-left: 50px !important;
+  padding-left: 20px !important;
+  flex: 1;
 .content{
   display: block;
     width: 100% !important;
