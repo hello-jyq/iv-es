@@ -272,6 +272,7 @@ export default {
         this.$router.push({
           path: '/search/search_result',
           query: {
+            advance: 0,
             search: this.searchs,
             radio: this.radio,
             lang: this.lang,
@@ -279,6 +280,7 @@ export default {
           }
         })
       } else {
+        this.$message.close()
         this.$message({
           message: '请输入搜索内容！',
           type: 'warning'
