@@ -62,17 +62,18 @@
               :label="$t('admin.org.validYear')"
               min-width="150"
               prop="validYear"
+              align="center"
             />
-            <el-table-column prop="activeFlag" :label="$t('admin.org.activeFlag')" min-width="80">
+            <!-- <el-table-column prop="activeFlag" :label="$t('admin.org.activeFlag')" min-width="80">
               <template slot-scope="scope">
                 <dict-write dict-type-id="ActiveFlag" :value="scope.row.activeFlag" />
               </template>
-            </el-table-column>
-            <el-table-column prop="isAssociateTemplate" :label="$t('admin.org.isAssociateTemplate')" min-width="80">
+            </el-table-column> -->
+            <!-- <el-table-column prop="isAssociateTemplate" :label="$t('admin.org.isAssociateTemplate')" min-width="80">
               <template slot-scope="scope">
                 <dict-write dict-type-id="IsNo" :value="scope.row.isAssociateTemplate" />
               </template>
-            </el-table-column>
+            </el-table-column> -->
           </el-table>
         </div>
       </div>

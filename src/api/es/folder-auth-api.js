@@ -3,6 +3,10 @@ import { request } from '@/utils/request'
 export function getFolderTree(params) {
   return request('POST', '/api/folderauth/foldertree', params)
 }
+// 获取文件
+export function getFolderTreeDemo(params) {
+  return request('POST', '/api/folderauth/foldertreeDemo', params)
+}
 // 获取ESRoleDate文件
 export function getEsRoles(params) {
   return request('POST', '/api/folderauth/esroles', params)

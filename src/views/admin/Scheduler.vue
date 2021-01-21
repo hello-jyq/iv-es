@@ -388,7 +388,7 @@ export default {
       }
     }
   },
-  created: function () {
+  created: function() {
     this.fetchData()
   },
   methods: {
@@ -435,7 +435,7 @@ export default {
         confirmButtonText: this.$t('comm.certain'),
         cancelButtonText: this.$t('comm.cancel'),
         type: 'warning'
-      }).then(async () => {
+      }).then(async() => {
         await execScheduler(this.schedulerInfo)
       }).catch(() => {
         this.$message({
@@ -449,7 +449,7 @@ export default {
       this.varObjct.key = ''
       this.varObjct.value = ''
       this.showAddVarDialog = true
-      this.$nextTick(function () {
+      this.$nextTick(function() {
         this.setValidatorMessage('key', '')
         this.setValidatorMessage('value', '')
       })
@@ -472,11 +472,11 @@ export default {
       this.showAddVarDialog = false
     },
     handleCreateClick() {
-      this.schedulerInfo = { jobPara: {} }
+      this.schedulerInfo = { jobPara: {}}
       this.dialogType = 'create'
       this.validatorState = false
       this.showDialog = true
-      this.$nextTick(function () {
+      this.$nextTick(function() {
         this.clearErrorMessage()
       })
     },
@@ -485,7 +485,7 @@ export default {
         confirmButtonText: this.$t('comm.certain'),
         cancelButtonText: this.$t('comm.cancel'),
         type: 'warning'
-      }).then(async () => {
+      }).then(async() => {
         const res = await deleteScheduler([val])
         if (res && res.success) {
           this.fetchData()
@@ -516,7 +516,7 @@ export default {
       this.dialogType = 'edit'
       this.validatorState = true
       this.showDialog = true
-      this.$nextTick(function () {
+      this.$nextTick(function() {
         this.clearErrorMessage()
       })
     },
@@ -528,7 +528,7 @@ export default {
         confirmButtonText: this.$t('comm.certain'),
         cancelButtonText: this.$t('comm.cancel'),
         type: 'warning'
-      }).then(async () => {
+      }).then(async() => {
         const res = await saveScheduler(this.schedulerInfo)
         if (res && res.success) {
           this.showDialog = false
@@ -549,7 +549,7 @@ export default {
         confirmButtonText: this.$t('comm.certain'),
         cancelButtonText: this.$t('comm.cancel'),
         type: 'warning'
-      }).then(async () => {
+      }).then(async() => {
         const res = await deleteScheduler(this.multipleSelection)
         if (res && res.success) {
           this.fetchData()
@@ -569,7 +569,7 @@ export default {
         confirmButtonText: this.$t('comm.certain'),
         cancelButtonText: this.$t('comm.cancel'),
         type: 'warning'
-      }).then(async () => {
+      }).then(async() => {
         const res = await pauseScheduler(this.multipleSelection)
         if (res && res.success) {
           this.fetchData()
@@ -589,7 +589,7 @@ export default {
         confirmButtonText: this.$t('comm.certain'),
         cancelButtonText: this.$t('comm.cancel'),
         type: 'warning'
-      }).then(async () => {
+      }).then(async() => {
         const res = await resumeScheduler(this.multipleSelection)
         if (res && res.success) {
           this.fetchData()
@@ -606,7 +606,7 @@ export default {
       setTimeout(() => {
         if (refTable) refTable.doLayout()
       },
-        1000)
+      1000)
     }
   }
 }

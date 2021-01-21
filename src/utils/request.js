@@ -148,7 +148,11 @@ export function download(method, url, params) {
 // 请求拦截(请求发出前处理请求)
 axios.interceptors.request.use(
   config => {
-    NProgress.start()
+    if (config.url === '/iv-es/api/es/terms') {
+      NProgress.done()
+    } else {
+      NProgress.start()
+    }
     if (config.method === 'post') {
       // 将token放入header
       const token = store.getters.csrfToken

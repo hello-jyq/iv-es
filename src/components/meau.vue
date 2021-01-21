@@ -74,7 +74,7 @@ export default {
         } else {
           this.reURL = 'menu-search:menu-search-general-search'
         }
-        if (newValue.name === '普通检索') {
+        if (newValue.name === '普通搜索') {
           // const menuIndex = 'menu-search:menu-search-general-search'
           // this.activeIndex = menuIndex
           // this.breadcrumbItems = []

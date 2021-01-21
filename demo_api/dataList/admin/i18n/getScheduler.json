@@ -1,198 +1,48 @@
 {
     "messages": [],
-    "messageId": null,
+    "warnings": [],
     "message": null,
     "arguments": null,
     "success": true,
     "datas": {
-        "searchResult": {
-            "pageNo": 1,
-            "pageSize": 10,
-            "offset": -1,
-            "totalRecord": 12,
-            "totalPage": 2,
-            "results": [{
-                "jobName": "TAR20120019",
-                "jobGroupName": "TargetRebate",
-                "className": "com.iv.crm.rebate.calcbatch.RebateUtil",
-                "jobPara": {
-                    "statisticInfoId": "1000622958"
-                },
-                "triggerType": "Cron",
-                "cronExpression": "00 12 00 28 12 ? 2020",
-                "intervalSeconds": 0,
-                "startTime": "2020-12-11 10:26:04",
-                "endTime": null,
-                "previousFire": null,
-                "nextFireTime": "2020-12-28 00:12:00.000",
-                "triggerState": "NORMAL"
-            }, {
-                "jobName": "TAR20120018",
-                "jobGroupName": "TargetRebate",
-                "className": "com.iv.crm.rebate.calcbatch.RebateUtil",
-                "jobPara": {
-                    "statisticInfoId": "1000621345"
-                },
-                "triggerType": "Cron",
-                "cronExpression": "00 12 00 30 12 ? 2020",
-                "intervalSeconds": 0,
-                "startTime": "2020-12-10 17:37:13",
-                "endTime": null,
-                "previousFire": null,
-                "nextFireTime": "2020-12-30 00:12:00.000",
-                "triggerState": "NORMAL"
-            }, {
-                "jobName": "TAR20120020",
-                "jobGroupName": "TargetRebate",
-                "className": "com.iv.crm.rebate.calcbatch.RebateUtil",
-                "jobPara": {
-                    "statisticInfoId": "1000626140"
-                },
-                "triggerType": "Cron",
-                "cronExpression": "00 12 00 13 01 ? 2021",
-                "intervalSeconds": 0,
-                "startTime": "2020-12-11 10:07:42",
-                "endTime": null,
-                "previousFire": null,
-                "nextFireTime": "2021-01-13 00:12:00.000",
-                "triggerState": "NORMAL"
-            }, {
-                "jobName": "TAR20120040",
-                "jobGroupName": "TargetRebate",
-                "className": "com.iv.crm.rebate.calcbatch.RebateUtil",
-                "jobPara": {
-                    "statisticInfoId": "1000663023"
-                },
-                "triggerType": "Cron",
-                "cronExpression": "00 12 00 31 12 ? 2020",
-                "intervalSeconds": 0,
-                "startTime": "2020-12-16 09:01:38",
-                "endTime": null,
-                "previousFire": null,
-                "nextFireTime": "2020-12-31 00:12:00.000",
-                "triggerState": "NORMAL"
-            }, {
-                "jobName": "TAR20120024",
-                "jobGroupName": "TargetRebate",
-                "className": "com.iv.crm.rebate.calcbatch.RebateUtil",
-                "jobPara": {
-                    "statisticInfoId": "1000627534"
-                },
-                "triggerType": "Cron",
-                "cronExpression": "00 12 00 13 01 ? 2021",
-                "intervalSeconds": 0,
-                "startTime": "2020-12-11 10:26:30",
-                "endTime": null,
-                "previousFire": null,
-                "nextFireTime": "2021-01-13 00:12:00.000",
-                "triggerState": "NORMAL"
-            }, {
-                "jobName": "TAR20120023",
-                "jobGroupName": "TargetRebate",
-                "className": "com.iv.crm.rebate.calcbatch.RebateUtil",
-                "jobPara": {
-                    "statisticInfoId": "1000627789"
-                },
-                "triggerType": "Cron",
-                "cronExpression": "00 12 00 13 01 ? 2021",
-                "intervalSeconds": 0,
-                "startTime": "2020-12-11 10:26:22",
-                "endTime": null,
-                "previousFire": null,
-                "nextFireTime": "2021-01-13 00:12:00.000",
-                "triggerState": "NORMAL"
-            }, {
-                "jobName": "TAR20120022",
-                "jobGroupName": "TargetRebate",
-                "className": "com.iv.crm.rebate.calcbatch.RebateUtil",
-                "jobPara": {
-                    "statisticInfoId": "1000618864"
-                },
-                "triggerType": "Cron",
-                "cronExpression": "00 12 00 31 12 ? 2020",
-                "intervalSeconds": 0,
-                "startTime": "2020-12-11 10:26:17",
-                "endTime": null,
-                "previousFire": null,
-                "nextFireTime": "2020-12-31 00:12:00.000",
-                "triggerState": "NORMAL"
-            }, {
-                "jobName": "TAR20120021",
-                "jobGroupName": "TargetRebate",
-                "className": "com.iv.crm.rebate.calcbatch.RebateUtil",
-                "jobPara": {
-                    "statisticInfoId": "1000626581"
-                },
-                "triggerType": "Cron",
-                "cronExpression": "00 12 00 13 01 ? 2021",
-                "intervalSeconds": 0,
-                "startTime": "2020-12-11 10:19:25",
-                "endTime": null,
-                "previousFire": null,
-                "nextFireTime": "2021-01-13 00:12:00.000",
-                "triggerState": "NORMAL"
-            }, {
-                "jobName": "TAR20120039",
-                "jobGroupName": "TargetRebate",
-                "className": "com.iv.crm.rebate.calcbatch.RebateUtil",
-                "jobPara": {
-                    "statisticInfoId": "1000663045"
-                },
-                "triggerType": "Cron",
-                "cronExpression": "00 12 00 31 12 ? 2020",
-                "intervalSeconds": 0,
-                "startTime": "2020-12-16 09:01:34",
-                "endTime": null,
-                "previousFire": null,
-                "nextFireTime": "2020-12-31 00:12:00.000",
-                "triggerState": "NORMAL"
-            }, {
-                "jobName": "TAR20120038",
-                "jobGroupName": "TargetRebate",
-                "className": "com.iv.crm.rebate.calcbatch.RebateUtil",
-                "jobPara": {
-                    "statisticInfoId": "1000663067"
-                },
-                "triggerType": "Cron",
-                "cronExpression": "00 12 00 31 12 ? 2020",
-                "intervalSeconds": 0,
-                "startTime": "2020-12-16 09:01:30",
-                "endTime": null,
-                "previousFire": null,
-                "nextFireTime": "2020-12-31 00:12:00.000",
-                "triggerState": "NORMAL"
-            }, {
-                "jobName": "合同到期提醒",
-                "jobGroupName": "合同到期提醒",
-                "className": "com.iv.crm.mgt.contract.job.ContractPromptJob",
-                "jobPara": {},
-                "triggerType": "Cron",
-                "cronExpression": "0 30 0 * * ? *",
-                "intervalSeconds": 0,
-                "startTime": "2020-08-26 00:00:00",
-                "endTime": null,
-                "previousFire": "2020-12-17 00:30:00.000",
-                "nextFireTime": "2020-12-18 00:30:00.000",
-                "triggerState": "NORMAL"
-            }, {
-                "jobName": "合同状态变更",
-                "jobGroupName": "合同状态变更",
-                "className": "com.iv.crm.mgt.contract.job.ContractStatusJob",
-                "jobPara": {},
-                "triggerType": "Cron",
-                "cronExpression": "0 45 0 * * ? *",
-                "intervalSeconds": 0,
-                "startTime": "2020-08-26 00:00:00",
-                "endTime": null,
-                "previousFire": "2020-12-17 00:45:00.000",
-                "nextFireTime": "2020-12-18 00:45:00.000",
-                "triggerState": "NORMAL"
-            }],
-            "params": {
-                "jobGroupName": "",
-                "jobName": ""
-            },
-            "paging": true
-        }
+            "searchResult": {
+                    "pageNo": 1,
+                    "pageSize": 10,
+                    "offset": -1,
+                    "totalRecord": 2,
+                    "totalPage": 1,
+                    "results": [{
+                            "jobName": "crawlFileJob",
+                            "jobGroupName": "demo",
+                            "className": "com.iv.crawl.schedule.CrawlFileJob",
+                            "jobPara": {},
+                            "triggerType": "Cron",
+                            "cronExpression": "0 23 9 * * ?\t",
+                            "intervalSeconds": 0,
+                            "startTime": "2021-01-20 00:00:00",
+                            "endTime": "2021-01-20 13:43:42",
+                            "previousFire": null,
+                            "nextFireTime": null,
+                            "triggerState": "COMPLETE"
+                    }, {
+                            "jobName": "sync",
+                            "jobGroupName": "demo",
+                            "className": "com.iv.es.schedule.SyncTermJob",
+                            "jobPara": {},
+                            "triggerType": "Cron",
+                            "cronExpression": "35 0/3 * * * ?",
+                            "intervalSeconds": 0,
+                            "startTime": "2020-12-15 16:10:00",
+                            "endTime": "2020-12-15 17:00:00",
+                            "previousFire": "2020-12-15 16:24:35.000",
+                            "nextFireTime": null,
+                            "triggerState": "COMPLETE"
+                    }],
+                    "params": {
+                            "jobGroupName": "",
+                            "jobName": ""
+                    },
+                    "paging": true
+            }
     }
 }

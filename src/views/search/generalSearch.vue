@@ -2,16 +2,18 @@
   <div class="container">
     <el-row class="search_box">
       <el-col :span="24">
+        <!-- 拉取联想词 -->
         <el-autocomplete
           v-model="searchs"
           class="inline-input search_input"
-          :fetch-suggestions="querySearch"
           placeholder="请输入您想要搜索的内容"
           :trigger-on-focus="false"
           clearable
           :maxlength="81"
           popper-class="search_input"
+          :fetch-suggestions="querySearch"
           @select="handleSelect"
+          @keyup.enter.native="search"
         >
           <i slot="prefix" class="iconfont icon-sousuo1" />
           <el-button slot="suffix" @click="search">
@@ -32,7 +34,7 @@
             文件内容
           </el-radio>
         </el-radio-group>
-        <span class="font_size_14 fontC_333">文档语言：</span>
+        <!-- <span class="font_size_14 fontC_333">文档语言：</span>
         <el-select v-model="lang" placeholder="选择语言" placement="top-end" popper-class="lang_select" @change="getLang">
           <el-option
             v-for="item in options"
@@ -40,7 +42,7 @@
             :label="item.label"
             :value="item.value"
           />
-        </el-select>
+        </el-select> -->
         <span class="font_size_14 fontC_333" style="margin-left:20px">搜索方式：</span>
         <el-select v-model="fuzzy" placeholder="请选择" placement="top-end" popper-class="lang_select" @change="getFuzzy">
           <el-option
@@ -139,7 +141,7 @@ export default {
           fieldScale: '',
           docLanguage: '',
           language: 'cn',
-          fuzzySearchDiv: '0',
+          fuzzySearchDiv: '2',
           searchTarget: [],
           fileNameBoost: '1',
           fileContentBoost: '1',
@@ -154,7 +156,7 @@ export default {
       },
       radio: 'ALL',
       lang: 'ALL',
-      fuzzy: '0',
+      fuzzy: '2',
       options: [
         {
           value: 'ALL',
@@ -171,12 +173,12 @@ export default {
         }],
       searchOption: [
         {
-          value: '0',
-          label: '部分一致'
-        },
-        {
           value: '2',
           label: '完全一致'
+        },
+        {
+          value: '0',
+          label: '部分一致'
         }
       ],
       item_hot_contents: ['锦鲤', '杠精', '佛系', '确认过眼神', '官宣', 'C位', '土味情话', '皮一下', '卡路里', '创造101', '超越妹妹', '五位一体', '四个全面', '共享经济', '大数据', '互联网+', '全十四五规划全面小康'],
@@ -312,12 +314,12 @@ export default {
     },
     querySearch(prefix, cb) {
       this.restaurants = []
-      this.getTerms(prefix)
+      // this.getTerms(prefix)
       // 调用 callback 返回建议列表的数据
       cb(this.restaurants)
     },
     handleSelect(item) {
-      console.log(item)
+      // console.log(item)
     },
     getLang(value) {
       this.lang = value
@@ -367,11 +369,11 @@ export default {
       })
     },
     search() {
-      console.log(this.searchs)
+      // console.log(this.searchs)
       if (this.searchs) {
         this.$router.push({
-          path: '/search/search_result',
-          query: {
+          name: '/search/search_result',
+          params: {
             search: this.searchs,
             radio: this.radio,
             lang: this.lang,
@@ -379,6 +381,7 @@ export default {
           }
         })
       } else {
+        this.$message.closeAll()
         this.$message({
           message: '请输入搜索内容！',
           type: 'warning'
@@ -409,7 +412,7 @@ export default {
   padding: 30px;
   box-sizing: border-box;
 }
-.main_box img{
+.main_box img {
   margin: 0 auto;
   height: 100%;
 }

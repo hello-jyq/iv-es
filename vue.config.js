@@ -9,6 +9,11 @@ module.exports = {
         target: 'http://localhost:8081',
         changeOrigin: true,
         ws: true
+      },
+      '/sc': {
+        target: 'http://localhost:8081',
+        changeOrigin: true,
+        ws: true
       }
     }
   },

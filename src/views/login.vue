@@ -164,10 +164,12 @@ export default {
         title: 'Hey there, Welcome back！',
         // content: 'From now on, Huge Vision ESE system will help you search for the content you want quickly, efficiently and accurately.'
         content: 'From now on, Huge Vision Eentreprise Seach will help you search for content  quickly, efficiently and accurately, and become a good assistant to improve your business performance'
-      }, {
-        title: 'こんにちは、おかえりなさい！',
-        content: '今後、Huge Vision ESEシステムは、必要なコンテンツを迅速、効率的、正確に検索するのに役立ちます。'
-      }]
+      }
+      // , {
+      //   title: 'こんにちは、おかえりなさい！',
+      //   content: '今後、Huge Vision ESEシステムは、必要なコンテンツを迅速、効率的、正確に検索するのに役立ちます。'
+      // }
+      ]
 
     }
   },

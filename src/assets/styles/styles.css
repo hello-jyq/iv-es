@@ -119,6 +119,9 @@
   .fontC_333{
     color: #333333;
   }
+  .fontC_999{
+    color: #999999;
+  }
   .show{
     display:block !important;
   }
@@ -164,6 +167,6 @@
   border: 1px solid #FF9200;
   color: #FF9200;
  }
- button:focus {
+button:focus {
   outline: none;
 }

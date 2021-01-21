@@ -13,7 +13,7 @@
           <!--el-tree严格模式：只能选中当前节点  -->
           <!-- check-strictly="true" -->
           <el-tree
-            v-if="refreshFalg&&activeDataSource!=0"
+            v-if="activeDataSource!=0"
             ref="ProjectTree"
             :data="choseTreeData"
             show-checkbox
@@ -22,6 +22,7 @@
             :default-expanded-keys="expandedKeys"
             :check-on-click-node="true"
             :default-checked-keys="checkedKeys"
+            :check-strictly="true"
             icon-class="iconfont icon-jiantou-copy"
             @check="docTreeCheck"
             @node-expand="docTreeExpand"
@@ -107,6 +108,7 @@
                 value-format="yyyy-MM-dd HH:mm:ss"
                 type="datetimerange"
                 unlink-panels
+                :clearable="false"
                 range-separator="至"
                 start-placeholder="开始日期"
                 end-placeholder="结束日期"
@@ -180,16 +182,18 @@
     <div class="container">
       <el-row class="search_box">
         <el-col :span="24">
+          <!-- 拉取联想词 -->
           <el-autocomplete
             v-model="keyWords"
             class="inline-input search_input"
-            :fetch-suggestions="querySearch"
             placeholder="请输入您想要搜索的内容"
             :maxlength="81"
             :trigger-on-focus="false"
             popper-class="search_input"
+            :fetch-suggestions="querySearch"
             clearable
             @select="searchWords"
+            @keyup.enter.native="btnSearch"
           >
             <i slot="prefix" class="iconfont icon-sousuo1" />
             <el-button slot="suffix" @click.stop="btnSearch">
@@ -210,7 +214,7 @@
               文件内容
             </el-radio>
           </el-radio-group>
-          <span class="font_size_14 fontC_333">文档语言：</span>
+          <!-- <span class="font_size_14 fontC_333">文档语言：</span>
           <el-select v-model="docLanguage" placeholder="选择语言" placement="top-end" popper-class="lang_select" @change="getLang">
             <el-option
               v-for="item in optionslang"
@@ -218,7 +222,7 @@
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </el-select> -->
           <span class="font_size_14 fontC_333" style="margin-left:20px">搜索方式：</span>
           <el-select v-model="fuzzySearchDiv" placeholder="请选择" placement="top-end" popper-class="lang_select" @change="getFuzzy">
             <el-option
@@ -230,97 +234,10 @@
           </el-select>
         </el-col>
       </el-row>
-      <div class="advance_filter">
-        <el-row class="search_params">
-          <div class="search_params_item">
-            <span><i class="iconfont icon-sousuoguanjianci" />搜索关键字：</span>
-            <el-input v-model="advanceparams.allKeyWords" placeholder="请输入内容">
-              <template slot="prepend">
-                包含全部关键词
-              </template>
-            </el-input>
-            <el-input v-model="advanceparams.arbitraryWords" placeholder="请输入内容">
-              <template slot="prepend">
-                包含任意关键词
-              </template>
-            </el-input>
-            <el-input v-model="advanceparams.notIncludeKeyWords" placeholder="请输入内容">
-              <template slot="prepend">
-                不包含关键词
-              </template>
-            </el-input>
-          </div>
-          <div class="search_params_item">
-            <span><i class="iconfont icon-shijian" />更新时间：</span>
-            <el-radio-group v-model="advanceparams.radioTime">
-              <el-radio v-for="time in radioTimeList" :key="time.id" :label="time.id">
-                {{ time.name }}
-              </el-radio>
-            </el-radio-group>
-            <el-date-picker
-              v-model="advanceparams.radioDiyTime"
-              class="diy_time"
-              popper-class="date_picker"
-              value-format="yyyy-MM-dd"
-              type="daterange"
-              unlink-panels
-              range-separator="至"
-              start-placeholder="开始日期"
-              end-placeholder="结束日期"
-            />
-          </div>
-          <div class="search_params_item">
-            <span><i class="iconfont icon-duomeitiicon-" />文档类型：</span>
-            <el-checkbox-group v-model="advanceparams.fileType">
-              <el-checkbox v-for="type in checkboxFileTypeList" :key="type.index" :label="type.id">
-                {{ type.name }}
-              </el-checkbox>
-            </el-checkbox-group>
-          </div>
-          <div class="search_params_item">
-            <span><i class="iconfont icon-daxiao" />文件大小：</span>
-            <el-checkbox-group v-model="advanceparams.fileSize">
-              <el-checkbox v-for="type in checkboxFileSizeList" :key="type.index" :label="type.id">
-                {{ type.name }}
-              </el-checkbox>
-            </el-checkbox-group>
-            <div class="diy_filesize">
-              <el-input
-                v-model="advanceparams.diysizefrom"
-                class="from"
-                placeholder="请输入数值"
-                prefix-icon="iconfont icon-daxiao"
-              />
-              <span class="zhi">至</span>
-              <el-input
-                v-model="advanceparams.diysizeto"
-                class="to"
-                placeholder="请输入数值"
-                prefix-icon="iconfont icon-daxiao"
-              />
-            </div>
-          </div>
-          <div class="search_params_item">
-            <span><i class="iconfont icon-mulu" />在指定目录中搜索：</span>
-            <el-input v-model="advanceparams.dataSourceSearch" placeholder="请输入内容" class="input-with-select">
-              <el-select slot="prepend" v-model="advanceparams.dataSource" class="item_select" placeholder="请选择">
-                <el-option v-for="item in dataSourceSelectList" :key="item.index" :label="item.name" :value="item.id" />
-              </el-select>
-            </el-input>
-          </div>
-          <div class="search_params_item">
-            <span><i class="iconfont icon-paixu" />排序方式：</span>
-            <el-radio-group v-model="advanceparams.radioSort">
-              <el-radio v-for="time in radioSortList" :key="time.id" :label="time.id">
-                {{ time.name }}
-              </el-radio>
-            </el-radio-group>
-          </div>
-        </el-row>
-      </div>
+
       <div v-loading="loading" class="main_box">
         <div class="result_header">
-          <span>找到{{ searchParam.totalRecord }}条结果(用时{{ timeTaken }})</span>
+          <span>找到{{ pageTotalRecord }}条结果(用时{{ timeTaken }})</span>
           <div class="result_header_filter">
             结果排序：<span class="result_header_filter_box">
               相关度<span class="result_header_filter_flex">
@@ -420,12 +337,12 @@
         </div>
       </div>
       <div v-show="results!=''" class="pagination-box">
+        <span class="el-pagination__total">共&nbsp;{{ pageTotalRecord }}&nbsp;条</span>
         <el-pagination
           :current-page.sync="searchParam.pageNo"
           :page-size="searchParam.pageSize"
           :page-sizes="[10, 20]"
-          layout="total, sizes"
-          :total="searchParam.totalRecord"
+          layout="sizes"
           class="page-left"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
@@ -501,7 +418,10 @@
       </div>
       <div class="slt">
         <iframe v-if="sltData.fileType!='Others'" ref="kkfileviewIframe" width="100%" frameborder="0" height="100%" :src="kkfileviewurl" name="iframe_a" />
-        <img v-else src="../../assets/img/slt_empty.png">
+        <div v-else class="slt_empty">
+          <img src="../../assets/img/slt_empty.png">
+          <span>目前预览仅支持 Word、Excel、PowerPoint、Pdf和Txt类型的文档。</span>
+        </div>
       </div>
       <div class="slt_down" @click="download(sltData.fileUrl, sltData.id)">
         <i class="iconfont icon-Group-" />点击下载
@@ -565,13 +485,12 @@ export default {
 
   data() {
     return {
-      refreshFalg: true,
       restaurants: [],
-      keyWords: '',
-      // keyWords: this.$route.query.search !== '' ? this.$route.query.search : '',
-      fieldScale: this.$route.query.radio !== '' ? this.$route.query.radio : 'ALL',
-      docLanguage: this.$route.query.lang !== '' ? this.$route.query.lang : 'ALL',
-      fuzzySearchDiv: this.$route.query.fuzzy !== '' ? this.$route.query.fuzzy : '0',
+      // keyWords: '',
+      keyWords: this.$route.params.search !== '' ? this.$route.params.search : '',
+      fieldScale: this.$route.params.radio !== '' ? this.$route.params.radio : 'ALL',
+      docLanguage: this.$route.params.lang !== '' ? this.$route.params.lang : 'ALL',
+      fuzzySearchDiv: this.$route.params.fuzzy !== '' ? this.$route.params.fuzzy : '0',
       optionslang: [
         {
           value: 'ALL',
@@ -588,12 +507,12 @@ export default {
         }],
       searchOption: [
         {
-          value: '0',
-          label: '部分一致'
-        },
-        {
           value: '2',
           label: '完全一致'
+        },
+        {
+          value: '0',
+          label: '部分一致'
         }
       ],
       // 搜索参数
@@ -610,13 +529,14 @@ export default {
           currentDataSource: '',
           docLanguageList: [],
           docFolderList: {},
+          // docFolderList: [],
           fileTypeList: [],
           fileSizeList: [],
           modifyTimeKey: '',
           modifyStartTime: '',
           modifyEndTime: '',
           language: 'cn',
-          fuzzySearchDiv: '0',
+          fuzzySearchDiv: '2',
           searchTarget: [],
           fileNameBoost: '1',
           fileContentBoost: '1',
@@ -650,7 +570,9 @@ export default {
       expandedKeys: [],
       allexpandedKeys: [],
       dataCheckedList: {},
+      dataHalfCheckedList: {},
       dataexpandedKeysList: {},
+      dataSourceFolderTree: {},
       tabItem: '',
       tabLength: '',
       fileTypeAggResult: [
@@ -709,58 +631,9 @@ export default {
       sessionCheckedNodes: [],
       allCheckedNodes: [],
       sltLoading: true,
+      isBtnSearchFlag: true,
+      pageTotalRecord: ''
       // isCollapse: this.$store.state.falg
-      // 高级检索条件
-      radioTimeList: [
-        { id: 'ALL', name: '全部时间' },
-        { id: '1', name: '一天内' },
-        { id: '7', name: '一周内' },
-        { id: '30', name: '一月内' },
-        { id: '188', name: '半年内' },
-        { id: '365', name: '一年内' },
-        { id: 'diy', name: '自定义时间(YYMMDD)' }
-      ],
-      checkboxFileTypeList: [
-        { id: 'Word', name: 'Word' },
-        { id: 'Excel', name: 'Excel' },
-        { id: 'PowerPoint', name: 'PowerPoint' },
-        { id: 'Pdf', name: 'Adobe Acrobat PDF' },
-        { id: 'Text', name: '文本类' },
-        { id: 'Image', name: '图像类' },
-        { id: 'zip', name: '压缩类' },
-        { id: 'Media', name: '媒体类' },
-        { id: 'Others', name: '其他类型' }
-      ],
-      checkboxFileSizeList: [
-        { id: '1', name: '0~500KB' },
-        { id: '2', name: '500KB~1MB' },
-        { id: '3', name: '1MB~100MB' },
-        { id: '4', name: '1MB以上' },
-        { id: 'diy', name: '自定义大小' }
-      ],
-      dataSourceSelectList: [
-        { id: '1', name: '服务器一' },
-        { id: '2', name: '服务器二' },
-        { id: '3', name: '服务器三' }
-      ],
-      radioSortList: [
-        { id: 'relativity', name: '按相关度排序' },
-        { id: 'time', name: '按时间排序' }
-      ],
-      advanceparams: {
-        allKeyWords: '',
-        arbitraryWords: '',
-        notIncludeKeyWords: '',
-        radioTime: 'ALL',
-        radioDiyTime: '',
-        fileType: ['Word'],
-        fileSize: ['1'],
-        diysizefrom: '',
-        diysizeto: '',
-        dataSource: '1',
-        dataSourceSearch: '',
-        radioSort: 'relativity'
-      }
     }
   },
   computed: {
@@ -804,7 +677,47 @@ export default {
           type: 'warning'
         })
         return false
+      } else {
+        const query = this.$router.history.current.query
+        // console.log(query)
+        const path = this.$router.history.current.path
+        // 对象的拷贝
+        const newQuery = JSON.parse(JSON.stringify(query))
+        // 地址栏的参数值赋值
+        newQuery.search = newVal
+        this.$router.push({ path, query: newQuery })
+        console.log(this.$router.history.current.path)
       }
+    },
+    fieldScale(newVal, oldVal) {
+      const query = this.$router.history.current.query
+      // console.log(query)
+      const path = this.$router.history.current.path
+      // 对象的拷贝
+      const newQuery = JSON.parse(JSON.stringify(query))
+      // 地址栏的参数值赋值
+      newQuery.radio = newVal
+      this.$router.push({ path, query: newQuery })
+    },
+    docLanguage(newVal, oldVal) {
+      const query = this.$router.history.current.query
+      // console.log(query)
+      const path = this.$router.history.current.path
+      // 对象的拷贝
+      const newQuery = JSON.parse(JSON.stringify(query))
+      // 地址栏的参数值赋值
+      newQuery.lang = newVal
+      this.$router.push({ path, query: newQuery })
+    },
+    fuzzySearchDiv(newVal, oldVal) {
+      const query = this.$router.history.current.query
+      // console.log(query)
+      const path = this.$router.history.current.path
+      // 对象的拷贝
+      const newQuery = JSON.parse(JSON.stringify(query))
+      // 地址栏的参数值赋值
+      newQuery.fuzzy = newVal
+      this.$router.push({ path, query: newQuery })
     },
     diysizefrom(newVal, oldVal) {
       const reg = /^\+?[1-9]\d*$/
@@ -825,7 +738,7 @@ export default {
           this.diysizefrommessage = '输入位数请限制在11位以内'
         }
       } else if (newVal === '') {
-        this.diysizefrommessage = '请输入大于0的正整数'
+        this.diysizefrommessage = ''
       }
     },
     diysizeto(newVal, oldVal) {
@@ -833,7 +746,7 @@ export default {
       if (newVal !== '') {
         this.diysizetomessage = ''
         if (!reg.test(newVal)) {
-          this.diysizetomessage = ''
+          this.diysizetomessage = '请输入大于0的正整数'
         } else {
           if (Number(this.diysizefrom) > Number(newVal) && this.diysizefrom !== '') {
             this.diysizetomessage = '请输入大于' + this.diysizefrom + '的正整数'
@@ -853,17 +766,17 @@ export default {
     }
   },
   created() {
-    console.log(this.dictTypeId)
-    console.log(this.$route.query)
-    const search = this.$route.query.search !== '' ? this.$route.query.search : ''
-    const radio = this.$route.query.radio !== '' ? this.$route.query.radio : ''
-    const lang = this.$route.query.lang !== '' ? this.$route.query.lang : ''
-    const fuzzy = this.$route.query.fuzzy !== '' ? this.$route.query.fuzzy : ''
-    this.searchParam.params.keyWords = search
-    this.searchParam.params.fieldScale = radio
-    this.searchParam.params.docLanguage = lang
-    this.searchParam.params.fuzzySearchDiv = fuzzy
-    this.keyWords = search
+    // console.log(this.dictTypeId)
+    // console.log(this.$route.query)
+    // const search = this.$route.query.search !== '' ? this.$route.query.search : ''
+    // const radio = this.$route.query.radio !== '' ? this.$route.query.radio : ''
+    // const lang = this.$route.query.lang !== '' ? this.$route.query.lang : ''
+    // const fuzzy = this.$route.query.fuzzy !== '' ? this.$route.query.fuzzy : ''
+    this.searchParam.params.keyWords = this.keyWords
+    this.searchParam.params.fieldScale = this.fieldScale
+    this.searchParam.params.docLanguage = this.docLanguage
+    this.searchParam.params.fuzzySearchDiv = this.fuzzySearchDiv
+    // this.keyWords = search
     this.loading = true
     this.sltLoading = true
     this.normalSearch()
@@ -886,6 +799,14 @@ export default {
     //     }
     //   }
     // })
+    //
+
+    //
+  },
+  updated() {
+    this.$nextTick(() => {
+      this.sltLoading = false
+    })
     this.$nextTick(() => {
       const firstPageStatue = document.getElementsByClassName('btn-prev')[0].disabled
       const lastPageStatue = document.getElementsByClassName('btn-next')[0].disabled
@@ -902,15 +823,11 @@ export default {
       }
     })
   },
-  updated() {
-    this.$nextTick(() => {
-      this.sltLoading = false
-    })
-  },
   methods: {
     btnSearch() {
       if (this.keyWords) {
         this.loading = true
+        this.isBtnSearchFlag = true
         if (this.$refs.ProjectTree) {
           this.$refs.ProjectTree.setCheckedKeys([])
         }
@@ -931,6 +848,7 @@ export default {
         this.searchParam.params.fileSizeTo = ''
         this.searchParam.params.docLanguageList = []
         this.searchParam.params.docFolderList = {}
+        // this.searchParam.params.docFolderList = []
         // this.searchParam.params.fuzzySearchDiv = '0'
         // 重置排序
         this.searchParam.params.sortItem = ['_score,desc']
@@ -941,14 +859,17 @@ export default {
 
         this.searchParam.params.keyWords = this.keyWords
         this.searchParam.pageNo = 1
+        this.searchParam.pageSize = 10
         this.dataCheckedList = {}
         this.radiotime = ''
         this.sizecheckDIY = false
         this.diysizefrom = ''
         this.diysizeto = ''
+        this.searchParam.params.searchLogId = ''
         this.normalSearch()
         this.tabLength = this.filetab.length
       } else {
+        this.$message.closeAll()
         this.$message({
           message: '请输入搜索内容！',
           type: 'warning'
@@ -956,15 +877,14 @@ export default {
       }
       document.getElementsByClassName('el-autocomplete-suggestion')[0].style.display = 'none'
     },
-    async normalSearch() {
+    async normalSearch(callback) {
       const res = await normalSearch(this.searchParam)
       if (res && res.success) {
         const resultscrollbox = this.$refs.scrollbox
         if (resultscrollbox) {
           resultscrollbox.scrollTop = 0
         }
-        console.log('搜索结果', res)
-        // this.$refs.ProjectTree.setCheckedKeys([])
+        // console.log('搜索结果', res)
         this.results = res.datas.searchResult.results
         // this.treeData = res.datas.folderTreeResult
         this.fileTypeAggResult = res.datas.fileTypeAggResult
@@ -977,7 +897,7 @@ export default {
         this.searchParam.totalRecord = res.datas.searchResult.totalRecord
         this.searchLogId = res.datas.searchLogId
         this.timeTaken = res.datas.timeTaken
-        console.log(1111, res.datas.searchResult.results)
+        // console.log(1111, res.datas.searchResult.results)
         this.filetab = [{ id: 'fixed', dataSource: '', value: '搜索结果' }]
         const groupTree = {}
         for (var i = 0; i < res.datas.folderTreeResult.length; i++) {
@@ -988,7 +908,7 @@ export default {
         const allTree = []
         allTree.push(...Object.values(groupTree))
         this.treeData = allTree
-        this.allexpandedKeys = res.datas.folderTreeResultExpendedKeys
+        this.allexpandedKeys = res.datas.folderTreeResultExpandedKeys
         for (let i = 0; i < allTree.length; i++) {
           if (allTree[i].length > 0) {
             this.filetab.push({
@@ -997,12 +917,25 @@ export default {
               dataSource: allTree[i][0].dataSource
             })
           }
+          if (this.isBtnSearchFlag) {
+            this.dataSourceFolderTree['dataSource' + allTree[i][0].dataSource] = allTree[i]
+          }
         }
+        if (!!callback && typeof callback === 'function') {
+          callback.call(this)
+        }
+        this.isBtnSearchFlag = false
         this.loading = false
         this.fullscreenLoading = false
       } else {
         this.loading = false
         this.fullscreenLoading = false
+      }
+      const totalRecord = res.datas.searchResult.totalRecord
+      if (totalRecord === 1000) {
+        this.pageTotalRecord = '999+'
+      } else {
+        this.pageTotalRecord = totalRecord
       }
     },
     async getTerms(prefix) {
@@ -1036,13 +969,13 @@ export default {
     // },
     querySearch(queryString, cb) {
       this.restaurants = []
-      this.getTerms(queryString)
+      // this.getTerms(queryString)
       // 调用 callback 返回建议列表的数据
       cb(this.restaurants)
     },
     // 搜索关键字
     searchWords(value) {
-      console.log(value.value)
+      // console.log(value.value)
       // this.filteritem.keyWords = value.value
       // this.filterSearch(this.filteritem)
     },
@@ -1071,13 +1004,16 @@ export default {
     },
     // 文件服务器tab
     filetapClick(obj) {
+      // console.log(index)
+      // console.log(this.$refs.ProjectTree)
       this.acticeName = obj.dataSource
       this.tabItem = obj
       if (this.treeData.length >= 1) {
         this.choseTreeData = []
         for (let i = 0; i < this.treeData.length; i++) {
           if (this.treeData[i][0].dataSource === obj.dataSource) {
-            this.choseTreeData = this.treeData[i]
+            // this.choseTreeData = this.treeData[i]
+            this.choseTreeData = this.dataSourceFolderTree['dataSource' + obj.dataSource]
           }
         }
       }
@@ -1098,11 +1034,32 @@ export default {
       }
       // 勾选
       const datatreechecked = this.dataCheckedList['checked' + obj.dataSource]
+      // console.log(datatreechecked)
+      // console.log(this.dataCheckedList)
+      // console.log(888888888, datatreechecked)
       if (datatreechecked !== '') {
         this.$nextTick(() => {
           this.checkedKeys = datatreechecked
         })
       }
+      // 半选
+      // this.$nextTick(() => {
+      //   let dataHalfChecked = []
+      //   dataHalfChecked = this.dataHalfCheckedList['halfChecked' + obj.dataSource]
+      //   if (dataHalfChecked) {
+      //     dataHalfChecked.forEach(item => {
+      //       console.log(item)
+      //       console.log(this.$refs.ProjectTree)
+      //       const halfNode = this.$refs.ProjectTree.getNode(item)
+      //       for (const key in halfNode) {
+      //         if (halfNode[key].checked !== true) {
+      //           halfNode[key].indeterminate = true
+      //         }
+      //       }
+      //     })
+      //   }
+      // })
+
       this.searchParam.params.currentDataSource = obj.dataSource
       this.searchParam.params.docFolderList
       const currentDataSource = this.searchParam.params.currentDataSource
@@ -1122,12 +1079,116 @@ export default {
       this.searchParam.params.otherDataSources = this.otherDataSources
       // const sessointreechecked = JSON.parse(sessionStorage.getItem('checked' + index))
     },
+    // 具体方法可以看element官网api
+    /* childNodes(node) {
+      const len = node.childNodes.length
+      for (let i = 0; i < len; i++) {
+        node.childNodes[i].checked = node.checked
+        this.childNodes(node.childNodes[i])
+      }
+    }, */
+    childNodesIsChecked(node) {
+      const len = node.childNodes.length
+      let checkFlag = false
+      if (len > 0) {
+        for (let i = 0; i < len; i++) {
+          // console.log(node.label + '===>' + node.childNodes[i].checked)
+          if (node.childNodes[i].checked || node.childNodes[i].indeterminate) {
+            return true
+          } else {
+            checkFlag = this.childNodesIsChecked(node.childNodes[i])
+          }
+          if (checkFlag) {
+            return true
+          }
+        }
+        return false
+        // return this.childNodesIsChecked(node.childNodes[i])
+      } else {
+        return false
+      }
+    },
+    parentNodesChecked(node) {
+      if (node.parent) {
+        /* let isChecked = true
+        for (let i = 0; i < node.parent.childNodes.length; i++) {
+          if (!node.parent.childNodes[i].checked) {
+            isChecked = false
+            break
+          }
+        }
+        if (isChecked) {
+          node.parent.checked = true
+        } */
+        for (const key in node) {
+          if (key === 'parent') {
+            // node[key].checked = true
+            // console.log(node[key].label + "------>" + this.childNodesisChecked(node[key]))
+            if (node[key].checked !== true) {
+              node[key].indeterminate = true
+            }
+            this.parentNodesChecked(node[key])
+          }
+        }
+      }
+    },
+    parentNodesunChecked(node) {
+      if (node.parent) {
+        /* let isChecked = true
+        for (let i = 0; i < node.parent.childNodes.length; i++) {
+          if (!node.parent.childNodes[i].checked) {
+            isChecked = false
+            break
+          }
+        }
+        if (isChecked) {
+          node.parent.checked = true
+        } */
+        for (const key in node) {
+          if (key === 'parent') {
+            // node[key].checked = true
+            if (!node[key].checked && !this.childNodesIsChecked(node[key])) {
+              node[key].indeterminate = false
+            }
+            this.parentNodesunChecked(node[key])
+          }
+        }
+      }
+    },
+    checkedNodes(node) {
+      if (node.checked) {
+        this.parentNodesChecked(node)
+      } else {
+        if (this.childNodesIsChecked(node)) {
+          node.indeterminate = true
+        }
+        this.parentNodesunChecked(node)
+      }
+    },
     // 选择tree
     docTreeCheck(a, b) {
-      // console.log(1111111111111, a)
-      // console.log(2222222222222, b)
-      // console.log(this.$refs.ProjectTree.getCheckedNodes())
-      this.loading = true
+      console.log(a)
+      console.log(b)
+      // const node = this.$refs.ProjectTree.getNode(a)
+      // // this.childNodes(node)
+      // if (node.checked) {
+      //   this.parentNodesChecked(node)
+      // } else {
+      //   if (this.childNodesIsChecked(node)) {
+      //     node.indeterminate = true
+      //   }
+      //   this.parentNodesunChecked(node)
+      // }
+      // console.log(a)
+      // console.log(b)
+      /* // 是否编辑的表示
+      // this.ruleForm.isEditorFlag = true
+      // 编辑时候使用
+      // this.ruleForm.menuIds = this.$refs.tree.getCheckedKeys()
+      // 无论编辑和新增点击了就传到后台这个值
+      // this.ruleForm.menuIdsisEditor = this.$refs.tree.getCheckedKeys().concat(this.$refs.tree.getHalfCheckedKeys()) */
+
+      /* this.loading = true
       this.fullscreenLoading = true
       this.selectedFolder = []
       // this.$refs.ProjectTree.getCheckedNodes().forEach(item => {
@@ -1143,17 +1204,92 @@ export default {
       //   this.selectedFolder.push(item.dataSource + '/' + item.realPath)
       // })
       // this.searchParam.params.docFolderList = this.selectedFolder
-      // 树重新渲染
-      // this.refreshFalg = false
-      // this.normalSearch().then(() => {
-      //   this.refreshFalg = true
-
-      // })
+      this.normalSearch()
       // .then(() => {
       //   console.log(this.filetab.length ,this.tabLength)
       //   if(this.filetab.length < this.tabLength){
       //     document.getElementById('tab'+0).click()}
 
+      // }) */
+      const node = this.$refs.ProjectTree.getNode(a)
+      if (a.fileItemCount === 0 && node.checked) {
+        node.checked = false
+        this.$message({
+          message: '当前目录下没有文件，请选择下级目录',
+          type: 'warning'
+        })
+        return false
+      }
+      // this.checkedNodes(node)
+      // this.choseTreeData = []
+      // this.$refs.ProjectTree = []
+      this.loading = true
+      this.fullscreenLoading = true
+      this.selectedFolder = []
+      this.searchParam.params.searchLogId = this.searchLogId
+      // this.$refs.ProjectTree.getCheckedNodes().forEach(item => {
+      //   this.selectedFolder.push(item.id)
+      // })
+      if (b.checkedKeys) {
+        // this.selectedFolder = b.checkedKeys
+        this.dataCheckedList['checked' + this.acticeName] = b.checkedKeys
+      }
+      this.searchParam.params.docFolderList = this.dataCheckedList
+      const halfCheckNodes = this.$refs.ProjectTree.getHalfCheckedNodes()
+      this.dataHalfCheckedList['halfChecked' + this.acticeName] = halfCheckNodes
+      if (b.checkedKeys.length <= 0) {
+        this.activeDataSource = 0
+      }
+      // this.isBtnSearchFlag = false
+      this.normalSearch()
+
+      // this.normalSearch(() => {
+      //   const allTree = this.treeData
+      //   for (let i = 0; i < allTree.length; i++) {
+      //     // if (allTree[i].length > 0) {
+      //     //   this.filetab.push({
+      //     //     id: allTree[i][0].id,
+      //     //     value: allTree[i][0].dataSourceName,
+      //     //     dataSource: allTree[i][0].dataSource
+      //     //   })
+      //     // }
+      //     this.dataSourceFolderTree['dataSource' + allTree[i][0].dataSource] = allTree[i]
+      //   }
+      // })
+      // this.normalSearch(() => {
+      //   if (this.treeData.length >= 1) {
+      //     this.choseTreeData = []
+      //     for (let i = 0; i < this.treeData.length; i++) {
+      //       if (this.treeData[i][0].dataSource === a.dataSource) {
+      //         this.choseTreeData = this.treeData[i]
+      //       }
+      //     }
+      //   }
+      //   // 展开
+      //   const datatreeexpandedKeys = this.dataexpandedKeysList['expanded' + a.dataSource]
+      //   for (let i = 0; i < this.allexpandedKeys.length; i++) {
+      //     if (this.allexpandedKeys[i].dataSource === a.dataSource) {
+      //       this.$nextTick(() => {
+      //         this.expandedKeys = this.allexpandedKeys[i].expandedKeys
+      //       // this.dataCheckedList['expanded' + index] = this.expandedKeys
+      //       })
+      //     }
+      //   }
+      //   if (datatreeexpandedKeys) {
+      //     this.$nextTick(() => {
+      //       this.expandedKeys = datatreeexpandedKeys
+      //     })
+      //   }
+      //   // 勾选
+      //   const datatreechecked = this.dataCheckedList['checked' + a.dataSource]
+      //   // console.log(888888888, datatreechecked)
+      //   if (datatreechecked !== '' && datatreechecked.length > 0) {
+      //     this.$nextTick(() => {
+      //       this.checkedKeys = datatreechecked
+      //     })
+      //   } else {
+      //     this.checkedKeys = []
+      //   }
       // })
     },
     // 展开节点
@@ -1195,8 +1331,8 @@ export default {
 
     // 选择更新时间
     radioTimeCheck(value) {
-      console.log(value)
-      console.log(this.radiotime)
+      // console.log(value)
+      // console.log(this.radiotime)
       if (value !== '自定义时间') {
         this.loading = true
         this.fullscreenLoading = true
@@ -1243,7 +1379,7 @@ export default {
     },
     // 自定义开始时间 - 结束时间
     diyTime() {
-      console.log(this.radiotime)
+      // console.log(this.radiotime)
       this.searchParam.pageNo = 1
       this.searchParam.params.searchLogId = this.searchLogId
       if (this.radiotime) {
@@ -1264,6 +1400,7 @@ export default {
     },
     relativityTop() {
       this.loading = true
+      this.fullscreenLoading = true
       this.isRelativitySortActiveTop = true
       this.isRelativitySortActiveBottom = false
       this.isTimeSortTop = false
@@ -1275,6 +1412,7 @@ export default {
     },
     relativityBottom() {
       this.loading = true
+      this.fullscreenLoading = true
       this.isRelativitySortActiveTop = false
       this.isRelativitySortActiveBottom = true
       this.isTimeSortTop = false
@@ -1301,6 +1439,7 @@ export default {
     // },
     timeSortTop() {
       this.loading = true
+      this.fullscreenLoading = true
       this.isTimeSortTop = true
       this.isTimeSortBottom = false
       this.isRelativitySortActiveTop = false
@@ -1312,6 +1451,7 @@ export default {
     },
     timeSortBottom() {
       this.loading = true
+      this.fullscreenLoading = true
       this.isTimeSortTop = false
       this.isTimeSortBottom = true
       this.isRelativitySortActiveTop = false
@@ -1376,7 +1516,7 @@ export default {
     },
 
     async download(fileUrl, docId) {
-      await downloadFile({ 'fileUrl': fileUrl, 'docId': docId })
+      await downloadFile({ 'fileUrl': fileUrl, 'docId': docId, 'searchLogId': this.searchParam.params.searchLogId })
     },
     showSLT(item) {
       // 成功回调函数停止加载
@@ -1422,7 +1562,7 @@ export default {
       document.execCommand('copy')
     },
     handleSizeChange(val) {
-      console.log(`每页 ${val} 条`)
+      // console.log(`每页 ${val} 条`)
       this.loading = true
       this.searchParam.pageSize = val
       this.searchParam.pageNo = 1
@@ -1430,16 +1570,15 @@ export default {
       // this.loading = false
     },
     handleCurrentChange(val) {
-      console.log(`当前页: ${val}`)
+      // console.log(`当前页: ${val}`)
       this.loading = true
       this.searchParam.pageNo = val
-
       this.normalSearch(this.searchParam)
       // this.loading = false
       this.$nextTick(() => {
         const firstPageStatue = document.getElementsByClassName('btn-prev')[0].disabled
         const lastPageStatue = document.getElementsByClassName('btn-next')[0].disabled
-        console.log(111111111111, firstPageStatue, lastPageStatue)
+        // console.log(111111111111, firstPageStatue, lastPageStatue)
         if (firstPageStatue) {
           document.getElementsByClassName('first-pager')[0].disabled = true
         } else {
@@ -1455,9 +1594,6 @@ export default {
     closeDiyFileSizeDialog() {
       this.diysizefrommessage = ''
       this.diysizetomessage = ''
-      // this.searchParam.params.fileSizeFrom = ''
-      // this.searchParam.params.fileSizeTo = ''
-      // this.
     }
     // stateChange() {
     //   this.sltLoading = false
@@ -1916,93 +2052,14 @@ export default {
   left: 280px;
   color: #f54132;
 }
-</style>
-<style scoped>
-.advance_filter {
-  width: 100%;
-  height: auto;
-  padding: 20px 30px;
-  box-shadow: 0px 2px 10px 0px rgba(68, 100, 163, 0.1);
-  background: #ffffff;
-  border-radius: 16px;
-  overflow: hidden;
-  box-sizing: border-box;
-  margin-bottom: 20px;
-}
-.search_params_item {
-  width: 100%;
-  height: 40px;
-  color: #333333;
-  margin-bottom: 15px;
-  box-sizing: border-box;
-  line-height: 40px;
-  display: flex;
-  justify-content: left;
-}
-.search_params_item > span {
-  display: flex;
+.slt_empty {
+  display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  justify-items: center;
+  justify-content: space-between;
+}
+.slt_empty span {
+  margin-top: 40px;
   font-size: 16px;
-  min-width: 120px;
-  max-width: 120px;
-  line-height: 24px;
-}
-.search_params_item span i {
-  margin-right: 8px;
-}
-.search_params_item .el-input {
-  margin-left: 20px;
-  border-radius: 4px;
-  border-color: #cccccc;
-}
-.search_params_item .el-radio-group {
-  display: flex;
-  align-items: center;
-  justify-items: left;
-  margin-left: 20px;
-}
-.search_params_item .el-radio-group label {
-  margin-right: 30px;
-}
-.search_params_item .el-checkbox-group {
-  display: flex;
-  align-items: center;
-  justify-items: left;
-  margin-left: 20px;
-}
-.search_params_item .el-checkbox-group label {
-  margin-right: 30px;
-}
-.search_params_item .el-range-editor.el-input__inner {
-  border-color: #cccccc;
-}
-.diy_filesize {
-  max-width: 540px;
-  height: 40px;
-  line-height: 38px;
-  /* border: 1px solid #cccccc; */
-  border-radius: 4px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-}
-.diy_filesize .from,
-.diy_filesize .to {
-  max-width: 248px;
-  margin-left: 0;
-  border: 1px solid #cccccc;
-}
-.zhi {
-  display: block;
-  min-width: 30px;
-  text-align: center;
-}
-.item_select {
-  width: 120px;
-}
-.search_params_item .input-with-select {
-  width: 440px;
 }
 </style>
-

@@ -1,4 +1,7 @@
 /* meau */
+.el-message-box__wrapper,.el-message-box{
+    z-index: 2099;
+}
 .iconfont.icon-tianchongxing-{
     color:#2D7A9C;
 }
@@ -253,7 +256,7 @@ background: none;
     position: absolute;
     right: 160px;
 }
-.search_box .el-input__inner {
+.search_box .search_input .el-input .el-input__inner {
 
     height: 50px;
     background: #FFFFFF;
@@ -262,6 +265,10 @@ background: none;
 }
 .search_box .el-input__prefix {
     left: 30px;
+}
+
+.search_box .search_params_item .el-input__prefix {
+    left: 10px;
 }
 .search_box  .el-input--prefix .el-input__inner {
     padding-left: 55px;
@@ -335,7 +342,7 @@ background: none;
     line-height: 22px;
 }
 /***********  radio ***********/
-.search_box .el-radio-group{
+.search_box .flex_ceter .el-radio-group{
     margin-top: 2px;
     margin-right: 40px;
 }
@@ -855,15 +862,15 @@ background: #F5F5F5;
 .pagination_right slot button{
     cursor: pointer;
 }
-.el-pagination slot  button:disabled{
-    color: #C0C4CC;
-}
 .pagination_right slot button i{
-    /* color: #333333; */
+    color: #606266;
     display: block;
     font-weight: 700;
     font-size: 12px;
     line-height: 1;
+}
+.pagination_right slot button:disabled i{
+    color: #C0C4CC;
 }
 .el-pagination.is-background .el-pager li:not(.disabled).active:hover{
     color: #fff;
@@ -1079,16 +1086,85 @@ color: #666666;
 .search_params_item .el-input__inner{
     height: 38px;
     line-height: 38px;
+    max-width: 250px;
 }
 
 
+.person_label_dialog .el-dialog {
+  width: 850px;
+  height: auto;
+  background: #eef2f6;
+  border-radius: 16px;
+  padding-bottom: 30px;
+}
+
+.el-cascader-menu .theme_count{
+  border-radius: 7px;
+  height: 14px;
+  line-height: 14px;
+  font-size: 12px;
+  background: #ff9200;
+  color: #ffffff;
+  padding: 0 2px;
+  margin-left: 5px;
+}
+.theme_search .el-cascader-menu:first-child .el-cascader-node .theme_count{
+    display:none!important;
+}
+
+/* 个人标签管理 */
+
+.perLabel_search_box input {
+  height: 50px;
+  border-color:#CCCCCC ; 
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    padding-left: 30px;
+width: calc(100% - 135px);
+}
+.perLabel_search_box .el-input-group--append{
+    position: relative;
+
+}
+.perLabel_search_box .el-input-group__append{
+    text-align: center;
+    width: 160px;
+    height: 50px;
+    background: linear-gradient(180deg, #475BA0 0%, #2FA5BB 100%);
+    border-radius: 25px;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 50px;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+}
 
 
+/* 搜索履历 */
+.search_top div .el-input__inner {
+  height: 50px;
+  background: #ffffff;
+  border-radius: 25px;
+  /* border-color: #cccccc; */
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.search_top div:first-child .el-input__inner {
+margin-right: 30px;
+}
+.search_top>div:last-child{
+    margin-left: 30px;
+}
 
-
-
-
-
+.search_bottom .el-date-editor .el-range-input{
+    width: 100%;
+}
+.search_bottom .el-date-editor i{
+    padding-left: 10px;
+    width: 45px;
+}
 
 
 

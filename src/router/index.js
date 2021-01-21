@@ -79,6 +79,11 @@ const createRouter = () => new Router({
         //   name: '查询结果分析',
         //   component: () => import('@/views/systemManagement/queryResultAnalysis')
         // }
+        {
+          path: '/search/search_result',
+          name: '/search/search_result',
+          component: () => import('@/views/search/searchResult.vue')
+        }
 
       ]
 

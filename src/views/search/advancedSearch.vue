@@ -217,8 +217,8 @@ export default {
         notIncludeKeyWords: '',
         radioTime: 'ALL',
         radioDiyTime: '',
-        fileType: ['Word'],
-        fileSize: ['1'],
+        fileType: [],
+        fileSize: [],
         diysizefrom: '',
         diysizeto: '',
         dataSource: '1',
@@ -270,9 +270,8 @@ export default {
       console.log(this.searchs)
       if (this.searchs) {
         this.$router.push({
-          path: '/search/search_result',
-          query: {
-            advance: 0,
+          name: 'advancedSearchresult',
+          params: {
             search: this.searchs,
             radio: this.radio,
             lang: this.lang,

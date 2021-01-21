@@ -37,9 +37,11 @@
             </span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item v-if="showChangeOrgMenu == true" @click.native="handleChangeOrgOpenClickTest">
+                  <i class="iconfont icon-qiehuan" />
                 {{ $t('comm.changeOrg') }}
               </el-dropdown-item>
               <el-dropdown-item @click.native="logout()">
+                <i class="iconfont icon-tuichu" />
                 退出登录
               </el-dropdown-item>
             </el-dropdown-menu>
@@ -77,7 +79,8 @@ import ChangeOrg from '@/views/comm/ChangeOrg'
 import { formValidator } from '@/mixins/form-validator.js'
 
 export default {
-  components: { meau,
+  components: {
+    meau,
     ChangeOrg
   },
   mixins: [formValidator],
@@ -107,13 +110,13 @@ export default {
           this.getSelectedMenus(this.menuList, seqNo)
         }
         // console.log(22222222222, newValue)
-        if (newValue.name === '普通查询') {
+        if (newValue.name === '普通搜索') {
           this.breadcrumbItems = []
-          this.breadcrumbItems.push({ id: 'menu-search', resUrl: null, resName: '搜索方式' }, { id: 'menu-search-general-search', resUrl: 'search/general_search', resName: '普通查询' })
+          this.breadcrumbItems.push({ id: 'menu-search', resUrl: null, resName: '搜索方式' }, { id: 'menu-search-general-search', resUrl: 'search/general_search', resName: '普通搜索' })
           // document.querySelectorAll('li.el-menu-item')[0].click()
           const meauName = document.querySelectorAll('li.el-menu-item')
           for (let i = 0; i < meauName.length; i++) {
-            if (meauName.item(i).innerText === '普通检索') {
+            if (meauName.item(i).innerText === '普通搜索') {
               document.querySelectorAll('li.el-menu-item')[i].click()
             }
           }
@@ -129,7 +132,7 @@ export default {
       const seqNo = menuIndex.split(':')
       this.getSelectedMenus(this.menuList, seqNo)
     } else {
-      this.breadcrumbItems.push({ id: 'menu-search', resUrl: null, resName: '搜索方式' }, { id: 'menu-search-general-search', resUrl: 'search/general_search', resName: '普通查询' })
+      this.breadcrumbItems.push({ id: 'menu-search', resUrl: null, resName: '搜索方式' }, { id: 'menu-search-general-search', resUrl: 'search/general_search', resName: '普通搜索' })
     }
     // 表示变更组织的菜单
     if (this.userOrgList !== undefined && this.userOrgList.length) {
@@ -142,7 +145,7 @@ export default {
         confirmButtonText: this.$t('comm.certain'),
         cancelButtonText: this.$t('comm.cancel'),
         type: 'warning'
-      }).then(async() => {
+      }).then(async () => {
         const res = await this.logoutAction()
         if (res && res.success) {
           window.sessionStorage.clear()
@@ -179,7 +182,7 @@ export default {
       this.getSelectedMenus(menu[0].children, seqNo)
     },
     handleChangeOrgOpenClick() {
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         this.clearErrorMessage()
       })
 
@@ -189,7 +192,7 @@ export default {
       this.resetOrg = true
     },
     handleChangeOrgOpenClickTest() {
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         this.clearErrorMessage()
       })
 
@@ -203,8 +206,8 @@ export default {
       // this.breadcrumbItems = []
       // this.$router.push('/')
       // this.breadcrumbItems = []
-      // this.breadcrumbItems.push({ id: 'menu-search', resUrl: null, resName: '搜索方式' }, { id: 'menu-search-general-search', resUrl: 'search/general_search', resName: '普通查询' })
-      // this.$router.push('/')
+      // this.breadcrumbItems.push({ id: 'menu-search', resUrl: null, resName: '搜索方式' }, { id: 'menu-search-general-search', resUrl: 'search/general_search', resName: '普通搜索' })
+      this.$router.push('/')
       this.$router.go(0)
     }
   }
@@ -248,5 +251,8 @@ export default {
   margin-left: 40px;
   margin-right: 40px;
   flex: 1;
+}
+.icon-tuichu {
+  font-size: 12px;
 }
 </style>

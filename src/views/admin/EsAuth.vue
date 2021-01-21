@@ -77,17 +77,40 @@ export default {
     // 获取tree
     async searchtree(roleId) {
       this.loading = true
-      this.treedata = []
-      this.expandedKeys = []
-      this.checkedKeys = []
-      const res = await getFolderTree({ 'roleId': roleId })
+      // this.treedata = []
+      // this.expandedKeys = []
+      // this.checkedKeys = []  
+      let searchTreeFlag = '0'
+      if (this.treedata.length === 0) {
+        searchTreeFlag = '1'
+      } else {
+        this.$refs.tree.setCheckedKeys([])
+      }
+      const res = await getFolderTree(
+        { 'roleId': roleId,
+          'searchTreeFlag' : searchTreeFlag
+        })
       if (res && res.success) {
         // console.log('tree', res.datas)
-        this.treedata = res.datas.result
+        if (searchTreeFlag === '1') {
+          this.treedata = res.datas.result
+        }
         this.$nextTick(() => {
         // console.log(3, this.$refs.tree[0])
+          // const nodes = this.$refs.tree.store
+          // nodes.root.expanded = false
+
+          // for (var i = 0; i < this.$refs.tree.store._getAllNodes().length; i++) {
+          //   this.$refs.tree.store._getAllNodes()[i].expanded = false
+          // }
+
           this.expandedKeys = res.datas.expandedKeys
           this.checkedKeys = res.datas.checkedKeys
+          // if (searchTreeFlag === '1') {
+          //   this.checkedKeys = res.datas.checkedKeys
+          // } else {
+          //   this.$refs.tree.setCheckedKeys(res.datas.checkedKeys)
+          // }
         })
       }
       this.loading = false
