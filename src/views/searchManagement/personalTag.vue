@@ -16,8 +16,8 @@
           <span class="refresh" @click="refreshLabel"><i class="iconfont icon-refresh" />换一换</span>
         </div>
         <ul>
-          <li v-for="list in recommendList" :key="list.index" @click="addInterestLabel(list)">
-            <i class="iconfont icon-tianjia" />{{ list }}
+          <li v-for="list in recommendList" :key="list.index">
+            <i class="iconfont icon-tianjia" @click="addInterestLabel(list)" />{{ list }}
           </li>
         </ul>
       </div>
