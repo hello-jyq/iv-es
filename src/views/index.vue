@@ -37,7 +37,7 @@
             </span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item v-if="showChangeOrgMenu == true" @click.native="handleChangeOrgOpenClickTest">
-                  <i class="iconfont icon-qiehuan" />
+                <i class="iconfont icon-qiehuan" />
                 {{ $t('comm.changeOrg') }}
               </el-dropdown-item>
               <el-dropdown-item @click.native="logout()">
@@ -145,7 +145,7 @@ export default {
         confirmButtonText: this.$t('comm.certain'),
         cancelButtonText: this.$t('comm.cancel'),
         type: 'warning'
-      }).then(async () => {
+      }).then(async() => {
         const res = await this.logoutAction()
         if (res && res.success) {
           window.sessionStorage.clear()
@@ -182,7 +182,7 @@ export default {
       this.getSelectedMenus(menu[0].children, seqNo)
     },
     handleChangeOrgOpenClick() {
-      this.$nextTick(function () {
+      this.$nextTick(function() {
         this.clearErrorMessage()
       })
 
@@ -192,7 +192,7 @@ export default {
       this.resetOrg = true
     },
     handleChangeOrgOpenClickTest() {
-      this.$nextTick(function () {
+      this.$nextTick(function() {
         this.clearErrorMessage()
       })
 

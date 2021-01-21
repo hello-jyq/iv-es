@@ -412,7 +412,7 @@ export default {
   padding: 30px;
   box-sizing: border-box;
 }
-.main_box img {
+.main_box img{
   margin: 0 auto;
   height: 100%;
 }

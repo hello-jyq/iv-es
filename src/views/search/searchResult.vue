@@ -667,7 +667,7 @@ export default {
   },
   watch: {
     results: {
-      handler: function (newVal, oldVal) { },
+      handler: function(newVal, oldVal) { },
       deep: true
     },
     keyWords(newVal, oldVal) {
@@ -2052,14 +2052,14 @@ export default {
   left: 280px;
   color: #f54132;
 }
-.slt_empty {
+.slt_empty{
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+justify-content:space-between;
 }
-.slt_empty span {
-  margin-top: 40px;
-  font-size: 16px;
+.slt_empty span{
+margin-top: 40px;
+font-size: 16px;
 }
 </style>

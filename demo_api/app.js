@@ -479,13 +479,13 @@ app.post('/iv-es/api/folderauth/esroles', (req, res) => {
 })
 
 // 【ES-API-007】文件访问权限树取得API
-app.post('/iv-es/api/folderauth/foldertree', (req, res) => {
+app.post('/iv-es/api/folderauth/foldertreeDemo', (req, res) => {
   // 读取json文件并送信
   sentResByJson('dataList/es/es-007.json', res)
 })
 app.get('/iv-es/api/folderauth/foldertree', (req, res) => {
   // 读取json文件并送信
-  sentResByJson('dataList/es/es-007.json', res)
+  sentResByJson('dataList/es/es-007-2.json', res)
 })
 
 // 组织画面，拉去人员信息
