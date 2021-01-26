@@ -182,6 +182,7 @@
         <el-col :span="24">
           <el-autocomplete
             v-model="keyWords"
+            ref="searchInput"
             class="inline-input search_input"
             :fetch-suggestions="querySearch"
             placeholder="请输入您想要搜索的内容"
@@ -515,6 +516,7 @@
       title="缩略图"
       :visible.sync="centerDialogVisible"
       :close-on-click-modal="false"
+      :modal-append-to-body="false"
       class="sltDialog"
       @close="closeSLT"
     >
@@ -559,6 +561,7 @@
       title="自定义文件大小"
       :visible.sync="filesizeDialogVisible"
       :close-on-click-modal="false"
+      :modal-append-to-body="false"
       class="diyfilesize"
       @close="closeDiyFileSizeDialog"
     >
@@ -591,6 +594,7 @@
       title="个人标签设置"
       :visible.sync="personLabelDialogVisible"
       :close-on-click-modal="false"
+      :modal-append-to-body="false"
       class="person_label_dialog"
     >
       <div class="labelD_title">
@@ -1052,6 +1056,9 @@ export default {
     this.loading = true
     this.sltLoading = true
     this.normalSearch()
+    this.$nextTick(() => {
+      this.$refs.searchInput.focus()
+    })
   },
   mounted() {
     // this.$nextTick(() => {
@@ -1173,7 +1180,7 @@ export default {
         const allTree = []
         allTree.push(...Object.values(groupTree))
         this.treeData = allTree
-        this.allexpandedKeys = res.datas.folderTreeResultExpendedKeys
+        this.allexpandedKeys = res.datas.folderTreeResultExpandedKeys
         for (let i = 0; i < allTree.length; i++) {
           if (allTree[i].length > 0) {
             this.filetab.push({

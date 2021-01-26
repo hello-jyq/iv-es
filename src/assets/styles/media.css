@@ -663,6 +663,146 @@ margin-left: 0 !important;
 }
 
 
+/* 搜索履历 */
+.sh_search_box{
+    height: 175px !important;
+    padding: 30px 24px 24px !important; 
+}
+.search_top div .el-input__inner{
+    height: 40px !important;
+    border-radius: 20px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important
+}
+.search_bottom .el-input__inner{
+      height: 40px !important;
+      line-height: 40px !important;
+}
+
+.search_bottom button[data-v-4e617362] {
+    width: 140px !important;
+    height: 40px !important;
+    border-radius: 20px !important;
+    font-size: 14px !important;
+}
+
+.sh_search_main {
+    margin-top: 15px !important;
+    padding: 25px 25px 10px !important;
+}
+
+.sh_main_title{
+    height: 26px !important;
+    line-height: 16px !important;
+    font-size: 14px !important;
+    padding-bottom: 10px !important;
+}
+
+.sh_main_table tr th{
+    height: 40px !important;
+    line-height: 40px !important;
+}
+.sh_main_table tr td{
+    height: 32px !important;
+    line-height: 32px !important;
+}
+.sh_main_table .el-table__body-wrapper {
+    height: calc(100vh - 403px) !important;
+}
+.pagination-box {
+    padding-top: 10px !important;
+}
+.sh_main_table .icon-icon_del{
+    font-size: 16px !important;
+}
+
+/* 设置 */
+.set_box{
+    padding: 25px 0px 30px 30px !important;
+}
+.set_box .title {
+    height: 30px !important;
+    padding-left: 25px !important;
+    padding-right: 30px !important;
+    font-size: 14px !important;
+    line-height: 45px !important;
+    margin-bottom: 15px !important;
+}
+
+.set_menu{
+    width: 285px !important;
+    height: calc(100vh - 130px);
+}
+.set_menu ul {
+    padding: 20px !important;
+}
+.set_menu ul li{
+    height: 16px !important;
+    font-size: 12px !important;
+    line-height: 16px !important;
+    margin-bottom: 30px !important;
+}
+.set_menu ul li i {
+    margin-right: 15px !important;
+}
+.set_content{
+    margin-left: 25px !important;
+    padding-right: 30px !important;
+}
+.set_content_item{
+    margin-bottom: 30px !important;
+}
+.set_content_item > label {
+    height: 16px !important;
+    font-size: 12px !important;
+    line-height: 16px !important;
+}
+.set_content_item_box{
+    height: 65px !important;
+    margin-top: 15px !important;
+    padding: 20px !important;
+}
+.set_content_item button {
+    width: 130px !important;
+    height: 32px !important;
+    border-radius: 16px !important;
+    font-size: 14px !important;
+}
+.set_content_item_box_auto{
+    margin-top: 15px !important;
+    padding: 20px !important;
+}
+.set_items_title {
+    height: 16px !important;
+    font-size: 12px !important;
+    line-height: 16px !important;
+}
+.set_items {
+    margin-bottom: 25px !important;
+}
+.set_items_input .el-input__inner {
+    height: 28px;
+    line-height: 28px;
+    margin-top: 10px;
+}
+.set_content_item .el-checkbox {
+    margin-bottom: 15px !important;
+}
+.set_button{
+    margin-top: 0px !important;
+}
+
+.beetween_line{
+    margin-bottom: 20px !important;
+}
+.set_content_item_box span{
+    height: 16px !important;
+    font-size: 14px !important;
+    line-height: 16px !important;
+}
+.set_content_item_box span i {
+    font-size: 18px !important;
+}
 
 
 

@@ -57,11 +57,11 @@
               </ul>
             </div>
             <div class="dialog-btn-box">
-              <div class="dialog-btn-right" @click="resetForm('searchForm')">
+              <div class="dialog-btn-right" @click="resetForm">
                 <span class="circle-bigger-btn btn-light-color"><i class="el-icon-refresh" /></span>
                 <span class="dialog-btn-text"> 重&nbsp;置</span>
               </div>
-              <div>
+              <div @click="search">
                 <span class="circle-bigger-btn btn-light-color"><i class="el-icon-search" /></span>
                 <span class="dialog-btn-text">检&nbsp;索</span>
               </div>
@@ -125,29 +125,44 @@
         </el-table>
       </div>
       <div class="pagination-box">
-        <el-pagination
-          class="page-left"
+       <el-pagination
           :current-page.sync="searchParam.pageNo"
           :page-size="searchParam.pageSize"
-          layout="total,sizes"
-          :total="searchParam.totalRecord"
+          :page-sizes="[10, 20]"
+          layout="sizes"
+          class="page-left"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
         />
-
         <el-pagination
-          class="page-right"
           :current-page.sync="searchParam.pageNo"
+          background
           :page-size="searchParam.pageSize"
-          layout="prev,pager,next,slot,jumper"
+          :page-sizes="[10, 20]"
+          layout=" pager, next,slot,jumper"
           :total="searchParam.totalRecord"
+          class="pagination_right"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
         >
-          <span class="iconfont iconjiantou-youzhi page-last-page" @click="toLastPage" />
+          <button type="button" class="last-pager" @click="toLastPage()">
+            <i class="iconfont icon-Group-1" />
+          </button>
         </el-pagination>
-        <el-pagination class="page-right  page-first" layout="slot">
-          <span class="iconfont iconjiantou-zuozhi page-first-page" @click="toFirstPage" />
+        <el-pagination
+          :current-page.sync="searchParam.pageNo"
+          background
+          :page-size="searchParam.pageSize"
+          :page-sizes="[10, 20]"
+          layout="slot, prev"
+          :total="searchParam.totalRecord"
+          class="pagination_right"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+        >
+          <button type="button" class="first-pager" @click="toFirstPage()">
+            <i class="iconfont icon-zuiqian" />
+          </button>
         </el-pagination>
       </div>
     </div>
@@ -385,11 +400,32 @@ export default {
           jobGroupName: '',
           jobName: ''
         }
+      },
+      form: { // 弹窗检索参数
+        jobGroupName: '',
+        jobName: ''
       }
     }
   },
-  created: function() {
+  created: function () {
     this.fetchData()
+  },
+  updated() {
+    this.$nextTick(() => {
+      const firstPageStatue = document.getElementsByClassName('btn-prev')[0].disabled
+      const lastPageStatue = document.getElementsByClassName('btn-next')[0].disabled
+      // console.log(111111111111, firstPageStatue, lastPageStatue)
+      if (firstPageStatue) {
+        document.getElementsByClassName('first-pager')[0].disabled = true
+      } else {
+        document.getElementsByClassName('first-pager').disabled = false
+      }
+      if (lastPageStatue) {
+        document.getElementsByClassName('last-pager')[0].disabled = true
+      } else {
+        document.getElementsByClassName('last-pager')[0].disabled = false
+      }
+    })
   },
   methods: {
     search() {
@@ -426,6 +462,21 @@ export default {
       this.$store.dispatch('saveSearchParam', { path: this.$route.path, searchParam: this.searchParam })
       const start = (this.searchParam.pageNo - 1) * this.searchParam.pageSize
       this.schedulerList = this.totalList.slice(start, start + this.searchParam.pageSize)
+      this.$nextTick(() => {
+        const firstPageStatue = document.getElementsByClassName('btn-prev')[0].disabled
+        const lastPageStatue = document.getElementsByClassName('btn-next')[0].disabled
+        // console.log(111111111111, firstPageStatue, lastPageStatue)
+        if (firstPageStatue) {
+          document.getElementsByClassName('first-pager')[0].disabled = true
+        } else {
+          document.getElementsByClassName('first-pager')[0].disabled = false
+        }
+        if (lastPageStatue) {
+          document.getElementsByClassName('last-pager')[0].disabled = true
+        } else {
+          document.getElementsByClassName('last-pager')[0].disabled = false
+        }
+      })
     },
     handleSelectionChange(val) {
       this.multipleSelection = val
@@ -435,7 +486,7 @@ export default {
         confirmButtonText: this.$t('comm.certain'),
         cancelButtonText: this.$t('comm.cancel'),
         type: 'warning'
-      }).then(async() => {
+      }).then(async () => {
         await execScheduler(this.schedulerInfo)
       }).catch(() => {
         this.$message({
@@ -449,7 +500,7 @@ export default {
       this.varObjct.key = ''
       this.varObjct.value = ''
       this.showAddVarDialog = true
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         this.setValidatorMessage('key', '')
         this.setValidatorMessage('value', '')
       })
@@ -472,11 +523,11 @@ export default {
       this.showAddVarDialog = false
     },
     handleCreateClick() {
-      this.schedulerInfo = { jobPara: {}}
+      this.schedulerInfo = { jobPara: {} }
       this.dialogType = 'create'
       this.validatorState = false
       this.showDialog = true
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         this.clearErrorMessage()
       })
     },
@@ -485,7 +536,7 @@ export default {
         confirmButtonText: this.$t('comm.certain'),
         cancelButtonText: this.$t('comm.cancel'),
         type: 'warning'
-      }).then(async() => {
+      }).then(async () => {
         const res = await deleteScheduler([val])
         if (res && res.success) {
           this.fetchData()
@@ -516,7 +567,7 @@ export default {
       this.dialogType = 'edit'
       this.validatorState = true
       this.showDialog = true
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         this.clearErrorMessage()
       })
     },
@@ -528,7 +579,7 @@ export default {
         confirmButtonText: this.$t('comm.certain'),
         cancelButtonText: this.$t('comm.cancel'),
         type: 'warning'
-      }).then(async() => {
+      }).then(async () => {
         const res = await saveScheduler(this.schedulerInfo)
         if (res && res.success) {
           this.showDialog = false
@@ -549,7 +600,7 @@ export default {
         confirmButtonText: this.$t('comm.certain'),
         cancelButtonText: this.$t('comm.cancel'),
         type: 'warning'
-      }).then(async() => {
+      }).then(async () => {
         const res = await deleteScheduler(this.multipleSelection)
         if (res && res.success) {
           this.fetchData()
@@ -569,7 +620,7 @@ export default {
         confirmButtonText: this.$t('comm.certain'),
         cancelButtonText: this.$t('comm.cancel'),
         type: 'warning'
-      }).then(async() => {
+      }).then(async () => {
         const res = await pauseScheduler(this.multipleSelection)
         if (res && res.success) {
           this.fetchData()
@@ -589,7 +640,7 @@ export default {
         confirmButtonText: this.$t('comm.certain'),
         cancelButtonText: this.$t('comm.cancel'),
         type: 'warning'
-      }).then(async() => {
+      }).then(async () => {
         const res = await resumeScheduler(this.multipleSelection)
         if (res && res.success) {
           this.fetchData()
@@ -606,7 +657,11 @@ export default {
       setTimeout(() => {
         if (refTable) refTable.doLayout()
       },
-      1000)
+        1000)
+    },
+    resetForm() {
+      this.searchParam.params.jobGroupName = ''
+      this.searchParam.params.jobName = ''
     }
   }
 }

@@ -3,6 +3,7 @@
     <el-row class="search_box">
       <el-col :span="24">
         <el-autocomplete
+          ref="searchInput"
           v-model="searchs"
           class="inline-input search_input"
           :fetch-suggestions="querySearch"
@@ -237,6 +238,11 @@ export default {
         return false
       }
     }
+  },
+  created() {
+    this.$nextTick(() => {
+      this.$refs.searchInput.focus()
+    })
   },
   methods: {
     async getTerms(prefix) {

@@ -36,6 +36,10 @@
               <i class="el-icon-arrow-down el-icon--right" />
             </span>
             <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item @click.native="dialogCustomSettingVisible=true">
+                <i class="iconfont icon-shezhi1" />
+                设置
+              </el-dropdown-item>
               <el-dropdown-item v-if="showChangeOrgMenu == true" @click.native="handleChangeOrgOpenClickTest">
                 <i class="iconfont icon-qiehuan" />
                 {{ $t('comm.changeOrg') }}
@@ -69,6 +73,12 @@
       @onClose="dialogChangeOrgVisible = false;"
       @onChangeOrgSuccess="onChangeOrgSuccess"
     />
+    <!-- 用户设置 -->
+    <custom-setting
+      :is-show="dialogCustomSettingVisible"
+      :modal-append-to-body="false"
+      @onClose="childClose"
+    />
   </div>
 </template>
 
@@ -76,12 +86,14 @@
 import { mapGetters, mapActions } from 'vuex'
 import meau from '@/components/meau'
 import ChangeOrg from '@/views/comm/ChangeOrg'
+import CustomSetting from '@/views/comm/CustomSetting'
 import { formValidator } from '@/mixins/form-validator.js'
 
 export default {
   components: {
     meau,
-    ChangeOrg
+    ChangeOrg,
+    CustomSetting
   },
   mixins: [formValidator],
   data() {
@@ -90,7 +102,8 @@ export default {
       dialogChangeOrgVisible: false,
       showChangeOrgMenu: false,
       selectOrgId: '',
-      resetOrg: false
+      resetOrg: false,
+      dialogCustomSettingVisible: false
     }
   },
   computed: {
@@ -145,7 +158,7 @@ export default {
         confirmButtonText: this.$t('comm.certain'),
         cancelButtonText: this.$t('comm.cancel'),
         type: 'warning'
-      }).then(async() => {
+      }).then(async () => {
         const res = await this.logoutAction()
         if (res && res.success) {
           window.sessionStorage.clear()
@@ -182,7 +195,7 @@ export default {
       this.getSelectedMenus(menu[0].children, seqNo)
     },
     handleChangeOrgOpenClick() {
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         this.clearErrorMessage()
       })
 
@@ -192,7 +205,7 @@ export default {
       this.resetOrg = true
     },
     handleChangeOrgOpenClickTest() {
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         this.clearErrorMessage()
       })
 
@@ -209,6 +222,9 @@ export default {
       // this.breadcrumbItems.push({ id: 'menu-search', resUrl: null, resName: '搜索方式' }, { id: 'menu-search-general-search', resUrl: 'search/general_search', resName: '普通搜索' })
       this.$router.push('/')
       this.$router.go(0)
+    },
+    childClose(val) {
+      this.dialogCustomSettingVisible = val
     }
   }
 }

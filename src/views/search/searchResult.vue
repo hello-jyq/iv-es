@@ -184,6 +184,7 @@
         <el-col :span="24">
           <!-- 拉取联想词 -->
           <el-autocomplete
+            ref="searchInput"
             v-model="keyWords"
             class="inline-input search_input"
             placeholder="请输入您想要搜索的内容"
@@ -667,7 +668,7 @@ export default {
   },
   watch: {
     results: {
-      handler: function(newVal, oldVal) { },
+      handler: function (newVal, oldVal) { },
       deep: true
     },
     keyWords(newVal, oldVal) {
@@ -780,6 +781,9 @@ export default {
     this.loading = true
     this.sltLoading = true
     this.normalSearch()
+    this.$nextTick(() => {
+      this.$refs.searchInput.focus()
+    })
   },
   mounted() {
     // this.$nextTick(() => {
@@ -2052,14 +2056,14 @@ export default {
   left: 280px;
   color: #f54132;
 }
-.slt_empty{
+.slt_empty {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-justify-content:space-between;
+  justify-content: space-between;
 }
-.slt_empty span{
-margin-top: 40px;
-font-size: 16px;
+.slt_empty span {
+  margin-top: 40px;
+  font-size: 16px;
 }
 </style>
