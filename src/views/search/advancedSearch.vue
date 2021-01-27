@@ -22,7 +22,8 @@
       </el-col>
       <el-col :span="24" class="flex_ceter" style="height:24px;line-height:24px">
         <span class="font_size_14 fontC_333">搜索位置：</span>
-        <el-radio-group v-model="radio">
+        <dict-radio v-model="radio" dict-type-id="ESSearchTarget" />
+        <!-- <el-radio-group v-model="radio">
           <el-radio label="ALL">
             不限
           </el-radio>
@@ -32,8 +33,8 @@
           <el-radio label="FILECONTENT">
             文件内容
           </el-radio>
-        </el-radio-group>
-        <span class="font_size_14 fontC_333">文档语言：</span>
+        </el-radio-group> -->
+        <!-- <span class="font_size_14 fontC_333">文档语言：</span>
         <el-select v-model="lang" placeholder="选择语言" placement="top-end" popper-class="lang_select" @change="getLang">
           <el-option
             v-for="item in options"
@@ -41,9 +42,9 @@
             :label="item.label"
             :value="item.value"
           />
-        </el-select>
-        <!-- <span class="font_size_14 fontC_333" style="margin-left:20px">搜索方式：</span>
-        <el-select v-model="fuzzy" placeholder="请选择" placement="top-end" popper-class="lang_select" @change="getFuzzy">
+        </el-select> -->
+        <span class="font_size_14 fontC_333" style="margin-left:20px">搜索方式：</span>
+        <!-- <el-select v-model="fuzzy" placeholder="请选择" placement="top-end" popper-class="lang_select" @change="getFuzzy">
           <el-option
             v-for="item in searchOption"
             :key="item.value"
@@ -51,6 +52,7 @@
             :value="item.value"
           />
         </el-select> -->
+        <dict-select v-model="fuzzy" dict-type-id="ESFuzzySearch" />
       </el-col>
     </el-row>
     <el-row class="search_params">
@@ -77,12 +79,13 @@
       </div>
       <div class="search_params_item">
         <span><i class="iconfont icon-shijian" />更新时间：</span>
-        <el-radio-group v-model="params.radioTime">
+        <!-- <el-radio-group v-model="params.radioTime">
           <el-radio v-for="time in radioTimeList" :key="time.id" :label="time.id">
             {{ time.name }}
           </el-radio>
-        </el-radio-group>
-        
+        </el-radio-group> -->
+        <dict-radio v-model="modifyedTime" dict-type-id="ESSearchModifyedTime" />
+        <!-- <el-radio label="自定义时间" /> -->
         <el-date-picker
           v-model="params.radioDiyTime"
           class="diy_time"
@@ -98,19 +101,23 @@
       </div>
       <div class="search_params_item">
         <span><i class="iconfont icon-duomeitiicon-" />文档类型：</span>
-        <el-checkbox-group v-model="params.fileType">
+        <dict-checkbox v-model="params.fileType" dict-type-id="ESFileType" @change="fileTypeCheckbox" />
+        <!-- <el-checkbox-group v-model="params.fileType">
           <el-checkbox v-for="type in checkboxFileTypeList" :key="type.index" :label="type.id">
             {{ type.name }}
           </el-checkbox>
-        </el-checkbox-group>
+        </el-checkbox-group> -->
+        <!-- <dict-checkbox></dict-checkbox> -->
       </div>
       <div class="search_params_item">
         <span><i class="iconfont icon-daxiao" />文件大小：</span>
-        <el-checkbox-group v-model="params.fileSize">
+        <dict-checkbox v-model="params.fileSize" dict-type-id="ESSearchFileSizeRange" @change="fileTypeCheckbox" />
+        <!-- <el-checkbox-group v-model="params.fileSize">
           <el-checkbox v-for="type in checkboxFileSizeList" :key="type.index" :label="type.id">
             {{ type.name }}
           </el-checkbox>
-        </el-checkbox-group>
+        </el-checkbox-group> -->
+        <!-- <el-checkbox></el-checkbox> -->
         <div class="diy_filesize">
           <el-input
             v-model="params.diysizefrom"
@@ -129,33 +136,46 @@
       </div>
       <div class="search_params_item">
         <span><i class="iconfont icon-mulu" />在指定目录中搜索：</span>
-        <el-input v-model="params.dataSourceSearch" placeholder="请输入内容" class="input-with-select">
-          <el-select slot="prepend" v-model="params.dataSource" class="item_select" placeholder="请选择">
+        <dict-select v-model="dataSource" class="select_input" dict-type-id="ESDataSourceName" />
+        <el-input v-model="params.dataSourceSearch" placeholder="请输入内容" class=" select_input_value">
+          <!-- <el-select slot="prepend" v-model="params.dataSource" class="item_select" placeholder="请选择">
             <el-option v-for="item in dataSourceSelectList" :key="item.index" :label="item.name" :value="item.id" />
-          </el-select>
+          </el-select> -->
         </el-input>
       </div>
       <div class="search_params_item">
         <span><i class="iconfont icon-paixu" />排序方式：</span>
-        <el-radio-group v-model="params.radioSort">
+        <dict-radio v-model="sortType" dict-type-id="ESSearchSortType"/>
+        <!-- <el-radio-group v-model="params.radioSort">
           <el-radio v-for="time in radioSortList" :key="time.id" :label="time.id">
             {{ time.name }}
           </el-radio>
-        </el-radio-group>
+        </el-radio-group> -->
       </div>
     </el-row>
   </div>
 </template>
 <script>
 import { getTerms } from '@/api/es/es-api'
+import DictRadio from '@/components/DictRadio'
+import DictSelect from '@/components/DictSelect'
+import DictCheckbox from '@/components/DictCheckbox'
 export default {
+  components: {
+    DictRadio,
+    DictCheckbox,
+    DictSelect
+  },
   data() {
     return {
       restaurants: [],
       searchs: '',
       radio: 'ALL',
       lang: 'ALL',
-      fuzzy: '0',
+      fuzzy: '2',
+      dataSource: '',
+      sortType: 'rel',
+      modifyedTime: '0',
       options: [
         {
           value: 'ALL',
@@ -229,7 +249,8 @@ export default {
         dataSource: '1',
         dataSourceSearch: '',
         radioSort: 'relativity'
-      }
+      },
+      fileTypeList: []
     }
   },
   watch: {
@@ -315,6 +336,9 @@ export default {
       if (val) {
         this.params.radioTime = 'diy'
       }
+    },
+    fileTypeCheckbox(val) {
+      // TODO
     }
   }
 }

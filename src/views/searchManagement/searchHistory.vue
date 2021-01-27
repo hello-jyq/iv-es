@@ -71,7 +71,9 @@
               class-name="search_result"
             >
               <template slot-scope="scope">
-                <i class="iconfont icon-yanjing" />
+                <el-tooltip class="item" effect="light" content="查看" placement="top" :visible-arrow="false">
+                  <i class="iconfont icon-yanjing" />
+                </el-tooltip>
                 <span style="margin-left: 5px" @click="linkResult(scope.row.result)">{{ scope.row.result }}</span>
               </template>
             </el-table-column>
@@ -81,7 +83,7 @@
               width="160"
             >
               <template slot-scope="scope">
-                <i class="iconfont icon-icon_del" @click="handleDelete(scope.$index, scope.row)" />
+                <i class="iconfont icon-shanchu1" @click="handleDelete(scope.$index, scope.row)" />
               </template>
             </el-table-column>
           </el-table>
@@ -386,7 +388,7 @@ export default {
   border-radius: 6px;
   overflow: hidden;
 }
-.sh_main_table .icon-icon_del {
+.sh_main_table .icon-shanchu1 {
   cursor: pointer;
   font-size: 18px;
   color: #f73031;

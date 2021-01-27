@@ -1,5 +1,5 @@
 <template>
-  <div v-loading="fullscreenLoading" class="result_box">
+  <div v-loading="fullscreenLoading" class="result_box" @click="isAdvanceFlag=false,isAdvanceSearch=false">
     <div :class="isCollapse?'result_DIY result_filter_all':'result_DIY result_filter'">
       <div class="title_box">
         <ul>
@@ -181,8 +181,8 @@
       <el-row class="search_box advance_filter_height" :class="{'advance_filter_shadow':isAdvanceFlag}">
         <el-col :span="24">
           <el-autocomplete
-            v-model="keyWords"
             ref="searchInput"
+            v-model="keyWords"
             class="inline-input search_input"
             :fetch-suggestions="querySearch"
             placeholder="请输入您想要搜索的内容"
@@ -230,9 +230,9 @@
             />
           </el-select>
         </el-col>
-        <div class="advance_filter">
-          <transition name="el-zoom-in-top">
-            <el-row v-show="isAdvanceFlag">
+        <div class="advance_filter" @click.stop="">
+          <el-collapse-transition>
+            <div v-show="isAdvanceFlag" class="anim">
               <div class="reset_filter_btn">
                 <span @click="resetFilterClick()"><i class="iconfont icon-shuaxin" />重置</span>
               </div>
@@ -243,11 +243,11 @@
                     包含全部关键词
                   </template>
                 </el-input>
-                <el-input v-model="advanceparams.arbitraryWords" placeholder="请输入内容">
+                <!-- <el-input v-model="advanceparams.arbitraryWords" placeholder="请输入内容">
                   <template slot="prepend">
                     包含任意关键词
                   </template>
-                </el-input>
+                </el-input> -->
                 <el-input v-model="advanceparams.notIncludeKeyWords" placeholder="请输入内容">
                   <template slot="prepend">
                     不包含关键词
@@ -301,7 +301,7 @@
                     class="to"
                     placeholder="请输入数值"
                     prefix-icon="iconfont icon-daxiao"
-                  />
+                  />KB
                 </div>
               </div>
               <div class="search_params_item">
@@ -320,8 +320,8 @@
                   </el-radio>
                 </el-radio-group>
               </div>
-            </el-row>
-          </transition>
+            </div>
+          </el-collapse-transition>
           <div class="put_filter">
             <span @click="putFilterClick()"><i :class="isAdvanceFlag?'iconfont icon-open-copy':'iconfont icon-open'" />{{ isAdvanceFlag?'收起选择搜索条件条件':'展开重新选择搜索条件' }}</span>
           </div>
@@ -342,11 +342,11 @@
                 <i class="iconfont icon-jiantouarrow492" :class="isTimeSortTop?'icon_active':'icon_def'" @click="timeSortTop()" /><i class="iconfont icon-jiantouarrow492-copy" :class="isTimeSortBottom?'icon_active':'icon_def'" @click="timeSortBottom()" />
               </span>
             </span>
-            <div class="pop_btn" @click="showAdvanceSearch()">
+            <div class="pop_btn" @click.stop="" @click="showAdvanceSearch()">
               <i class="iconfont icon-sousuo2" />
             </div>
-            <transition name="el-zoom-in-top">
-              <div v-show="isAdvanceSearch" class="pop_advance">
+            <el-collapse-transition>
+              <div v-show="isAdvanceSearch" class="pop_advance" @click.stop="">
                 <ul>
                   <li v-for="(title,index) in ['热词搜索','个人标签搜索','主题搜索']" :key="title.index" :class="pop_advance_active==index?'pop_advance_active':''" @click="pop_advance_active=index">
                     {{ title }}
@@ -365,7 +365,7 @@
                   <template v-else-if="index==1">
                     <div class="personlabel_box">
                       <ul>
-                        <li v-for="label in pop_advanceOBJ.personLabelList" :key="label.index" :class="label.active?'personlabel_box_li-active':''" @click="getLabel(label.name)">
+                        <li v-for="label in pop_advanceOBJ.personLabelList" :key="label.index" :class="pop_advanceOBJ.searchLabel.includes(label.name)?'personlabel_box_li-active':''" @click="getLabel(label.name)">
                           <i class="iconfont icon-label" />{{ label.name }}
                           <div class="count">
                             {{ label.count }}
@@ -378,7 +378,7 @@
                     <div class="theme_search_item">
                       <template v-for="theme in pop_advanceOBJ.themeList.theme_options_values">
                         <el-cascader :key="theme.index" :placeholder="theme" :options="pop_advanceOBJ.themeList.theme_options" class="theme_search_input" :show-all-levels="false" popper-class="theme_search" @change="getThemeValue">
-                          <template slot-scope="{data }">
+                          <template slot-scope="{data}">
                             {{ data.label }}
                             <span class="theme_count">
                               {{ data.count }}
@@ -390,7 +390,7 @@
                   </template>
                 </div>
               </div>
-            </transition>
+            </el-collapse-transition>
           </div>
         </div>
         <div v-if="results.length>0" ref="scrollbox" class="result_main">
@@ -448,7 +448,9 @@
             <!-- 本次开发不需要 -->
             <div class="each_r_lable">
               <ul>
-                <li v-for="label in item.myLabel"><i class="iconfont icon-label" />{{label.name}}</li>
+                <li v-for="label in item.myLabel">
+                  <i class="iconfont icon-label" />{{ label.name }}
+                </li>
                 <li class="set_label" @click="setLabel(item)">
                   <i class="iconfont icon-label" />设置个人标签
                 </li>
@@ -602,23 +604,23 @@
       </div>
       <div class="has_Label_list">
         <ul>
-          <li v-for="list in hasSetLabelList" :id="'animation_'+list.id" :key="list.index" @click="personLabelRemoveClick(list)">
-            <i class="iconfont icon-label" /> {{ list.name }}
+          <li v-for="list in hasSetLabelList" :key="list.index" @click="personLabelRemoveClick(list)">
+            <i class="iconfont icon-label" /> {{ list }}
           </li>
         </ul>
       </div>
       <br>
       <div class="person_Label_list">
         <ul>
-          <li v-for="list in personlabelList" :id="'animation_'+list.id" :key="list.index" @click="personLabelAddClick(list)">
-            <i class="iconfont icon-label" /> {{ list.name }}
+          <li v-for="list in personlabelList" :key="list.index" @click="personLabelAddClick(list)">
+            <i class="iconfont icon-label" /> {{ list }}
           </li>
         </ul>
       </div>
       <div class="set_new_label">
         <span>添加新标签:</span>
         <el-input v-model="newLabelValue" placeholder="请输入新的标签内容" />
-        <button class="set_new_label_btn" @click="setNewLabel">
+        <button class="set_new_label_btn" @click="setNewLabel(newLabelValue)">
           添&nbsp;加
         </button>
       </div>
@@ -637,7 +639,7 @@
 import { search } from '@/mixins/search-params'
 import { permission } from '@/mixins/permission-mixin'
 import { normalSearch, downloadFile, getTerms, filterSearch } from '@/api/es/es-api'
-import $ from 'jquery'
+// import $ from 'jquery'
 // import DictCheckbox from '../../components/DictCheckbox.vue'
 // import { getDictEntriesByTypeId } from '@/api/base'
 
@@ -846,7 +848,7 @@ export default {
       ],
       advanceparams: {
         allKeyWords: '',
-        arbitraryWords: '',
+        // arbitraryWords: '',
         notIncludeKeyWords: '',
         radioTime: 'ALL',
         radioDiyTime: '',
@@ -858,35 +860,37 @@ export default {
         dataSourceSearch: '',
         radioSort: 'relativity'
       },
-      hasSetLabelList: [{ id: '1', name: '电子商务' }, { id: '2', name: '网络推广' }, { id: '3', name: '报表合同' }],
-      personlabelList: [{ id: '11', name: '电子商务' }, { id: '22', name: '网络推广' }, { id: '33', name: '报表合同' }, { id: '44', name: '网络推广' }, { id: '55', name: '报表合同' }, { id: '66', name: '网络推广一二' }, { id: '77', name: '网络推广' }, { id: '88', name: '网络推广三四' }, { id: '99', name: '网络推广' }, { id: '100', name: '网络推广' }],
+      hasSetLabelList: ['电子商务', '网络推广', '报表合同'],
+      personlabelList: ['电子商务', '网络推广', '报表合同', '网络推广2', '报表合同3', '网络推广一二', '网络推广4', '网络推广三四', '网络推广5', '网络推广6'],
       newLabelValue: '',
       pop_advance_active: 0,
       pop_advanceOBJ: {
         keyWordsList: ['neuron仕楼', 'neuron設計書', 'neuron営業資', 'active directory neuron', 'elasticsearch neuron', '導入" neuron', 'active directory neuron', 'elasticsearch neuron', '導入" neuron', '導入 neuron', 'neuron導入', 'active directory neuron', 'elasticsearch neuron', 'neuron営業資', 'neuron設計書', 'neuron営業資', 'neuron設計書', 'neuron営業資', 'active directory neuron', 'elasticsearch neuron'],
         personLabelList: [
-          { active: false, name: '电子商务', count: '239' },
-          { active: false, name: '网络推广', count: '239' },
-          { active: false, name: '网络推广', count: '239' },
-          { active: true, name: '电子商务电子', count: '23' },
-          { active: true, name: '网络推广', count: '23' },
-          { active: false, name: '电子商务电子', count: '23' },
-          { active: false, name: '报合同', count: '239' },
-          { active: true, name: '上午', count: '239' },
-          { active: false, name: '网络推广', count: '239' },
-          { active: true, name: '网络推广', count: '239' },
-          { active: false, name: '商务', count: '239' },
-          { active: false, name: '网络推广', count: '239' },
-          { active: true, name: '又要推广', count: '239' },
-          { active: false, name: '网络推广', count: '239' },
-          { active: false, name: '网络推广', count: '239' }
+          { name: '电子商务', count: '239' },
+          { name: '网络推广', count: '239' },
+          { name: '网络推广2', count: '239' },
+          { name: '电子商务电子', count: '23' },
+          { name: '网络推广3', count: '23' },
+          { name: '电子商务电子2', count: '23' },
+          { name: '报合同', count: '239' },
+          { name: '上午', count: '239' },
+          { name: '网络推广4', count: '239' },
+          { name: '网络推广5', count: '239' },
+          { name: '商务', count: '239' },
+          { name: '网络推广6', count: '239' },
+          { name: '又要推广', count: '239' },
+          { name: '网络推广7', count: '239' },
+          { name: '网络推广8', count: '239' }
         ],
+        searchLabel: [],
         themeList: {
           theme_options_values: ['合同', '组件', '资源', '组件', '资源1', '组件2', '资源4'],
           theme_options: [
             {
               value: 'zhinan',
               label: '指南',
+              count: '29',
               children: [{
                 value: 'shejiyuanze',
                 label: '设计原则',
@@ -900,6 +904,7 @@ export default {
             {
               value: 'zujian',
               label: '组件',
+              count: '29',
               children: [{
                 value: 'basic',
                 label: 'Basic',
@@ -929,6 +934,7 @@ export default {
             {
               value: 'ziyuan',
               label: '资源',
+              count: '239',
               children: [{
                 value: 'axure',
                 label: 'Axure Components',
@@ -1038,12 +1044,12 @@ export default {
       }
     },
     $route(to, from) {
-      console.log(111111111111, to)
+      // console.log(111111111111, to)
     }
   },
   created() {
-    console.log(this.dictTypeId)
-    console.log(this.$route.params)
+    // console.log(this.dictTypeId)
+    // console.log(this.$route.params)
     const search = this.$route.params.search !== '' ? this.$route.params.search : ''
     const radio = this.$route.params.radio !== '' ? this.$route.params.radio : ''
     const lang = this.$route.params.lang !== '' ? this.$route.params.lang : ''
@@ -1169,7 +1175,7 @@ export default {
         this.searchParam.totalRecord = res.datas.searchResult.totalRecord
         this.searchLogId = res.datas.searchLogId
         this.timeTaken = res.datas.timeTaken
-        console.log(1111, res.datas.searchResult.results)
+        // console.log(1111, res.datas.searchResult.results)
         this.filetab = [{ id: 'fixed', dataSource: '', value: '搜索结果' }]
         const groupTree = {}
         for (var i = 0; i < res.datas.folderTreeResult.length; i++) {
@@ -1234,7 +1240,7 @@ export default {
     },
     // 搜索关键字
     searchWords(value) {
-      console.log(value.value)
+      // console.log(value.value)
       // this.filteritem.keyWords = value.value
       // this.filterSearch(this.filteritem)
     },
@@ -1384,11 +1390,10 @@ export default {
       // this.filteritem.fileTypeList = value
       this.normalSearch(this.searchParam)
     },
-
     // 选择更新时间
     radioTimeCheck(value) {
-      console.log(value)
-      console.log(this.radiotime)
+      // console.log(value)
+      // console.log(this.radiotime)
       if (value !== '自定义时间') {
         this.loading = true
         this.fullscreenLoading = true
@@ -1435,7 +1440,7 @@ export default {
     },
     // 自定义开始时间 - 结束时间
     diyTime() {
-      console.log(this.radiotime)
+      // console.log(this.radiotime)
       this.searchParam.pageNo = 1
       this.searchParam.params.searchLogId = this.searchLogId
       if (this.radiotime) {
@@ -1631,7 +1636,7 @@ export default {
       this.$nextTick(() => {
         const firstPageStatue = document.getElementsByClassName('btn-prev')[0].disabled
         const lastPageStatue = document.getElementsByClassName('btn-next')[0].disabled
-        console.log(111111111111, firstPageStatue, lastPageStatue)
+        // console.log(111111111111, firstPageStatue, lastPageStatue)
         if (firstPageStatue) {
           document.getElementsByClassName('first-pager')[0].disabled = true
         } else {
@@ -1657,7 +1662,7 @@ export default {
     // 重置高级检索
     resetFilterClick() {
       this.advanceparams.allKeyWords = ''
-      this.advanceparams.arbitraryWords = ''
+      // this.advanceparams.arbitraryWords = ''
       this.advanceparams.notIncludeKeyWords = ''
       this.advanceparams.radioTime = 'ALL'
       this.advanceparams.radioDiyTime = ''
@@ -1673,30 +1678,65 @@ export default {
     putFilterClick() {
       this.isAdvanceFlag = !this.isAdvanceFlag
     },
-    // 设置个人标签
+    // 设置个人标签按钮
     setLabel(item) {
       this.personLabelDialogVisible = !this.personLabelDialogVisible
       this.perDialogList = item
       console.log(item)
     },
     // 取消标签
-    personLabelRemoveClick(item) {
+    personLabelRemoveClick(val) {
       console.log()
-      this.hasSetLabelList.splice(this.hasSetLabelList.findIndex(list => list.id === item.id), 1)
-      this.personlabelList.unshift({ id: item.id, name: item.name })
+      this.hasSetLabelList.splice(this.hasSetLabelList.findIndex(list => list === val), 1)
+      this.personlabelList.unshift(val)
       // document.getElementById('animation_' + item.id).style.transform = 'translate(0px, 70px)'
     },
     // 打标签
-    personLabelAddClick(item) {
-      this.personlabelList.splice(this.personlabelList.findIndex(list => list.id === item.id), 1)
-      this.hasSetLabelList.unshift({ id: item.id, name: item.name })
+    personLabelAddClick(val) {
+      if (this.hasSetLabelList.length > 8) {
+        this.$message.closeAll()
+        this.$message({
+          message: '文档已设置9个标签，请取消部分标签，再重新设置！',
+          type: 'warning'
+        })
+        return false
+      } else {
+        this.personlabelList.splice(this.personlabelList.findIndex(list => list === val), 1)
+        this.hasSetLabelList.unshift(val)
+      }
     },
     // 添加新标签
-    setNewLabel(item) {
+    setNewLabel(val) {
       // hasSetLabelList
       // personlabelList
       // newLabelValue
-      this.personlabelList.unshift({ id: this.perDialogList.id, name: this.newLabelValue })
+      // console.log(this.personlabelList.map(item => { return item.name }))
+      if (val) {
+        if (val.length > 6) {
+          this.$message.closeAll()
+          this.$message({
+            message: '标签被限制在6个字符以内，请调整重新输入！',
+            type: 'warning'
+          })
+          return false
+        } else if (this.personlabelList.includes(val)) {
+          this.$message.closeAll()
+          this.$message({
+            message: '标签已存在，请调整重新输入！',
+            type: 'warning'
+          })
+          return false
+        } else if (this.hasSetLabelList.length + this.personlabelList.length > 29) {
+          this.$message.closeAll()
+          this.$message({
+            message: '标签最大数量为30个，已超出！',
+            type: 'warning'
+          })
+          return false
+        } else {
+          this.personlabelList.unshift(val)
+        }
+      }
     },
     // 高级搜索pop隐藏显示
     showAdvanceSearch() {
@@ -1709,8 +1749,12 @@ export default {
     },
     // 个人标签搜索
     getLabel(val) {
-      console.log(val)
-      this.keyWords = val
+      if (this.pop_advanceOBJ.searchLabel.includes(val)) {
+        this.pop_advanceOBJ.searchLabel.splice(this.searchLabel.indexOf(val), 1)
+      } else {
+        this.pop_advanceOBJ.searchLabel.push(val)
+      }
+      this.keyWords = this.pop_advanceOBJ.searchLabel.toString()
     },
     // 主题搜索
     getThemeValue(value) {
@@ -2115,11 +2159,11 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  cursor: pointer;
   margin-right: 20px;
   margin-top: 15px;
   padding: 0 5px;
   text-align: center;
+  user-select: none;
 }
 .each_r_lable li i {
   font-size: 14px;
@@ -2131,6 +2175,7 @@ export default {
   background: linear-gradient(180deg, #475ba0 0%, #2fa5bb 100%);
   border-radius: 12px;
   color: #ffffff;
+  cursor: pointer;
 }
 .kb {
   white-space: nowrap;
@@ -2190,11 +2235,14 @@ export default {
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
   box-sizing: border-box;
-  transition: all 0.3s linear;
   overflow: auto;
   box-shadow: -26px 0 26px -26px rgba(68, 100, 163, 0.2),
     0 26px 26px -26px rgba(68, 100, 163, 0.2),
     26px 0 26px -26px rgba(68, 100, 163, 0.2);
+  /* transition: all 0.3s linear; */
+}
+.anim {
+  transition: all 0.3s linear;
 }
 .advance_filter_shadow {
   box-shadow: 0px 6px 26px 2px rgba(68, 100, 163, 0.2);
@@ -2205,13 +2253,14 @@ export default {
 }
 .search_params_item {
   width: 100%;
-  height: 40px;
+  /* height: 40px; */
   color: #333333;
   margin-bottom: 15px;
   box-sizing: border-box;
-  line-height: 40px;
+  /* line-height: 40px; */
   display: flex;
   justify-content: left;
+  padding: 5px 0;
 }
 .search_params_item:last-child {
   margin-bottom: 5px;
@@ -2229,6 +2278,7 @@ export default {
   margin-right: 8px;
 }
 .search_params_item .el-input {
+  width: auto;
   margin-left: 20px;
   border-radius: 4px;
   border-color: #cccccc;
@@ -2238,6 +2288,7 @@ export default {
   align-items: center;
   justify-items: left;
   margin-left: 20px;
+  flex-wrap: wrap;
 }
 .search_params_item .el-radio-group label {
   margin-right: 30px;
@@ -2247,6 +2298,7 @@ export default {
   align-items: center;
   justify-items: left;
   margin-left: 20px;
+  flex-wrap: wrap;
 }
 .search_params_item .el-checkbox-group label {
   margin-right: 30px;
@@ -2255,7 +2307,7 @@ export default {
   border-color: #cccccc;
 }
 .diy_filesize {
-  max-width: 540px;
+  max-width: 445px;
   height: 40px;
   line-height: 38px;
   /* border: 1px solid #cccccc; */
@@ -2266,7 +2318,7 @@ export default {
 }
 .diy_filesize .from,
 .diy_filesize .to {
-  max-width: 248px;
+  max-width: 200px;
   margin-left: 0;
   border: 1px solid #cccccc;
 }
@@ -2276,7 +2328,8 @@ export default {
   text-align: center;
 }
 .item_select {
-  width: 120px;
+  min-width: 100px;
+  width: auto;
 }
 .search_params_item .input-with-select {
   width: 440px;
@@ -2389,7 +2442,7 @@ export default {
   content: "-";
   color: #ffffff;
   font-size: 18px;
-  top: -4px;
+  top: -3px;
   right: 2px;
 }
 .person_Label_list li:hover:after {
@@ -2398,6 +2451,7 @@ export default {
   color: #2d7a9c;
   font-size: 18px;
   top: -3px;
+  right: 2px;
 }
 .has_Label_list li i,
 .person_Label_list li i {
@@ -2442,7 +2496,9 @@ export default {
   overflow: hidden;
   user-select: none;
   z-index: 2;
+  transition: all 0.3s linear;
 }
+
 .pop_advance ul {
   height: 50px;
 }
@@ -2458,26 +2514,8 @@ export default {
   float: left;
   position: relative;
   cursor: pointer;
-}
-.pop_advance > ul li:nth-child(2):before {
-  width: 1px;
-  height: 20px;
-  position: absolute;
-  top: 15px;
-  left: 0;
-  content: "";
-  content: "";
-  background: #c7d0d9;
-}
-.pop_advance > ul li:nth-child(2)::after {
-  width: 1px;
-  height: 20px;
-  position: absolute;
-  top: 15px;
-  right: 0;
-  content: "";
-  background: #c7d0d9;
-  cursor: pointer;
+  box-shadow: 0px 2px 4px 1px rgba(45, 122, 156, 0.2);
+  border-radius: 6px 6px 0px 0px;
 }
 .pop_advance_active {
   font-size: 18px;

@@ -461,9 +461,17 @@ max-width: 300px;
 }
 
 /* 高级检索 */
-
+.el-input-group__prepend::after{  
+    width: 1px;
+    height: 16px;
+    background: #cccccc;
+    content: "";
+    position: absolute;
+    right: 0px;
+    top:7px;
+}
 .search_params_item{
-    height: 32px !important;
+    margin-bottom: 15px !important;
 }
 .search_params_item > span{
     font-size: 14px !important;
@@ -483,14 +491,26 @@ max-width: 300px;
 .search_params_item .el-radio-group label,.search_params_item .el-checkbox-group label{
     margin-right: 15px !important;
 }
+.search_params_item .el-radio-group label:last-child{
+    margin-right: 5px !important;
+}
 .search_params_item .el-radio__label{
     padding-left: 5px;
 }
 .search_params_item .el-radio-group,.search_params_item .el-checkbox-group,.search_params_item .el-input{
     margin-left: 10px !important;
 }
+.search_params_item .select_input_value::before{
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 1px;
+    height: 16px;
+    content: "";
+    background: #cccccc;
+}
 .item_select{
-    width: 105px !important;
+    min-width: 105px !important;
 }
 .search_params_item .diy_time{
     height: 32px !important;
@@ -502,10 +522,18 @@ max-width: 300px;
     max-width: 470px !important;
     height: 32px !important;
     line-height: 30px !important;
+    font-size: 12px !important;
 }
 .search_params_item .diy_filesize .el-input input{
         height: 30px !important;
     line-height: 30px !important;
+    padding-left: 20px !important;
+}
+.search_box .search_params_item .el-input__prefix{
+    left: 5px !important;
+}
+.search_params_item .select_input_value{
+    margin-left: 0!important;
 }
 .diy_filesize .from,.diy_filesize .to{
     width: auto;
@@ -580,7 +608,9 @@ margin-left: 0 !important;
     margin-right: 15px !important;
     margin-bottom: 20px !important;
 }
-
+.el-date-editor .el-range-separator{
+    line-height: 25px;
+}
 
 /* 个人标签管理 */
 .perLabel_search_box{
@@ -715,7 +745,14 @@ margin-left: 0 !important;
 .sh_main_table .icon-icon_del{
     font-size: 16px !important;
 }
-
+.search_bottom .el-date-editor .el-range-separator{
+    min-width: 25px !important;
+    line-height: 30px !important;
+}
+.search_bottom .el-date-editor i{
+    width: 30px !important;
+    line-height: 30px !important;
+}
 /* 设置 */
 .set_box{
     padding: 25px 0px 30px 30px !important;
@@ -842,7 +879,6 @@ margin-left: 0 !important;
   }
 }
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-
 
 }
 

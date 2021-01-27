@@ -3,7 +3,7 @@
     <div class="perLabel_search_box">
       <el-input v-model="labelValue" placeholder="添加你的个人标签内容" clearable>
         <template slot="append">
-          <el-button slot="suffix" @click="search">
+          <el-button slot="suffix" @click="addNewLabel(labelValue)">
             添加标签
           </el-button>
         </template>
@@ -56,14 +56,56 @@ export default {
   },
   methods: {
     // 新建标签
-    search() {
-      console.log(this.labelValue)
-      this.personLabelList.unshift(this.labelValue)
+    addNewLabel(val) {
+      console.log(val)
+      // this.personLabelList.unshift(this.labelValue)
+      if (val) {
+        if (val.length > 6) {
+          this.$message.closeAll()
+          this.$message({
+            message: '标签被限制在6个字符以内，请调整重新输入！',
+            type: 'warning'
+          })
+          return false
+        } else if (this.personLabelList.includes(val)) {
+          this.$message.closeAll()
+          this.$message({
+            message: '标签已存在，请调整重新输入！',
+            type: 'warning'
+          })
+          return false
+        } else if (this.personLabelList.length > 29) {
+          this.$message.closeAll()
+          this.$message({
+            message: '标签最大数量为30个，已超出！',
+            type: 'warning'
+          })
+          return false
+        } else {
+          this.personLabelList.unshift(val)
+        }
+      }
     },
     // 添加推荐标签
     addInterestLabel(value) {
       console.log(value)
-      this.personLabelList.unshift(value)
+      if (this.personLabelList.includes(value)) {
+        this.$message.closeAll()
+        this.$message({
+          message: '标签已存在，请选择其他标签！',
+          type: 'warning'
+        })
+        return false
+      } else if (this.personLabelList.length > 29) {
+        this.$message.closeAll()
+        this.$message({
+          message: '标签最大数量为30个，已超出！',
+          type: 'warning'
+        })
+        return false
+      } else {
+        this.personLabelList.unshift(value)
+      }
     },
     // 换一换推荐标签
     refreshLabel() {
