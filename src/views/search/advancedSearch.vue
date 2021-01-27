@@ -54,6 +54,9 @@
       </el-col>
     </el-row>
     <el-row class="search_params">
+      <div class="reset_filter_btn">
+        <span @click="resetFilterClick()"><i class="iconfont icon-shuaxin" />重置</span>
+      </div>
       <div class="search_params_item">
         <span><i class="iconfont icon-sousuoguanjianci" />搜索关键字：</span>
         <el-input v-model="params.allKeyWords" placeholder="请输入内容">
@@ -61,11 +64,11 @@
             包含全部关键词
           </template>
         </el-input>
-        <el-input v-model="params.arbitraryWords" placeholder="请输入内容">
+        <!-- <el-input v-model="params.arbitraryWords" placeholder="请输入内容">
           <template slot="prepend">
             包含任意关键词
           </template>
-        </el-input>
+        </el-input> -->
         <el-input v-model="params.notIncludeKeyWords" placeholder="请输入内容">
           <template slot="prepend">
             不包含关键词
@@ -79,6 +82,7 @@
             {{ time.name }}
           </el-radio>
         </el-radio-group>
+        
         <el-date-picker
           v-model="params.radioDiyTime"
           class="diy_time"
@@ -120,7 +124,7 @@
             class="to"
             placeholder="请输入数值"
             prefix-icon="iconfont icon-daxiao"
-          />
+          />KB
         </div>
       </div>
       <div class="search_params_item">
@@ -214,7 +218,7 @@ export default {
       ],
       params: {
         allKeyWords: '',
-        arbitraryWords: '',
+        // arbitraryWords: '',
         notIncludeKeyWords: '',
         radioTime: 'ALL',
         radioDiyTime: '',
@@ -292,6 +296,21 @@ export default {
         })
       }
     },
+    // 重置
+    resetFilterClick() {
+      this.params.allKeyWords = ''
+      this.params.notIncludeKeyWords = ''
+      this.params.radioTime = 'ALL'
+      this.params.radioDiyTime = ''
+      this.params.fileType = []
+      this.params.fileSize = []
+      this.params.diysizefrom = ''
+      this.params.diysizeto = ''
+      this.params.dataSource = '1'
+      this.params.dataSourceSearch = ''
+      this.params.radioSort = 'relativity'
+    },
+    // 更新时间
     diyTimeChange(val) {
       if (val) {
         this.params.radioTime = 'diy'
@@ -338,13 +357,14 @@ export default {
 }
 .search_params_item {
   width: 100%;
-  height: 40px;
+  /* height: 40px; */
   color: #333333;
   margin-bottom: 20px;
   box-sizing: border-box;
-  line-height: 40px;
+  /* line-height: 40px; */
   display: flex;
   justify-content: left;
+  align-items: center;
 }
 .search_params_item > span {
   display: flex;
@@ -362,6 +382,7 @@ export default {
   margin-left: 20px;
   border-radius: 4px;
   border-color: #cccccc;
+  width: auto;
 }
 .search_params_item .el-radio-group {
   display: flex;
@@ -383,6 +404,23 @@ export default {
 }
 .search_params_item .el-range-editor.el-input__inner {
   border-color: #cccccc;
+}
+.reset_filter_btn {
+  /* padding-top: 15px; */
+  margin-bottom: 10px;
+  color: #2d7a9c;
+  font-family: "微软雅黑";
+  font-size: 16px;
+  /* border-top: 1px solid #eeeeee; */
+}
+.reset_filter_btn i {
+  margin-right: 15px;
+}
+.put_filter i {
+  font-size: 24px;
+}
+.reset_filter_btn span {
+  cursor: pointer;
 }
 .diy_filesize {
   max-width: 540px;
@@ -406,7 +444,7 @@ export default {
   text-align: center;
 }
 .item_select {
-  width: 120px;
+  min-width: 120px;
 }
 .search_params_item .input-with-select {
   width: 440px;
