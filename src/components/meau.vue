@@ -70,7 +70,7 @@ export default {
           this.breadcrumbItems = []
           const seqNo = menuIndex.split(':')
           this.getSelectedMenus(this.menuList, seqNo)
-          // console.log(11111111, this.menuList)
+          console.log(11111111, this.menuList)
         } else {
           this.reURL = 'menu-search:menu-search-general-search'
         }
@@ -146,12 +146,11 @@ aside {
   position: relative;
   padding-top: 30px;
   border-radius: 0 30px 30px 0;
-  transition: all 0.3s linear;
+  transition: all .3s linear;
 }
-aside .logo,
-aside .logo img {
-  -webkit-transition: all 0.2s linear;
-  transition: all 0.3s linear;
+aside .logo,aside .logo img {
+    -webkit-transition: all .2s linear;
+    transition: all .3s linear;
 }
 .logo {
   width: 158px;

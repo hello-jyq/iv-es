@@ -33,18 +33,18 @@ export function downloadFile(param) {
   return download('POST', '/api/es/download', param)
 }
 
-// 联想词  【ES-API-001】联想词API.xlsx
+// 【ES-API-001】个人联想词取得API.xlsx
 export function getTerms(params) {
-  return request('GET', '/api/es/terms', params)
+  return request('GET', '/api/es/terms/list', params)
 }
 
-// 【ES-API-002】热词取得API.xlsx
-export function getHotwords(params) {
-  return request('GET', '/api/es/hotWords', params)
+// 【ES-API-002】个人联想词清除API.xlsx
+export function clearTerms(params) {
+  return request('GET', '/api/es/terms/clear', params)
 }
-// 【ES-API-003】搜索履历列表取得API.xlsx
-export function getKeywords(params) {
-  return request('GET', '/api/log/keywords', params)
+// 【ES-API-003】清除搜索履历API.xlsx
+export function clearLogs(params) {
+  return request('GET', '/api/log/clear', params)
 }
 
 // 【ES-API-006】文件树访问角色取得API

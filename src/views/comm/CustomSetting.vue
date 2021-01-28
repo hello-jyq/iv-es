@@ -18,21 +18,31 @@
             <label>设置默认搜索方式</label>
             <div class="set_content_item_box">
               <span>
-                <el-radio v-model="searchType" label="1">
-                  完全一致
-                </el-radio>
-                <el-radio v-model="searchType" label="2">
-                  部分一致
-                </el-radio>
+                <dict-radio v-model="esSearchDiv" dict-type-id="ESFuzzySearch" class="light-select" theme="theme" />
               </span>
               <button>保&nbsp;存</button>
             </div>
           </div>
+
           <div id="set_2" class="set_content_item">
-            <label>设置登陆默认组织</label>
+            <label>设置默认搜索位置</label>
             <div class="set_content_item_box">
               <span>
-                <el-radio v-model="defaultOrg" label="1">
+                <dict-radio v-model="esSearchTarget" dict-type-id="ESSearchTarget" class="light-select" theme="theme" />
+              </span>
+              <button>保&nbsp;存</button>
+            </div>
+          </div>
+          <div id="set_3" class="set_content_item">
+            <label>设置登录默认组织</label>
+            <div class="set_content_item_box org_group">
+              <span>
+                <el-radio-group v-model="initOrg">
+                  <el-radio v-for="item in orgList" :key="item.id" :label="item.id">{{ item.fullName }}</el-radio>
+                </el-radio-group>
+              
+                <!--
+               <el-radio v-model="defaultOrg" label="1">
                   组织1
                 </el-radio>
                 <el-radio v-model="defaultOrg" label="2">
@@ -40,24 +50,7 @@
                 </el-radio>
                 <el-radio v-model="defaultOrg" label="3">
                   组织3
-                </el-radio>
-              </span>
-              <button>保&nbsp;存</button>
-            </div>
-          </div>
-          <div id="set_3" class="set_content_item">
-            <label>设置默认搜索位置</label>
-            <div class="set_content_item_box">
-              <span>
-                <el-radio v-model="searchPosition" label="1">
-                  不限
-                </el-radio>
-                <el-radio v-model="searchPosition" label="2">
-                  文件名
-                </el-radio>
-                <el-radio v-model="searchPosition" label="3">
-                  文件内容
-                </el-radio>
+                </el-radio>-->
               </span>
               <button>保&nbsp;存</button>
             </div>
@@ -126,7 +119,11 @@
   </div>
 </template>
 <script>
+import DictRadio from '@/components/DictRadio'
 export default {
+  components: {
+    DictRadio
+  },
   props: {
     isShow: {
       type: Boolean,
@@ -140,8 +137,8 @@ export default {
       overscroll: false,
       menu: [
         { icon: 'iconfont icon-sousuowenjian', name: '设置默认搜索方式' },
-        { icon: 'iconfont icon-zuzhiDataOrganization6', name: '设置登陆默认组织' },
         { icon: 'iconfont icon-zhidingweizhi', name: '设置默认搜索位置' },
+        { icon: 'iconfont icon-zuzhiDataOrganization6', name: '设置登陆默认组织' },
         { icon: 'iconfont icon-mima', name: '设置登录密码' },
         { icon: 'iconfont icon-shanchu1', name: '设置删除联想词' },
         { icon: 'iconfont icon-qingkongbeifen', name: '清空搜索履历' }
@@ -155,7 +152,19 @@ export default {
       Wordschecked: [],
       checkAll: false,
       associatedWords: ['neuron設計書', '導入 neuron', 'neuron導入5', 'neuron営業資', 'active directory neuron', 'elasticsearch neuron7', 'active direc1tory neuron', 'active directory neuron ', 'neuron設1計書', 'neuron導入', '導2入 neuron', 'elasticsearch neuron2', 'elasticsearch neuron'],
-      isIndeterminate: false
+      isIndeterminate: false,
+      esSearchDiv: '0',
+      esSearchTarget: 'ALL',
+      initOrg: '',
+      orgList: []
+    }
+  },
+  watch: {
+    'isShow': function (newVal, oldVal) {
+      if (newVal === true) {
+        // // console.log(this.$refs.upload)
+        this.initSettings()
+      }
     }
   },
   methods: {
@@ -174,6 +183,36 @@ export default {
     },
     goTop(index) {
       document.querySelector('#set_' + (index + 1)).scrollIntoView(true)
+    },
+    initSettings() {
+      const userSettingMap = this.$store.state.userInfo.userSettingMap
+      if (userSettingMap !== undefined) {
+        if (userSettingMap.SearchDiv !== undefined) {
+          this.esSearchDiv = userSettingMap.SearchDiv
+        }
+
+        if (userSettingMap.SearchTarget !== undefined) {
+          this.esSearchTarget = userSettingMap.SearchTarget
+        }
+
+        if (userSettingMap.InitOrg !== undefined) {
+          this.initOrg = userSettingMap.InitOrg
+        } else {
+          this.initOrg = this.$store.state.userInfo.orgId
+        }
+      }
+
+      // 做成新的orgList
+      const defaultOrg = {
+        'id': this.$store.state.userInfo.orgId,
+        'fullName': this.$store.state.userInfo.orgFullName
+      }
+      this.orgList = []
+      this.orgList.push(defaultOrg)
+      const userOrgList = this.$store.state.userOrgList
+      if (userOrgList !== undefined) {
+        userOrgList.forEach((item) => this.orgList.push(item))
+      }
     }
   }
 }
@@ -354,5 +393,19 @@ export default {
 }
 .overscroll {
   padding-bottom: 685px;
+}
+.org_group {
+  height: auto;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+.org_group label {
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  margin-bottom: 20px;
+}
+.org_group button {
+  margin-top: -10px;
 }
 </style>

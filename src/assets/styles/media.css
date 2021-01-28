@@ -840,6 +840,21 @@ margin-left: 0 !important;
 .set_content_item_box span i {
     font-size: 18px !important;
 }
+.org_group {
+  height: auto !important;
+  display: inline-block !important;
+  padding-bottom: 5px !important;
+}
+.org_group button {
+  margin-top: -5px !important;
+}
+
+
+
+
+
+
+
 
 
 

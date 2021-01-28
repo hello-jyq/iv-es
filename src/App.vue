@@ -6,6 +6,9 @@
   </div>
 </template>
 <script>
+import { logout } from '@/api/login.js'
+import * as types from '@/store/mutation-type'
+
 export default {
   provide() {
     return {
@@ -15,6 +18,59 @@ export default {
   data() {
     return {
       isRouterAlive: true
+    }
+  },
+  watch: {
+    '$store.state.loginStatus': function(newValue, oldValue) {
+
+      console.log(this.$store.state.loginStatus)
+
+      if (this.$store.state.loginStatus === 'no') {
+        return
+      }      
+      let settiontimeoutMinSecond = 3600000 // 1小时
+
+      const timerId = setInterval(() => {
+        settiontimeoutMinSecond -= 60000
+        if (settiontimeoutMinSecond < 1) {
+          clearInterval(timerId)
+          this.$confirm(this.$t('comm.e0011'), this.$t('comm.e0013'), {
+            confirmButtonText: this.$t('comm.certain'),
+            type: 'warning'
+          }).then(async() => {
+            const res = await logout()
+
+            if (res && res.success) {
+              this.$store.commit(types.SET_LOGIN_STATUS, 'no')
+              this.$store.commit(types.SET_CSRF_TOKEN, '')
+              this.$store.commit(types.SET_USER_INFO, {})
+              this.$store.commit(types.SET_ORGLIST_INFO, []) // 添加用户的组织信息   
+              window.sessionStorage.clear()
+              this.$router.push('/login')
+              this.$message({
+                type: 'success',
+                message: this.$t('home.msg4'),
+                iconClass: 'iconfont iconqueren',
+                customClass: 'light-el-message'
+              })
+            } else {
+              this.$message({
+                type: 'error',
+                message: res.message,
+                iconClass: 'iconfont icongantanhao_icon',
+                customClass: 'light-el-message'
+              })
+            }
+          })
+        }
+
+        if (settiontimeoutMinSecond === 300000) {  // 5分钟前提示
+          this.$alert('距离页面超时时间还有5分钟,请尽快提交数据!', this.$t('comm.e0013'), {
+            confirmButtonText: this.$t('comm.certain'),
+            callback: action => {}
+          })
+        }
+      }, 60000)   
     }
   },
   mounted() {
@@ -28,7 +84,7 @@ export default {
   methods: {
     reload() {
       this.isRouterAlive = false
-      this.$nextTick(function () {
+      this.$nextTick(function() {
         this.isRouterAlive = true
       })
     }

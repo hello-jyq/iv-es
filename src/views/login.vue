@@ -24,7 +24,7 @@
           </el-dropdown-menu>
         </el-dropdown> -->
       </div>
-      <el-form ref="ruleForm" label-position="left" label-width="0px" :model="ruleForm" :rules="rules" @submit.native.prevent>
+      <el-form ref="ruleForm" label-position="left" label-width="0px" :model="ruleForm" :rules="rules" @submit.native.prevent @keyup.enter.native="login">
         <h1 class="logo">
           <router-link to>
             <img src="@/assets/img/logo_login.png">
@@ -56,7 +56,7 @@
     </div>
     <!--右边banner-->
     <div class="login-banner">
-      <el-carousel arrow="never" :autoplay="true" trigger="click">
+      <el-carousel arrow="never" :interval="10000" :autoplay="true" trigger="click">
         <el-carousel-item v-for="item in itemTxt" :key="item.index">
           <h2>{{ item.title }}</h2>
           <div class="txt">

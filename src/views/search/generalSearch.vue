@@ -4,7 +4,7 @@
       <el-col :span="24">
         <!-- 拉取联想词 -->
         <el-autocomplete
-          ref="searchInput"
+		  ref="searchInput"
           v-model="searchs"
           class="inline-input search_input"
           placeholder="请输入您想要搜索的内容"
@@ -416,7 +416,7 @@ export default {
   padding: 30px;
   box-sizing: border-box;
 }
-.main_box img {
+.main_box img{
   margin: 0 auto;
   height: 100%;
 }

@@ -268,7 +268,7 @@
                 <i class="iconfont  icon-Group-" />点击下载
               </span>
             </div>
-            <div class="each_r_title" :title="item.fileName">
+            <div class="each_r_title" :title="item.realFileName">
               <img v-if="item.fileType=='Excel'" src="../../assets/img/filetype/excel.png">
               <img v-else-if="item.fileType=='Word'" src="../../assets/img/filetype/word.png">
               <img v-else-if="item.fileType=='PowerPoint'" src="../../assets/img/filetype/PPT.png">
@@ -488,10 +488,10 @@ export default {
     return {
       restaurants: [],
       // keyWords: '',
-      keyWords: this.$route.params.search !== '' ? this.$route.params.search : '',
-      fieldScale: this.$route.params.radio !== '' ? this.$route.params.radio : 'ALL',
-      docLanguage: this.$route.params.lang !== '' ? this.$route.params.lang : 'ALL',
-      fuzzySearchDiv: this.$route.params.fuzzy !== '' ? this.$route.params.fuzzy : '0',
+      keyWords: '',
+      fieldScale: 'ALL',
+      docLanguage: 'ALL',
+      fuzzySearchDiv: '2',
       optionslang: [
         {
           value: 'ALL',
@@ -668,7 +668,7 @@ export default {
   },
   watch: {
     results: {
-      handler: function (newVal, oldVal) { },
+      handler: function(newVal, oldVal) { },
       deep: true
     },
     keyWords(newVal, oldVal) {
@@ -678,48 +678,49 @@ export default {
           type: 'warning'
         })
         return false
-      } else {
-        const query = this.$router.history.current.query
-        // console.log(query)
-        const path = this.$router.history.current.path
-        // 对象的拷贝
-        const newQuery = JSON.parse(JSON.stringify(query))
-        // 地址栏的参数值赋值
-        newQuery.search = newVal
-        this.$router.push({ path, query: newQuery })
-        console.log(this.$router.history.current.path)
       }
+      // else {
+      //   const query = this.$router.history.current.query
+      //   // console.log(query)
+      //   const path = this.$router.history.current.path
+      //   // 对象的拷贝
+      //   const newQuery = JSON.parse(JSON.stringify(query))
+      //   // 地址栏的参数值赋值
+      //   newQuery.search = newVal
+      //   this.$router.push({ path, query: newQuery })
+      //   console.log(this.$router.history.current.path)
+      // }
     },
-    fieldScale(newVal, oldVal) {
-      const query = this.$router.history.current.query
-      // console.log(query)
-      const path = this.$router.history.current.path
-      // 对象的拷贝
-      const newQuery = JSON.parse(JSON.stringify(query))
-      // 地址栏的参数值赋值
-      newQuery.radio = newVal
-      this.$router.push({ path, query: newQuery })
-    },
-    docLanguage(newVal, oldVal) {
-      const query = this.$router.history.current.query
-      // console.log(query)
-      const path = this.$router.history.current.path
-      // 对象的拷贝
-      const newQuery = JSON.parse(JSON.stringify(query))
-      // 地址栏的参数值赋值
-      newQuery.lang = newVal
-      this.$router.push({ path, query: newQuery })
-    },
-    fuzzySearchDiv(newVal, oldVal) {
-      const query = this.$router.history.current.query
-      // console.log(query)
-      const path = this.$router.history.current.path
-      // 对象的拷贝
-      const newQuery = JSON.parse(JSON.stringify(query))
-      // 地址栏的参数值赋值
-      newQuery.fuzzy = newVal
-      this.$router.push({ path, query: newQuery })
-    },
+    // fieldScale(newVal, oldVal) {
+    //   const query = this.$router.history.current.query
+    //   // console.log(query)
+    //   const path = this.$router.history.current.path
+    //   // 对象的拷贝
+    //   const newQuery = JSON.parse(JSON.stringify(query))
+    //   // 地址栏的参数值赋值
+    //   newQuery.radio = newVal
+    //   this.$router.push({ path, query: newQuery })
+    // },
+    // docLanguage(newVal, oldVal) {
+    //   const query = this.$router.history.current.query
+    //   // console.log(query)
+    //   const path = this.$router.history.current.path
+    //   // 对象的拷贝
+    //   const newQuery = JSON.parse(JSON.stringify(query))
+    //   // 地址栏的参数值赋值
+    //   newQuery.lang = newVal
+    //   this.$router.push({ path, query: newQuery })
+    // },
+    // fuzzySearchDiv(newVal, oldVal) {
+    //   const query = this.$router.history.current.query
+    //   // console.log(query)
+    //   const path = this.$router.history.current.path
+    //   // 对象的拷贝
+    //   const newQuery = JSON.parse(JSON.stringify(query))
+    //   // 地址栏的参数值赋值
+    //   newQuery.fuzzy = newVal
+    //   this.$router.push({ path, query: newQuery })
+    // },
     diysizefrom(newVal, oldVal) {
       const reg = /^\+?[1-9]\d*$/
       if (newVal !== '') {
@@ -768,20 +769,24 @@ export default {
   },
   created() {
     // console.log(this.dictTypeId)
-    // console.log(this.$route.query)
-    // const search = this.$route.query.search !== '' ? this.$route.query.search : ''
-    // const radio = this.$route.query.radio !== '' ? this.$route.query.radio : ''
-    // const lang = this.$route.query.lang !== '' ? this.$route.query.lang : ''
-    // const fuzzy = this.$route.query.fuzzy !== '' ? this.$route.query.fuzzy : ''
-    this.searchParam.params.keyWords = this.keyWords
-    this.searchParam.params.fieldScale = this.fieldScale
-    this.searchParam.params.docLanguage = this.docLanguage
-    this.searchParam.params.fuzzySearchDiv = this.fuzzySearchDiv
-    // this.keyWords = search
+    console.log(this.$route.params)
+    const search = this.$route.params.search !== '' ? this.$route.params.search : ''
+    const radio = this.$route.params.radio !== '' ? this.$route.params.radio : 'ALL'
+    const lang = this.$route.params.lang !== '' ? this.$route.params.lang : 'ALL'
+    const fuzzy = this.$route.params.fuzzy !== '' ? this.$route.params.fuzzy : '2'
+    if (this.$route.params.search) {
+      this.keyWords = search
+      this.fieldScale = radio
+      this.fuzzySearchDiv = fuzzy
+    }
+    this.searchParam.params.keyWords = search
+    this.searchParam.params.fieldScale = radio
+    this.searchParam.params.docLanguage = lang
+    this.searchParam.params.fuzzySearchDiv = fuzzy
     this.loading = true
     this.sltLoading = true
     this.normalSearch()
-    this.$nextTick(() => {
+ 	this.$nextTick(() => {
       this.$refs.searchInput.focus()
     })
   },
@@ -2056,14 +2061,14 @@ export default {
   left: 280px;
   color: #f54132;
 }
-.slt_empty {
+.slt_empty{
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+justify-content:space-between;
 }
-.slt_empty span {
-  margin-top: 40px;
-  font-size: 16px;
+.slt_empty span{
+margin-top: 40px;
+font-size: 16px;
 }
 </style>
