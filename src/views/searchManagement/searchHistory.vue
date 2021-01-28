@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container sh">
     <div class="sh_search_box">
       <div class="search_top">
         <div>
@@ -71,9 +71,6 @@
               class-name="search_result"
             >
               <template slot-scope="scope">
-                <el-tooltip class="item" effect="light" content="查看" placement="top" :visible-arrow="false">
-                  <i class="iconfont icon-yanjing" />
-                </el-tooltip>
                 <span style="margin-left: 5px" @click="linkResult(scope.row.result)">{{ scope.row.result }}</span>
               </template>
             </el-table-column>
@@ -83,7 +80,12 @@
               width="160"
             >
               <template slot-scope="scope">
-                <i class="iconfont icon-shanchu1" @click="handleDelete(scope.$index, scope.row)" />
+                <el-tooltip class="item" effect="light" content="查看" placement="top" :visible-arrow="false">
+                  <i class="iconfont icon-yanjing" @click="showSLT(scope.$index, scope.row)" />
+                </el-tooltip>
+                <el-tooltip class="item" effect="light" content="删除" placement="top" :visible-arrow="false">
+                  <i class="iconfont icon-shanchu1" @click="handleDelete(scope.$index, scope.row)" />
+                </el-tooltip>
               </template>
             </el-table-column>
           </el-table>
@@ -132,6 +134,52 @@
         </el-pagination>
       </div>
     </div>
+    <el-dialog
+      v-model="sltData"
+      title="缩略图"
+      :visible.sync="centerDialogVisible"
+      :close-on-click-modal="false"
+      :modal-append-to-body="false"
+      class="sltDialog"
+      @close="closeSLT"
+    >
+      <div class="each_r_top">
+        <div class="each_r_top_left">
+          <span><i class="iconfont icon-wenjianjia" />{{ sltData.dataSource }}</span>
+          <div class="each_m" :title="sltData.filePath">
+            <i class="iconfont icon-wendang" />{{ sltData.filePath }}
+          </div>
+          <span v-if="sltData.updateBy != ''"><i class="iconfont icon-wode" />{{ sltData.updateBy }}</span>
+          <span v-else-if="sltData.updateBy == '' && sltData.createBy != ''"><i class="iconfont icon-wode" />{{ sltData.createBy }}</span>
+        </div>
+      </div>
+      <div class="each_r_title">
+        <img v-if="sltData.fileType=='Excel'" src="../../assets/img/filetype/excel.png">
+        <img v-else-if="sltData.fileType=='Word'" src="../../assets/img/filetype/word.png">
+        <img v-else-if="sltData.fileType=='PowerPoint'" src="../../assets/img/filetype/PPT.png">
+        <img v-else-if="sltData.fileType=='Pdf'" src="../../assets/img/filetype/PDF.png">
+        <img v-else-if="sltData.fileType=='Text'" src="../../assets/img/filetype/TXT.png">
+        <img v-else-if="sltData.fileType=='Image'" src="../../assets/img/filetype/img.png">
+        <img v-else-if="sltData.fileType=='zip'" src="../../assets/img/filetype/excel.png">
+        <img v-else-if="sltData.fileType=='Media'" src="../../assets/img/filetype/other.png">
+        <img v-else src="../../assets/img/filetype/other.png">
+        <span v-html="sltData.fileName" />
+        <img v-if="sltData.language=='CN'" class="each_lan" src="../../assets/img/cn_ico.png">
+        <img v-else-if="sltData.language=='EN'" class="each_lan" src="../../assets/img/en_ico.png">
+        <img v-else-if="sltData.language=='JP'" class="each_lan" src="../../assets/img/jp_ico.png">
+        <img v-else class="each_lan" src="../../assets/img/other2.png">
+      </div>
+      <div class="each_r_con">
+        {{ sltData.updateTime }}  {{ sltData.fileSizeDescription }}KB - {{ sltData.fileType }}
+      </div>
+      <div class="slt">
+        <iframe v-if="sltData.fileType!='Others'" ref="kkfileviewIframe" width="100%" frameborder="0" height="100%" :src="kkfileviewurl" name="iframe_a" />
+        <img v-else src="../../assets/img/slt_empty.png">
+      </div>
+      <div class="slt_down" @click="download(sltData.fileUrl, sltData.id)">
+        <i class="iconfont icon-Group-" />点击下载
+      </div>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -215,7 +263,36 @@ export default {
         date: '2016-05-03',
         name: '王小虎',
         result: '上海市普陀区金沙江路 1516 弄'
-      }]
+      }],
+      centerDialogVisible: false,
+      kkfileviewurl: '',
+      sltData: {
+        clickCount: null,
+        createBy: '方洁玮',
+        createTime: '2017-02-07 14:15:49',
+        dataSource: '文件服务器1',
+        docScore: '7.588051',
+        fileContent: null,
+        fileContentOutline: "陆家嘴软件园 100 号 2 号楼 9 楼 注册地址：<span style='color: red'>中国</span>（<span style='color: red'>上海</span>）自由贸易试验区郭守敬路 351 号 2 号楼 645-2 室 上海菱威深信息技术有限公司 【基本契約書】iVision 甲バージョン",
+        fileDirectory: '\\192.168.22.14\ public_all\ 430\ 02.契約書フォーム\ 00.【基本契約書】\ 2017年2月修正後Ver(旧)',
+        fileExtend: 'pdf',
+        fileMeta: null,
+        fileName: '2017年2月修正履歴.pdf',
+        filePath: 'C:/public_all/430/02.契約書フォーム/00.【基本契約書】/2017年2月修正後Ver(旧)',
+        filePathFull: 'iv-fileserver-public/C:/public_all/430/02.契約書フォーム/00.【基本契約書】/2017年2月修正後Ver(旧)',
+        fileSize: 102628,
+        fileSizeDescription: '101',
+        fileType: 'Others',
+        fileUrl: 'iv-fileserver-public/C:/public_all/430/02.契約書フォーム/00.【基本契約書】/2017年2月修正後Ver(旧)/2017年2月修正履歴.pdf',
+        id: 'WUc0TUZNMFRNNHYwK0g3RS83ZGhZZz09',
+        language: 'JP',
+        myLabel: [],
+        operFlag: null,
+        searchWord: null,
+        termFetchTime: null,
+        updateBy: '',
+        updateTime: '2017-02-07 14:15:49'
+      }
     }
   },
   updated() {
@@ -271,6 +348,37 @@ export default {
         })
       })
     },
+    // 查看缩略图
+    showSLT(index, row) {
+      this.centerDialogVisible = !this.centerDialogVisible
+      // this.sltData=row
+      console.log(index, row)
+      this.$nextTick(() => {
+        var loading = this.$loading({
+          lock: true, // lock的修改符--默认是false
+          text: 'Loading', // 显示在加载图标下方的加载文案
+          spinner: 'el-icon-loading', // 自定义加载图标类名
+          background: 'rgba(0, 0, 0, 0.3)', // 遮罩层颜色
+          target: '.slt'// loadin覆盖的dom元素节点
+        })
+        const contextPath = window.location.origin
+        const baseApi = contextPath + '/iv-es/api/es/view/'
+        // const baseApi = 'http://localhost/iv-es/api/es/view/'
+        const url = baseApi + row.id
+        var previewUrl = url + '?fullfilename=' + new Date().getTime() + '.' + row.fileExtend
+        const kkfileviewSrc = contextPath + '/preview/onlinePreview?url=' + encodeURIComponent(previewUrl)
+        // const kkfileviewSrc = 'http://localhost/preview/onlinePreview?url=' + encodeURIComponent(previewUrl)
+        this.kkfileviewurl = kkfileviewSrc
+        // this.centerDialogVisible = true
+        if (row.fileType === 'Others') {
+          loading.close()
+        }
+        loading.close()
+      })
+
+    },
+    // 关闭缩略图
+    closeSLT() { },
     // 翻页
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`)
@@ -393,14 +501,133 @@ export default {
   font-size: 18px;
   color: #f73031;
 }
+.sh_main_table .icon-yanjing {
+  cursor: pointer;
+  font-size: 18px;
+  color: #2d7a9c;
+  margin-right: 20px;
+}
+
 .pagination-box {
   padding: 0;
   padding-top: 15px;
   height: 40px;
   width: 100%;
 }
-.icon-lianjie,
-.icon-yanjing {
+.icon-lianjie {
   color: #2263ec;
+}
+
+.each_r_top {
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-family: "微软雅黑";
+  color: #333333;
+  align-items: center;
+  line-height: 20px;
+}
+.each_r_top_left {
+  width: 70%;
+  height: 20px;
+  display: flex;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.each_m {
+  margin-right: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.each_r_top span {
+  margin-right: 20px;
+}
+.each_r_top i {
+  color: #2d7a9c;
+  margin-right: 5px;
+}
+.icon-wenjianjia {
+  font-size: 18px;
+}
+.icon-wendang {
+  font-size: 15px;
+}
+.each_down {
+  font-size: 14px;
+  font-family: "微软雅黑";
+  color: #2d7a9c;
+  line-height: 20px;
+  cursor: pointer;
+  min-width: 70px;
+}
+.each_down i {
+  font-size: 18px;
+}
+.each_r_title {
+  margin-top: 5px;
+  height: 25px;
+  font-size: 24px;
+  font-family: "微软雅黑";
+  color: #2440b4;
+  line-height: 25px;
+  text-decoration: underline;
+  display: flex;
+  align-items: center;
+}
+.each_r_title span {
+  display: block;
+  max-width: 70%;
+  height: 25px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.each_r_title img {
+  margin-right: 5px;
+}
+.each_lan {
+  margin-left: 10px;
+  margin-bottom: -5px;
+}
+.each_r_con {
+  height: 20px;
+  font-size: 14px;
+  font-family: "微软雅黑";
+  color: #333333;
+  line-height: 20px;
+  margin-top: 8px;
+}
+.kb {
+  white-space: nowrap;
+}
+.slt {
+  width: 1240px;
+  height: 650px;
+  background: #ffffff;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.slt_down {
+  width: 160px;
+  height: 50px;
+  background: linear-gradient(180deg, #475ba0 0%, #2fa5bb 100%);
+  border-radius: 25px;
+  margin: 40px auto auto;
+  line-height: 50px;
+  text-align: center;
+  font-size: 16px;
+  font-family: "微软雅黑";
+  color: #ffffff;
+  cursor: pointer;
+}
+.slt_down i {
+  margin-right: 6px;
 }
 </style>

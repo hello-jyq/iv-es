@@ -180,12 +180,16 @@ export default {
 </script>
 <style scoped>
 .set_bg {
-  position: fixed;
+  position: absolute;
+  min-width: 1300px;
   width: 100vw;
   height: 100vh;
   top: 0;
   left: 0;
+  bottom: 0;
   background: #ffffff;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 .set_box {
   width: 100%;

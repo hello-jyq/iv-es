@@ -1112,7 +1112,6 @@ color: #666666;
 .theme_search .el-cascader-menu:first-child .el-cascader-node .theme_count{
     /* display:none!important; */
 }
-
 .sltDialog .each_r_title span{
     height: 30px !important;
     cursor:text !important;
@@ -1231,21 +1230,20 @@ margin-right: 30px;
     box-sizing: border-box;
 }
 
-.el-table__body tr td:nth-child(3) .cell,.el-table__body tr td:nth-child(4) .cell  {
+.el-table__body tr td:nth-child(3) .cell  {
    color:#2263EC; 
   display: flex;
+
 }
 .el-table__body tr td:nth-child(3) .cell span,.el-table__body tr td:nth-child(4) .cell span {
    overflow:hidden;
    text-overflow:ellipsis;
    white-space:nowrap;
-    cursor: pointer;
+  
 }
-.el-table__body tr td:nth-child(3) .cell span:hover,.el-table__body tr td:nth-child(4) .cell span:hover  {
+.el-table__body tr td:nth-child(3) .cell span:hover {
   text-decoration: underline;
-}
-.el-table__body tr td:nth-child(4) .cell i{
-    cursor: pointer;
+      cursor: pointer;
 }
 /* .el-table__body tr td:nth-child(4) .cell i:hover::after{
  position: absolute;
@@ -1271,13 +1269,23 @@ z-index: 2000;
 .sh_main_table tr th{
     height: 46px;
     line-height: 46px;
-
 }
 .sh_main_table tr td{
     height: 36px;
     line-height: 36px;
-
 }
+.sh .el-dialog{
+    width: 1300px;
+    height: 910px;
+    background: #EEF2F6;
+    border-radius: 16px;
+    margin:0 !important;
+}
+
+
+
+
+
 
 /* 设置 */
 .set_items_input .el-input__inner{
