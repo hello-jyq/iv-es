@@ -849,9 +849,16 @@ margin-left: 0 !important;
   margin-top: -5px !important;
 }
 
-
-
-
+.fileszieDiyfromerror {
+  top: 25px !important;
+}
+.fileszieDiytoerror {
+top: 25px !important;
+  left: 215px !important;
+}
+.search_params_item .select_input_value::before{
+    left: 5px !important;
+}
 
 
 

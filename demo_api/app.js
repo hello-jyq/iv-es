@@ -487,7 +487,11 @@ app.get('/iv-es/api/folderauth/foldertree', (req, res) => {
   // 读取json文件并送信
   sentResByJson('dataList/es/es-007-2.json', res)
 })
-
+// 指定文件目录搜索联想取得API.xlsx
+app.get('/iv-es/api/es/terms/filepath', (req, res) => {
+  // 读取json文件并送信
+  sentResByJson('dataList/es/filePaths.json', res)
+})
 // 组织画面，拉去人员信息
 app.post('/iv-es/api/org/orgUserInfo/:userId/:year', (req, res) => {
   // 读取json文件并送信

@@ -22,7 +22,7 @@
       </el-col>
       <el-col :span="24" class="flex_ceter" style="height:24px;line-height:24px">
         <span class="font_size_14 fontC_333">搜索位置：</span>
-        <dict-radio v-model="radio" dict-type-id="ESSearchTarget" />
+        <dict-radio v-model="esSearchTarget" dict-type-id="ESSearchTarget" />
         <!-- <el-radio-group v-model="radio">
           <el-radio label="ALL">
             不限
@@ -52,7 +52,7 @@
             :value="item.value"
           />
         </el-select> -->
-        <dict-select v-model="fuzzy" dict-type-id="ESFuzzySearch" />
+        <dict-select v-model="esSearchDiv" dict-type-id="ESFuzzySearch" />
       </el-col>
     </el-row>
     <el-row class="search_params">
@@ -61,7 +61,7 @@
       </div>
       <div class="search_params_item">
         <span><i class="iconfont icon-sousuoguanjianci" />搜索关键字：</span>
-        <el-input v-model="params.allKeyWords" placeholder="请输入内容">
+        <el-input v-model="params.allKeyWords" placeholder="请输入内容" clearable>
           <template slot="prepend">
             包含全部关键词
           </template>
@@ -71,7 +71,7 @@
             包含任意关键词
           </template>
         </el-input> -->
-        <el-input v-model="params.notIncludeKeyWords" placeholder="请输入内容">
+        <el-input v-model="params.notIncludeKeyWords" placeholder="请输入内容" clearable>
           <template slot="prepend">
             不包含关键词
           </template>
@@ -84,11 +84,12 @@
             {{ time.name }}
           </el-radio>
         </el-radio-group> -->
-        <dict-radio v-model="modifyedTime" dict-type-id="ESSearchModifyedTime" />
-        <!-- <el-radio label="自定义时间" /> -->
+        <dict-radio v-model="modifyedTime" dict-type-id="ESModifyedTime" />
+        <el-radio v-model="modifyedTime" label="自定义时间" />
         <el-date-picker
           v-model="params.radioDiyTime"
           class="diy_time"
+          :disabled="modifyedTime==='自定义时间'?false:true"
           popper-class="date_picker"
           value-format="yyyy-MM-dd"
           type="daterange"
@@ -101,7 +102,7 @@
       </div>
       <div class="search_params_item">
         <span><i class="iconfont icon-duomeitiicon-" />文档类型：</span>
-        <dict-checkbox v-model="params.fileType" dict-type-id="ESFileType" @change="fileTypeCheckbox" />
+        <dict-checkbox v-model="params.fileType" dict-type-id="ESFilterExtent" @change="fileTypeCheckbox" />
         <!-- <el-checkbox-group v-model="params.fileType">
           <el-checkbox v-for="type in checkboxFileTypeList" :key="type.index" :label="type.id">
             {{ type.name }}
@@ -111,41 +112,57 @@
       </div>
       <div class="search_params_item">
         <span><i class="iconfont icon-daxiao" />文件大小：</span>
-        <dict-checkbox v-model="params.fileSize" dict-type-id="ESSearchFileSizeRange" @change="fileTypeCheckbox" />
+        <dict-checkbox v-show="issize" v-model="sizecheckList" dict-type-id="ESFileSizeRange" @change="fileSizeChange" />
         <!-- <el-checkbox-group v-model="params.fileSize">
           <el-checkbox v-for="type in checkboxFileSizeList" :key="type.index" :label="type.id">
             {{ type.name }}
           </el-checkbox>
         </el-checkbox-group> -->
-        <!-- <el-checkbox></el-checkbox> -->
+        <el-checkbox v-show="issize" v-model="sizecheckDIY" class="diycheck" label="自定义大小" @change="checkboxDIYChange(sizecheckDIY),sizecheckDIY=!sizecheckDIY">
+          自定义大小
+        </el-checkbox>
         <div class="diy_filesize">
           <el-input
-            v-model="params.diysizefrom"
+            v-model="diysizefrom"
+            :disabled="sizecheckDIY?false:true"
             class="from"
             placeholder="请输入数值"
             prefix-icon="iconfont icon-daxiao"
+            clearable
           />
+          <span class="fileszieDiyfromerror">{{ diysizefrommessage }}</span>
           <span class="zhi">至</span>
           <el-input
-            v-model="params.diysizeto"
+            v-model="diysizeto"
+            :disabled="sizecheckDIY?false:true"
             class="to"
             placeholder="请输入数值"
             prefix-icon="iconfont icon-daxiao"
-          />KB
+            clearable
+          />
+          <span class="fileszieDiytoerror">{{ diysizetomessage }}</span>
+          <span class="kb">KB</span>
         </div>
       </div>
       <div class="search_params_item">
         <span><i class="iconfont icon-mulu" />在指定目录中搜索：</span>
-        <dict-select v-model="dataSource" class="select_input" dict-type-id="ESDataSourceName" />
-        <el-input v-model="params.dataSourceSearch" placeholder="请输入内容" class=" select_input_value">
-          <!-- <el-select slot="prepend" v-model="params.dataSource" class="item_select" placeholder="请选择">
-            <el-option v-for="item in dataSourceSelectList" :key="item.index" :label="item.name" :value="item.id" />
-          </el-select> -->
-        </el-input>
+        <dict-select v-model="dataSource" class="select_input" dict-type-id="ESDataSourceName" @change="dataSourceChange" />
+        <!-- <el-input v-model="params.dataSourceSearch" placeholder="请输入内容" class=" select_input_value" /> -->
+        <el-autocomplete
+          ref="filePathsearchInput"
+          v-model="params.dataSourceSearch"
+          class="select_input_value"
+          :fetch-suggestions="queryFilePathSearch"
+          placeholder="请输入您要搜索的目录"
+          :trigger-on-focus="false"
+          clearable
+          popper-class="search_input"
+          @select="handleFilePathSelect"
+        />
       </div>
       <div class="search_params_item">
         <span><i class="iconfont icon-paixu" />排序方式：</span>
-        <dict-radio v-model="sortType" dict-type-id="ESSearchSortType"/>
+        <dict-radio v-model="sortType" dict-type-id="ESSearchSortType" />
         <!-- <el-radio-group v-model="params.radioSort">
           <el-radio v-for="time in radioSortList" :key="time.id" :label="time.id">
             {{ time.name }}
@@ -156,7 +173,7 @@
   </div>
 </template>
 <script>
-import { getTerms } from '@/api/es/es-api'
+import { getTerms, getFilePath } from '@/api/es/es-api'
 import DictRadio from '@/components/DictRadio'
 import DictSelect from '@/components/DictSelect'
 import DictCheckbox from '@/components/DictCheckbox'
@@ -169,73 +186,74 @@ export default {
   data() {
     return {
       restaurants: [],
+      suggestFilePaths: [],
       searchs: '',
-      radio: 'ALL',
+      esSearchDiv: 'ALL',
       lang: 'ALL',
-      fuzzy: '2',
+      esSearchTarget: '2',
       dataSource: '',
       sortType: 'rel',
       modifyedTime: '0',
-      options: [
-        {
-          value: 'ALL',
-          label: '所有语言'
-        }, {
-          value: 'CN',
-          label: '中文'
-        }, {
-          value: 'EN',
-          label: '英文'
-        }, {
-          value: 'JP',
-          label: '日文'
-        }],
-      searchOption: [
-        {
-          value: '0',
-          label: '部分一致'
-        },
-        {
-          value: '2',
-          label: '完全一致'
-        }
-      ],
-      radioTimeList: [
-        { id: 'ALL', name: '全部时间' },
-        { id: '1', name: '一天内' },
-        { id: '7', name: '一周内' },
-        { id: '30', name: '一月内' },
-        { id: '188', name: '半年内' },
-        { id: '365', name: '一年内' },
-        { id: 'diy', name: '自定义时间(YYMMDD)' }
-      ],
-      checkboxFileTypeList: [
-        { id: 'Word', name: 'Word' },
-        { id: 'Excel', name: 'Excel' },
-        { id: 'PowerPoint', name: 'PowerPoint' },
-        { id: 'Pdf', name: 'Adobe Acrobat PDF' },
-        { id: 'Text', name: '文本类' },
-        { id: 'Image', name: '图像类' },
-        { id: 'zip', name: '压缩类' },
-        { id: 'Media', name: '媒体类' },
-        { id: 'Others', name: '其他类型' }
-      ],
-      checkboxFileSizeList: [
-        { id: '1', name: '0~500KB' },
-        { id: '2', name: '500KB~1MB' },
-        { id: '3', name: '1MB~100MB' },
-        { id: '4', name: '1MB以上' },
-        { id: 'diy', name: '自定义大小' }
-      ],
-      dataSourceSelectList: [
-        { id: '1', name: '服务器一' },
-        { id: '2', name: '服务器二' },
-        { id: '3', name: '服务器三' }
-      ],
-      radioSortList: [
-        { id: 'relativity', name: '按相关度排序' },
-        { id: 'time', name: '按时间排序' }
-      ],
+      // options: [
+      //   {
+      //     value: 'ALL',
+      //     label: '所有语言'
+      //   }, {
+      //     value: 'CN',
+      //     label: '中文'
+      //   }, {
+      //     value: 'EN',
+      //     label: '英文'
+      //   }, {
+      //     value: 'JP',
+      //     label: '日文'
+      //   }],
+      // searchOption: [
+      //   {
+      //     value: '0',
+      //     label: '部分一致'
+      //   },
+      //   {
+      //     value: '2',
+      //     label: '完全一致'
+      //   }
+      // ],
+      // radioTimeList: [
+      //   { id: 'ALL', name: '全部时间' },
+      //   { id: '1', name: '一天内' },
+      //   { id: '7', name: '一周内' },
+      //   { id: '30', name: '一月内' },
+      //   { id: '188', name: '半年内' },
+      //   { id: '365', name: '一年内' },
+      //   { id: 'diy', name: '自定义时间(YYMMDD)' }
+      // ],
+      // checkboxFileTypeList: [
+      //   { id: 'Word', name: 'Word' },
+      //   { id: 'Excel', name: 'Excel' },
+      //   { id: 'PowerPoint', name: 'PowerPoint' },
+      //   { id: 'Pdf', name: 'Adobe Acrobat PDF' },
+      //   { id: 'Text', name: '文本类' },
+      //   { id: 'Image', name: '图像类' },
+      //   { id: 'zip', name: '压缩类' },
+      //   { id: 'Media', name: '媒体类' },
+      //   { id: 'Others', name: '其他类型' }
+      // ],
+      // checkboxFileSizeList: [
+      //   { id: '1', name: '0~500KB' },
+      //   { id: '2', name: '500KB~1MB' },
+      //   { id: '3', name: '1MB~100MB' },
+      //   { id: '4', name: '1MB以上' },
+      //   { id: 'diy', name: '自定义大小' }
+      // ],
+      // dataSourceSelectList: [
+      //   { id: '1', name: '服务器一' },
+      //   { id: '2', name: '服务器二' },
+      //   { id: '3', name: '服务器三' }
+      // ],
+      // radioSortList: [
+      //   { id: 'relativity', name: '按相关度排序' },
+      //   { id: 'time', name: '按时间排序' }
+      // ],
       params: {
         allKeyWords: '',
         // arbitraryWords: '',
@@ -250,7 +268,15 @@ export default {
         dataSourceSearch: '',
         radioSort: 'relativity'
       },
-      fileTypeList: []
+      diysizefrom: '',
+      diysizeto: '',
+      diysizefrommessage: '',
+      diysizetomessage: '',
+      fileTypeList: [],
+      issize: true,
+      sizecheckDIY: false,
+      modifyedTimeFlag: false,
+      sizecheckList: []
     }
   },
   watch: {
@@ -262,9 +288,60 @@ export default {
         })
         return false
       }
+    },
+    modifyedTime(newVal, oldVal) {
+      if (newVal !== '自定义时间') {
+        this.params.radioDiyTime = []
+      }
+    },
+    diysizefrom(newVal, oldVal) {
+      const reg = /^\+?[1-9]\d*$/
+      if (newVal !== '') {
+        this.diysizefrommessage = ''
+        if (!reg.test(newVal)) {
+          this.diysizefrommessage = '请输入大于0的正整数'
+        } else {
+          if (Number(newVal) > Number(this.diysizeto) && this.diysizeto !== '') {
+            this.diysizefrommessage = '请输入小于' + this.diysizeto + '的正整数'
+          } else if (Number(newVal) < Number(this.diysizeto) && this.diysizeto !== '') {
+            this.diysizetomessage = ''
+          } else {
+            this.diysizefrommessage = ''
+          }
+        }
+        if (newVal.length > 11) {
+          this.diysizefrommessage = '输入位数请限制在11位以内'
+        }
+      } else if (newVal === '') {
+        this.diysizefrommessage = ''
+      }
+    },
+    diysizeto(newVal, oldVal) {
+      const reg = /^\+?[1-9]\d*$/
+      if (newVal !== '') {
+        this.diysizetomessage = ''
+        if (!reg.test(newVal)) {
+          this.diysizetomessage = '请输入大于0的正整数'
+        } else {
+          if (Number(this.diysizefrom) > Number(newVal) && this.diysizefrom !== '') {
+            this.diysizetomessage = '请输入大于' + this.diysizefrom + '的正整数'
+          } else if (Number(this.diysizefrom) < Number(newVal) && this.diysizefrom !== '') {
+            this.diysizefrommessage = ''
+          } else {
+            // this.diysizefrommessage = ''
+            this.diysizetomessage = ''
+          }
+        }
+        if (newVal.length > 11) {
+          this.diysizetomessage = '输入位数请限制在11位以内'
+        }
+      } else if (newVal === '') {
+        this.diysizetomessage = ''
+      }
     }
   },
   created() {
+    this.initSettings()
     this.$nextTick(() => {
       this.$refs.searchInput.focus()
     })
@@ -282,13 +359,34 @@ export default {
         }
       }
     },
+    async getFilePath(queryString) {
+      const res = await getFilePath({ queryString })
+      if (res && res.success) {
+        for (var i = 0; i < res.datas.filePaths.length; i++) {
+          this.suggestFilePaths.push({
+            id: i,
+            value: res.datas.filePaths[i]
+
+          })
+        }
+      }
+    },
     querySearch(prefix, cb) {
       this.restaurants = []
       this.getTerms(prefix)
       // 调用 callback 返回建议列表的数据
       cb(this.restaurants)
     },
+    queryFilePathSearch(queryString, cb) {
+      this.suggestFilePaths = []
+      this.getFilePath(queryString)
+      // 调用 callback 返回建议列表的数据
+      cb(this.suggestFilePaths)
+    },
     handleSelect(item) {
+      console.log(item)
+    },
+    handleFilePathSelect(item) {
       console.log(item)
     },
     getLang(value) {
@@ -330,15 +428,85 @@ export default {
       this.params.dataSource = '1'
       this.params.dataSourceSearch = ''
       this.params.radioSort = 'relativity'
+      this.sizecheckList = []
     },
     // 更新时间
     diyTimeChange(val) {
+      // console.log(val)
+      console.log(this.modifyedTime)
+      console.log(this.params.radioDiyTime)
       if (val) {
-        this.params.radioTime = 'diy'
+        if (this.params.radioDiyTime.length > 0) {
+          this.modifyedTimeFlag = true
+        }
       }
     },
     fileTypeCheckbox(val) {
       // TODO
+    },
+    checkboxDIYChange(val) {
+      if (val) {
+        this.sizecheckDIY = false
+        this.sizecheckList = []
+        // this.searchParam.params.fileSizeList = []
+        // this.normalSearch(this.searchParam)
+      } else { this.sizecheckDIY = true }
+    },
+    fileSizeChange(val) {
+      this.sizecheckDIY = false
+      // this.searchParam.pageNo = 1
+      this.diysizefrom = ''
+      this.diysizeto = ''
+      if (val !== '自定义大小') {
+        // this.searchParam.pageNo = 1
+        // this.loading = true
+        // this.fullscreenLoading = true
+        // this.searchParam.params.searchLogId = this.searchLogId
+        // this.searchParam.params.fileSizeFrom = ''
+        // this.searchParam.params.fileSizeTo = ''
+        // this.searchParam.params.fileSizeList = val
+        // this.normalSearch(this.searchParam)
+      } else {
+        // this.searchParam.params.fileSizeList = []
+        // this.normalSearch(this.searchParam)
+      }
+    },
+    dataSourceChange(val) {
+      console.log(val)
+      if (val) {
+        this.params.dataSourceSearch = ''
+      }
+    },
+    initSettings() {
+      const userSettingMap = this.$store.state.userInfo.userSettingMap
+      console.log(userSettingMap)
+      if (userSettingMap !== undefined) {
+        if (userSettingMap.SearchDiv !== undefined) {
+          this.esSearchDiv = userSettingMap.SearchDiv
+        }
+
+        if (userSettingMap.SearchTarget !== undefined) {
+          this.esSearchTarget = userSettingMap.SearchTarget
+        }
+
+        if (userSettingMap.InitOrg !== undefined) {
+          this.initOrg = userSettingMap.InitOrg
+        } else {
+          this.initOrg = this.$store.state.userInfo.orgId
+        }
+      }
+
+      // 做成新的orgList
+      const defaultOrg = {
+        'id': this.$store.state.userInfo.orgId,
+        'fullName': this.$store.state.userInfo.orgFullName
+      }
+      this.orgList = []
+      this.orgList.push(defaultOrg)
+      const userOrgList = this.$store.state.userOrgList
+      if (userOrgList !== undefined) {
+        userOrgList.forEach((item) => this.orgList.push(item))
+      }
     }
   }
 }
@@ -455,6 +623,7 @@ export default {
   box-sizing: border-box;
   display: flex;
   justify-content: center;
+  position: relative;
 }
 .diy_filesize .from,
 .diy_filesize .to {
@@ -472,5 +641,17 @@ export default {
 }
 .search_params_item .input-with-select {
   width: 440px;
+}
+.fileszieDiyfromerror {
+  position: absolute;
+  top: 30px;
+  left: 10px;
+  color: #f54132;
+}
+.fileszieDiytoerror {
+  position: absolute;
+  top: 30px;
+  left: 255px;
+  color: #f54132;
 }
 </style>

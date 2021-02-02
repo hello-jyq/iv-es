@@ -913,6 +913,43 @@
                 "description": null
             }]
         }
+    },
+    "ESSearchSortType": {
+        "messages": [ ], 
+        "warnings": [ ], 
+        "message": null, 
+        "arguments": null, 
+        "success": true, 
+        "datas": {
+            "dicts": [
+                {
+                    "dictTypeId": "ESSearchSortType", 
+                    "dictId": "rel", 
+                    "dictName": "按相关度排序", 
+                    "status": 1, 
+                    "sortNo": 1, 
+                    "rankNo": null, 
+                    "parentId": null, 
+                    "seqNo": ".ESSearchSortType.rel.", 
+                    "filter1": null, 
+                    "filter2": null, 
+                    "description": null
+                }, 
+                {
+                    "dictTypeId": "ESSearchSortType", 
+                    "dictId": "time", 
+                    "dictName": "按时间排序", 
+                    "status": 1, 
+                    "sortNo": 2, 
+                    "rankNo": null, 
+                    "parentId": null, 
+                    "seqNo": ".ESSearchSortType.time.", 
+                    "filter1": null, 
+                    "filter2": null, 
+                    "description": null
+                }
+            ]
+        }
     }
 
 

@@ -25,6 +25,11 @@ export function advancedFilterSearch(params) {
   return request('POST', '/api/es/filtersearch', params)
 }
 
+// 查询文件目录
+export function getFilePath(params) {
+  return request('GET', '/api/es/terms/filepath', params)
+}
+
 export function filterSearch(params) {
   return request('POST', '/api/es/filtersearch', params)
 }
