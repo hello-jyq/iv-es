@@ -1120,6 +1120,20 @@ color: #666666;
     margin-top: 10px !important;
     text-decoration:none !important;
 }
+
+.search_input .value{
+        white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+
+
+
+
+
+
 /* 个人标签管理 */
 
 .perLabel_search_box input {
