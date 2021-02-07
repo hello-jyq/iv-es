@@ -1,8 +1,8 @@
 <template>
-  <div v-show="isShow" class="set_bg">
+  <div v-show="isShow" v-loading="isLoading" class="set_bg">
     <div class="set_box">
       <div class="title">
-        <div>设置</div>
+        <div>{{ $t('setting.title') }}</div>
         <span><i class="el-icon-close" @click="closedialog()" /></span>
       </div>
       <div class="set_main">
@@ -15,78 +15,99 @@
         </div>
         <div class="set_content" :class="overscroll?'overscroll':''">
           <div id="set_1" class="set_content_item">
-            <label>设置默认搜索方式</label>
+            <label>{{ $t('setting.searchDiv') }}</label>
             <div class="set_content_item_box">
               <span>
                 <dict-radio v-model="esSearchDiv" dict-type-id="ESFuzzySearch" class="light-select" theme="theme" />
               </span>
-              <button>保&nbsp;存</button>
+              <button @click="changeUserSetting('SearchDiv')">
+                {{ $t('comm.save') }}
+              </button>
             </div>
           </div>
 
           <div id="set_2" class="set_content_item">
-            <label>设置默认搜索位置</label>
+            <label>{{ $t('setting.searchTarget') }}</label>
             <div class="set_content_item_box">
               <span>
                 <dict-radio v-model="esSearchTarget" dict-type-id="ESSearchTarget" class="light-select" theme="theme" />
               </span>
-              <button>保&nbsp;存</button>
+              <button @click="changeUserSetting('SearchTarget')">
+                {{ $t('comm.save') }}
+              </button>
             </div>
           </div>
           <div id="set_3" class="set_content_item">
-            <label>设置登录默认组织</label>
+            <label>{{ $t('setting.initOrg') }}</label>
             <div class="set_content_item_box org_group">
               <span>
                 <el-radio-group v-model="initOrg">
                   <el-radio v-for="item in orgList" :key="item.id" :label="item.id">{{ item.fullName }}</el-radio>
                 </el-radio-group>
-              
-                <!--
-               <el-radio v-model="defaultOrg" label="1">
-                  组织1
-                </el-radio>
-                <el-radio v-model="defaultOrg" label="2">
-                  组织2
-                </el-radio>
-                <el-radio v-model="defaultOrg" label="3">
-                  组织3
-                </el-radio>-->
               </span>
-              <button>保&nbsp;存</button>
+              <button v-if="showOrgSaveButtonFlag" @click="changeUserSetting('InitOrg')">
+                {{ $t('comm.save') }}
+              </button>
             </div>
           </div>
           <div id="set_4" class="set_content_item">
-            <label>设置登录密码</label>
+            <label>{{ $t('setting.changePassword') }}</label>
             <div class="set_content_item_box_auto">
               <div class="set_items">
                 <div class="set_items_title">
-                  旧密码
+                  {{ $t('comm.nowPassword') }}
                 </div>
                 <div class="set_items_input">
-                  <el-input v-model="oldPassword" placeholder="请输入您的旧密码" />
+                  <el-input
+                    v-model="oldPassword"
+                    :placeholder="$t('comm.msgnowPassword')"
+                    type="password"
+                    show-password
+                    @blur="validator('oldPassword')"
+                  />
+                  <span ref="oldPassword" data-roles="required" :data-value="oldPassword" class="message" />
                 </div>
               </div>
               <div class="set_items">
                 <div class="set_items_title">
-                  新密码
+                  {{ $t('comm.newPassword') }}
                 </div>
                 <div class="set_items_input">
-                  <el-input v-model="newPassword" placeholder="请输入您的新密码" />
+                  <el-input
+                    v-model="newPassword"
+                    :placeholder="$t('comm.msgnewPassword')"
+                    type="password"
+                    maxlength="20"
+                    show-password
+                    @blur="validator('newPassword')"
+                  />
+                  <span ref="newPassword" data-roles="required,password" :data-value="newPassword" class="message" />
                 </div>
               </div>
               <div class="set_items">
                 <div class="set_items_title">
-                  确认密码
+                  {{ $t('comm.cPassword') }}
                 </div>
                 <div class="set_items_input">
-                  <el-input v-model="surePassword" placeholder="请再次输入您的密码" />
+                  <el-input
+                    v-model="reNewPassword"
+                    :placeholder="$t('comm.msgcPassword')"
+                    type="password"
+                    maxlength="20"
+                    show-password
+                    @blur="validator('reNewPassword')"
+                  />
+                  <span ref="reNewPassword" data-roles="required,password" :data-value="reNewPassword" class="message" />
                 </div>
               </div>
-              <button>保&nbsp;存</button>
+              <button :disabled="!validatorState" @click="handleChangePasswordOkClick">
+                {{ $t('comm.save') }}
+              </button>
             </div>
           </div>
+          <!--
           <div id="set_5" class="set_content_item">
-            <label>设置删除联想词</label>
+            <label>清空联想词</label>
             <div class="set_content_item_box_auto">
               <div>
                 <el-checkbox v-model="checkAll" :indeterminate="isIndeterminate" @change="handleCheckAllChange">
@@ -103,13 +124,22 @@
                 </el-checkbox>
               </el-checkbox-group>
             </div>
+          </div> -->
+          <div id="set_5" class="set_content_item">
+            <label>{{ $t('setting.clearTeams') }}</label>
+            <div class="set_content_item_box">
+              <span><i class="iconfont icon-jinggao" />{{ $t('setting.msg1') }}</span>
+              <button @click="handleClearTerms">
+                {{ $t('comm.delete') }}
+              </button>
+            </div>
           </div>
           <div id="set_6" class="set_content_item">
-            <label>清空搜索履历</label>
+            <label>{{ $t('setting.clearLogs') }}</label>
             <div class="set_content_item_box">
-              <span><i class="iconfont icon-jinggao" />清空所有的所搜履历</span>
-              <button>
-                删&nbsp;除
+              <span><i class="iconfont icon-jinggao" />{{ $t('setting.msg2') }}</span>
+              <button @click="handleClearLogs">
+                {{ $t('comm.delete') }}
               </button>
             </div>
           </div>
@@ -120,10 +150,14 @@
 </template>
 <script>
 import DictRadio from '@/components/DictRadio'
+import { changePassword, changeUserSetting } from '@/api/login'
+import { clearTerms, clearLogs } from '@/api/es/es-api.js'
+import { formValidator } from '@/mixins/form-validator.js'
 export default {
   components: {
     DictRadio
   },
+  mixins: [formValidator],
   props: {
     isShow: {
       type: Boolean,
@@ -136,31 +170,33 @@ export default {
       isVisible: this.isShow,
       overscroll: false,
       menu: [
-        { icon: 'iconfont icon-sousuowenjian', name: '设置默认搜索方式' },
-        { icon: 'iconfont icon-zhidingweizhi', name: '设置默认搜索位置' },
-        { icon: 'iconfont icon-zuzhiDataOrganization6', name: '设置登陆默认组织' },
-        { icon: 'iconfont icon-mima', name: '设置登录密码' },
-        { icon: 'iconfont icon-shanchu1', name: '设置删除联想词' },
-        { icon: 'iconfont icon-qingkongbeifen', name: '清空搜索履历' }
+        { icon: 'iconfont icon-sousuowenjian', name: this.$t('setting.searchDiv') },
+        { icon: 'iconfont icon-zhidingweizhi', name: this.$t('setting.searchTarget') },
+        { icon: 'iconfont icon-zuzhiDataOrganization6', name: this.$t('setting.initOrg') },
+        { icon: 'iconfont icon-mima', name: this.$t('setting.changePassword') },
+        { icon: 'iconfont icon-shanchu1', name: this.$t('setting.clearTeams') },
+        { icon: 'iconfont icon-qingkongbeifen', name: this.$t('setting.clearLogs') }
       ],
       searchType: '1',
       defaultOrg: '1',
       searchPosition: '1',
       oldPassword: '',
       newPassword: '',
-      surePassword: '',
+      reNewPassword: '',
       Wordschecked: [],
       checkAll: false,
-      associatedWords: ['neuron設計書', '導入 neuron', 'neuron導入5', 'neuron営業資', 'active directory neuron', 'elasticsearch neuron7', 'active direc1tory neuron', 'active directory neuron ', 'neuron設1計書', 'neuron導入', '導2入 neuron', 'elasticsearch neuron2', 'elasticsearch neuron'],
+      // sociatedWords: ['neuron設計書', '導入 neuron', 'neuron導入5', 'neuron営業資', 'active directory neuron', 'elasticsearch neuron7', 'active direc1tory neuron', 'active directory neuron ', 'neuron設1計書', 'neuron導入', '導2入 neuron', 'elasticsearch neuron2', 'elasticsearch neuron'],
       isIndeterminate: false,
       esSearchDiv: '0',
       esSearchTarget: 'ALL',
       initOrg: '',
-      orgList: []
+      orgList: [],
+      showOrgSaveButtonFlag: false,
+      isLoading: false
     }
   },
   watch: {
-    'isShow': function (newVal, oldVal) {
+    'isShow': function(newVal, oldVal) {
       if (newVal === true) {
         // // console.log(this.$refs.upload)
         this.initSettings()
@@ -186,7 +222,7 @@ export default {
     },
     initSettings() {
       const userSettingMap = this.$store.state.userInfo.userSettingMap
-      if (userSettingMap !== undefined) {
+      if (userSettingMap !== undefined && userSettingMap !== null) {
         if (userSettingMap.SearchDiv !== undefined) {
           this.esSearchDiv = userSettingMap.SearchDiv
         }
@@ -200,6 +236,10 @@ export default {
         } else {
           this.initOrg = this.$store.state.userInfo.orgId
         }
+      } else {
+        this.initOrg = this.$store.state.userInfo.orgId
+        this.esSearchDiv = '0'
+        this.esSearchTarget = 'ALL'
       }
 
       // 做成新的orgList
@@ -207,12 +247,154 @@ export default {
         'id': this.$store.state.userInfo.orgId,
         'fullName': this.$store.state.userInfo.orgFullName
       }
+
+      this.showOrgSaveButtonFlag = false
       this.orgList = []
       this.orgList.push(defaultOrg)
       const userOrgList = this.$store.state.userOrgList
       if (userOrgList !== undefined) {
+        this.showOrgSaveButtonFlag = true
         userOrgList.forEach((item) => this.orgList.push(item))
       }
+    },
+    changeUserSetting(setType) {
+      let msg = ''
+      let setValue = ''
+
+      if (setType === 'InitOrg') {
+        msg = this.$t('comm.tip24')
+        setValue = this.initOrg
+      } else if (setType === 'SearchDiv') {
+        msg = this.$t('comm.tip22')
+        setValue = this.esSearchDiv
+      } else if (setType === 'SearchTarget') {
+        msg = this.$t('comm.tip23')
+        setValue = this.esSearchTarget
+      }
+
+      this.$confirm(msg, this.$t('comm.tips'), {
+        confirmButtonText: this.$t('comm.certain'),
+        cancelButtonText: this.$t('comm.cancel'),
+        type: 'warning'
+      }).then(async() => {
+        const param = { key: setType, value: setValue }
+        const res = await changeUserSetting(param)
+        // eslint-disable-next-line no-empty
+        if (res && res.success) {
+          // 反写设置
+          const userInfo = this.$store.state.userInfo
+          let userSettingMap = userInfo.userSettingMap
+          if (userSettingMap === undefined || userSettingMap === null) {
+            userSettingMap = {}
+          }
+          // 修改state里的值
+          if (setType === 'InitOrg') {
+            userSettingMap.InitOrg = setValue
+          } else if (setType === 'SearchDiv') {
+            userSettingMap.SearchDiv = setValue
+          } else if (setType === 'SearchTarget') {
+            userSettingMap.SearchTarget = setValue
+          }
+
+          userInfo.userSettingMap = userSettingMap
+          this.$store.commit('SET_USER_INFO', userInfo)
+
+          this.$message({
+            type: 'info',
+            message: this.$t('comm.success')
+          })
+        }
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: this.$t('comm.msg1')
+        })
+      })
+    },
+    handleChangePasswordOkClick() {
+      if (!this.validatorAll()) {
+        return false
+      }
+      if (this.newPassword !== this.reNewPassword) {
+        this.setValidatorMessage('reNewPassword', this.$t('home.msg1'))
+        this.validatorState = false
+        return
+      }
+      if (this.newPassword === this.oldPassword) {
+        this.setValidatorMessage('newPassword', this.$t('home.msg2'))
+        this.validatorState = false
+        return
+      }
+      if (this.newPassword === this.$store.state.userInfo.userName) {
+        this.setValidatorMessage('newPassword', this.$t('home.msg3'))
+        this.validatorState = false
+        return
+      }
+
+      this.$confirm(this.$t('comm.tip21'), this.$t('comm.tips'), {
+        confirmButtonText: this.$t('comm.certain'),
+        cancelButtonText: this.$t('comm.cancel'),
+        type: 'warning'
+      }).then(async() => {
+        const param = { oldPassword: this.oldPassword, newPassword: this.newPassword }
+        const res = await changePassword(param)
+        // eslint-disable-next-line no-empty
+        if (res && res.success) {
+          this.$message({
+            type: 'info',
+            message: this.$t('comm.success')
+          })
+        }
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: this.$t('comm.msg1')
+        })
+      })
+    },
+    handleClearTerms() {
+      this.$confirm(this.$t('comm.tip25'), this.$t('comm.tips'), {
+        confirmButtonText: this.$t('comm.certain'),
+        cancelButtonText: this.$t('comm.cancel'),
+        type: 'warning'
+      }).then(async() => {
+        const param = {}
+        const res = await clearTerms(param)
+        // eslint-disable-next-line no-empty
+        if (res && res.success) {
+          this.$message({
+            type: 'info',
+            message: this.$t('comm.success')
+          })
+        }
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: this.$t('comm.msg1')
+        })
+      })
+    },
+    handleClearLogs() {
+      this.$confirm(this.$t('comm.tip26'), this.$t('comm.tips'), {
+        confirmButtonText: this.$t('comm.certain'),
+        cancelButtonText: this.$t('comm.cancel'),
+        type: 'warning'
+      }).then(async() => {
+        const param = {}
+        const res = await clearLogs(param)
+        // eslint-disable-next-line no-empty
+        if (res && res.success) {
+          this.$message({
+            type: 'info',
+            message: this.$t('comm.success')
+          })
+        }
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: this.$t('comm.msg1')
+        })
+      })
     }
   }
 }
@@ -407,5 +589,9 @@ export default {
 }
 .org_group button {
   margin-top: -10px;
+}
+
+.set_items_input .message {
+    color: red;
 }
 </style>

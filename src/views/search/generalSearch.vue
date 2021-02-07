@@ -4,7 +4,7 @@
       <el-col :span="24">
         <!-- 拉取联想词 -->
         <el-autocomplete
-		  ref="searchInput"
+          ref="searchInput"
           v-model="searchs"
           class="inline-input search_input"
           placeholder="请输入您想要搜索的内容"
@@ -318,7 +318,7 @@ export default {
     },
     querySearch(prefix, cb) {
       this.restaurants = []
-      // this.getTerms(prefix)
+      this.getTerms(prefix)
       // 调用 callback 返回建议列表的数据
       cb(this.restaurants)
     },

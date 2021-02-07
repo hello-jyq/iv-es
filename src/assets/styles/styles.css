@@ -48,7 +48,7 @@
     min-width: 270px;
   }
   .result_filter{
-    width: 310px;
+    min-width: 310px;
     height: 100%;   
   }
   .result_filter_all{

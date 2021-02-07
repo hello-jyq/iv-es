@@ -38,7 +38,7 @@
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item @click.native="dialogCustomSettingVisible=true">
                 <i class="iconfont icon-shezhi1" />
-                设置
+                系统设置
               </el-dropdown-item>
               <el-dropdown-item v-if="showChangeOrgMenu == true" @click.native="handleChangeOrgOpenClickTest">
                 <i class="iconfont icon-qiehuan" />

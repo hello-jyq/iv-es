@@ -22,3 +22,7 @@ export function loginByToken(params) {
 export function changeOrg(params) {
   return request('POST', '/api/auth/changeOrg', params)
 }
+
+export function changeUserSetting(params) {
+  return request('POST', '/api/auth/usersetting', params)
+}

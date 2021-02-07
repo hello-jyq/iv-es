@@ -62,3 +62,7 @@ export function getFoldertree(params) {
   return request('POST', '/api/folderauth/foldertree', params)
 }
 
+// 根据文档id查询文档信息
+export function getDocById(param) {
+  return request('GET', '/api/es/doc/' + param)
+}
