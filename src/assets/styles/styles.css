@@ -123,7 +123,15 @@
     color: #999999;
     
   }
-
+  .div_inpuut{
+    position: absolute;
+    /* width: 430px; */
+    width: 500px;
+    height: 38px;
+    top: 0px;
+    left: 1px;
+    background: #2D7A9C;
+  }
   .show{
     display:block !important;
   }

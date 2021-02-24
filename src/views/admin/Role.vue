@@ -505,7 +505,7 @@ export default {
   .content {
     .pagination {
       text-align: right;
-      padding: 10px 0;
+      // padding: 10px 0;
     }
     .roleDialog {
       .main {

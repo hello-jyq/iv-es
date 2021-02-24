@@ -7,7 +7,7 @@
           v-model="searchs"
           class="inline-input search_input"
           :fetch-suggestions="querySearch"
-          placeholder="请输入您想要搜索的内容"
+          :placeholder="$t('normal.searchInput')"
           :trigger-on-focus="false"
           clearable
           :maxlength="81"
@@ -17,7 +17,7 @@
         >
           <i slot="prefix" class="iconfont icon-sousuo1" />
           <el-button slot="suffix" @click="search">
-            搜&nbsp;&nbsp;索
+            {{ $t('normal.searchBtn') }}
           </el-button>
         </el-autocomplete>
       </el-col>
@@ -26,94 +26,53 @@
         class="flex_ceter"
         style="height: 24px; line-height: 24px"
       >
-        <span class="font_size_14 fontC_333">搜索位置：</span>
-        <dict-radio v-model="esSearchTarget" dict-type-id="ESSearchTarget" />
-        <!-- <el-radio-group v-model="radio">
-          <el-radio label="ALL">
-            不限
-          </el-radio>
-          <el-radio label="FILENAME">
-            文件名
-          </el-radio>
-          <el-radio label="FILECONTENT">
-            文件内容
-          </el-radio>
-        </el-radio-group> -->
-        <!-- <span class="font_size_14 fontC_333">文档语言：</span>
-        <el-select v-model="lang" placeholder="选择语言" placement="top-end" popper-class="lang_select" @change="getLang">
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
-        </el-select> -->
+        <span class="font_size_14 fontC_333">{{ $t('normal.fieldScale') }}：</span>
+        <dict-radio v-model="fieldScale" dict-type-id="ESSearchTarget" />
         <span
           class="font_size_14 fontC_333"
           style="margin-left: 20px"
-        >搜索方式：</span>
-        <!-- <el-select v-model="fuzzy" placeholder="请选择" placement="top-end" popper-class="lang_select" @change="getFuzzy">
-          <el-option
-            v-for="item in searchOption"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
-        </el-select> -->
-        <dict-select v-model="esSearchDiv" dict-type-id="ESFuzzySearch" :clearable="false" />
+        >{{ $t('normal.fuzzySearchDiv') }}：</span>
+        <dict-select v-model="fuzzySearchDiv" dict-type-id="ESFuzzySearch" :clearable="false" />
       </el-col>
     </el-row>
     <el-row class="search_params">
       <div class="reset_filter_btn">
         <span
           @click="resetFilterClick()"
-        ><i class="iconfont icon-shuaxin" />重置</span>
+        ><i class="iconfont icon-shuaxin" />{{ $t('normal.reset') }}</span>
       </div>
       <div class="search_params_item">
-        <span><i class="iconfont icon-sousuoguanjianci" />搜索关键字：</span>
+        <span><i class="iconfont icon-sousuoguanjianci" />{{ $t('normal.searchResult') }}：</span>
         <el-input
           v-model="allKeyWords"
-          placeholder="请输入内容"
+          :placeholder="$t('comm.msg29')"
           maxlength="10"
           clearable
         >
           <template slot="prepend">
-            包含全部关键词
+            {{ $t('normal.allKeyWords') }}
           </template>
         </el-input>
-        <!-- <el-input v-model="params.arbitraryWords" placeholder="请输入内容">
-          <template slot="prepend">
-            包含任意关键词
-          </template>
-        </el-input> -->
         <el-input
           v-model="notIncludeKeyWords"
-          placeholder="请输入内容"
+          :placeholder="$t('comm.msg29')"
           maxlength="10"
           clearable
         >
           <template slot="prepend">
-            不包含关键词
+            {{ $t('normal.notIncludeKeyWords') }}
           </template>
         </el-input>
       </div>
       <div class="search_params_item">
-        <span><i class="iconfont icon-shijian" />更新日期：</span>
-        <!-- <el-radio-group v-model="params.radioTime">
-          <el-radio v-for="time in radioTimeList" :key="time.id" :label="time.id">
-            {{ time.name }}
-          </el-radio>
-        </el-radio-group> -->
+        <span><i class="iconfont icon-shijian" />{{ $t('normal.modifyedTime') }}：</span>
         <dict-radio v-model="modifyedTime" dict-type-id="ESSearchModifyedTime" />
-        <!-- <el-radio v-model="modifyedTime" label="diy">
-          自定义时间
-        </el-radio> -->
         <el-date-picker
           v-model="radioDiyTime"
           class="diy_time"
           :disabled="modifyedTime === 'diy' ? false : true"
           popper-class="date_picker"
-          value-format="yyyy-MM-dd"
+          value-format="yyyy-MM-dd HH:mm:ss"
           type="daterange"
           unlink-panels
           range-separator="至"
@@ -123,7 +82,7 @@
         />
       </div>
       <div class="search_params_item">
-        <span><i class="iconfont icon-duomeitiicon-" />文档类型：</span>
+        <span><i class="iconfont icon-duomeitiicon-" />{{ $t('normal.fileType') }}：</span>
         <dict-checkbox
           v-model="fileType"
           dict-type-id="ESFilterExtent"
@@ -137,7 +96,7 @@
         <!-- <dict-checkbox></dict-checkbox> -->
       </div>
       <div class="search_params_item">
-        <span><i class="iconfont icon-daxiao" />文件大小：</span>
+        <span><i class="iconfont icon-daxiao" />{{ $t('normal.fileSize') }}：</span>
         <dict-checkbox
           v-show="issize"
           v-model="fileSize"
@@ -163,17 +122,17 @@
             v-model="diysizefrom"
             :disabled="fileSizeDiy ? false : true"
             class="from"
-            placeholder="请输入数值"
+            :placeholder="$t('normal.numInputStart')"
             prefix-icon="iconfont icon-daxiao"
             clearable
           />
           <span class="fileszieDiyfromerror">{{ diysizefrommessage }}</span>
-          <span class="zhi">至</span>
+          <span class="zhi">{{ $t('normal.timeSplit') }}</span>
           <el-input
             v-model="diysizeto"
             :disabled="fileSizeDiy ? false : true"
             class="to"
-            placeholder="请输入数值"
+            :placeholder="$t('normal.numInputEnd')"
             prefix-icon="iconfont icon-daxiao"
             clearable
           />
@@ -182,22 +141,19 @@
         </div>
       </div>
       <div class="search_params_item">
-        <span><i class="iconfont icon-mulu" />目录搜索：</span>
+        <span><i class="iconfont icon-mulu" />{{ $t('normal.folderSearch') }}：</span>
         <dict-select
           v-model="dataSource"
           class="select_input"
           dict-type-id="ESDataSourceName"
           @change="dataSourceChange"
         />
-        <!-- <el-input v-model="params.dataSourceSearch" placeholder="请输入内容" class=" select_input_value" /> -->
-        <!-- 当输入建议框发生改变时触发的事件 -->
-        <!-- @input="filePathInputChange" -->
         <el-autocomplete
           ref="filePathsearchInput"
           v-model="dataSourceFilePath"
           class="select_input_value"
           :fetch-suggestions="queryFilePathSearch"
-          placeholder="请输入您要搜索的目录（/Public_all$/310.Public_ITS_InfraServiceDept/HR-FI/...）"
+          :placeholder="$t('normal.pathSuggestions')"
           :trigger-on-focus="false"
           clearable
           :disabled="filePathInputEnable ? false : true"
@@ -220,10 +176,6 @@
           </template>
         </el-autocomplete>
       </div>
-      <!-- <div class="search_params_item">
-        <span><i class="iconfont icon-paixu" />排序方式：</span>
-        <dict-radio v-model="searchSortType" dict-type-id="ESSearchSortType" />
-      </div> -->
     </el-row>
   </div>
 </template>
@@ -243,13 +195,11 @@ export default {
       restaurants: [],
       suggestFilePaths: [],
       searchs: '',
-      esSearchDiv: 'ALL',
-      esSearchTarget: '2',
+      fuzzySearchDiv: '',
+      fieldScale: '',
       allKeyWords: '',
-      // arbitraryWords: '',
       notIncludeKeyWords: '',
       modifyedTime: '0',
-      radioTime: 'ALL',
       radioDiyTime: [],
       fileType: [],
       fileSize: [],
@@ -257,6 +207,7 @@ export default {
       diysizeto: '',
       dataSource: '',
       dataSourceFilePath: '',
+      selectedFullFilePath: '',
       searchSortType: 'rel',
       diysizefrommessage: '',
       diysizetomessage: '',
@@ -282,11 +233,11 @@ export default {
       }
     },
     diysizefrom(newVal, oldVal) {
-      const reg = /^\+?[1-9]\d*$/
+      const reg = /^\+?[0-9]\d*$/
       if (newVal !== '') {
         this.diysizefrommessage = ''
         if (!reg.test(newVal)) {
-          this.diysizefrommessage = '请输入大于0的正整数'
+          this.diysizefrommessage = '请输入大于等于0的正整数'
         } else {
           if (
             Number(newVal) > Number(this.diysizeto) &&
@@ -311,11 +262,11 @@ export default {
       }
     },
     diysizeto(newVal, oldVal) {
-      const reg = /^\+?[1-9]\d*$/
+      const reg = /^\+?[0-9]\d*$/
       if (newVal !== '') {
         this.diysizetomessage = ''
         if (!reg.test(newVal)) {
-          this.diysizetomessage = '请输入大于0的正整数'
+          this.diysizetomessage = '请输入大于等于0的正整数'
         } else {
           if (
             Number(this.diysizefrom) > Number(newVal) &&
@@ -365,7 +316,8 @@ export default {
         for (var i = 0; i < res.datas.filePaths.length; i++) {
           this.suggestFilePaths.push({
             id: i,
-            value: res.datas.filePaths[i]
+            value: res.datas.filePaths[i].slice(2),
+            fullFilePath: res.datas.filePaths[i]
           })
         }
       }
@@ -387,8 +339,14 @@ export default {
     handleSelect(item) {
       console.log(item)
     },
+    // 目录搜索被选中的项目
     handleFilePathSelect(item) {
-      console.log(item)
+      // 被选中完整文件目录（包括盘符）
+      const fullFilePath = item.fullFilePath
+      this.selectedFullFilePath = fullFilePath
+      // const divinpuut = document.createElement('div')
+      // divinpuut.className = 'div_inpuut'
+      // document.querySelector('.search_params_item .select_input_value').appendChild(divinpuut)
     },
     getLang(value) {
       this.lang = value
@@ -403,8 +361,8 @@ export default {
           name: 'advancedSearchresult',
           params: {
             search: this.searchs,
-            radio: this.esSearchTarget,
-            fuzzy: this.esSearchDiv,
+            radio: this.fieldScale,
+            fuzzy: this.fuzzySearchDiv,
             allKeyWords: this.allKeyWords,
             notIncludeKeyWords: this.notIncludeKeyWords,
             modifyedTime: this.modifyedTime,
@@ -417,7 +375,7 @@ export default {
             diysizefrom: this.diysizefrom,
             diysizeto: this.diysizeto,
             dataSource: this.dataSource,
-            dataSourceFilePath: this.dataSourceFilePath,
+            dataSourceFilePath: this.selectedFullFilePath,
             searchSortType: this.searchSortType
           }
         })
@@ -434,7 +392,7 @@ export default {
       this.allKeyWords = ''
       this.notIncludeKeyWords = ''
       this.modifyedTime = '0'
-      this.radioTime = 'ALL'
+      // this.radioTime = 'ALL'
       this.radioDiyTime = []
       this.fileType = []
       this.fileSize = []
@@ -447,9 +405,6 @@ export default {
     },
     // 更新时间
     diyTimeChange(val) {
-      // console.log(val)
-      console.log(this.modifyedTime)
-      console.log(this.radioDiyTime)
       if (val) {
         if (this.radioDiyTime.length > 0) {
           this.modifyStartTime = val[0]
@@ -465,40 +420,37 @@ export default {
       if (val) {
         this.fileSizeDiy = false
         this.fileSize = []
-        // this.searchParam.params.fileSizeList = []
-        // this.normalSearch(this.searchParam)
       } else {
         this.fileSizeDiy = true
       }
     },
     fileSizeChange(val) {
-      console.log(val)
-      // this.fileSizeDiy = false
-      // // this.searchParam.pageNo = 1
-      // this.diysizefrom = ''
-      // this.diysizeto = ''
-      // if (val.length > 1) {
-      //   if (!val.contains('diy')) {
-      //     this.diysizefrom = ''
-      //     this.diysizeto = ''
-      //     // this.fileSize.remove('diy')
-      //     this.fileSizeDiy = false
-      //   } else {
-      //     this.fileSizeDiy = true
-      //     this.fileSize.remove('diy')
-      //   }
-      // } else {
-      //   if (!val.contains('diy')) {
-      //     this.diysizefrom = ''
-      //     this.diysizeto = ''
-      //     // this.fileSize.remove('diy')
-      //     this.fileSizeDiy = false
-      //   } else {
-      //     this.fileSizeDiy = true
-      //     this.fileSize = ['diy']
-      //   }
-      // }
-      // if (!val.contains('diy')){}
+      if (val.length > 1) {
+        if (val.contains('diy')) {
+          const diyIndex = val.indexOf('diy')
+          console.log(diyIndex)
+          if (diyIndex > -1) {
+            if (!this.fileSizeDiy) {
+              this.fileSize = ['diy']
+            } else {
+              val.splice(diyIndex, 1)
+              console.log(val)
+              this.fileSize = val
+            }
+          }
+        } else {
+          //
+        }
+      }
+      if (val.contains('diy')) {
+        console.log('111')
+        this.fileSizeDiy = true
+        this.fileSize = ['diy']
+      } else {
+        this.fileSizeDiy = false
+        this.diysizefrom = ''
+        this.diysizeto = ''
+      }
     },
     dataSourceChange(val) {
       console.log(val)
@@ -509,6 +461,7 @@ export default {
         this.dataSourceFilePath = ''
       } else {
         this.filePathInputEnable = false
+        this.dataSourceFilePath = ''
       }
     },
     initSettings() {
@@ -516,11 +469,11 @@ export default {
       console.log(userSettingMap)
       if (userSettingMap !== undefined) {
         if (userSettingMap.SearchDiv !== undefined) {
-          this.esSearchDiv = userSettingMap.SearchDiv
+          this.fuzzySearchDiv = userSettingMap.SearchDiv
         }
 
         if (userSettingMap.SearchTarget !== undefined) {
-          this.esSearchTarget = userSettingMap.SearchTarget
+          this.fieldScale = userSettingMap.SearchTarget
         }
 
         if (userSettingMap.InitOrg !== undefined) {
@@ -541,17 +494,13 @@ export default {
       if (userOrgList !== undefined) {
         userOrgList.forEach((item) => this.orgList.push(item))
       }
+    },
+    getArrayIndex(val) {
+      for (var i = 0; i < this.length; i++) {
+        if (this[i] == val) return i
+      }
+      return -1
     }
-    // filePathInputChange(val) {
-    //   if (val) {
-    //     if (!this.dataSource) {
-    //       this.$message({
-    //         message: '请选择文件服务器！',
-    //         type: 'warning'
-    //       })
-    //     }
-    //   }
-    // }
   }
 }
 </script>
@@ -697,5 +646,11 @@ export default {
   top: 30px;
   left: 255px;
   color: #f54132;
+}
+.icon-shuaxin{
+  color: #2d7a9c;
+}
+.kb{
+  margin-left: 5px;
 }
 </style>

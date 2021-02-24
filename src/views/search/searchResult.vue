@@ -97,13 +97,13 @@
                   <span class="filter_number">{{ time.count }}</span>
                 </template>
               </el-radio>
-              <el-radio label="自定义时间" />
+              <el-radio label="自定义日期" />
             </el-radio-group>
             <div v-show="isradio" class="block">
               <el-date-picker
                 v-model="radiotime"
                 class="diy_time"
-                :disabled="radiocheckList==='自定义时间'?false:true"
+                :disabled="radiocheckList==='自定义日期'?false:true"
                 popper-class="date_picker"
                 value-format="yyyy-MM-dd HH:mm:ss"
                 type="datetimerange"
@@ -380,7 +380,13 @@
         </el-pagination>
       </div>
     </div>
-    <el-dialog
+
+    <thumbnail-dailog
+      :is-show="centerDialogVisible"
+      :doc-obj="sltData"
+      @onClose="closeSLT"
+    />
+    <!-- <el-dialog
       v-model="sltData"
       title="缩略图"
       :visible.sync="centerDialogVisible"
@@ -427,7 +433,7 @@
       <div class="slt_down" @click="download(sltData.fileUrl, sltData.id)">
         <i class="iconfont icon-Group-" />点击下载
       </div>
-    </el-dialog>
+    </el-dialog> -->
     <el-dialog
       title="自定义文件大小"
       :visible.sync="filesizeDialogVisible"
@@ -468,9 +474,11 @@ import { permission } from '@/mixins/permission-mixin'
 import { normalSearch, downloadFile, getTerms, filterSearch } from '@/api/es/es-api'
 // import DictCheckbox from '../../components/DictCheckbox.vue'
 // import { getDictEntriesByTypeId } from '@/api/base'
+import thumbnailDailog from '../searchManagement/_thumbnail.vue'
 
 export default {
   components: {
+    thumbnailDailog
   },
   // filters: {
   //   // 当标题字数超出时，超出部分显示’...‘。此处限制超出8位即触发隐藏效果
@@ -816,21 +824,21 @@ export default {
     this.$nextTick(() => {
       this.sltLoading = false
     })
-    this.$nextTick(() => {
-      const firstPageStatue = document.getElementsByClassName('btn-prev')[0].disabled
-      const lastPageStatue = document.getElementsByClassName('btn-next')[0].disabled
-      // console.log(111111111111, firstPageStatue, lastPageStatue)
-      if (firstPageStatue) {
-        document.getElementsByClassName('first-pager')[0].disabled = true
-      } else {
-        document.getElementsByClassName('first-pager').disabled = false
-      }
-      if (lastPageStatue) {
-        document.getElementsByClassName('last-pager')[0].disabled = true
-      } else {
-        document.getElementsByClassName('last-pager')[0].disabled = false
-      }
-    })
+    // this.$nextTick(() => {
+    //   const firstPageStatue = document.getElementsByClassName('btn-prev')[0].disabled
+    //   const lastPageStatue = document.getElementsByClassName('btn-next')[0].disabled
+    //   // console.log(111111111111, firstPageStatue, lastPageStatue)
+    //   if (firstPageStatue) {
+    //     document.getElementsByClassName('first-pager')[0].disabled = true
+    //   } else {
+    //     document.getElementsByClassName('first-pager').disabled = false
+    //   }
+    //   if (lastPageStatue) {
+    //     document.getElementsByClassName('last-pager')[0].disabled = true
+    //   } else {
+    //     document.getElementsByClassName('last-pager')[0].disabled = false
+    //   }
+    // })
   },
   methods: {
     btnSearch() {
@@ -1342,7 +1350,7 @@ export default {
     radioTimeCheck(value) {
       // console.log(value)
       // console.log(this.radiotime)
-      if (value !== '自定义时间') {
+      if (value !== '自定义日期') {
         this.loading = true
         this.fullscreenLoading = true
         this.searchParam.pageNo = 1
@@ -1529,9 +1537,10 @@ export default {
     },
     showSLT(item) {
       // 成功回调函数停止加载
-      this.centerDialogVisible = true
       this.sltData = item
-      this.$nextTick(() => {
+      this.sltData.searchLogId = this.searchLogId
+      this.centerDialogVisible = true
+      /* this.$nextTick(() => {
         var loading = this.$loading({
           lock: true, // lock的修改符--默认是false
           text: 'Loading', // 显示在加载图标下方的加载文案
@@ -1551,20 +1560,17 @@ export default {
         if (item.fileType === 'Others') {
           loading.close()
         }
-      })
-      // this.sltLoading = true
-      // const contextPath = window.location.origin
-      // console.log(contextPath)
-      // const baseApi = contextPath + '/iv-es/api/es/view/'
+      }) */
     },
     closeSLT() {
-      this.kkfileviewurl = ''
+      this.centerDialogVisible = false
+      /* this.kkfileviewurl = ''
       const slt = document.getElementsByClassName('el-loading-mask')
       // console.log(slt)
       for (let i = 0; i < slt.length; i++) {
         // slt[i].style.visibility = 'visible'
         slt[i].style.visibility = 'hidden'
-      }
+      } */
     },
     copyUrl(i) {
       document.getElementById('urlcoby' + i).select()
@@ -1919,7 +1925,7 @@ export default {
   word-break: break-all;
 }
 .each_r_title span {
-  display: block;
+  display:ruby;
   max-width: 70%;
   height: 25px;
   white-space: nowrap;

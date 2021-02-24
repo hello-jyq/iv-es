@@ -271,6 +271,9 @@ background: none;
 .search_box  .el-input--prefix .el-input__inner {
     padding-left: 55px;
 }
+.flieSize .el-input--prefix .el-input__inner {
+    padding-left: 15px;
+}
 .search_input .popper__arrow::after {
     border-bottom-color: #fff !important;
     border-top-color: #fff !important;
@@ -283,7 +286,7 @@ background: none;
   border-radius: 4px;
   line-height: 24px;
   border: 1px solid #CCCCCC;
-  color: #333333;
+  /* color: #333333; */
 }
 .lang_select  .popper__arrow::after {
     border-bottom-color: #fff !important;
@@ -315,6 +318,7 @@ background: none;
 }
 .theme_search_input .el-input__inner {
   height: 38px;
+  line-height: 36px;
   background: #FFFFFF;
   border-radius: 4px;
   border: 1px solid #CCCCCC;
@@ -664,7 +668,7 @@ color: #2D7A9C;
     width: auto;
 }
 .diy_time{
-    width: 100% !important;
+    /* width: 100% !important; */
 }
 
 .diy_size {
@@ -1036,7 +1040,7 @@ background: #F5F5F5;
 }
 .search_params_item .el-input  input{
     border-left: 0;
-    border-color: #cccccc;
+    border-color: #cccccc !important;
 }
 .search_params_item .el-input  input:hover{
     border-color: #cccccc;
@@ -1089,8 +1093,21 @@ color: #666666;
     line-height: 38px;
     max-width: 250px;
 }
-
-
+.search_box .select_input .el-input__inner{
+    height: 38px;
+    border-right: 0;
+    border-top-right-radius: 0;
+     border-bottom-right-radius: 0;
+}
+.search_box .select_input .el-input::after {
+    position: absolute;
+    right: 0px;
+    top: 9px;
+    width: 1px;
+    height: 18px;
+    content: "";
+    background: #cccccc;
+}
 .person_label_dialog .el-dialog {
   width: 850px;
   height: auto;
@@ -1121,18 +1138,9 @@ color: #666666;
     text-decoration:none !important;
 }
 
-.search_input .value{
-        white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.theme_search .el-cascader-node i{
+    line-height: 0;
 }
-
-
-
-
-
-
-
 
 /* 个人标签管理 */
 
@@ -1162,11 +1170,14 @@ width: calc(100% - 135px);
     top: 0;
     right: 0;
 }
-.search_params_item .el-checkbox:last-of-type{
-    margin: 5px!important;
+.search_params_item .el-checkbox:last-of-type .el-checkbox__label{
+    margin: 0 5px 0 0!important;
 }
-.search_params_item .el-radio:last-child {
-    margin-right: 5px !important;
+.search_params_item .el-radio:last-child  .el-radio__label{
+    margin: 0 5px 0 0!important;
+}
+.updataTime .el-radio-group label,.flieSize .el-checkbox-group label{
+    line-height: 38px;
 }
 .select_input{
     margin-left: 20px;
@@ -1180,25 +1191,36 @@ width: calc(100% - 135px);
 }
 .search_params_item .select_input_value{
     margin-left: 0px !important;
+    width: 100%;
 }
 .search_params_item .select_input input{
       border-right: 0;
       border-radius: 4px 0 0 4px;
-         min-width: 120px;
+         min-width: 180px;
          max-width: 250px;
-      display: inline-block;
-      padding-right: 0;
+      display:inline-block;
+      padding-right: 25px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
 }
+
 .search_params_item .select_input_value input
-{
-    min-width: 280px;
+{   
+    width: 100%;
+    min-width: 200px;
+    max-width: 530px;
     border-left: 0;
     border-radius: 0 4px 4px 0;
- 
+    padding-right: 25px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
-.search_params_item .select_input_value::before{
+.select_input_value .el-input{
+    display: inline;
+}
+.select_input .el-input::after{
     position: absolute;
-    left: 0;
+    right: 0;
     top: 9px;
     width: 1px;
     height: 18px;
@@ -1206,7 +1228,7 @@ width: calc(100% - 135px);
     background: #cccccc;
 }
 /* 搜索履历 */
-.search_top div .el-input__inner {
+.sh  .search_top div .el-input__inner {
   height: 50px;
   background: #ffffff;
   border-radius: 25px;
@@ -1214,48 +1236,58 @@ width: calc(100% - 135px);
   padding-left: 30px;
   padding-right: 30px;
 }
-.search_top div:first-child .el-input__inner {
+/* .search_top div:first-child .el-input__inner {
 margin-right: 30px;
+} */
+.sh  .search_top>div:first-child{
+    margin-right: 60px;
 }
-.search_top>div:last-child{
+.sh  .search_top>div:last-child{
     margin-left: 30px;
 }
-
-.search_bottom .el-date-editor .el-range-input{
+.sh .search_top span,.sh .search_bottom span{
+    min-width: 20px;
+    margin-right: 5px;
+}
+.sh  .search_bottom .el-date-editor i{
+    width: 45px;
+    padding: 0;
+}
+.sh  .search_bottom .el-date-editor .el-range-input{
     width: 100%;
 }
-.search_bottom .el-date-editor i{
+.sh  .search_bottom .el-date-editor i{
     padding-left: 10px;
     width: 45px;
     line-height: 40px;
 }
-.search_bottom .el-input__inner{
+.sh  .search_bottom .el-input__inner{
     height: 50px;
     line-height: 50px;
 }
 
-.search_bottom .el-date-editor .el-range-separator{
+.sh  .search_bottom .el-date-editor .el-range-separator{
     line-height: 42px;
 }
 
 .sh_main_table .el-table__body-wrapper{
-    height:calc(100vh - 485px);
+    height:calc(100vh - 447px);
     overflow-y: auto !important;
     box-sizing: border-box;
 }
 
-.el-table__body tr td:nth-child(3) .cell  {
+.sh .el-table__body tr td:nth-child(3) .cell  {
    color:#2263EC; 
   display: flex;
 
 }
-.el-table__body tr td:nth-child(3) .cell span,.el-table__body tr td:nth-child(4) .cell span {
+.sh .el-table__body tr td:nth-child(3) .cell span,.el-table__body tr td:nth-child(4) .cell span {
    overflow:hidden;
    text-overflow:ellipsis;
    white-space:nowrap;
   
 }
-.el-table__body tr td:nth-child(3) .cell span:hover {
+.sh .el-table__body tr td:nth-child(3) .cell span:hover {
   text-decoration: underline;
       cursor: pointer;
 }
@@ -1275,12 +1307,12 @@ margin-right: 30px;
 box-shadow: 0px 2px 10px 0px rgba(68, 100, 163, 0.2);
 z-index: 2000;
 } */
-.el-tooltip__popper.is-light{
+.sh .el-tooltip__popper.is-light{
     border: none;
     margin-bottom: 0;
     box-shadow: 0px 2px 10px 0px rgba(68, 100, 163, 0.2);
 }
-.sh_main_table tr th{
+.sh .sh_main_table tr th{
     height: 46px;
     line-height: 46px;
 }
@@ -1389,10 +1421,22 @@ border-color: #2D7A9C;
 }
 
 .role  .el-table,
-.dict .el-table,
+.dict .content .el-table,
 .activity .el-table,
 .permissions .el-table{
-    height: calc(100% - 250px)!important;
+    height: calc(100% - 240px)!important;
+}
+.dict .content .el-table{
+    height: calc(100% - 260px)!important;
+}
+.apply-light .set_time .el-table{
+    height: calc(100% - 270px)!important;
+}
+.userOrg .pagination-box {
+    padding: 15px 0 15px 0;
+}
+.sc .pagination-box {
+    padding: 15px 0 15px 0;
 }
 .search-list-table{
     width: 100%;

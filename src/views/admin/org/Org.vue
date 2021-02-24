@@ -607,7 +607,7 @@ export default {
     // 编辑组织
     handleEdit(index, rowData) {
       this.clearErrorMessage('edit')
-      this.departmentEdit.id = { ...rowData }
+      this.departmentEdit = { ...rowData }
       this.departmentEdit.deleteFlag = '0'
 
       this.orgChangeDiv = 'edit'

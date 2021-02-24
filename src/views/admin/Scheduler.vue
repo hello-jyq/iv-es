@@ -1,6 +1,6 @@
 <template>
   <!-- class="scheduler" -->
-  <div class="apply apply-left apply-light ">
+  <div class="apply apply-left apply-light sc">
     <div class="content  no-search-content content-light">
       <div class="search">
         <div class="search-title">
@@ -69,7 +69,7 @@
           </div>
         </el-form>
       </div>
-      <div class="table-bg-box search-list-table">
+      <div class="table-bg-box search-list-table set_time">
         <el-table
           ref="table"
           v-loading="isLoading"

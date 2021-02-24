@@ -11,18 +11,23 @@ export function normalSearch(params) {
 }
 
 // 普通检索
+export function normalSearchForTree(params) {
+  return request('POST', '/api/es/normalsearchfortree', params)
+}
+
+// 普通检索
 export function fileternormalsearch(params) {
   return request('POST', '/api/es/fileternormalsearch', params)
 }
 
 // 高级检索
 export function advancedSearch(params) {
-  return request('POST', '/api/es/search', params)
+  return request('POST', '/api/es/advancedsearch', params)
 }
 
 // 高级过滤检索
-export function advancedFilterSearch(params) {
-  return request('POST', '/api/es/filtersearch', params)
+export function advancedSearchForTree(params) {
+  return request('POST', '/api/es/advancedsearchfortree', params)
 }
 
 // 查询文件目录

@@ -10,7 +10,7 @@
       </el-input>
     </div>
     <div class="perLabel_main_box">
-      <div class="recommend_label">
+      <!-- <div class="recommend_label">
         <div class="recommend_label_title">
           <span>你可能感兴趣的标签：</span>
           <span class="refresh" @click="refreshLabel"><i class="iconfont icon-refresh" />换一换</span>
@@ -20,7 +20,7 @@
             <i class="iconfont icon-tianjia" @click="addInterestLabel(list)" />{{ list }}
           </li>
         </ul>
-      </div>
+      </div> -->
       <div class="person_label">
         <div class="person_label_title">
           <span>你已有的标签：</span>
@@ -34,11 +34,11 @@
             <i class="iconfont icon-guanbi" @click="deleteLabel(list)" />
           </li>
         </ul>
-        <div class="btn_label_search">
+        <!-- <div class="btn_label_search">
           <button type="primary" @click="labelSearch()">
             标签搜索
           </button>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -49,7 +49,7 @@ export default {
   data() {
     return {
       labelValue: '',
-      recommendList: ['电子合同合合', '电子合44同', '电子44合同', '电子合44同', '电子合同', '电子合合合同', '电子合合合同', '电子44合同', '电子合44同', '电子合同', '电子合合合同', '电子合合合同', '电子44合同', '电子合44同', '电子合同', '电子合同', '电子合同', '电子合同', '电子合同', '电子合同', '电子合同', '电子合同', '电子合同', '电子合同', '电子合同'],
+      // recommendList: ['电子合同合合', '电子合44同', '电子44合同', '电子合44同', '电子合同', '电子合合合同', '电子合合合同', '电子44合同', '电子合44同', '电子合同', '电子合合合同', '电子合合合同', '电子44合同', '电子合44同', '电子合同', '电子合同', '电子合同', '电子合同', '电子合同', '电子合同', '电子合同', '电子合同', '电子合同', '电子合同', '电子合同'],
       personLabelList: ['电子商务1', '网络推广2', '网络推广3', '网络推广4', '网络合同推广', '网络推9广', '网络推广7', '网合同络11推广', '网络22推广', '网44络推广', '网络33推广', '网络推广0', '网络推66广', '网77络推广', '网99络推广'],
       searchLabel: []
     }
@@ -87,7 +87,7 @@ export default {
       }
     },
     // 添加推荐标签
-    addInterestLabel(value) {
+    /* addInterestLabel(value) {
       console.log(value)
       if (this.personLabelList.includes(value)) {
         this.$message.closeAll()
@@ -106,11 +106,11 @@ export default {
       } else {
         this.personLabelList.unshift(value)
       }
-    },
+    }, */
     // 换一换推荐标签
-    refreshLabel() {
+    /* refreshLabel() {
       this.recommendList.sort(() => Math.random() - 0.5)
-    },
+    }, */
     // 添加搜索标签
     addSearchLabel(value) {
       console.log(value)
@@ -124,11 +124,11 @@ export default {
     deleteLabel(value) {
       console.log(value)
       this.personLabelList.splice(this.personLabelList.indexOf(value), 1)
-    },
-    // 搜索标签
-    labelSearch() {
-      console.log(this.searchLabel)
     }
+    // 搜索标签
+    /* labelSearch() {
+      console.log(this.searchLabel)
+    } */
   }
 }
 </script>
@@ -163,7 +163,7 @@ export default {
   background: #ffffff;
   box-shadow: 0px 2px 10px 0px rgba(68, 100, 163, 0.1);
   border-radius: 16px;
-  margin-left: 20px;
+  margin-left: 0px;
   height: calc(100vh - 235px);
   overflow: hidden;
   padding: 30px;

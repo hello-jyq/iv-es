@@ -280,7 +280,7 @@ export default {
       this.dialogType = 'create'
       this.showDialog = true
       this.validatorState = false
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         this.clearErrorMessage()
       })
     },
@@ -289,7 +289,7 @@ export default {
       this.dialogType = 'edit'
       this.showDialog = true
       this.validatorState = true
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         this.clearErrorMessage()
       })
     },
@@ -347,7 +347,7 @@ export default {
         confirmButtonText: this.$t('comm.certain'),
         cancelButtonText: this.$t('comm.cancel'),
         type: 'warning'
-      }).then(async() => {
+      }).then(async () => {
         await refreshI18n()
         this.loginInfoAction()
         this.refreshDictAndClearStore()
@@ -406,7 +406,10 @@ export default {
         background-image: linear-gradient(rgb(52, 165, 248), rgb(8, 142, 240));
         color: #fff;
         &:hover {
-          background-image: linear-gradient(rgb(42, 155, 238), rgb(8, 142, 240));
+          background-image: linear-gradient(
+            rgb(42, 155, 238),
+            rgb(8, 142, 240)
+          );
         }
       }
     }
@@ -416,7 +419,7 @@ export default {
   position: relative;
   .select_header {
     position: absolute;
-    top: 26px;
+    top: 11px;
     left: 0;
   }
   .el-icon-menu {

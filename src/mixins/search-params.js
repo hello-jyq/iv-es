@@ -49,5 +49,22 @@ export const search = {
     ...mapGetters([
       'searchParams'
     ])
-  }
+  },
+  updated() {
+    this.$nextTick(() => {
+      const firstPageStatue = document.getElementsByClassName('btn-prev')[0].disabled
+      const lastPageStatue = document.getElementsByClassName('btn-next')[0].disabled
+      // console.log('=================>', firstPageStatue, lastPageStatue)
+      if (firstPageStatue) {
+        document.getElementsByClassName('first-pager')[0].disabled = true
+      } else {
+        document.getElementsByClassName('first-pager').disabled = false
+      }
+      if (lastPageStatue) {
+        document.getElementsByClassName('last-pager')[0].disabled = true
+      } else {
+        document.getElementsByClassName('last-pager')[0].disabled = false
+      }
+    })
+  },
 }

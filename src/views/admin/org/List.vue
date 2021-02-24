@@ -6,14 +6,14 @@
       </div>
       <el-scrollbar>
         <el-form ref="form" class="search-form default-input" label-position="left" :model="searchParam.params">
-          <el-form-item prop="itemName">
+          <el-form-item prop="validYear">
             <el-row type="flex" :gutter="5" justify="space-between">
               <el-col :span="8">
                 <!-- 年度 -->
                 {{ $t('admin.org.validYear') }}
               </el-col>
               <el-col :span="16">
-                <el-input v-model="searchParam.params.validYear" />
+                <el-input v-model="searchParam.params.validYear" clearable maxlength="4" />
               </el-col>
             </el-row>
           </el-form-item>
@@ -64,11 +64,11 @@
               prop="validYear"
               align="center"
             />
-            <!-- <el-table-column prop="activeFlag" :label="$t('admin.org.activeFlag')" min-width="80">
+            <el-table-column prop="activeFlag" :label="$t('admin.org.activeFlag')" min-width="80" align="center">
               <template slot-scope="scope">
                 <dict-write dict-type-id="ActiveFlag" :value="scope.row.activeFlag" />
               </template>
-            </el-table-column> -->
+            </el-table-column>
             <!-- <el-table-column prop="isAssociateTemplate" :label="$t('admin.org.isAssociateTemplate')" min-width="80">
               <template slot-scope="scope">
                 <dict-write dict-type-id="IsNo" :value="scope.row.isAssociateTemplate" />
@@ -79,7 +79,7 @@
       </div>
 
       <div class="pagination-box">
-        <el-pagination
+        <!-- <el-pagination
           class="page-left"
           :current-page.sync="searchParam.pageNo"
           :page-size="searchParam.pageSize"
@@ -103,12 +103,12 @@
         </el-pagination>
         <el-pagination class="page-right  page-first" layout="slot">
           <span class="iconfont icon-zuiqian page-first-page" @click="toFirstPage" />
-        </el-pagination>
+        </el-pagination> -->
       </div>
     </div>
 
     <!-- v-dialogDrag -->
-    <el-dialog id="drag1" ref="dragBox" class="content-dialog-box search-light" :close-on-click-modal="false" custom-class="dialog-drag" top="0" title="报价" :visible.sync="dialogSearchVisible">
+    <el-dialog id="drag1" ref="dragBox" class="content-dialog-box search-light" :close-on-click-modal="false" custom-class="dialog-drag" top="0" title="" :visible.sync="dialogSearchVisible">
       <search-dailog
         :data="dacList"
         :radio="radioNumner"
@@ -117,7 +117,7 @@
         @onScroll="onScroll"
       />
     </el-dialog>
-    <el-dialog id="drag2" ref="dragBox" class="content-dialog-box search-check-light" :close-on-click-modal="false" custom-class="dialog-drag" top="0" title="报价" :visible.sync="dialogSearchCheckVisible">
+    <el-dialog id="drag2" ref="dragBox" class="content-dialog-box search-check-light" :close-on-click-modal="false" custom-class="dialog-drag" top="0" title="" :visible.sync="dialogSearchCheckVisible">
       <search-check-dailog :data="dacList" @onClose="dialogSearchCheckVisible = false" @onConfirm="onConfirmCheck" />
     </el-dialog>
   </div>
@@ -142,8 +142,8 @@ export default {
   mixins: [search, formValidator, permission],
   data() {
     return {
-      theme: localStorage.getItem('theme') !== 'Dark' ? 'Light' : '',
-      scrollColr: localStorage.getItem('theme') !== 'Dark' ? '#D8E0E8' : '#5A5E63',
+      theme: 'Light', // 主题相关
+      scrollColr: '#D8E0E8',
       isLoading: true,
       activeNames: ['1'],
       dialogType: 'create',

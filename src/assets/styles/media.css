@@ -54,7 +54,7 @@
         line-height: 20px;
     }
     .result_filter{
-        width: 270px;
+        min-width: 270px;
     }
     .title_box{
         height: 26px !important;
@@ -102,6 +102,28 @@
     height: 20px !important;
     line-height: 20px !important;
     font-size: 12px;
+}
+.search_box .select_input .el-input__inner{
+      height: 32px !important;
+    line-height: 32px !important;
+}
+.search_box .select_input .el-input::after {
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    width: 1px;
+    height: 16px;
+    content: "";
+    background: #cccccc;
+}
+.select_input{
+    margin-left: 0;
+}
+ .select_input .el-input__suffix{
+    right: 15px;
+}
+.search_box .select_input .el-input__icon{
+    width: 15px;
 }
 .search_box .el-radio__label{
 font-size: 12px;
@@ -491,7 +513,7 @@ max-width: 300px;
 .search_params_item .el-radio-group label,.search_params_item .el-checkbox-group label{
     margin-right: 15px !important;
 }
-.search_params_item .el-radio-group label:last-child{
+.search_params_item .el-radio-group label:last-child,.search_params_item .el-checkbox-group label:last-child{
     margin-right: 5px !important;
 }
 .search_params_item .el-radio__label{
@@ -611,6 +633,11 @@ margin-left: 0 !important;
 .el-date-editor .el-range-separator{
     line-height: 25px;
 }
+.select_input_value .el-input {
+    margin-left: 0px !important;
+}
+
+
 
 /* 个人标签管理 */
 .perLabel_search_box{
@@ -737,7 +764,7 @@ margin-left: 0 !important;
     line-height: 32px !important;
 }
 .sh_main_table .el-table__body-wrapper {
-    height: calc(100vh - 403px) !important;
+    height: calc(100vh - 378px) !important;
 }
 .pagination-box {
     padding-top: 10px !important;
@@ -860,9 +887,20 @@ top: 25px !important;
     left: 5px !important;
 }
 
-
-
-
+.updataTime .el-radio-group label,.flieSize .el-checkbox-group label{
+    line-height: 30px !important;
+}
+.sh  .search_bottom .el-date-editor i{
+    width: 45px !important;
+    padding: 0 !important;
+}
+.div_inpuut{
+    position: absolute;
+    width: 430px;
+    height: 14px;
+    top: 10px;
+    left: 1px;
+  }
 
 
 

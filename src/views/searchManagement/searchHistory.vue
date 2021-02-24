@@ -3,88 +3,90 @@
     <div class="sh_search_box">
       <div class="search_top">
         <div>
-          <span> 搜索内容</span>
-          <el-input v-model="search.searchContent" placeholder="请输入搜索时的搜索条件" />
+          <span>{{ $t('searchLog.searchContent') }}</span>
+          <el-input v-model="searchParam.params.keywords" :placeholder="$t('searchLog.searchContentTip')" maxlength="100" clearable />
         </div>
         <div>
-          <span> 搜索结果</span>
-          <el-input v-model="search.searchResult" placeholder="请输入搜索结果" />
+          <span>{{ $t('searchLog.searchResult') }}</span>
+          <el-input v-model="searchParam.params.hitDocName" :placeholder="$t('searchLog.searchResultTip')" maxlength="250" clearable />
         </div>
       </div>
       <div class="search_bottom">
         <div>
-          <span>搜索时间</span>
+          <span>{{ $t('searchLog.searchTime') }}</span>
           <el-date-picker
-            v-model="search.searchTime"
+            v-model="searchParam.params.searchTimes"
             class="diy_time"
             popper-class="date_picker"
             value-format="yyyy-MM-dd"
             type="daterange"
             unlink-panels
-            range-separator="至"
-            start-placeholder="开始日期"
-            end-placeholder="结束日期"
+            :range-separator="$t('searchLog.timeSplit')"
+            :start-placeholder="$t('searchLog.searchTimeStart')"
+            :end-placeholder="$t('searchLog.searchTimeEnd')"
           />
         </div>
         <div>
-          <button @click="searchHistory(search)">
-            检&nbsp;索
+          <button :disabled="btnClickFlag" :class="btnClickFlag?'not_allowed':''" @click="queryPage()">
+            {{ $t('searchLog.search') }}
           </button>
         </div>
       </div>
     </div>
     <div class="sh_search_main">
-      <div class="sh_main_title">
+      <!-- <div class="sh_main_title">
         <span>搜索履历结果</span>
-      </div>
+      </div> -->
       <div v-loading="loading" class="sh_main_table">
         <template>
           <el-table
-            :data="tableData"
+            :data="dataList"
             border
             style="width: 100%"
           >
             <el-table-column
               type="index"
-              label="序号"
+              :label="$t('searchLog.index')"
               width="50"
             />
             <el-table-column
-              prop="date"
-              label="搜索时间"
+              prop="searchTime"
+              :label="$t('searchLog.searchTime')"
               width="180"
               align="center"
             />
             <el-table-column
-              label="搜索内容"
+              prop="keywords"
+              :label="$t('searchLog.searchContent')"
               width="180"
               class-name="search_name"
             >
               <template slot-scope="scope">
                 <i class="iconfont icon-lianjie" />
-                <span style="margin-left: 5px" @click="linkName(scope.row.name)">{{ scope.row.name }}</span>
+                <span style="margin-left: 5px" @click="linkName(scope.row)">{{ scope.row.keywords }}</span>
               </template>
             </el-table-column>
 
             <el-table-column
-              label="搜索结果"
+              prop="hitDocName"
+              :label="$t('searchLog.searchResult')"
               class-name="search_result"
             >
-              <template slot-scope="scope">
+              <!-- <template slot-scope="scope">
                 <span style="margin-left: 5px" @click="linkResult(scope.row.result)">{{ scope.row.result }}</span>
-              </template>
+              </template> -->
             </el-table-column>
             <el-table-column
-              label="操作"
+              :label="$t('searchLog.operation')"
               align="center"
               width="160"
             >
               <template slot-scope="scope">
-                <el-tooltip class="item" effect="light" content="查看" placement="top" :visible-arrow="false">
-                  <i class="iconfont icon-yanjing" @click="showSLT(scope.$index, scope.row)" />
+                <el-tooltip v-if="scope.row.isDownload === 1" class="item" effect="light" :content="$t('searchLog.view')" placement="top" :visible-arrow="false">
+                  <i class="iconfont icon-yanjing" @click="showSLT(scope.row.hitDocId)" />
                 </el-tooltip>
-                <el-tooltip class="item" effect="light" content="删除" placement="top" :visible-arrow="false">
-                  <i class="iconfont icon-shanchu1" @click="handleDelete(scope.$index, scope.row)" />
+                <el-tooltip class="item" effect="light" :content="$t('searchLog.delete')" placement="top" :visible-arrow="false">
+                  <i class="iconfont icon-shanchu1" @click="deleteSearchLog(scope.row.id)" />
                 </el-tooltip>
               </template>
             </el-table-column>
@@ -92,23 +94,23 @@
         </template>
       </div>
       <div class="pagination-box">
-        <span class="el-pagination__total">共&nbsp;{{ tabParam.totalRecord }}&nbsp;条</span>
+        <span class="el-pagination__total">共&nbsp;{{ searchParam.totalRecord }}&nbsp;条</span>
         <el-pagination
-          :current-page.sync="tabParam.pageNo"
-          :page-size="tabParam.pageSize"
-          :page-sizes="[10, 20]"
+          :current-page.sync="searchParam.pageNo"
+          :page-size="searchParam.pageSize"
+          :page-sizes="[10, 20, 50]"
           layout="sizes"
           class="page-left"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
         />
         <el-pagination
-          :current-page.sync="tabParam.pageNo"
+          :current-page.sync="searchParam.pageNo"
           background
-          :page-size="tabParam.pageSize"
-          :page-sizes="[10, 20]"
+          :page-size="searchParam.pageSize"
+          :page-sizes="[10, 20, 50]"
           layout=" pager, next,slot,jumper"
-          :total="tabParam.totalRecord"
+          :total="searchParam.totalRecord"
           class="pagination_right"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
@@ -118,12 +120,12 @@
           </button>
         </el-pagination>
         <el-pagination
-          :current-page.sync="tabParam.pageNo"
+          :current-page.sync="searchParam.pageNo"
           background
-          :page-size="tabParam.pageSize"
-          :page-sizes="[10, 20]"
+          :page-size="searchParam.pageSize"
+          :page-sizes="[10, 20, 50]"
           layout="slot, prev"
-          :total="tabParam.totalRecord"
+          :total="searchParam.totalRecord"
           class="pagination_right"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
@@ -134,9 +136,16 @@
         </el-pagination>
       </div>
     </div>
-    <el-dialog
+
+    <thumbnail-dailog
+      :is-show="centerDialogVisible"
+      :doc-obj="sltData"
+      @onClose="closeSLT"
+    />
+
+    <!-- <el-dialog
       v-model="sltData"
-      title="缩略图"
+      :title="$t('es.thumbnail')"
       :visible.sync="centerDialogVisible"
       :close-on-click-modal="false"
       :modal-append-to-body="false"
@@ -177,224 +186,129 @@
         <img v-else src="../../assets/img/slt_empty.png">
       </div>
       <div class="slt_down" @click="download(sltData.fileUrl, sltData.id)">
-        <i class="iconfont icon-Group-" />点击下载
+        <i class="iconfont icon-Group-" />{{ $t('es.download') }}
       </div>
-    </el-dialog>
+    </el-dialog> -->
   </div>
 </template>
 <script>
+import { search } from '@/mixins/search-params'
+import { getSearchLogByPage, deleteById } from '@/api/searchlog/searchlog-api'
+import { getDocById } from '@/api/es/es-api'
+
+import thumbnailDailog from './_thumbnail.vue'
 
 export default {
+  components: {
+    thumbnailDailog
+  },
+  mixins: [search],
   data() {
     return {
-      search: {
-        searchContent: '',
-        searchResult: '',
-        searchTime: ''
-      },
-      loading: false,
-      tabParam: {
+      btnClickFlag: false,
+      theme: 'Light', // 主题相关
+      searchParam: {// 分页参数
         paging: true,
         pageNo: 1, // 当前页码
         pageSize: 10, // 每页条数
-        totalRecord: 99 // 总条数
+        totalRecord: null, // 总条数
+        params: {
+          keywords: '',
+          hitDocName: '',
+          searchTimes: []
+        }
       },
-      tableData: [{
-        date: '2016-05-02',
-        name: '王小22222dsadasdada方大大厦虎',
-        result: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        result: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        result: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        result: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        result: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        result: '上海市普陀区金经济款婚检婚检啥的USA的哈我哦啊灰色调哈是滴哈是的哈是 哈的哦我杀菌哦级 我降低偶家爱搜等级啊哈哈打连击变大我哦交的手机啊柯尼卡 和静安寺宽带连接爱仕达时间沙江路 1519 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        result: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        result: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        result: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        result: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        result: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        result: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        result: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        result: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        result: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        result: '上海市普陀区金沙江路 1516 弄'
-      }],
+      loading: false,
+      dataList: [],
       centerDialogVisible: false,
       kkfileviewurl: '',
       sltData: {
         clickCount: null,
-        createBy: '方洁玮',
-        createTime: '2017-02-07 14:15:49',
-        dataSource: '文件服务器1',
-        docScore: '7.588051',
-        fileContent: null,
-        fileContentOutline: "陆家嘴软件园 100 号 2 号楼 9 楼 注册地址：<span style='color: red'>中国</span>（<span style='color: red'>上海</span>）自由贸易试验区郭守敬路 351 号 2 号楼 645-2 室 上海菱威深信息技术有限公司 【基本契約書】iVision 甲バージョン",
-        fileDirectory: '\\192.168.22.14\ public_all\ 430\ 02.契約書フォーム\ 00.【基本契約書】\ 2017年2月修正後Ver(旧)',
-        fileExtend: 'pdf',
+        createBy: '',
+        createTime: '',
+        dataSource: '',
+        fileContentOutline: '',
+        fileDirectory: '',
+        fileExtend: '',
         fileMeta: null,
-        fileName: '2017年2月修正履歴.pdf',
-        filePath: 'C:/public_all/430/02.契約書フォーム/00.【基本契約書】/2017年2月修正後Ver(旧)',
-        filePathFull: 'iv-fileserver-public/C:/public_all/430/02.契約書フォーム/00.【基本契約書】/2017年2月修正後Ver(旧)',
-        fileSize: 102628,
-        fileSizeDescription: '101',
-        fileType: 'Others',
-        fileUrl: 'iv-fileserver-public/C:/public_all/430/02.契約書フォーム/00.【基本契約書】/2017年2月修正後Ver(旧)/2017年2月修正履歴.pdf',
-        id: 'WUc0TUZNMFRNNHYwK0g3RS83ZGhZZz09',
-        language: 'JP',
+        fileName: '',
+        filePath: '',
+        filePathFull: '',
+        fileSize: null,
+        fileSizeDescription: '',
+        fileType: '',
+        fileUrl: '',
+        id: '',
+        language: '',
         myLabel: [],
         operFlag: null,
         searchWord: null,
         termFetchTime: null,
         updateBy: '',
-        updateTime: '2017-02-07 14:15:49'
+        updateTime: ''
       }
     }
   },
-  updated() {
-    this.$nextTick(() => {
-      const firstPageStatue = document.getElementsByClassName('btn-prev')[0].disabled
-      const lastPageStatue = document.getElementsByClassName('btn-next')[0].disabled
-      // console.log(111111111111, firstPageStatue, lastPageStatue)
-      if (firstPageStatue) {
-        document.getElementsByClassName('first-pager')[0].disabled = true
-      } else {
-        document.getElementsByClassName('first-pager').disabled = false
-      }
-      if (lastPageStatue) {
-        document.getElementsByClassName('last-pager')[0].disabled = true
-      } else {
-        document.getElementsByClassName('last-pager')[0].disabled = false
-      }
-    })
-  },
-  methods: {
-    searchHistory(obj) {
-      console.log(obj)
-    },
-    // 搜索内容点击
-    linkName(value) {
-      console.log(value)
-      this.search.searchContent = value
-    },
-    // 搜索结果点击
-    linkResult(value) {
-      console.log(value)
-      this.search.searchResult = value
-    },
-    // 删除履历
-    handleDelete(index, row) {
-      console.log(index, row)
-      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        this.tableData.splice(index, 1)
-        this.$message.closeAll()
-        this.$message({
-          type: 'success',
-          message: '删除成功!'
-        })
-      }).catch(() => {
-        this.$message.closeAll()
-        this.$message({
-          type: 'info',
-          message: '已取消删除'
-        })
-      })
-    },
-    // 查看缩略图
-    showSLT(index, row) {
-      this.centerDialogVisible = !this.centerDialogVisible
-      // this.sltData=row
-      console.log(index, row)
-      this.$nextTick(() => {
-        var loading = this.$loading({
-          lock: true, // lock的修改符--默认是false
-          text: 'Loading', // 显示在加载图标下方的加载文案
-          spinner: 'el-icon-loading', // 自定义加载图标类名
-          background: 'rgba(0, 0, 0, 0.3)', // 遮罩层颜色
-          target: '.slt'// loadin覆盖的dom元素节点
-        })
-        const contextPath = window.location.origin
-        const baseApi = contextPath + '/iv-es/api/es/view/'
-        // const baseApi = 'http://localhost/iv-es/api/es/view/'
-        const url = baseApi + row.id
-        var previewUrl = url + '?fullfilename=' + new Date().getTime() + '.' + row.fileExtend
-        const kkfileviewSrc = contextPath + '/preview/onlinePreview?url=' + encodeURIComponent(previewUrl)
-        // const kkfileviewSrc = 'http://localhost/preview/onlinePreview?url=' + encodeURIComponent(previewUrl)
-        this.kkfileviewurl = kkfileviewSrc
-        // this.centerDialogVisible = true
-        if (row.fileType === 'Others') {
-          loading.close()
-        }
-        loading.close()
-      })
+  watch: {
 
+  },
+  created: function() {
+    this.queryPage()
+  },
+
+  methods: {
+    queryPage() {
+      this.btnClickFlag = true
+      this.loading = true
+      this.fetchData()
     },
-    // 关闭缩略图
-    closeSLT() { },
+    async fetchData() {
+      if (this.searchParam.params.keywords > 80) {
+        this.$message({
+          message: this.$t('searchLog.msg1'),
+          type: 'warning'
+        })
+        this.loading = false
+        this.btnClickFlag = false
+        return false
+      }
+      if (this.searchParam.params.hitDocName > 200) {
+        this.$message({
+          message: this.$t('searchLog.msg2'),
+          type: 'warning'
+        })
+        this.loading = false
+        this.btnClickFlag = false
+        return false
+      }
+      const res = await getSearchLogByPage(this.searchParam)
+      if (res && res.success) {
+        const { totalRecord, results } = res.datas.searchResult
+        this.searchParam.totalRecord = totalRecord
+        this.dataList = results
+        this.loading = false
+        this.btnClickFlag = false
+      }
+      // // console.log(this.dataList)
+      // this.changeTableHeight()
+    },
     // 翻页
-    handleSizeChange(val) {
-      console.log(`每页 ${val} 条`)
+    handleSizeChange(pageSize) {
       this.loading = true
-      this.tabParam.pageSize = val
-      this.tabParam.pageNo = 1
+      this.searchParam.pageNo = 1
+      this.searchParam.pageSize = pageSize
+      // this.$store.dispatch('saveSearchParam', { path: this.$route.path, searchParam: this.searchParam })
+      this.fetchData()
     },
-    handleCurrentChange(val) {
-      // console.log(`当前页: ${val}`)
+    // 跳转页
+    handleCurrentChange(currentPage) {
       this.loading = true
-      this.tabParam.pageNo = val
-      // this.loading = false
+      this.searchParam.pageNo = currentPage
+      // this.$store.dispatch('saveSearchParam', { path: this.$route.path, searchParam: this.searchParam })
+      this.fetchData()
       this.$nextTick(() => {
         const firstPageStatue = document.getElementsByClassName('btn-prev')[0].disabled
         const lastPageStatue = document.getElementsByClassName('btn-next')[0].disabled
-        // console.log(111111111111, firstPageStatue, lastPageStatue)
         if (firstPageStatue) {
           document.getElementsByClassName('first-pager')[0].disabled = true
         } else {
@@ -406,15 +320,147 @@ export default {
           document.getElementsByClassName('last-pager')[0].disabled = false
         }
       })
-      this.loading = false
     },
-    toLastPage() {
-
+    // 搜索内容点击
+    linkName(row) {
+      // console.log(row)
+      if (row) {
+        // console.log(row.searchType)
+        if (row.searchType === 'ADVANCE') { // 高级搜索跳转普通结果页面
+          this.$router.push({
+            name: 'advancedSearchresult',
+            params: {
+              search: row.keywords,
+              radio: row.fieldScale,
+              fuzzy: row.searchDiv,
+              allKeyWords: row.must,
+              notIncludeKeyWords: row.mustNot,
+              modifyedTime: row.searchTimeKey,
+              radioDiyTime: row.searchTimeScale,
+              fileType: row.searchFileType,
+              fileSize: row.searchFileSize,
+              diysizefrom: row.searchFileSizeFrom,
+              diysizeto: row.searchFileSizeTo,
+              dataSource: row.dataSource,
+              dataSourceFilePath: row.searchDocFolder
+            }
+          })
+        } else {
+          this.$router.push({
+            name: '/search/search_result',
+            params: {
+              search: row.keywords,
+              radio: row.fieldScale,
+              lang: 'ALL',
+              fuzzy: row.searchDiv
+            }
+          })
+        }
+      }
     },
-    toFirstPage() {
+    /* linkResult(value) {
+      console.log(value)
+    }, */
+    deleteSearchLog(id) {
+      if (!id) {
+        this.$message({
+          type: 'error',
+          message: this.$t('searchLog.e0001')
+        })
+        return
+      }
+      this.$confirm(this.$t('searchLog.tip1'), this.$t('comm.tips'), {
+        confirmButtonText: this.$t('comm.certain'),
+        cancelButtonText: this.$t('comm.cancel'),
+        cancelButtonClass: 'btn-custom-cancel',
+        type: 'warning'
+      }).then(async() => {
+        const res = await deleteById(id)
+        if (res) {
+          if (res.success) {
+            this.$message.closeAll()
+            this.$message({
+              type: 'success',
+              message: this.$t('comm.msg2')
+            })
+            this.queryPage()
+          }
+        }
+      }).catch(() => {
+        this.$message.closeAll()
+        this.$message({
+          type: 'info',
+          message: this.$t('comm.msg1')
+        })
+      })
+    },
+    // 预览文档
+    async showSLT(id) {
+      // console.log(id)
+      // 查询当前id对应的文档信息
+      if (id) {
+        const res = await getDocById(id)
+        if (res) {
+          if (res.success) {
+            if (res.datas.result) {
+              this.sltData = res.datas.result
+              this.sltData.searchLogId = -1
+              this.centerDialogVisible = true
+              // this.show()
+            } else {
+              this.$message.closeAll()
+              this.$message({
+                type: 'error',
+                message: this.$t('searchLog.e0003')
+              })
+            }
+          }
+        }
+      } else {
+        this.$message.closeAll()
+        this.$message({
+          type: 'error',
+          message: this.$t('searchLog.e0002')
+        })
+      }
+    },
+    // 预览文档弹窗
+    /* show() {
+      this.centerDialogVisible = !this.centerDialogVisible
+      this.$nextTick(() => {
+        var loading = this.$loading({
+          lock: true, // lock的修改符--默认是false
+          text: 'Loading', // 显示在加载图标下方的加载文案
+          spinner: 'el-icon-loading', // 自定义加载图标类名
+          background: 'rgba(0, 0, 0, 0.3)', // 遮罩层颜色
+          target: '.slt'// loadin覆盖的dom元素节点
+        })
+        const contextPath = window.location.origin
+        const baseApi = contextPath + '/iv-es/api/es/view/'
+        // const baseApi = 'http://localhost/iv-es/api/es/view/'
+        const url = baseApi + this.sltData.id
+        var previewUrl = url + '?fullfilename=' + new Date().getTime() + '.' + this.sltData.fileExtend
+        // const kkfileviewSrc = contextPath + '/preview/onlinePreview?url=' + encodeURIComponent(previewUrl)
+        const kkfileviewSrc = 'http://localhost/preview/onlinePreview?url=' + encodeURIComponent(previewUrl)
+        this.kkfileviewurl = kkfileviewSrc
+        // this.centerDialogVisible = true
+        if (this.sltData.fileType === 'Others') {
+          loading.close()
+        }
+      })
+    }, */
+    // 关闭文档预览回调方法
+    closeSLT() {
+      this.centerDialogVisible = false
+      /* this.kkfileviewurl = ''
+      const slt = document.getElementsByClassName('el-loading-mask')
+      // console.log(slt)
+      for (let i = 0; i < slt.length; i++) {
+        // slt[i].style.visibility = 'visible'
+        slt[i].style.visibility = 'hidden'
+      } */
     }
   }
-
 }
 </script>
 <style scoped>
@@ -629,5 +675,8 @@ export default {
 }
 .slt_down i {
   margin-right: 6px;
+}
+.not_allowed{
+  cursor: not-allowed !important;
 }
 </style>

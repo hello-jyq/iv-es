@@ -214,7 +214,7 @@
                 <el-input v-model="scope.row.filter2" />
               </template>
             </el-table-column>
-            <el-table-column :label="$t('admin.dict.desc')" width="100">
+            <el-table-column :label="$t('admin.dict.desc')">
               <template slot-scope="scope">
                 <el-input v-model="scope.row.description" />
               </template>

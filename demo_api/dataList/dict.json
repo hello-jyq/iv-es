@@ -6,8 +6,7 @@
         "arguments": null,
         "success": true,
         "datas": {
-            "dicts": [
-                {
+            "dicts": [{
                     "dictTypeId": "QuoType",
                     "dictId": "0",
                     "dictName": "方针",
@@ -56,8 +55,7 @@
         "arguments": null,
         "success": true,
         "datas": {
-            "dicts": [
-                {
+            "dicts": [{
                     "dictTypeId": "DeleteFlag",
                     "dictId": "0",
                     "dictName": "有效",
@@ -93,8 +91,7 @@
         "arguments": null,
         "success": true,
         "datas": {
-            "dicts": [
-                {
+            "dicts": [{
                     "dictTypeId": "AuthMode",
                     "dictId": "local",
                     "dictName": "本地密码认证",
@@ -130,8 +127,7 @@
         "arguments": null,
         "success": true,
         "datas": {
-            "dicts": [
-                {
+            "dicts": [{
                     "dictTypeId": "Language",
                     "dictId": "zh_CN",
                     "dictName": "中文",
@@ -180,8 +176,7 @@
         "arguments": null,
         "success": true,
         "datas": {
-            "dicts": [
-                {
+            "dicts": [{
                     "dictTypeId": "UserStatus",
                     "dictId": "1",
                     "dictName": "有效",
@@ -217,8 +212,7 @@
         "arguments": null,
         "success": true,
         "datas": {
-            "dicts": [
-                {
+            "dicts": [{
                     "dictTypeId": "IsNo",
                     "dictId": "1",
                     "dictName": "是",
@@ -254,8 +248,7 @@
         "arguments": null,
         "success": true,
         "datas": {
-            "dicts": [
-                {
+            "dicts": [{
                     "dictTypeId": "BudTemplateStatus",
                     "dictId": "01",
                     "dictName": "草稿",
@@ -330,8 +323,7 @@
         "arguments": null,
         "success": true,
         "datas": {
-            "dicts": [
-                {
+            "dicts": [{
                     "dictTypeId": "BudItemStatus",
                     "dictId": "01",
                     "dictName": "启用",
@@ -367,8 +359,7 @@
         "arguments": null,
         "success": true,
         "datas": {
-            "dicts": [
-                {
+            "dicts": [{
                     "dictTypeId": "ESAnalyzeLanguage",
                     "dictId": "cn",
                     "dictName": "中文",
@@ -381,6 +372,7 @@
                     "filter2": null,
                     "description": null
                 },
+               
                 {
                     "dictTypeId": "ESAnalyzeLanguage",
                     "dictId": "en",
@@ -417,47 +409,43 @@
         "arguments": null,
         "success": true,
         "datas": {
-            "dicts": [
-                {
-                    "dictTypeId": "ESFuzzySearch",
-                    "dictId": "0",
-                    "dictName": "词条部分包含",
-                    "status": 1,
-                    "sortNo": 1,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESFuzzySearch.OFF",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESFuzzySearch",
-                    "dictId": "1",
-                    "dictName": "词条全部包含",
-                    "status": 1,
-                    "sortNo": 2,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESFuzzySearch.ON",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESFuzzySearch",
-                    "dictId": "2",
-                    "dictName": "词条完全一致",
-                    "status": 1,
-                    "sortNo": 3,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESFuzzySearch.OFF",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                }
-            ]
+            "dicts": [{
+                "dictTypeId": "ESFuzzySearch",
+                "dictId": "0",
+                "dictName": "词条部分包含",
+                "status": 1,
+                "sortNo": 1,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESFuzzySearch.OFF",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESFuzzySearch",
+                "dictId": "1",
+                "dictName": "词条全部包含",
+                "status": 1,
+                "sortNo": 2,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESFuzzySearch.ON",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESFuzzySearch",
+                "dictId": "2",
+                "dictName": "词条完全一致",
+                "status": 1,
+                "sortNo": 3,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESFuzzySearch.OFF",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }]
         }
     },
     "ESSearchTarget": {
@@ -467,47 +455,43 @@
         "arguments": null,
         "success": true,
         "datas": {
-            "dicts": [
-                {
-                    "dictTypeId": "ESSearchTarget",
-                    "dictId": "fileName",
-                    "dictName": "文件名",
-                    "status": 1,
-                    "sortNo": 1,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESSearchTarget.fileName.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESSearchTarget",
-                    "dictId": "fileContent",
-                    "dictName": "文件内容",
-                    "status": 1,
-                    "sortNo": 2,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESSearchTarget.fineContent.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESSearchTarget",
-                    "dictId": "ALL",
-                    "dictName": "不限",
-                    "status": 1,
-                    "sortNo": 0,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESSearchTarget.fineContent.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                }
-            ]
+            "dicts": [{
+                "dictTypeId": "ESSearchTarget",
+                "dictId": "fileName",
+                "dictName": "文件名",
+                "status": 1,
+                "sortNo": 1,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESSearchTarget.fileName.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESSearchTarget",
+                "dictId": "fileContent",
+                "dictName": "文件内容",
+                "status": 1,
+                "sortNo": 2,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESSearchTarget.fineContent.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESSearchTarget",
+                "dictId": "ALL",
+                "dictName": "不限",
+                "status": 1,
+                "sortNo": 0,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESSearchTarget.fineContent.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }]
         }
     },
     "ESSearchBoost": {
@@ -517,73 +501,67 @@
         "arguments": null,
         "success": true,
         "datas": {
-            "dicts": [
-                {
-                    "dictTypeId": "ESSearchBoost",
-                    "dictId": "1",
-                    "dictName": "1",
-                    "status": 1,
-                    "sortNo": 1,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESSearchBoost.1.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESSearchBoost",
-                    "dictId": "2",
-                    "dictName": "2",
-                    "status": 1,
-                    "sortNo": 2,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESSearchBoost.2",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESSearchBoost",
-                    "dictId": "3",
-                    "dictName": "3",
-                    "status": 1,
-                    "sortNo": 3,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESSearchBoost.3.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESSearchBoost",
-                    "dictId": "4",
-                    "dictName": "4",
-                    "status": 1,
-                    "sortNo": 4,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESSearchBoost.4.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESSearchBoost",
-                    "dictId": "5",
-                    "dictName": "5",
-                    "status": 1,
-                    "sortNo": 5,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESSearchBoost.5.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                }
-            ]
+            "dicts": [{
+                "dictTypeId": "ESSearchBoost",
+                "dictId": "1",
+                "dictName": "1",
+                "status": 1,
+                "sortNo": 1,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESSearchBoost.1.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESSearchBoost",
+                "dictId": "2",
+                "dictName": "2",
+                "status": 1,
+                "sortNo": 2,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESSearchBoost.2",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESSearchBoost",
+                "dictId": "3",
+                "dictName": "3",
+                "status": 1,
+                "sortNo": 3,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESSearchBoost.3.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESSearchBoost",
+                "dictId": "4",
+                "dictName": "4",
+                "status": 1,
+                "sortNo": 4,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESSearchBoost.4.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESSearchBoost",
+                "dictId": "5",
+                "dictName": "5",
+                "status": 1,
+                "sortNo": 5,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESSearchBoost.5.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }]
         }
     },
     "ESSortItem": {
@@ -593,60 +571,55 @@
         "arguments": null,
         "success": true,
         "datas": {
-            "dicts": [
-                {
-                    "dictTypeId": "ESSortItem",
-                    "dictId": "default",
-                    "dictName": "相关度",
-                    "status": 1,
-                    "sortNo": 1,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESSortItem.fineContent.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESSortItem",
-                    "dictId": "updateTime",
-                    "dictName": "修改时间",
-                    "status": 1,
-                    "sortNo": 2,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESSortItem.updateTime.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESSortItem",
-                    "dictId": "fileSize",
-                    "dictName": "文件大小",
-                    "status": 1,
-                    "sortNo": 3,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESSortItem.fileSize.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESSortItem",
-                    "dictId": "fileName",
-                    "dictName": "文件名称",
-                    "status": 1,
-                    "sortNo": 4,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESSortItem.fileName.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                }
-            ]
+            "dicts": [{
+                "dictTypeId": "ESSortItem",
+                "dictId": "default",
+                "dictName": "相关度",
+                "status": 1,
+                "sortNo": 1,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESSortItem.fineContent.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESSortItem",
+                "dictId": "updateTime",
+                "dictName": "修改时间",
+                "status": 1,
+                "sortNo": 2,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESSortItem.updateTime.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESSortItem",
+                "dictId": "fileSize",
+                "dictName": "文件大小",
+                "status": 1,
+                "sortNo": 3,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESSortItem.fileSize.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESSortItem",
+                "dictId": "fileName",
+                "dictName": "文件名称",
+                "status": 1,
+                "sortNo": 4,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESSortItem.fileName.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }]
         }
     },
     "ESFilterExtent": {
@@ -656,125 +629,115 @@
         "arguments": null,
         "success": true,
         "datas": {
-            "dicts": [
-                {
-                    "dictTypeId": "ESFilterExtent",
-                    "dictId": "Word",
-                    "dictName": "Word",
-                    "status": 1,
-                    "sortNo": 1,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESFilterExtent.Word",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESFilterExtent",
-                    "dictId": "Excel",
-                    "dictName": "Excel",
-                    "status": 1,
-                    "sortNo": 2,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESFilterExtent.Excel",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESFilterExtent",
-                    "dictId": "Powerpoint",
-                    "dictName": "Powerpoint",
-                    "status": 1,
-                    "sortNo": 3,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESFilterExtent.Powerpoint",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESFilterExtent",
-                    "dictId": "Pdf",
-                    "dictName": "Pdf",
-                    "status": 1,
-                    "sortNo": 4,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESFilterExtent.Pdf",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESFilterExtent",
-                    "dictId": "Text",
-                    "dictName": "文本类",
-                    "status": 1,
-                    "sortNo": 5,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESFilterExtent.Text",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESFilterExtent",
-                    "dictId": "Zip",
-                    "dictName": "压缩包",
-                    "status": 1,
-                    "sortNo": 6,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESFilterExtent.Zip",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESFilterExtent",
-                    "dictId": "Media",
-                    "dictName": "媒体类",
-                    "status": 1,
-                    "sortNo": 7,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESFilterExtent.Media",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESFilterExtent",
-                    "dictId": "Image",
-                    "dictName": "图片类",
-                    "status": 1,
-                    "sortNo": 8,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESFilterExtent.Image",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESFilterExtent",
-                    "dictId": "Others",
-                    "dictName": "其他类型",
-                    "status": 1,
-                    "sortNo": 9,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESFilterExtent.Others",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                }
-            ]
+            "dicts": [{
+                "dictTypeId": "ESFilterExtent",
+                "dictId": "Word",
+                "dictName": "Word",
+                "status": 1,
+                "sortNo": 1,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESFilterExtent.Word",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESFilterExtent",
+                "dictId": "Excel",
+                "dictName": "Excel",
+                "status": 1,
+                "sortNo": 2,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESFilterExtent.Excel",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESFilterExtent",
+                "dictId": "Powerpoint",
+                "dictName": "Powerpoint",
+                "status": 1,
+                "sortNo": 3,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESFilterExtent.Powerpoint",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESFilterExtent",
+                "dictId": "Pdf",
+                "dictName": "Pdf",
+                "status": 1,
+                "sortNo": 4,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESFilterExtent.Pdf",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESFilterExtent",
+                "dictId": "Text",
+                "dictName": "Text",
+                "status": 1,
+                "sortNo": 5,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESFilterExtent.Text",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESFilterExtent",
+                "dictId": "Zip",
+                "dictName": "Zip",
+                "status": 1,
+                "sortNo": 6,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESFilterExtent.Zip",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESFilterExtent",
+                "dictId": "Media",
+                "dictName": "Media",
+                "status": 1,
+                "sortNo": 7,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESFilterExtent.Media",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESFilterExtent",
+                "dictId": "Image",
+                "dictName": "Image",
+                "status": 1,
+                "sortNo": 8,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESFilterExtent.Image",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESFilterExtent",
+                "dictId": "Others",
+                "dictName": "Others",
+                "status": 1,
+                "sortNo": 9,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESFilterExtent.Others",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }]
         }
     },
     "ESFileSizeRange": {
@@ -784,47 +747,43 @@
         "arguments": null,
         "success": true,
         "datas": {
-            "dicts": [
-                {
-                    "dictTypeId": "ESFileSizeRange",
-                    "dictId": "0-512000",
-                    "dictName": "0~500KB",
-                    "status": 1,
-                    "sortNo": 1,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESFileSizeRange.0-512000.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESFileSizeRange",
-                    "dictId": "512000-1048576",
-                    "dictName": "500KB~1MB",
-                    "status": 1,
-                    "sortNo": 2,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESFileSizeRange.512000-1048576.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESFileSizeRange",
-                    "dictId": "1048576-",
-                    "dictName": "1MB以上",
-                    "status": 1,
-                    "sortNo": 3,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESFileSizeRange.1048576-.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                }
-            ]
+            "dicts": [{
+                "dictTypeId": "ESFileSizeRange",
+                "dictId": "0-512000",
+                "dictName": "0~500KB",
+                "status": 1,
+                "sortNo": 1,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESFileSizeRange.0-512000.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESFileSizeRange",
+                "dictId": "512000-1048576",
+                "dictName": "500KB~1MB",
+                "status": 1,
+                "sortNo": 2,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESFileSizeRange.512000-1048576.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESFileSizeRange",
+                "dictId": "1048576-",
+                "dictName": "1MB以上",
+                "status": 1,
+                "sortNo": 3,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESFileSizeRange.1048576-.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }]
         }
     },
     "ESSearchFileSizeRange": {
@@ -834,60 +793,56 @@
         "arguments": null,
         "success": true,
         "datas": {
-            "dicts": [
-                {
-                    "dictTypeId": "ESSearchFileSizeRange",
-                    "dictId": "0-512000",
-                    "dictName": "0~500KB",
-                    "status": 1,
-                    "sortNo": 1,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESSearchFileSizeRange.0-512000.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESSearchFileSizeRange",
-                    "dictId": "512000-1048576",
-                    "dictName": "500KB~1MB",
-                    "status": 1,
-                    "sortNo": 2,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESSearchFileSizeRange.512000-1048576.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESSearchFileSizeRange",
-                    "dictId": "1048576-",
-                    "dictName": "1MB以上",
-                    "status": 1,
-                    "sortNo": 3,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESSearchFileSizeRange.1048576-.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESSearchFileSizeRange",
-                    "dictId": "diy",
-                    "dictName": "自定义大小",
-                    "status": 1,
-                    "sortNo": 4,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESSearchFileSizeRange.diy.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                }
-            ]
+            "dicts": [{
+                "dictTypeId": "ESSearchFileSizeRange",
+                "dictId": "0-512000",
+                "dictName": "0~500KB",
+                "status": 1,
+                "sortNo": 1,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESSearchFileSizeRange.0-512000.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESSearchFileSizeRange",
+                "dictId": "512000-1048576",
+                "dictName": "500KB~1MB",
+                "status": 1,
+                "sortNo": 2,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESSearchFileSizeRange.512000-1048576.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESSearchFileSizeRange",
+                "dictId": "1048576-",
+                "dictName": "1MB以上",
+                "status": 1,
+                "sortNo": 3,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESSearchFileSizeRange.1048576-.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            },
+            {
+                "dictTypeId": "ESSearchFileSizeRange",
+                "dictId": "diy",
+                "dictName": "自定义大小",
+                "status": 1,
+                "sortNo": 4,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESSearchFileSizeRange.diy.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }]
         }
     },
     "ESModifyedTime": {
@@ -897,60 +852,55 @@
         "arguments": null,
         "success": true,
         "datas": {
-            "dicts": [
-                {
-                    "dictTypeId": "ESModifyedTime",
-                    "dictId": "1",
-                    "dictName": "过去一天",
-                    "status": 1,
-                    "sortNo": 1,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESModifyedTime.1.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESModifyedTime",
-                    "dictId": "7",
-                    "dictName": "过去一周",
-                    "status": 1,
-                    "sortNo": 2,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESModifyedTime.7.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESModifyedTime",
-                    "dictId": "30",
-                    "dictName": "过去一月",
-                    "status": 1,
-                    "sortNo": 3,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESModifyedTime.30.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESModifyedTime",
-                    "dictId": "365",
-                    "dictName": "过去一年",
-                    "status": 1,
-                    "sortNo": 4,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESModifyedTime.365.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                }
-            ]
+            "dicts": [{
+                "dictTypeId": "ESModifyedTime",
+                "dictId": "1",
+                "dictName": "过去一天",
+                "status": 1,
+                "sortNo": 1,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESModifyedTime.1.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESModifyedTime",
+                "dictId": "7",
+                "dictName": "过去一周",
+                "status": 1,
+                "sortNo": 2,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESModifyedTime.7.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESModifyedTime",
+                "dictId": "30",
+                "dictName": "过去一月",
+                "status": 1,
+                "sortNo": 3,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESModifyedTime.30.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESModifyedTime",
+                "dictId": "365",
+                "dictName": "过去一年",
+                "status": 1,
+                "sortNo": 4,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESModifyedTime.365.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }]
         }
     },
     "ESSearchModifyedTime": {
@@ -960,86 +910,68 @@
         "arguments": null,
         "success": true,
         "datas": {
-            "dicts": [
-                {
-                    "dictTypeId": "ESModifyedTime",
-                    "dictId": "ALL",
-                    "dictName": "全部日期",
-                    "status": 1,
-                    "sortNo": 0,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESModifyedTime.ALL.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESSearchModifyedTime",
-                    "dictId": "1",
-                    "dictName": "过去一天",
-                    "status": 1,
-                    "sortNo": 1,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESSearchModifyedTime.1.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESSearchModifyedTime",
-                    "dictId": "7",
-                    "dictName": "过去一周",
-                    "status": 1,
-                    "sortNo": 2,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESSearchModifyedTime.7.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESSearchModifyedTime",
-                    "dictId": "30",
-                    "dictName": "过去一月",
-                    "status": 1,
-                    "sortNo": 3,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESSearchModifyedTime.30.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESSearchModifyedTime",
-                    "dictId": "365",
-                    "dictName": "过去一年",
-                    "status": 1,
-                    "sortNo": 4,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESSearchModifyedTime.365.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESSearchModifyedTime",
-                    "dictId": "diy",
-                    "dictName": "自定义时间",
-                    "status": 1,
-                    "sortNo": 5,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESSearchModifyedTime.diy.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                }
-            ]
+            "dicts": [{
+                "dictTypeId": "ESSearchModifyedTime",
+                "dictId": "1",
+                "dictName": "过去一天",
+                "status": 1,
+                "sortNo": 1,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESSearchModifyedTime.1.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESSearchModifyedTime",
+                "dictId": "7",
+                "dictName": "过去一周",
+                "status": 1,
+                "sortNo": 2,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESSearchModifyedTime.7.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESSearchModifyedTime",
+                "dictId": "30",
+                "dictName": "过去一月",
+                "status": 1,
+                "sortNo": 3,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESSearchModifyedTime.30.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESSearchModifyedTime",
+                "dictId": "365",
+                "dictName": "过去一年",
+                "status": 1,
+                "sortNo": 4,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESSearchModifyedTime.365.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            },
+            {
+                "dictTypeId": "ESSearchModifyedTime",
+                "dictId": "diy",
+                "dictName": "自定义时间",
+                "status": 1,
+                "sortNo": 5,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESSearchModifyedTime.diy.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }]
         }
     },
     "ESDataSourceName": {
@@ -1049,110 +981,106 @@
         "arguments": null,
         "success": true,
         "datas": {
-            "dicts": [
-                {
-                    "dictTypeId": "ESDataSourceName",
-                    "dictId": "iv-fileserver-public",
-                    "dictName": "文件服务器1",
-                    "status": 1,
-                    "sortNo": 1,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESDataSourceName.1.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESDataSourceName",
-                    "dictId": "iv-fileserver-private",
-                    "dictName": "文件服务器2",
-                    "status": 1,
-                    "sortNo": 1,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESDataSourceName.2.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESDataSourceName",
-                    "dictId": "iv-es-file-server-3",
-                    "dictName": "文件服务器3",
-                    "status": 1,
-                    "sortNo": 1,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESDataSourceName.3.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESDataSourceName",
-                    "dictId": "iv-es-file-server-4",
-                    "dictName": "文件服务器4",
-                    "status": 1,
-                    "sortNo": 1,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESDataSourceName.1.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                },
-                {
-                    "dictTypeId": "ESDataSourceName",
-                    "dictId": "iv-es-file-server-5",
-                    "dictName": "文件服务器1",
-                    "status": 1,
-                    "sortNo": 1,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESDataSourceName.5.",
-                    "filter1": null,
-                    "filter2": null,
-                    "description": null
-                }
-            ]
+            "dicts": [{
+                "dictTypeId": "ESDataSourceName",
+                "dictId": "iv-fileserver-public",
+                "dictName": "文件服务器1",
+                "status": 1,
+                "sortNo": 1,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESDataSourceName.1.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESDataSourceName",
+                "dictId": "iv-fileserver-private",
+                "dictName": "文件服务器2",
+                "status": 1,
+                "sortNo": 1,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESDataSourceName.2.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESDataSourceName",
+                "dictId": "iv-es-file-server-3",
+                "dictName": "文件服务器3",
+                "status": 1,
+                "sortNo": 1,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESDataSourceName.3.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESDataSourceName",
+                "dictId": "iv-es-file-server-4",
+                "dictName": "文件服务器4",
+                "status": 1,
+                "sortNo": 1,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESDataSourceName.1.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }, {
+                "dictTypeId": "ESDataSourceName",
+                "dictId": "iv-es-file-server-5",
+                "dictName": "文件服务器1",
+                "status": 1,
+                "sortNo": 1,
+                "rankNo": null,
+                "parentId": null,
+                "seqNo": ".ESDataSourceName.5.",
+                "filter1": null,
+                "filter2": null,
+                "description": null
+            }]
         }
     },
     "ESSearchSortType": {
-        "messages": [],
-        "warnings": [],
-        "message": null,
-        "arguments": null,
-        "success": true,
+        "messages": [ ], 
+        "warnings": [ ], 
+        "message": null, 
+        "arguments": null, 
+        "success": true, 
         "datas": {
             "dicts": [
                 {
-                    "dictTypeId": "ESSearchSortType",
-                    "dictId": "rel",
-                    "dictName": "按相关度排序",
-                    "status": 1,
-                    "sortNo": 1,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESSearchSortType.rel.",
-                    "filter1": null,
-                    "filter2": null,
+                    "dictTypeId": "ESSearchSortType", 
+                    "dictId": "rel", 
+                    "dictName": "按相关度排序", 
+                    "status": 1, 
+                    "sortNo": 1, 
+                    "rankNo": null, 
+                    "parentId": null, 
+                    "seqNo": ".ESSearchSortType.rel.", 
+                    "filter1": null, 
+                    "filter2": null, 
                     "description": null
-                },
+                }, 
                 {
-                    "dictTypeId": "ESSearchSortType",
-                    "dictId": "time",
-                    "dictName": "按时间排序",
-                    "status": 1,
-                    "sortNo": 2,
-                    "rankNo": null,
-                    "parentId": null,
-                    "seqNo": ".ESSearchSortType.time.",
-                    "filter1": null,
-                    "filter2": null,
+                    "dictTypeId": "ESSearchSortType", 
+                    "dictId": "time", 
+                    "dictName": "按时间排序", 
+                    "status": 1, 
+                    "sortNo": 2, 
+                    "rankNo": null, 
+                    "parentId": null, 
+                    "seqNo": ".ESSearchSortType.time.", 
+                    "filter1": null, 
+                    "filter2": null, 
                     "description": null
                 }
             ]
         }
     }
+
+
 }

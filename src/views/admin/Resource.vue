@@ -235,7 +235,7 @@ export default {
     DictWrite
   },
   mixins: [search, formValidator],
-  data: function() {
+  data: function () {
     return {
       isLoading: true,
       activeNames: ['1'],
@@ -300,7 +300,7 @@ export default {
         confirmButtonText: this.$t('comm.certain'),
         cancelButtonText: this.$t('comm.cancel'),
         type: 'warning'
-      }).then(async() => {
+      }).then(async () => {
         await refreshRes()
       }).catch(() => {
         this.$message({
@@ -314,7 +314,7 @@ export default {
       this.dialogType = 'create'
       this.showDialog = true
       this.validatorState = false
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         this.clearErrorMessage()
       })
     },
@@ -340,7 +340,7 @@ export default {
       this.dialogObj.isLeaf = rowData.isLeaf + ''
       this.validatorState = true
       this.showDialog = true
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         this.clearErrorMessage()
       })
     },
@@ -360,33 +360,33 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .activity {
-    width: 100%;
-    padding: 20px;
-    height: 100%;
-    overflow: auto;
-    box-sizing: border-box;
-    border-radius: 6px;
-    background-color: #fff;
-    box-sizing: border-box;
-    .search {
-      .btns {
-        padding: 10px 0;
-        text-align: right;
-      }
-    }
-    .content {
-      .pagination {
-        padding: 5px 0;
-        text-align: right;
-      }
-    }
-    .res_add {
-      .message {
-        font-size: 12px;
-        padding-left: 15px;
-        color: red;
-      }
+.activity {
+  width: 100%;
+  padding: 20px;
+  height: 100%;
+  overflow: auto;
+  box-sizing: border-box;
+  border-radius: 6px;
+  background-color: #fff;
+  box-sizing: border-box;
+  .search {
+    .btns {
+      padding: 10px 0;
+      text-align: right;
     }
   }
+  .content {
+    .pagination {
+      // padding: 5px 0;
+      text-align: right;
+    }
+  }
+  .res_add {
+    .message {
+      font-size: 12px;
+      padding-left: 15px;
+      color: red;
+    }
+  }
+}
 </style>
