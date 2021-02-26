@@ -252,7 +252,7 @@ export default {
   watch: {
 
   },
-  created: function() {
+  created: function () {
     this.queryPage()
   },
 
@@ -374,7 +374,7 @@ export default {
         cancelButtonText: this.$t('comm.cancel'),
         cancelButtonClass: 'btn-custom-cancel',
         type: 'warning'
-      }).then(async() => {
+      }).then(async () => {
         const res = await deleteById(id)
         if (res) {
           if (res.success) {
@@ -676,7 +676,7 @@ export default {
 .slt_down i {
   margin-right: 6px;
 }
-.not_allowed{
+.not_allowed {
   cursor: not-allowed !important;
 }
 </style>

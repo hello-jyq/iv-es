@@ -901,6 +901,40 @@ top: 25px !important;
     top: 10px;
     left: 1px;
   }
+.org_group label{
+    margin-bottom: 10px !important;
+}
+.org_group .el-radio__label{
+    font-size: 12px !important;
+}
+.el-radio-group  .el-radio__label{
+    font-size: 12px !important;
+}
+.el-pagination__total{
+    font-size: 12px;
+}
+
+.con_box_search .el-tree-node__content, .acc .el-tree-node__content span{
+    font-size: 12px;
+}
+
+.put_filter span{
+    font-size: 12px ;
+}
+.perLabel_main_box .person_label{
+    margin-left: 0 !important;
+}
+
+.sh_search_main tr th .cell{
+    font-size: 14px;
+}
+
+.sh_search_main tr td .cell{
+    font-size: 12px;
+}
+
+
+
 
 
 

@@ -638,7 +638,7 @@
 <script>
 import { search } from '@/mixins/search-params'
 import { permission } from '@/mixins/permission-mixin'
-import { advancedSearchForTree, advancedSearch, downloadFile, getTerms, getFilePath, filterSearch } from '@/api/es/es-api'
+import { advancedSearchForTree, normalSearch, downloadFile, getTerms, getFilePath, filterSearch } from '@/api/es/es-api'
 import DictRadio from '@/components/DictRadio'
 import DictSelect from '@/components/DictSelect'
 import DictCheckbox from '@/components/DictCheckbox'
@@ -1375,7 +1375,7 @@ export default {
       }
       this.isAdvanceFlag = false
       this.isAdvanceSearch = false
-      const res = await advancedSearch(this.searchParam)
+      const res = await normalSearch(this.searchParam)
       if (res && res.success) {
         const resultscrollbox = this.$refs.scrollbox
         if (resultscrollbox) {

@@ -97,9 +97,11 @@
 }
 .el-submenu__title [class*=" el-icon-"], [class^=el-icon-]{
     line-height: 2;
+   
 }
 .el-dropdown-menu {
     top: 48px;
+    min-width: 110px;
     border-radius: 10px;
     background: -webkit-gradient(linear,left top, left bottom,from(rgba(71,91,160,1)),to(rgba(47,165,187,1))) ;
     background: linear-gradient(180deg,rgba(71,91,160,1) 0%,rgba(47,165,187,1) 100%) ;
@@ -1437,6 +1439,7 @@ border-color: #2D7A9C;
 }
 .sc .pagination-box {
     padding: 15px 0 15px 0;
+
 }
 .search-list-table{
     width: 100%;
