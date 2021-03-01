@@ -961,15 +961,15 @@ top: 25px !important;
    font-size: 16px!important;
  }
  .apply-light .content-light{
-     height: calc(100% - 1px) !important;   
+  height: calc(100% - 1px) !important;   
  }
 
 .dialog-drag{
     width:1200px !important;
     height: 600px !important;
   }
-  .search-btn-box .iconfont{
-      font-size: 18px!important;
+.search-btn-box .iconfont{
+    font-size: 18px!important;
   }
 }
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
