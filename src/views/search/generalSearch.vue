@@ -281,6 +281,7 @@ export default {
   created() {
     // this.getHotwords()
     // this.getKeywords()
+    this.initSettings()
     this.$nextTick(() => {
       this.$refs.searchInput.focus()
     })
@@ -390,6 +391,39 @@ export default {
           message: '请输入搜索内容！',
           type: 'warning'
         })
+      }
+    },
+    initSettings() {
+      const userSettingMap = this.$store.state.userInfo.userSettingMap
+      if (userSettingMap !== undefined && userSettingMap !== null) {
+        if (userSettingMap.SearchDiv !== undefined) {
+          this.fuzzy = userSettingMap.SearchDiv
+        }
+
+        if (userSettingMap.SearchTarget !== undefined) {
+          this.radio = userSettingMap.SearchTarget
+        }
+
+        if (userSettingMap.InitOrg !== undefined) {
+          this.initOrg = userSettingMap.InitOrg
+        } else {
+          this.initOrg = this.$store.state.userInfo.orgId
+        }
+      } else {
+        this.initOrg = this.$store.state.userInfo.orgId
+        this.fuzzy = '2'
+        this.radio = 'ALL'
+      }
+      // 做成新的orgList
+      const defaultOrg = {
+        id: this.$store.state.userInfo.orgId,
+        fullName: this.$store.state.userInfo.orgFullName
+      }
+      this.orgList = []
+      this.orgList.push(defaultOrg)
+      const userOrgList = this.$store.state.userOrgList
+      if (userOrgList !== undefined) {
+        userOrgList.forEach((item) => this.orgList.push(item))
       }
     }
   }

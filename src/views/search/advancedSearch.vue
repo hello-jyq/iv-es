@@ -195,8 +195,8 @@ export default {
       restaurants: [],
       suggestFilePaths: [],
       searchs: '',
-      fuzzySearchDiv: '',
-      fieldScale: '',
+      fuzzySearchDiv: '2',
+      fieldScale: 'ALL',
       allKeyWords: '',
       notIncludeKeyWords: '',
       modifyedTime: '0',
@@ -323,8 +323,8 @@ export default {
       }
     },
     querySearch(prefix, cb) {
-      this.restaurants = []
-      this.getTerms(prefix)
+      this.restaurants = [{ id: 1, value: '22' }, { id: 1, value: '111111111111111111' }, { id: 1, value: '888888888888' }, { id: 1, value: '33' }]
+      // this.getTerms(prefix)
       // 调用 callback 返回建议列表的数据
       cb(this.restaurants)
     },
@@ -337,6 +337,7 @@ export default {
       cb(this.suggestFilePaths)
     },
     handleSelect(item) {
+      this.$refs.searchInput.focus()
       console.log(item)
     },
     // 目录搜索被选中的项目
@@ -355,7 +356,22 @@ export default {
     //   this.fuzzy = value
     // },
     search() {
-      console.log(this.searchs)
+      if (!this.searchs) {
+        this.$message.closeAll()
+        this.$message({
+          message: '请输入搜索内容！',
+          type: 'warning'
+        })
+        return
+      }
+      if (this.diysizefrommessage !== '' || this.diysizetomessage !== '') {
+        this.$message.closeAll()
+        this.$message({
+          message: '搜索条件中的文件自定义大小输入有误，请确认！',
+          type: 'warning'
+        })
+        return
+      }
       if (this.searchs) {
         this.$router.push({
           name: 'advancedSearchresult',
@@ -378,12 +394,6 @@ export default {
             dataSourceFilePath: this.selectedFullFilePath,
             searchSortType: this.searchSortType
           }
-        })
-      } else {
-        this.$message.close()
-        this.$message({
-          message: '请输入搜索内容！',
-          type: 'warning'
         })
       }
     },
@@ -466,8 +476,7 @@ export default {
     },
     initSettings() {
       const userSettingMap = this.$store.state.userInfo.userSettingMap
-      console.log(userSettingMap)
-      if (userSettingMap !== undefined) {
+      if (userSettingMap !== undefined && userSettingMap !== null) {
         if (userSettingMap.SearchDiv !== undefined) {
           this.fuzzySearchDiv = userSettingMap.SearchDiv
         }
@@ -481,6 +490,10 @@ export default {
         } else {
           this.initOrg = this.$store.state.userInfo.orgId
         }
+      } else {
+        this.initOrg = this.$store.state.userInfo.orgId
+        this.fuzzySearchDiv = '2'
+        this.fieldScale = 'ALL'
       }
 
       // 做成新的orgList
@@ -647,10 +660,10 @@ export default {
   left: 255px;
   color: #f54132;
 }
-.icon-shuaxin{
+.icon-shuaxin {
   color: #2d7a9c;
 }
-.kb{
+.kb {
   margin-left: 5px;
 }
 </style>

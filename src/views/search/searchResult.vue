@@ -1,6 +1,6 @@
 <template>
-  <div v-loading="fullscreenLoading" class="result_box">
-    <div :class="isCollapse?'result_DIY result_filter_all':'result_DIY result_filter'">
+  <div id="box" v-loading="fullscreenLoading" class="result_box">
+    <div id="left" :class="isCollapse?'result_DIY result_filter_all':'result_DIY result_filter'">
       <div class="title_box">
         <ul>
           <li v-for="(item,index) in filetab" :id="'tab'+index" :key="index" :class="activeDataSource==index?'active':''" :title="item.value" @click="filetapClick(item),activeDataSource=index">
@@ -8,36 +8,43 @@
           </li>
         </ul>
       </div>
+      <div v-if="activeDataSource!=0" class="qxz">
+        <span>包含子目录:</span>
+        <el-radio-group v-model="cascadeSelect" @change="onSelectedChange">
+          <el-radio v-for="item in optionsFolder" :id="item.value" :key="item.value" :label="item.value">
+            {{ item.label }}
+          </el-radio>
+        </el-radio-group>
+      </div>
       <div class="con_box_search">
         <div class="left_result">
-          <!--el-tree严格模式：只能选中当前节点  -->
-          <!-- check-strictly="true" -->
-          <el-tree
-            v-if="activeDataSource!=0"
-            ref="ProjectTree"
-            :data="choseTreeData"
-            show-checkbox
-            node-key="id"
-            :expand-on-click-node="false"
-            :default-expanded-keys="expandedKeys"
-            :check-on-click-node="true"
-            :default-checked-keys="checkedKeys"
-            :check-strictly="true"
-            icon-class="iconfont icon-jiantou-copy"
-            @check="docTreeCheck"
-            @node-expand="docTreeExpand"
-            @node-collapse="docTreeExpandClose"
-          >
-            <template slot-scope="scope">
-              <div>
+          <div v-for="(item,index) in dataSourceFolderTree" v-show="('dataSource'+acticeName) == index" :key="index">
+            <!--el-tree严格模式：只能选中当前节点  -->
+            <!-- check-strictly="true" -->
+            <el-tree
+              :ref="'ProjectTree'+index"
+              class="iv-seach-tree"
+              :check-strictly="true"
+              :data="item"
+              show-checkbox
+              node-key="id"
+              :expand-on-click-node="false"
+              :check-on-click-node="true"
+
+              icon-class="iconfont icon-jiantou-copy"
+              @check="docTreeCheck"
+            >
+              <template slot-scope="scope">
                 <div>
-                  <!-- <span v-if="scope.data.id !== 50" class="iconfont" :class="scope.data.children || scope.data.type === 'org' ? 'icon-bumenguanli_h' : 'icon-Avatar'" />
-                  <span v-else class="iconfont icon-zuzhijiagou" /> -->
-                  <span>{{ scope.data.label }}</span><span class="filter_number"><span>{{ scope.data.fileItemCount }}</span><span>/</span><span>{{ scope.data.totalFileItemCount }}</span></span>
+                  <div :class="{'f_bolder':getIsBolder(scope)}">
+                    <!-- <span v-if="scope.data.id !== 50" class="iconfont" :class="scope.data.children || scope.data.type === 'org' ? 'icon-bumenguanli_h' : 'icon-Avatar'" />
+                    <span v-else class="iconfont icon-zuzhijiagou" /> -->
+                    <span>{{ scope.data.label }}</span><span class="filter_number"><span>{{ scope.data.fileItemCount }}</span><span>/</span><span>{{ scope.data.totalFileItemCount }}</span><span>/</span><span>{{ scope.data.oldTotalFileItemCount }}</span></span>
+                  </div>
                 </div>
-              </div>
-            </template>
-          </el-tree>
+              </template>
+            </el-tree>
+          </div>
           <div v-if="activeDataSource!='0'" />
           <div v-if="activeDataSource==0">
             <div class="search_num" @click="isfile=!isfile">
@@ -56,7 +63,7 @@
               <el-checkbox v-for="type in languageAggResult" :key="type.id" :label="type.id">
                 {{ type.name }}
                 <template>
-                  <span class="filter_number">{{ type.count }}</span>
+                  <span class="filter_number"><span>{{ type.count }}</span><span>/</span><span>{{ type.oldCount }}</span></span>
                 </template>
               </el-checkbox>
             </el-checkbox-group>
@@ -69,7 +76,7 @@
               <el-checkbox v-for="type in fileTypeAggResult" :key="type.id" :label="type.id">
                 {{ type.name }}
                 <template>
-                  <span class="filter_number">{{ type.count }}</span>
+                  <span class="filter_number"><span>{{ type.count }}</span><span>/</span><span>{{ type.oldCount }}</span></span>
                 </template>
               </el-checkbox>
             </el-checkbox-group>
@@ -91,19 +98,19 @@
               <i class="iconfont icon-ai-arrow-down" :class="isradio?'':'icon_gif'" />
             </div>
             <el-radio-group v-show="isradio" v-model="radiocheckList" @change="radioTimeCheck">
-              <el-radio v-for="time in fileUpdateTimeAggResult" :id="time.id" :key="time.id" :label="time.id">
-                {{ time.name }}
+              <el-radio v-for="type in fileUpdateTimeAggResult" :id="type.id" :key="type.id" :label="type.id">
+                {{ type.name }}
                 <template>
-                  <span class="filter_number">{{ time.count }}</span>
+                  <span class="filter_number"><span>{{ type.count }}</span><span>/</span><span>{{ type.oldCount }}</span></span>
                 </template>
               </el-radio>
-              <el-radio label="自定义日期" />
+              <el-radio label="自定义时间" />
             </el-radio-group>
             <div v-show="isradio" class="block">
               <el-date-picker
                 v-model="radiotime"
                 class="diy_time"
-                :disabled="radiocheckList==='自定义日期'?false:true"
+                :disabled="radiocheckList==='自定义时间'?false:true"
                 popper-class="date_picker"
                 value-format="yyyy-MM-dd HH:mm:ss"
                 type="datetimerange"
@@ -122,10 +129,10 @@
               <i class="iconfont icon-ai-arrow-down" :class="issize?'':'icon_gif'" />
             </div>
             <el-checkbox-group v-show="issize" v-model="sizecheckList" @change="checkboxChange">
-              <el-checkbox v-for="filesize in fileSizeAggResult" :key="filesize.index" :label="filesize.id">
-                {{ filesize.name }}
+              <el-checkbox v-for="type in fileSizeAggResult" :key="type.index" :label="type.id">
+                {{ type.name }}
                 <template>
-                  <span class="filter_number">{{ filesize.count }}</span>
+                  <span class="filter_number"><span>{{ type.count }}</span><span>/</span><span>{{ type.oldCount }}</span></span>
                 </template>
               </el-checkbox>
             </el-checkbox-group>
@@ -179,12 +186,12 @@
             </el-row> -->
       </div>
     </div>
-    <div class="container">
+    <div id="resize" />
+    <div id="right" class="container">
       <el-row class="search_box">
         <el-col :span="24">
           <!-- 拉取联想词 -->
           <el-autocomplete
-            ref="searchInput"
             v-model="keyWords"
             class="inline-input search_input"
             placeholder="请输入您想要搜索的内容"
@@ -268,7 +275,7 @@
                 <i class="iconfont  icon-Group-" />点击下载
               </span>
             </div>
-            <div class="each_r_title" :title="item.realFileName">
+            <div class="each_r_title" :title="item.fileName">
               <img v-if="item.fileType=='Excel'" src="../../assets/img/filetype/excel.png">
               <img v-else-if="item.fileType=='Word'" src="../../assets/img/filetype/word.png">
               <img v-else-if="item.fileType=='PowerPoint'" src="../../assets/img/filetype/PPT.png">
@@ -380,13 +387,7 @@
         </el-pagination>
       </div>
     </div>
-
-    <thumbnail-dailog
-      :is-show="centerDialogVisible"
-      :doc-obj="sltData"
-      @onClose="closeSLT"
-    />
-    <!-- <el-dialog
+    <el-dialog
       v-model="sltData"
       title="缩略图"
       :visible.sync="centerDialogVisible"
@@ -433,7 +434,7 @@
       <div class="slt_down" @click="download(sltData.fileUrl, sltData.id)">
         <i class="iconfont icon-Group-" />点击下载
       </div>
-    </el-dialog> -->
+    </el-dialog>
     <el-dialog
       title="自定义文件大小"
       :visible.sync="filesizeDialogVisible"
@@ -471,14 +472,14 @@
 <script>
 import { search } from '@/mixins/search-params'
 import { permission } from '@/mixins/permission-mixin'
-import { normalSearch, downloadFile, getTerms, filterSearch } from '@/api/es/es-api'
+import { normalSearchForTree, normalSearch, downloadFile, getTerms, filterSearch } from '@/api/es/es-api'
+import tools from './tools/tools.js'
+import $ from 'jquery'
 // import DictCheckbox from '../../components/DictCheckbox.vue'
 // import { getDictEntriesByTypeId } from '@/api/base'
-import thumbnailDailog from '../searchManagement/_thumbnail.vue'
 
 export default {
   components: {
-    thumbnailDailog
   },
   // filters: {
   //   // 当标题字数超出时，超出部分显示’...‘。此处限制超出8位即触发隐藏效果
@@ -494,12 +495,24 @@ export default {
 
   data() {
     return {
+
+      optionsFolder: [
+        {
+          label: '是',
+          value: '1'
+        },
+        {
+          label: '否',
+          value: '2'
+        }
+      ],
+      cascadeSelect: '1',
       restaurants: [],
       // keyWords: '',
-      keyWords: '',
-      fieldScale: 'ALL',
-      docLanguage: 'ALL',
-      fuzzySearchDiv: '2',
+      keyWords: !tools.isBlank(this.$route.params.search) ? this.$route.params.search : '',
+      fieldScale: !tools.isBlank(this.$route.params.radio) ? this.$route.params.radio : 'ALL',
+      docLanguage: !tools.isBlank(this.$route.params.lang) ? this.$route.params.lang : 'ALL',
+      fuzzySearchDiv: !tools.isBlank(this.$route.params.fuzzy) ? this.$route.params.fuzzy : '2',
       optionslang: [
         {
           value: 'ALL',
@@ -524,6 +537,8 @@ export default {
           label: '部分一致'
         }
       ],
+      oldNormalSearch: null,
+
       // 搜索参数
       searchParam: {
         paging: true,
@@ -561,7 +576,7 @@ export default {
           allCheckedNodes: []
         }
       },
-      sltData: '',
+      sltData: {},
       centerDialogVisible: false,
       filesizeDialogVisible: false,
       activeDataSource: 0,
@@ -577,10 +592,8 @@ export default {
       treeData: [],
       choseTreeData: [],
       expandedKeys: [],
-      allexpandedKeys: [],
       dataCheckedList: {},
       dataHalfCheckedList: {},
-      dataexpandedKeysList: {},
       dataSourceFolderTree: {},
       tabItem: '',
       tabLength: '',
@@ -614,7 +627,7 @@ export default {
         // { id: '3', name: '1MB以上(0)', count: '0' }
       ],
       sizecheckList: [],
-      checkedKeys: [],
+
       diysizefrom: '',
       diysizeto: '',
       diysizefrommessage: '',
@@ -649,86 +662,25 @@ export default {
     isCollapse() {
       return this.$store.state.falg
     }
-    // diysizefrommessage() {
-    //   let errormessagefrom = ''
-    //   const reg = /^\+?[1-9]\d*$/
-    //   if (this.diysizefrom) {
-    //     if (!reg.test(this.diysizefrom)) {
-    //       errormessagefrom = '请输入大于0的正整数'
-    //     } else if (this.diysizefrom > this.diysizeto && this.diysizeto) {
-    //       errormessagefrom = '请输入小于' + this.diysizeto + '的正整数'
-    //     }
-    //   }
-    //   return errormessagefrom
-    // },
-    // diysizetomessage() {
-    //   let errormessageto = ''
-    //   const reg = /^\+?[1-9]\d*$/
-    //   if (this.diysizeto) {
-    //     if (!reg.test(this.diysizeto)) {
-    //       errormessageto = '请输入大于0的正整数'
-    //     } else if (this.diysizefrom > this.diysizeto && this.diysizefrom) {
-    //       errormessageto = '请输入大于' + this.diysizefrom + '的正整数'
-    //     }
-    //   }
-    //   return errormessageto
-    // }
   },
   watch: {
     results: {
-      handler: function(newVal, oldVal) { },
+      handler: function (newVal, oldVal) { },
       deep: true
     },
     keyWords(newVal, oldVal) {
-      if (newVal.length > 80) {
-        this.$message({
-          message: '被搜索的关键字被限制在80个字符以内，请调整重新输入！',
-          type: 'warning'
-        })
-        return false
+      if (newVal) {
+        if (newVal.length > 80) {
+          this.$message({
+            message: '被搜索的关键字被限制在80个字符以内，请调整重新输入！',
+            type: 'warning'
+          })
+          return false
+        }
       }
-      // else {
-      //   const query = this.$router.history.current.query
-      //   // console.log(query)
-      //   const path = this.$router.history.current.path
-      //   // 对象的拷贝
-      //   const newQuery = JSON.parse(JSON.stringify(query))
-      //   // 地址栏的参数值赋值
-      //   newQuery.search = newVal
-      //   this.$router.push({ path, query: newQuery })
-      //   console.log(this.$router.history.current.path)
-      // }
+      localStorage.setItem('keywords', newVal)
+      // console.log(localStorage.getItem('keywords'))
     },
-    // fieldScale(newVal, oldVal) {
-    //   const query = this.$router.history.current.query
-    //   // console.log(query)
-    //   const path = this.$router.history.current.path
-    //   // 对象的拷贝
-    //   const newQuery = JSON.parse(JSON.stringify(query))
-    //   // 地址栏的参数值赋值
-    //   newQuery.radio = newVal
-    //   this.$router.push({ path, query: newQuery })
-    // },
-    // docLanguage(newVal, oldVal) {
-    //   const query = this.$router.history.current.query
-    //   // console.log(query)
-    //   const path = this.$router.history.current.path
-    //   // 对象的拷贝
-    //   const newQuery = JSON.parse(JSON.stringify(query))
-    //   // 地址栏的参数值赋值
-    //   newQuery.lang = newVal
-    //   this.$router.push({ path, query: newQuery })
-    // },
-    // fuzzySearchDiv(newVal, oldVal) {
-    //   const query = this.$router.history.current.query
-    //   // console.log(query)
-    //   const path = this.$router.history.current.path
-    //   // 对象的拷贝
-    //   const newQuery = JSON.parse(JSON.stringify(query))
-    //   // 地址栏的参数值赋值
-    //   newQuery.fuzzy = newVal
-    //   this.$router.push({ path, query: newQuery })
-    // },
     diysizefrom(newVal, oldVal) {
       const reg = /^\+?[1-9]\d*$/
       if (newVal !== '') {
@@ -777,28 +729,27 @@ export default {
   },
   created() {
     // console.log(this.dictTypeId)
-    console.log(this.$route.params)
-    const search = this.$route.params.search !== '' ? this.$route.params.search : ''
-    const radio = this.$route.params.radio !== '' ? this.$route.params.radio : 'ALL'
-    const lang = this.$route.params.lang !== '' ? this.$route.params.lang : 'ALL'
-    const fuzzy = this.$route.params.fuzzy !== '' ? this.$route.params.fuzzy : '2'
-    if (this.$route.params.search) {
-      this.keyWords = search
-      this.fieldScale = radio
-      this.fuzzySearchDiv = fuzzy
+    // console.log(this.$route.query)
+    // const search = this.$route.query.search !== '' ? this.$route.query.search : ''
+    // const radio = this.$route.query.radio !== '' ? this.$route.query.radio : ''
+    // const lang = this.$route.query.lang !== '' ? this.$route.query.lang : ''
+    // const fuzzy = this.$route.query.fuzzy !== '' ? this.$route.query.fuzzy : ''
+    if (tools.isBlank(this.keyWords)) {
+      this.keyWords = localStorage.getItem('keywords')
+      console.log(this.keyWords)
     }
-    this.searchParam.params.keyWords = search
-    this.searchParam.params.fieldScale = radio
-    this.searchParam.params.docLanguage = lang
-    this.searchParam.params.fuzzySearchDiv = fuzzy
+    // 文档类型
+    this.searchParam.params.keyWords = this.keyWords
+    this.searchParam.params.fieldScale = this.fieldScale
+    this.searchParam.params.docLanguage = this.docLanguage
+    this.searchParam.params.fuzzySearchDiv = this.fuzzySearchDiv
+    // this.keyWords = search
     this.loading = true
     this.sltLoading = true
     this.normalSearch()
- 	  this.$nextTick(() => {
-      this.$refs.searchInput.focus()
-    })
   },
   mounted() {
+    this.dragControllerDiv()
     // this.$nextTick(() => {
     //   const iframe = this.$refs.kkfileviewIframe
     //   console.log(iframe)
@@ -824,33 +775,66 @@ export default {
     this.$nextTick(() => {
       this.sltLoading = false
     })
-    // this.$nextTick(() => {
-    //   const firstPageStatue = document.getElementsByClassName('btn-prev')[0].disabled
-    //   const lastPageStatue = document.getElementsByClassName('btn-next')[0].disabled
-    //   // console.log(111111111111, firstPageStatue, lastPageStatue)
-    //   if (firstPageStatue) {
-    //     document.getElementsByClassName('first-pager')[0].disabled = true
-    //   } else {
-    //     document.getElementsByClassName('first-pager').disabled = false
-    //   }
-    //   if (lastPageStatue) {
-    //     document.getElementsByClassName('last-pager')[0].disabled = true
-    //   } else {
-    //     document.getElementsByClassName('last-pager')[0].disabled = false
-    //   }
-    // })
+    this.$nextTick(() => {
+      const firstPageStatue = document.getElementsByClassName('btn-prev')[0].disabled
+      const lastPageStatue = document.getElementsByClassName('btn-next')[0].disabled
+      // console.log(111111111111, firstPageStatue, lastPageStatue)
+      if (firstPageStatue) {
+        document.getElementsByClassName('first-pager')[0].disabled = true
+      } else {
+        document.getElementsByClassName('first-pager').disabled = false
+      }
+      if (lastPageStatue) {
+        document.getElementsByClassName('last-pager')[0].disabled = true
+      } else {
+        document.getElementsByClassName('last-pager')[0].disabled = false
+      }
+    })
   },
   methods: {
-    btnSearch() {
+    onSelectedChange(event, item) {
+      console.log(this.cascadeSelect)
+    },
+    dragControllerDiv: function () {
+      const resize = document.getElementById('resize')
+      const left = document.getElementById('left')
+      const right = document.getElementById('right')
+      const box = document.getElementById('box')
+      const rightMinWidth = 700
+      console.log('dragControllerDiv, resize=' + resize.id + ', left=' + left.id + ', right=' + right.id + ', box=' + box.id)
+
+      resize.onmousedown = function (e) {
+        const startX = e.clientX
+        resize.left = resize.offsetLeft
+        document.onmousemove = function (e) {
+          const endX = e.clientX
+          let moveLen = resize.left + (endX - startX)
+          const maxT = box.clientWidth - resize.offsetWidth
+          // if (moveLen < 150) moveLen = 360
+          if (moveLen > maxT - rightMinWidth) moveLen = maxT - rightMinWidth
+          resize.style.left = moveLen
+          left.style.width = moveLen + 'px'
+          right.style.width = (box.clientWidth - moveLen - 5) + 'px'
+        }
+        document.onmouseup = function () {
+          document.onmousemove = null
+          document.onmouseup = null
+          resize.releaseCapture && resize.releaseCapture()
+        }
+        resize.setCapture && resize.setCapture()
+        return false
+      }
+    },
+    async btnSearch() {
       if (this.keyWords) {
         this.loading = true
         this.isBtnSearchFlag = true
-        if (this.$refs.ProjectTree) {
-          this.$refs.ProjectTree.setCheckedKeys([])
+        if (this.$refs['ProjectTreedataSource' + this.acticeName]) {
+          this.$refs['ProjectTreedataSource' + this.acticeName][0].setCheckedKeys([])
         }
         this.activeDataSource = 0
         this.fullscreenLoading = true
-        this.checkedKeys = []
+
         this.filecheckList = []
         this.sizecheckList = []
         this.radiocheckList = '0'
@@ -883,7 +867,7 @@ export default {
         this.diysizefrom = ''
         this.diysizeto = ''
         this.searchParam.params.searchLogId = ''
-        this.normalSearch()
+        await this.normalSearch()
         this.tabLength = this.filetab.length
       } else {
         this.$message.closeAll()
@@ -895,6 +879,9 @@ export default {
       document.getElementsByClassName('el-autocomplete-suggestion')[0].style.display = 'none'
     },
     async normalSearch(callback) {
+      if (this.isBtnSearchFlag) {
+        this.dataSourceFolderTree = {}
+      }
       const res = await normalSearch(this.searchParam)
       if (res && res.success) {
         const resultscrollbox = this.$refs.scrollbox
@@ -903,11 +890,7 @@ export default {
         }
         // console.log('搜索结果', res)
         this.results = res.datas.searchResult.results
-        // this.treeData = res.datas.folderTreeResult
-        this.fileTypeAggResult = res.datas.fileTypeAggResult
-        this.fileUpdateTimeAggResult = res.datas.fileUpdateTimeAggResult
-        this.languageAggResult = res.datas.languageAggResult
-        this.fileSizeAggResult = res.datas.fileSizeAggResult
+        this.treeData = res.datas.folderTreeResult
         this.searchParam.pageNo = res.datas.searchResult.pageNo
         this.searchParam.pageSize = res.datas.searchResult.pageSize
         this.searchParam.totalPage = res.datas.searchResult.totalPage
@@ -915,7 +898,6 @@ export default {
         this.searchLogId = res.datas.searchLogId
         this.timeTaken = res.datas.timeTaken
         // console.log(1111, res.datas.searchResult.results)
-        this.filetab = [{ id: 'fixed', dataSource: '', value: '搜索结果' }]
         const groupTree = {}
         for (var i = 0; i < res.datas.folderTreeResult.length; i++) {
           var key = res.datas.folderTreeResult[i].dataSource
@@ -924,18 +906,57 @@ export default {
         }
         const allTree = []
         allTree.push(...Object.values(groupTree))
-        this.treeData = allTree
-        this.allexpandedKeys = res.datas.folderTreeResultExpandedKeys
-        for (let i = 0; i < allTree.length; i++) {
-          if (allTree[i].length > 0) {
-            this.filetab.push({
-              id: allTree[i][0].id,
-              value: allTree[i][0].dataSourceName,
-              dataSource: allTree[i][0].dataSource
-            })
+        // this.treeData = allTree
+
+        if (this.isBtnSearchFlag) {
+          this.acticeName = ''
+          // 点击搜索按钮时处理
+          this.oldNormalSearch = res.datas
+          tools.normalSearchCopy(this.oldNormalSearch, 'fileTypeAggResult', 'fileUpdateTimeAggResult', 'languageAggResult', 'fileSizeAggResult')
+
+          this.filetab = [{ id: 'fixed', dataSource: '', value: '筛选过滤' }]
+          for (let i = 0; i < allTree.length; i++) {
+            const dataTree = allTree[i]
+            this.dataSourceFolderTree['dataSource' + allTree[i][0].dataSource] = dataTree
+            if (dataTree.length > 0) {
+              const data = dataTree[0]
+              // 向第一次返回的树中添加检索结果的总文件数
+              tools.recordDataTreeFirstCount(data)
+              this.filetab.push({
+                id: data.id,
+                value: data.dataSourceName,
+                dataSource: data.dataSource
+              })
+            }
           }
-          if (this.isBtnSearchFlag) {
-            this.dataSourceFolderTree['dataSource' + allTree[i][0].dataSource] = allTree[i]
+          this.$nextTick(() => {
+            // 页面加载完毕后设置默认展开
+            for (const item of res.datas.folderTreeResultExpandedKeys) {
+              for (const iterator of item.expandedKeys) {
+                const node = this.$refs['ProjectTreedataSource' + item.dataSource][0].getNode(iterator)
+                node.expanded = true
+              }
+            }
+          })
+        } else if (this.activeDataSource === 0) {
+          // 改变文件属性时，重新构造检索条件
+          const fileAttrParams = $.extend(true, {}, this.searchParam)
+          // 清空文件树勾选的内容，作为新检索条件
+          fileAttrParams.params.docFolderList = {}
+          const fileAttrResult = await normalSearchForTree(fileAttrParams)
+          const fileTreeData = fileAttrResult.datas.folderTreeResult
+          for (const key in this.dataSourceFolderTree) {
+            let dataTree = {}
+            const dataSourceTree = this.dataSourceFolderTree[key][0]
+            for (let i = 0; i < fileTreeData.length; i++) {
+              const data = fileTreeData[i]
+              if ('dataSource' + data.dataSource === key) {
+                dataTree = data
+                break
+              }
+            }
+            // 将检索后的文件结果数更行到文件树上
+            tools.mergeDataTree(dataSourceTree, dataTree)
           }
         }
         if (!!callback && typeof callback === 'function') {
@@ -948,12 +969,32 @@ export default {
         this.loading = false
         this.fullscreenLoading = false
       }
-      const totalRecord = res.datas.searchResult.totalRecord
+      const totalRecord = res.datas.searchResult ? res.datas.searchResult.totalRecord : 0
       if (totalRecord === 1000) {
         this.pageTotalRecord = '999+'
       } else {
         this.pageTotalRecord = totalRecord
       }
+
+      const fileTypeAggResult = res.datas.fileTypeAggResult
+      const fileUpdateTimeAggResult = res.datas.fileUpdateTimeAggResult
+      const languageAggResult = res.datas.languageAggResult
+      const fileSizeAggResult = res.datas.fileSizeAggResult
+      // 刷新搜索结果数据
+      if (!tools.isBlank(this.oldNormalSearch)) {
+        // 文档类型
+        tools.normalSearchMergeList(this.oldNormalSearch.fileTypeAggResult, fileTypeAggResult)
+        // 文档更新时间
+        tools.normalSearchMergeList(this.oldNormalSearch.fileUpdateTimeAggResult, fileUpdateTimeAggResult)
+        // 文档语言
+        tools.normalSearchMergeList(this.oldNormalSearch.languageAggResult, languageAggResult)
+        // 文档大小
+        tools.normalSearchMergeList(this.oldNormalSearch.fileSizeAggResult, fileSizeAggResult)
+      }
+      this.fileTypeAggResult = fileTypeAggResult
+      this.fileUpdateTimeAggResult = fileUpdateTimeAggResult
+      this.languageAggResult = languageAggResult
+      this.fileSizeAggResult = fileSizeAggResult
     },
     async getTerms(prefix) {
       const res = await getTerms({ prefix })
@@ -985,7 +1026,7 @@ export default {
     //   }
     // },
     querySearch(queryString, cb) {
-      this.restaurants = []
+      this.restaurants = [{ id: 1, value: '22' }, { id: 1, value: '111111111111111111' }, { id: 1, value: '888888888888' }, { id: 1, value: '33' }]
       // this.getTerms(queryString)
       // 调用 callback 返回建议列表的数据
       cb(this.restaurants)
@@ -1025,60 +1066,19 @@ export default {
       // console.log(this.$refs.ProjectTree)
       this.acticeName = obj.dataSource
       this.tabItem = obj
-      if (this.treeData.length >= 1) {
+      if (this.filetab.length >= 1) {
         this.choseTreeData = []
-        for (let i = 0; i < this.treeData.length; i++) {
-          if (this.treeData[i][0].dataSource === obj.dataSource) {
-            // this.choseTreeData = this.treeData[i]
-            this.choseTreeData = this.dataSourceFolderTree['dataSource' + obj.dataSource]
+        for (let i = 0; i < this.filetab.length; i++) {
+          if (this.filetab[i].dataSource === obj.dataSource) {
+            const dataSourceTree = this.dataSourceFolderTree['dataSource' + obj.dataSource]
+            this.choseTreeData = dataSourceTree
+            break
           }
         }
       }
-      // 展开
-      const datatreeexpandedKeys = this.dataexpandedKeysList['expanded' + obj.dataSource]
-      for (let i = 0; i < this.allexpandedKeys.length; i++) {
-        if (this.allexpandedKeys[i].dataSource === obj.dataSource) {
-          this.$nextTick(() => {
-            this.expandedKeys = this.allexpandedKeys[i].expandedKeys
-            // this.dataCheckedList['expanded' + index] = this.expandedKeys
-          })
-        }
-      }
-      if (datatreeexpandedKeys) {
-        this.$nextTick(() => {
-          this.expandedKeys = datatreeexpandedKeys
-        })
-      }
-      // 勾选
-      const datatreechecked = this.dataCheckedList['checked' + obj.dataSource]
-      // console.log(datatreechecked)
-      // console.log(this.dataCheckedList)
-      // console.log(888888888, datatreechecked)
-      if (datatreechecked !== '') {
-        this.$nextTick(() => {
-          this.checkedKeys = datatreechecked
-        })
-      }
-      // 半选
-      // this.$nextTick(() => {
-      //   let dataHalfChecked = []
-      //   dataHalfChecked = this.dataHalfCheckedList['halfChecked' + obj.dataSource]
-      //   if (dataHalfChecked) {
-      //     dataHalfChecked.forEach(item => {
-      //       console.log(item)
-      //       console.log(this.$refs.ProjectTree)
-      //       const halfNode = this.$refs.ProjectTree.getNode(item)
-      //       for (const key in halfNode) {
-      //         if (halfNode[key].checked !== true) {
-      //           halfNode[key].indeterminate = true
-      //         }
-      //       }
-      //     })
-      //   }
-      // })
 
       this.searchParam.params.currentDataSource = obj.dataSource
-      this.searchParam.params.docFolderList
+      // this.searchParam.params.docFolderList
       const currentDataSource = this.searchParam.params.currentDataSource
       this.otherDataSources = []
       this.filetab.forEach(item => {
@@ -1182,146 +1182,37 @@ export default {
         this.parentNodesunChecked(node)
       }
     },
-    // 选择tree
-    docTreeCheck(a, b) {
-      console.log(a)
-      console.log(b)
-      // const node = this.$refs.ProjectTree.getNode(a)
-      // // this.childNodes(node)
-      // if (node.checked) {
-      //   this.parentNodesChecked(node)
-      // } else {
-      //   if (this.childNodesIsChecked(node)) {
-      //     node.indeterminate = true
-      //   }
-      //   this.parentNodesunChecked(node)
-      // }
-      // console.log(a)
-      // console.log(b)
-      /* // 是否编辑的表示
-      // this.ruleForm.isEditorFlag = true
-      // 编辑时候使用
-      // this.ruleForm.menuIds = this.$refs.tree.getCheckedKeys()
-      // 无论编辑和新增点击了就传到后台这个值
-      // this.ruleForm.menuIdsisEditor = this.$refs.tree.getCheckedKeys().concat(this.$refs.tree.getHalfCheckedKeys()) */
-
-      /* this.loading = true
-      this.fullscreenLoading = true
-      this.selectedFolder = []
-      // this.$refs.ProjectTree.getCheckedNodes().forEach(item => {
-      //   this.selectedFolder.push(item.dataSource + '/' + item.realPath)
-      // })
-      this.searchParam.params.searchLogId = this.searchLogId
-      // this.searchParam.params.docFolderList = this.selectedFolder
-      if (b.checkedKeys) {
-        this.dataCheckedList['checked' + this.acticeName] = b.checkedKeys
+    // 选择tree: node当前节点数据，b:选中项
+    docTreeCheck(node, b) {
+      // 操作子节点
+      let isChecked = false
+      // 判断当前操作是勾选还是取消勾选
+      if (b.checkedKeys.contains(node.id)) {
+        isChecked = true
+      } else {
+        isChecked = false
       }
-      this.searchParam.params.docFolderList = this.dataCheckedList
-      // this.allCheckedNodes.forEach(item => {
-      //   this.selectedFolder.push(item.dataSource + '/' + item.realPath)
-      // })
-      // this.searchParam.params.docFolderList = this.selectedFolder
-      this.normalSearch()
-      // .then(() => {
-      //   console.log(this.filetab.length ,this.tabLength)
-      //   if(this.filetab.length < this.tabLength){
-      //     document.getElementById('tab'+0).click()}
-
-      // }) */
-      const node = this.$refs.ProjectTree.getNode(a)
-      if (a.fileItemCount === 0 && node.checked) {
-        node.checked = false
-        this.$message({
-          message: '当前目录下没有文件，请选择下级目录',
-          type: 'warning'
-        })
-        return false
+      // 选中项子节点控制
+      const childrenKeys = b.checkedKeys
+      if (this.cascadeSelect === '1') { // 联动
+        tools.isCheckedChild(node, childrenKeys, isChecked)
       }
-      // this.checkedNodes(node)
-      // this.choseTreeData = []
-      // this.$refs.ProjectTree = []
+      // 刷新勾选项
+      this.$refs['ProjectTreedataSource' + this.acticeName][0].setCheckedKeys(childrenKeys)
+
       this.loading = true
       this.fullscreenLoading = true
       this.selectedFolder = []
       this.searchParam.params.searchLogId = this.searchLogId
-      // this.$refs.ProjectTree.getCheckedNodes().forEach(item => {
-      //   this.selectedFolder.push(item.id)
-      // })
-      if (b.checkedKeys) {
-        // this.selectedFolder = b.checkedKeys
-        this.dataCheckedList['checked' + this.acticeName] = b.checkedKeys
+      if (!tools.isBlank(childrenKeys)) {
+        this.dataCheckedList['checked' + this.acticeName] = childrenKeys
+      } else {
+        delete this.dataCheckedList['checked' + this.acticeName]
       }
       this.searchParam.params.docFolderList = this.dataCheckedList
-      const halfCheckNodes = this.$refs.ProjectTree.getHalfCheckedNodes()
+      const halfCheckNodes = this.$refs['ProjectTreedataSource' + this.acticeName][0].getHalfCheckedNodes()
       this.dataHalfCheckedList['halfChecked' + this.acticeName] = halfCheckNodes
-      if (b.checkedKeys.length <= 0) {
-        this.activeDataSource = 0
-      }
-      // this.isBtnSearchFlag = false
       this.normalSearch()
-
-      // this.normalSearch(() => {
-      //   const allTree = this.treeData
-      //   for (let i = 0; i < allTree.length; i++) {
-      //     // if (allTree[i].length > 0) {
-      //     //   this.filetab.push({
-      //     //     id: allTree[i][0].id,
-      //     //     value: allTree[i][0].dataSourceName,
-      //     //     dataSource: allTree[i][0].dataSource
-      //     //   })
-      //     // }
-      //     this.dataSourceFolderTree['dataSource' + allTree[i][0].dataSource] = allTree[i]
-      //   }
-      // })
-      // this.normalSearch(() => {
-      //   if (this.treeData.length >= 1) {
-      //     this.choseTreeData = []
-      //     for (let i = 0; i < this.treeData.length; i++) {
-      //       if (this.treeData[i][0].dataSource === a.dataSource) {
-      //         this.choseTreeData = this.treeData[i]
-      //       }
-      //     }
-      //   }
-      //   // 展开
-      //   const datatreeexpandedKeys = this.dataexpandedKeysList['expanded' + a.dataSource]
-      //   for (let i = 0; i < this.allexpandedKeys.length; i++) {
-      //     if (this.allexpandedKeys[i].dataSource === a.dataSource) {
-      //       this.$nextTick(() => {
-      //         this.expandedKeys = this.allexpandedKeys[i].expandedKeys
-      //       // this.dataCheckedList['expanded' + index] = this.expandedKeys
-      //       })
-      //     }
-      //   }
-      //   if (datatreeexpandedKeys) {
-      //     this.$nextTick(() => {
-      //       this.expandedKeys = datatreeexpandedKeys
-      //     })
-      //   }
-      //   // 勾选
-      //   const datatreechecked = this.dataCheckedList['checked' + a.dataSource]
-      //   // console.log(888888888, datatreechecked)
-      //   if (datatreechecked !== '' && datatreechecked.length > 0) {
-      //     this.$nextTick(() => {
-      //       this.checkedKeys = datatreechecked
-      //     })
-      //   } else {
-      //     this.checkedKeys = []
-      //   }
-      // })
-    },
-    // 展开节点
-    docTreeExpand(obj, node, dom) {
-      this.expandedKeys.push(obj.id)
-      this.dataexpandedKeysList['expanded' + this.acticeName] = this.expandedKeys
-    },
-    // 关闭节点
-    docTreeExpandClose(obj, node, dom) {
-      this.expandedKeys.forEach((item, index, arr) => {
-        if (item === obj.id) {
-          arr.splice(index, 1)
-        }
-      })
-      this.dataexpandedKeysList['expanded' + this.acticeName] = this.expandedKeys
     },
     // 选择文件类型
     fileType(value) {
@@ -1336,7 +1227,6 @@ export default {
     },
     // 选择文档语言
     language(value) {
-      // console.log(value)
       this.loading = true
       this.fullscreenLoading = true
       this.searchParam.params.searchLogId = this.searchLogId
@@ -1350,7 +1240,7 @@ export default {
     radioTimeCheck(value) {
       // console.log(value)
       // console.log(this.radiotime)
-      if (value !== '自定义日期') {
+      if (value !== '自定义时间') {
         this.loading = true
         this.fullscreenLoading = true
         this.searchParam.pageNo = 1
@@ -1533,14 +1423,13 @@ export default {
     },
 
     async download(fileUrl, docId) {
-      await downloadFile({ 'fileUrl': fileUrl, 'docId': docId, 'searchLogId': this.searchLogId })
+      await downloadFile({ 'fileUrl': fileUrl, 'docId': docId, 'searchLogId': this.searchParam.params.searchLogId })
     },
     showSLT(item) {
       // 成功回调函数停止加载
-      this.sltData = item
-      this.sltData.searchLogId = this.searchLogId
       this.centerDialogVisible = true
-      /* this.$nextTick(() => {
+      this.sltData = item
+      this.$nextTick(() => {
         var loading = this.$loading({
           lock: true, // lock的修改符--默认是false
           text: 'Loading', // 显示在加载图标下方的加载文案
@@ -1560,17 +1449,20 @@ export default {
         if (item.fileType === 'Others') {
           loading.close()
         }
-      }) */
+      })
+      // this.sltLoading = true
+      // const contextPath = window.location.origin
+      // console.log(contextPath)
+      // const baseApi = contextPath + '/iv-es/api/es/view/'
     },
     closeSLT() {
-      this.centerDialogVisible = false
-      /* this.kkfileviewurl = ''
+      this.kkfileviewurl = ''
       const slt = document.getElementsByClassName('el-loading-mask')
       // console.log(slt)
       for (let i = 0; i < slt.length; i++) {
         // slt[i].style.visibility = 'visible'
         slt[i].style.visibility = 'hidden'
-      } */
+      }
     },
     copyUrl(i) {
       document.getElementById('urlcoby' + i).select()
@@ -1609,6 +1501,28 @@ export default {
     closeDiyFileSizeDialog() {
       this.diysizefrommessage = ''
       this.diysizetomessage = ''
+    },
+    // 判断是否需要变粗体
+    getIsBolder(scope) {
+      let flag = false
+      if (scope.node) {
+        const res = function (node) {
+          if (!tools.isBlank(node)) {
+            if (node.checked) {
+              flag = true
+              return flag
+            } else {
+              if (!tools.isBlank(node.childNodes)) {
+                for (const iterator of node.childNodes) {
+                  res(iterator)
+                }
+              }
+            }
+          }
+        }
+        res(scope.node)
+      }
+      return flag
     }
     // stateChange() {
     //   this.sltLoading = false
@@ -1617,6 +1531,27 @@ export default {
 }
 </script>
 <style scoped>
+#box {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+#left {
+  width: calc(30% - 5px);
+  float: left;
+  overflow: auto;
+}
+#resize {
+  position: relative;
+  width: 5px;
+  cursor: w-resize;
+  float: left;
+}
+#right {
+  width: 70%;
+  float: left;
+  overflow: hidden;
+}
 .search_box {
   height: 164px;
   margin-bottom: 20px;
@@ -1925,7 +1860,7 @@ export default {
   word-break: break-all;
 }
 .each_r_title span {
-  display:ruby;
+  display: block;
   max-width: 70%;
   height: 25px;
   white-space: nowrap;
@@ -2067,14 +2002,35 @@ export default {
   left: 280px;
   color: #f54132;
 }
-.slt_empty{
+.slt_empty {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-justify-content:space-between;
+  justify-content: space-between;
 }
-.slt_empty span{
-margin-top: 40px;
-font-size: 16px;
+.slt_empty span {
+  margin-top: 40px;
+  font-size: 16px;
+}
+</style>
+<style>
+.iv-seach-tree .el-tree-node[aria-checked="true"] > .el-tree-node__content {
+  font-weight: bolder;
+}
+.qxz {
+  margin-top: 10px;
+  margin-left: 5px;
+}
+.qxz .el-radio-group {
+  display: inline-block;
+  margin-left: 20px;
+  width: 159px;
+}
+.qxz .el-radio-group .el-radio {
+  color: #333333;
+  margin-top: 0;
+}
+.f_bolder {
+  font-weight: bolder;
 }
 </style>

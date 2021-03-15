@@ -73,7 +73,7 @@
             </el-checkbox-group>
             <div class="search_num" style="margin-top:30px" @click="isradio=!isradio">
               <i class="iconfont icon-shijian" />
-              <span>{{ $t('advanced.fileType') }}</span>
+              <span>{{ $t('advanced.modifyedTime') }}</span>
               <i class="iconfont icon-ai-arrow-down" :class="isradio?'':'icon_gif'" />
             </div>
             <el-radio-group v-show="isradio" v-model="radiocheckList" @change="radioTimeCheck">
@@ -153,7 +153,7 @@
             :placeholder="$t('advanced.searchInput')"
             :maxlength="81"
             :trigger-on-focus="false"
-            popper-class="search_input"
+            popper-class="search_input search_input_q"
             clearable
             @select="searchWords"
             @keyup.enter.native="btnSearch"
@@ -282,7 +282,7 @@
                 />
                 <el-autocomplete
                   ref="filePathsearchInput"
-                  v-model="advanceparams.dataSourceFilePath"
+                  v-model="advanceparamsDataSourceFilePath"
                   class="select_input_value"
                   :fetch-suggestions="queryFilePathSearch"
                   :placeholder="$t('advanced.pathSuggestions')"
@@ -338,7 +338,7 @@
                 <i class="iconfont icon-jiantouarrow492" :class="isTimeSortTop?'icon_active':'icon_def'" @click="timeSortTop()" /><i class="iconfont icon-jiantouarrow492-copy" :class="isTimeSortBottom?'icon_active':'icon_def'" @click="timeSortBottom()" />
               </span>
             </span>
-             <!-- 本次开发不需要 -->
+            <!-- 本次开发不需要 -->
             <!-- <div class="pop_btn" @click.stop="" @click="showAdvanceSearch()">
               <i class="iconfont icon-sousuo2" />
             </div> -->
@@ -672,6 +672,7 @@ export default {
       dataSource: '',
       filePathInputEnable: false,
       dataSourceFilePath: '',
+      advanceparamsDataSourceFilePath: '',
       optionsFolder: [
         {
           label: '是',
@@ -770,7 +771,7 @@ export default {
           sortItemForSearch: ['_score,desc']
         }
       },
-      sltData: '',
+      sltData: {},
       centerDialogVisible: false,
       filesizeDialogVisible: false,
       activeDataSource: 0,
@@ -1029,6 +1030,7 @@ export default {
         })
         return false
       }
+      localStorage.setItem('keyWords', newVal)
     },
     diysizefrom(newVal, oldVal) {
       const reg = /^\+?[0-9]\d*$/
@@ -1120,6 +1122,11 @@ export default {
         this.advancedDiysizetomessage = ''
       }
     },
+    advanceparamsDataSourceFilePath(newVal, oldVal) {
+      if (!newVal) {
+        this.selectedFullFilePath = ''
+      }
+    },
     $route(to, from) {
       // console.log(111111111111, to)
     }
@@ -1161,13 +1168,16 @@ export default {
       // this.advanceparams.diysizeto = diysizeto
       this.advanceparamsDiysizeTo = diysizeto
       this.advanceparams.dataSource = dataSource
-      this.advanceparams.dataSourceFilePath = dataSourceFilePath.slice(2)
-      if (dataSourceFilePath) {
+      this.advanceparamsDataSourceFilePath = dataSourceFilePath.slice(2)
+      if (dataSource || dataSourceFilePath) {
         this.filePathInputEnable = true
       }
       this.advanceparams.searchSortType = searchSortType
     }
-    this.searchParam.params.keyWords = search
+    if (tools.isBlank(this.keyWords)) {
+      this.keyWords = localStorage.getItem('keyWords')
+    }
+    this.searchParam.params.keyWords = this.keyWords
     this.searchParam.params.fieldScale = radio
     this.searchParam.params.docLanguage = lang
     this.searchParam.params.fuzzySearchDiv = fuzzy
@@ -1280,8 +1290,7 @@ export default {
       }
     },
     async btnSearch() {
-      if (this.keyWords) {
-      } else {
+      if (!this.keyWords) {
         this.$message.closeAll()
         this.$message({
           message: '请输入搜索内容！',
@@ -1289,19 +1298,14 @@ export default {
         })
         return
       }
-
-      // eslint-disable-next-line no-empty
-      if (this.advancedDiysizefrommessage === '' && this.advancedDiysizetomessage === '') {
-      } else {
+      if (this.advancedDiysizefrommessage !== '' || this.advancedDiysizetomessage !== '') {
         this.$message.closeAll()
         this.$message({
-          message: '自定义大小错误！',
+          message: '搜索条件中的文件自定义大小输入有误，请确认！',
           type: 'warning'
         })
         return
       }
-
-      //
       if (this.keyWords) {
         this.loading = true
         this.isAdvanceFlag = false
@@ -1367,7 +1371,7 @@ export default {
           type: 'warning'
         })
       }
-      document.getElementsByClassName('el-autocomplete-suggestion')[0].style.display = 'none'
+      document.querySelector('.search_input_q').style.display = 'none'
     },
     async normalSearch(callback) {
       if (this.isBtnSearchFlag) {
@@ -1520,8 +1524,8 @@ export default {
     //   }
     // },
     querySearch(queryString, cb) {
-      this.restaurants = []
-      this.getTerms(queryString)
+      this.restaurants = [{ id: 1, value: 'adadadas' }, { id: 1, value: 'adadadas' }, { id: 1, value: 'adadadas' }, { id: 1, value: 'adadadas' }]
+      // this.getTerms(queryString)
       // 调用 callback 返回建议列表的数据
       cb(this.restaurants)
     },
@@ -1537,6 +1541,7 @@ export default {
     },
     // 搜索关键字
     searchWords(value) {
+      this.$refs.searchInput.focus()
       // console.log(value.value)
       // this.filteritem.keyWords = value.value
       // this.filterSearch(this.filteritem)
@@ -1877,13 +1882,16 @@ export default {
     },
 
     async download(fileUrl, docId) {
-      await downloadFile({ 'fileUrl': fileUrl, 'docId': docId, 'searchLogId': this.searchParam.params.searchLogId })
+      await downloadFile({ 'fileUrl': fileUrl, 'docId': docId, 'searchLogId': this.searchLogId })
     },
     showSLT(item) {
       // 成功回调函数停止加载
-      this.sltData = item
-      this.sltData.searchLogId = this.searchLogId
-      this.centerDialogVisible = true
+      if (item) {
+        this.sltData = item
+        this.sltData.searchLogId = this.searchLogId
+        this.centerDialogVisible = true
+      }
+
       /* this.$nextTick(() => {
         var loading = this.$loading({
           lock: true, // lock的修改符--默认是false
@@ -1998,7 +2006,7 @@ export default {
       this.advanceparamsDiysizeFrom = ''
       this.advanceparamsDiysizeTo = ''
       this.advanceparams.dataSource = ''
-      this.advanceparams.dataSourceFilePath = ''
+      this.advanceparamsDataSourceFilePath = ''
       this.advanceparams.dataSourceSearch = ''
       this.advanceparams.radioSort = 'rel'
     },
@@ -2123,16 +2131,16 @@ export default {
       }
     },
     dataSourceChange(val) {
-      console.log(val)
+      // console.log(val)
       if (val) {
         this.advanceparams.dataSource = val
         // this.dataSource = val
         console.log(this.dataSource)
         this.filePathInputEnable = true
-        this.advanceparams.dataSourceFilePath = ''
+        this.advanceparamsDataSourceFilePath = ''
       } else {
         this.filePathInputEnable = false
-        this.advanceparams.dataSourceFilePath = ''
+        this.advanceparamsDataSourceFilePath = ''
       }
     },
     async getFilePath(queryString, dataSource) {
@@ -3052,6 +3060,10 @@ export default {
 }
 .kb {
   margin-left: 5px;
+}
+.icon-open-copy,
+.icon-open {
+  color: #2d7a9c;
 }
 </style>
 

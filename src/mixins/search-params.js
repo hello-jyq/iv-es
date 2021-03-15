@@ -52,19 +52,26 @@ export const search = {
   },
   updated() {
     this.$nextTick(() => {
-      const firstPageStatue = document.getElementsByClassName('btn-prev')[0].disabled
-      const lastPageStatue = document.getElementsByClassName('btn-next')[0].disabled
-      // console.log('=================>', firstPageStatue, lastPageStatue)
-      if (firstPageStatue) {
-        document.getElementsByClassName('first-pager')[0].disabled = true
+      if (document.getElementsByClassName('btn-prev').length <= 0 || document.getElementsByClassName('btn-next').length <= 0) {
+        return
       } else {
-        document.getElementsByClassName('first-pager').disabled = false
-      }
-      if (lastPageStatue) {
-        document.getElementsByClassName('last-pager')[0].disabled = true
-      } else {
-        document.getElementsByClassName('last-pager')[0].disabled = false
+        const firstPageStatue = document.getElementsByClassName('btn-prev')[0].disabled
+        const lastPageStatue = document.getElementsByClassName('btn-next')[0].disabled
+        if (document.getElementsByClassName('first-pager').length > 0) {
+          if (firstPageStatue) {
+            document.getElementsByClassName('first-pager')[0].disabled = true
+          } else {
+            document.getElementsByClassName('first-pager').disabled = false
+          }
+        }
+        if (document.getElementsByClassName('last-pager').length > 0) {
+          if (lastPageStatue) {
+            document.getElementsByClassName('last-pager')[0].disabled = true
+          } else {
+            document.getElementsByClassName('last-pager')[0].disabled = false
+          }
+        }
       }
     })
-  },
+  }
 }

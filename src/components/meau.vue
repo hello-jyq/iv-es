@@ -70,7 +70,7 @@ export default {
           this.breadcrumbItems = []
           const seqNo = menuIndex.split(':')
           this.getSelectedMenus(this.menuList, seqNo)
-          console.log(11111111, this.menuList)
+          // console.log(11111111, this.menuList)
         } else {
           this.reURL = 'menu-search:menu-search-general-search'
         }
@@ -115,7 +115,7 @@ export default {
     },
     handleClose(key, keyPath) {
       this.openeds = keyPath
-      console.log(key, keyPath)
+      // console.log(key, keyPath)
     },
 
     getSelectedMenus(menuList, seqNo) {

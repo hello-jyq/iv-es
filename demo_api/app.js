@@ -555,6 +555,16 @@ app.post('/iv-es/sc/scheduler/getScheduler', (req, res) => {
   sentResByJson('dataList/admin/i18n/getScheduler.json', res)
 })
 
+app.post('/iv-es/api/log/list', (req, res) => {
+  // 读取json文件并送信
+  sentResByJson('dataList/searchlog/search.json', res)
+})
+
+app.post('/iv-es/api/log/delete/', (req, res) => {
+  // 读取json文件并送信
+  sentResByJson('dataList/searchlog/msg-ok.json', res)
+})
+
 function sentResByJson(filePath, res) {
   const file = path.join(__dirname, filePath) // 文件路径，__dirname为当前运行js文件的目录
   fs.readFile(file, 'utf-8', function(err, data1) {

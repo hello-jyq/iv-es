@@ -1,3 +1,4 @@
+/* eslint-disable no-irregular-whitespace */
 <template>
   <div v-show="isShow" v-loading="isLoading" class="set_bg">
     <div class="set_box">
@@ -196,7 +197,7 @@ export default {
     }
   },
   watch: {
-    'isShow': function (newVal, oldVal) {
+    'isShow': function(newVal, oldVal) {
       if (newVal === true) {
         // // console.log(this.$refs.upload)
         this.initSettings()
@@ -238,7 +239,7 @@ export default {
         }
       } else {
         this.initOrg = this.$store.state.userInfo.orgId
-        this.esSearchDiv = '0'
+        this.esSearchDiv = '2'
         this.esSearchTarget = 'ALL'
       }
 
@@ -276,7 +277,7 @@ export default {
         confirmButtonText: this.$t('comm.certain'),
         cancelButtonText: this.$t('comm.cancel'),
         type: 'warning'
-      }).then(async () => {
+      }).then(async() => {
         const param = { key: setType, value: setValue }
         const res = await changeUserSetting(param)
         // eslint-disable-next-line no-empty
@@ -335,7 +336,7 @@ export default {
         confirmButtonText: this.$t('comm.certain'),
         cancelButtonText: this.$t('comm.cancel'),
         type: 'warning'
-      }).then(async () => {
+      }).then(async() => {
         const param = { oldPassword: this.oldPassword, newPassword: this.newPassword }
         const res = await changePassword(param)
         // eslint-disable-next-line no-empty
@@ -357,7 +358,7 @@ export default {
         confirmButtonText: this.$t('comm.certain'),
         cancelButtonText: this.$t('comm.cancel'),
         type: 'warning'
-      }).then(async () => {
+      }).then(async() => {
         const param = {}
         const res = await clearTerms(param)
         // eslint-disable-next-line no-empty
@@ -379,7 +380,7 @@ export default {
         confirmButtonText: this.$t('comm.certain'),
         cancelButtonText: this.$t('comm.cancel'),
         type: 'warning'
-      }).then(async () => {
+      }).then(async() => {
         const param = {}
         const res = await clearLogs(param)
         // eslint-disable-next-line no-empty
@@ -592,12 +593,12 @@ export default {
 }
 
 .set_items_input .message {
-  color: red;
+    color: red;
 }
 .set_menu ul li i {
-  color: #333333 !important;
+  color: #333333!important;
 }
-.set_menu ul .menuActive i {
-  color: #2d7a9c !important;
+.set_menu ul .menuActive i{
+  color:#2d7a9c!important;
 }
 </style>
